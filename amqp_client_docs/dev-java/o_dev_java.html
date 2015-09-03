@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+<h1>Checklist: Build Java AMQP Clients Using Kaazing WebSocket Gateway</h1>
+<p>This checklist provides the steps necessary to enable your Java application to communicate with any AMQP-compliant message broker, such as Apache Qpid, using the Java client libraries available in Kaazing WebSocket Gateway - AMQP Edition:</p>
+
+<table width="789" border="0">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col" width="400">Step</th>
+    <th scope="col">Topic or Reference</th>
+  </tr>
+  <tr>
+  <td>1</td>
+    <td>Learn about supported browsers, operating systems, and platform versions.</td>
+    <td><a href="../../release-notes.html">Release Notes</a></td>
+  </tr>
+  <tr>
+        <td>2</td>
+    <td>Learn about the Kaazing WebSocket Gateway AMQP client.</td>
+    <td><a href="#overview">Overview of the Kaazing WebSocket Gateway Java AMQP Client Libraries</a></td>
+  </tr>
+  <tr>
+        <td>3</td>
+    <td>Learn to use the Kaazing WebSocket Gateway Java AMQP client library and the supported methods.</td>
+    <td><a href="p_dev_java_client.html">Use the Kaazing WebSocket Gateway Java AMQP Client Library</a></td>
+  </tr>
+  <tr>
+        <td>4</td>
+    <td>Learn how to authenticate your client by implementing a challenge handler to respond to authentication challenges from the Gateway.</td>
+    <td><a href="p_dev_java_secure.html">Secure Your Java AMQP Client</a></td>
+  </tr>
+</table>     
+
+<span class="note"><b>Note:</b> Java Developer Kit (JDK) or Java Runtime Environment (JRE) 1.6 and above is required.</span>
+
+<h2>Overview of AMQP 0-9-1</h2>
+
+<p>Advanced Message Queuing Protocol (AMQP) is an open standard for messaging middleware that was originally designed by the financial services industry to provide an interoperable protocol for managing the flow of enterprise messages. To guarantee messaging interoperability, AMQP 0-9-1 defines both a wire-level protocol and a model&mdash;the AMQP Model&mdash;of messaging capabilities.</p>
+
+<p>The AMQP Model defines three main components:</p>
+<p>
+<ol>
+<li><em>Exchange</em>: clients publish messages to an exchange</li>
+<li><em>Queue</em>: clients read messages from a queue</li>
+<li><em>Binding</em>: a mapping from an exchange to a queue</li>
+</ol>
+</p>
+
+<p>An AMQP client connects to an AMQP broker and opens a channel. Once the channel is established, the client can send messages to an exchange and receive messages from a queue. To learn more about AMQP functionality, take a look at the <a href="../guide-amqp.html">Real-Time Interactive Guide to AMQP</a>, an interactive guide that takes you step-by-step through the main features of AMQP version 0-9-1.</p>
+
+<p>For more information about AMQP, visit <a href="http://www.amqp.org">http://www.amqp.org</a>.</p>
+
+<h2>WebSocket and AMQP</h2>
+<p>WebSocket enables direct communication from the browser to an AMQP broker. Kaazing WebSocket Gateway radically simplifies Web application design by providing the AMQP client libraries for the Java, JavaScript, Adobe Flex, .NET and Silverlight client technologies. Web developers can code directly against the back-end AMQP broker without the need for custom Servlets or server-side programming.</p>
+
+<p>Using the AMQP client libraries, you can take advantage of the AMQP features, making the browser a first-class citizen in AMQP systems (similar to C, Java, Python, and other clients). This means that you can run AMQP clients directly in a browser.</p>
+
+<p>The AMQP libraries use the Kaazing WebSocket Gateway ByteSocket client library because AMQP messages use a binary format. The implementation is layered on top of ByteSocket, which uses WebSocket (and thus the entire stack of Kaazing WebSocket Gateway HTML5 Communications client libraries). As such, applications developed using the AMQP libraries are provided with guaranteed persistence, reliability, and message-receipt acknowledgment all the way to the browser.</p>
+
+<h2><a name="overview"></a>Overview of the Kaazing WebSocket Gateway Java AMQP Client Libraries</h2>
+<p>Kaazing WebSocket Gateway - AMQP Edition includes AMQP client libraries, which allow clients to subscribe from and publish messages to a message broker using AMQP. With the Kaazing WebSocket Gateway AMQP client libraries, you can leverage WebSocket in your application. This WebSocket client then enables communication over AMQP between your application and the message broker, as shown in the following figure:</p>
+
+        <figure>
+                <img src="../images/f-amqp-web-java-client-web.png">
+        <figcaption><strong>Figure: Kaazing WebSocket Gateway Java AMQP Client Connection</strong></figcaption>      
+        </figure>
+
+<h2><a name="setup_server"></a>Starting an AMQP Broker</h2>
+
+<p>There are a wide variety of AMQP brokers available that implement different AMQP versions. For example, RabbitMQ, Apache Qpid, OpenAMQ, Red Hat Enterprise MRG, &Oslash;MQ, and Zyre. If you do not have an AMQP broker installed yet, you can use the Apache Qpid AMQP broker included in the Gateway download package, that supports AMQP version 0-9-1.</p>
+
+<p>To set up and start the Apache Qpid broker on your system, perform the steps described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</p>
+<p><span class="note"><strong>Note</strong>: The AMQP client libraries are compatible with AMQP version 0-9-1. Refer your AMQP broker documentation for information about certified AMQP versions.</span></p>
+
+<p>For information on integrating with RabbitMQ, see <a href="../integration-amqp/p_amqp_integrate_rabbitmq.html">Integrate RabbitMQ Messaging</a>.</p>
+
+<h2>Taking a Look at the AMQP Demo</h2>
+<p>Before you start, take a look at a demonstration that was built with the Java version of the AMQP client library. To see this demo in action, perform the following steps:</p>
+<ol>
+<li>Start Kaazing WebSocket Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+<li>In a browser, navigate to <a href="http://localhost:8001/demo/amqp/java/">http://localhost:8001/demo/amqp/java/</a>. </li>
+<li>From this page, you can navigate to additional AMQP demos for different client technologies (JavaScript, Silverlight, .NET Framework, and Adobe Flash and Flex).</li>
+</ol>
+                  </section>
+                </article>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/enterprise-shield/c_enterprise_shield_use_cases/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+
+ <h1 id="enterprise-shield-use-cases-">Enterprise Shield™ Use Cases <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></h1>
+
+<p>This topic provides a high-level overview of some common Enterprise Shield™ use cases.</p>
+
+<h2 id="before-you-begin">Before You Begin</h2>
+
+<p>This procedure is part of <a href="../o_enterprise_shield_checklist">Configure Enterprise Shield for KAAZING Gateway</a>:</p>
+
+<ol>
+  <li><a href="../../admin-reference/c_topologies#enterprise-shield--">Common KAAZING Gateway Production Topologies</a></li>
+  <li><a href="../o_enterprise_shield_checklist#about-enterprise-shield">About Enterprise Shield</a></li>
+  <li><strong>Enterprise Shield Use Cases</strong></li>
+  <li><a href="../../about/setup-guide">Setting Up the Gateway</a></li>
+  <li><a href="../p_enterprise_shield_config">Walkthrough: Configure Enterprise Shield</a></li>
+  <li><a href="../p_enterprise_shield_cluster">Walkthrough: Configure Enterprise Shield for High Availability</a></li>
+</ol>
+
+<p>The use case configurations described in this topic vary depending on the level of security and high availability you want to configure. Also, the sample topologies use two Gateway services instead of just one to demonstrate the Enterprise Shield reverse connectivity behavior in a configuration with multiple services.</p>
+
+<p>Each of the Enterprise Shield use cases configures Enterprise Shield on a single pair of Gateways (DMZ and internal Gateways), and then extends that topology to a cluster configuration. To configure Enterprise Shield and control Gateway operation, you configure elements in the Gateway configuration (gateway-config.xml) file. Also, the complete Gateway configuration files used for these use cases are available on <code>kaazing.org</code>. The configuration file names are included in each use case description that follows.</p>
+
+<h2 id="use-case-1-test-drive-enterprise-shield">Use Case 1: Test Drive Enterprise Shield™</h2>
+
+<p>This is the simplest Enterprise Shield architecture for the purpose of prototyping and evaluating how this feature can meet your business needs. No security is configured, which reduces the complexity of setting up this architecture. Also, it is easy to demonstrate this configuration on a single host environment, such as a laptop.</p>
+
+<p><img src="../../images/es_usecase3.png" alt="Use Case 1: Test Drive Enterprise Shield" /></p>
+
+<p><strong>Figure 1: Test Drive Enterprise Shield</strong></p>
+
+<p>The following complete configuration files are available on <code>kaazing.org</code>:</p>
+
+<ul>
+  <li>Single pair of Gateways:</li>
+  <li>Internal Gateway: <code>enterprise-shield-use-case-1-single-internal-gw.xml</code></li>
+  <li>DMZ Gateway: <code>enterprise-shield-use-case-1-single-dmz-gw.xml</code></li>
+  <li>Cluster of Gateways:</li>
+  <li>Internal Gateway: <code>enterprise-shield-use-case-1-cluster-internal-gw.xml</code></li>
+  <li>DMZ Gateway: <code>enterprise-shield-use-case-1-cluster-dmz-gw.xml</code></li>
+</ul>
+
+<h2 id="use-case-2-security-over-the-web">Use Case 2: Security Over the Web</h2>
+
+<p>This use case is the same as use case 1, but with security added between the client and the DMZ Gateway. This topology demonstrates the architecture for secure communication over the Web that uses TLS between the client and the DMZ Gateway (represented by locks). A production deployment should always use security for connections over the Web.  The communication in the data center is unsecure. Use this topology when you want secure Web communication, but network transport security is not a requirement between the DMZ and the trusted network.</p>
+
+<p><img src="../../images/es_usecase2.png" alt="Use Case 2: Security Over the We" /></p>
+
+<p><strong>Figure 2: Security Over the Web</strong></p>
+
+<p>This use case configures Enterprise Shield on a single pair of Gateways (DMZ and internal Gateways), then extends the topology to a cluster configuration. The following complete configuration files are available on <code>kaazing.org</code>:</p>
+
+<ul>
+  <li>Single pair of Gateways:</li>
+  <li>Internal Gateway: <code>enterprise-shield-use-case-2-single-internal-gw.xml</code></li>
+  <li>DMZ Gateway: <code>enterprise-shield-use-case-2-single-dmz-gw.xml</code></li>
+  <li>Cluster of Gateways:</li>
+  <li>Internal Gateway: <code>enterprise-shield-use-case-2-cluster-internal-gw.xml</code></li>
+  <li>DMZ Gateway: <code>enterprise-shield-use-case-2-cluster-dmz-gw.xml</code></li>
+</ul>
+
+<h2 id="use-case-3-maximum-end-to-end-transport-security">Use Case 3: Maximum (End-to-End) Transport Security</h2>
+
+<p>This topology provides the most secure connections into the enterprise. It is also a best practice recommendation for maximum security of an Enterprise Shield production configuration, because it provides security on the Web (same as Use Case 2) and it also secures the transport between the Gateways running on the DMZ and the trusted network. In this topology, the Gateway in the internal trusted network and a DMZ Gateway collaborate so that inbound ports of the firewall can be closed. Doing so provides a barrier to unauthorized users but still allows full bidirectional access.</p>
+
+<p><img src="../../images/es_usecase3.png" alt="Use Case 3: Maximum (End-to-End) Transport Security" /></p>
+
+<p><strong>Figure 3: Maximum (End-to-End) Transport Security</strong></p>
+
+<p>To configure this Enterprise Shield topology on a single pair of Gateways and then extend it to a cluster, follow the detailed steps in <a href="../p_enterprise_shield_config">Walkthrough: Configure Enterprise Shield™</a> and see the complete configuration files at <code>kaazing.org</code>:</p>
+
+<ul>
+  <li>Single pair of Gateways:</li>
+  <li>Internal Gateway: <code>enterprise-shield-use-case-3-single-internal-gw.xml</code></li>
+  <li>DMZ Gateway: <code>enterprise-shield-use-case-3-single-dmz-gw.xml</code></li>
+  <li>Cluster of Gateways:</li>
+  <li>Internal Gateway: <code>enterprise-shield-use-case-3-cluster-internal-gw.xml</code></li>
+  <li>DMZ Gateway: <code>enterprise-shield-use-case-3-cluster-dmz-gw.xml</code></li>
+</ul>
+
+
+</div>
+
+</div>
+
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

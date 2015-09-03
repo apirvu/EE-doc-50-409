@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+<h1>Use the Kaazing Gateway JavaScript JMS Client API</h1>
+<p>In this procedure, you will learn how to use the Kaazing Gateway JavaScript JMS Client API and the supported APIs. The steps in this section show you how to add the code to an existing JavaScript application and have it interact with a pre-seeded stock ticker. In this section, you'll use the out of the box ActiveMQ server and demo stock script. You can alternatively use your own JMS-compliant message broker.</p>
+
+<span class="note"><b>Notes:</b>
+ <ul>
+   <li>To find out more specific information about the supported APIs or to learn which APIs are not supported, refer to <a href="../about/kaazing-jms-api.html">Kaazing Gateway JMS Client Libraries: Supported APIs</a>.</li>
+   <li>Learn about supported browsers, operating systems, and platform versions in the <a href="../../release-notes.html">Release Notes</a>.</li>
+ </ul>
+</span>
+
+<h2>Before You Begin</h2>
+<p>This procedure is part of <a href="o_dev_js.html">Checklist: Build JavaScript JMS Clients Using Kaazing Gateway</a>, that includes the following steps:</p>
+<p>
+    <ol>
+    <li><strong>Use the Kaazing Gateway JavaScript JMS Client API</strong></li>
+    <li><a href="p_dev_js_secure.html">Secure Your JavaScript Client</a></li>
+    <li><a href="p_dev_js_tshoot.html">Troubleshoot Your JavaScript JMS Client</a></li>
+    <li><a href="p_clientlogging_js.html">Display Logs for the JavaScript JMS Client</a></li>
+    </ol>
+</p>
+
+
+<p><span class="note"><strong>Note</strong>: For this how-to, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61616. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../integration-jms/o_jms_integrate.html">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
+
+
+
+<h2><a name="setup" id="setup"></a>Set Up Your Development Environment</h2>
+        <p>Download and install Kaazing Gateway, as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</p>
+
+<h2><a name="demo" id="demo"></a>Take a Look at the JavaScript JMS Client Demo</h2>
+          <p>Before you start, take a look at the out of the box demos that were built with the JavaScript client library. To see these JavaScript demos in action, perform the following steps:</p>
+          <ol>
+              <li>Start ActiveMQ, as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+              <li>Start the demo stock feed as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+              <li>Start the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+              <li>In a browser, navigate to the out of the box demos at <span class="uri">http://localhost:8001/demo/</span>. </li>
+              <li>Click <strong>JavaScript</strong> and follow the instructions.</li>
+          </ol>
+<p>The out of the box JavaScript JMS demos show  HTML5 standards being used in two sample JMS scenarios.</p>
+            <h3>About the Stock Emitter Program</h3>
+            <p>In this procedure, you will connect to  Apache ActiveMQ, which is receiving a stream of fictitious financial stock data. This stock data is generated by a Java program, which is  included in the Gateway bundle. This stock emitter program creates a connection with Apache ActiveMQ, running on the default host and port (<kbd>tcp://localhost:61616</kbd>) and sends it stock ticker symbols with an associated fictitious base price. After that, it randomly changes the prices programmatically and sends the updates and the percentage of the change. </p>
+
+
+<h2><a name="use"></a>To use the Kaazing Gateway JavaScript JMS client libraries to create a real-time stock ticker:</h2>
+<p>
+          <ol>
+            <li><p>Copy the <span class="code_inline"><em>GATEWAY_HOME</em>/web/extras/samples</span> folder to <span class="code_inline"><em>GATEWAY_HOME</em>/web/base/</span> so you can modify the files. The files in the <span class="code_inline"><em>GATEWAY_HOME</em>/web/extras/</span> folder are read-only.</p> 
+                </li>
+            <li><p>Open the file <span class="code_inline">stock.html</span> in the <span class="code_inline"><em>GATEWAY_HOME</em>/web/base/samples/jms-js-stock</span> directory in your favorite text editor.</p> 
+                <p>This file is a simple HTML file that contains a few <kbd>TODO</kbd> sections. This is where you add the code necessary to turn this template file into a JavaScript client that can interact with a JMS-compliant message broker through the Gateway. </p></li>
+            <li><p>Add a reference to the Kaazing Gateway JavaScript client libraries, which allows you to open a WebSocket and fully leverage bidirectional binary communication for all browsers.</p>
+              <p><b>Replace:</b></p>
+              <p><kbd>&lt;!-- TODO 0 --&gt;</kbd></p>
+              <p><b>With:</b></p>
+<pre class="brush: xml; toolbar: false;">
+&lt;!-- Required for Internet Explorer 6/7 cross-origin support --&gt;
+&lt;meta name="kaazing:postMessageBridgeURL" content="PostMessageBridge.html"&gt;
+&lt;!-- WebSocket library --&gt;
+&lt;script src="WebSocket.js"&gt;&lt;/script&gt;
+&lt;!-- JMS library --&gt;
+&lt;script src="JmsClient.js"&gt;&lt;/script&gt;</pre>
+                <span class="note"><b>Notes:</b><br>
+                 <ul class="arrow-2">
+                   <li>Always add the <span class="code_inline">WebSocket.js</span> library before the <span class="code_inline">JmsClient.js</span> library.</li>
+                   <li>Your client can use the <span class="code_inline">JmsClient.js</span> library without the <span class="code_inline">WebSocket.js</span> library, but your client will not be able to use features such as WebSocket emulation, authentication, load balancing, and other advanced features of the Gateway. To run a JavaScript client that uses the <span class="code_inline">JmsClient.js</span> library without <span class="code_inline">WebSocket.js</span>, the web browser hosting the client must support the native W3C standard <a href="http://dev.w3.org/html5/websockets/">WebSocket API</a>. If a client using <span class="code_inline">JmsClient.js</span> is running in an unsupported configuration, the JMS API reports the condition by throwing an exception from <span class="code_inline">createConnection()</span> and logs a message to <a href="http://stackoverflow.com/questions/4743730/what-is-console-log-and-how-do-i-use-it">window.console</a>, if present. For a list of web browsers that support WebSocket, see <a href="http://caniuse.com/#search=websocket">caniuse.com</a>.</li>
+                   <li>When you use the <span class="code_inline">JmsClient.js</span> client library, you must ensure all the relevant <span class="code_inline">*cache.js</span> files are accessible within the same directory that contains JmsClient.js. You can see the structure in <span class="code_inline"><em>GATEWAY_HOME</em>/web/samples/jms-js-stock</span>. </li>
+                   <li>The file <span class="code_inline">PostMessageBridge.html</span> is used to make your application work in Internet Explorer releases 6 and 7. To configure this compatibility, copy the file from <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/javascript/PostMessageBridge.html</span> to <span class="code_inline"><em>GATEWAY_HOME</em>/web/base/samples/jms-js-stock</span>. </li>
+                 </ul>
+                </span>
+            </li><br>
+            <li><p>Create a <span class="code_inline">JmsConnectionFactory</span> when users click  the Connect button.</p>
+              <p><b>Replace:</b></p>
+              <p><kbd>// TODO1</kbd></p>
+              <p><b>With:</b></p>
+              <pre class="brush: js; toolbar: false;">
+            connect.onclick = function() {
+                jmsConnectionFactory =
+                   new JmsConnectionFactory(url.value);</pre>
+            </li>
+            <li><p>Create a connection with a "future" handler for the returned result.</p>
+              <p><b>Replace:</b></p>
+              <p><kbd>// TODO2</kbd></p>
+              <p><b>With:</b></p>
+              <pre class="brush: js; toolbar: false;">
+if (connection == null) {
+     var connectionFuture = jmsConnectionFactory.createConnection
+       (username.value, password.value, function () {
+          try {
+               connection = connectionFuture.getValue();</pre>
+               
+            <span class="note"><b>Note:</b> In this example we use <span class="code_inline">password.value</span> but the password does not have to be a text password. <span class="code_inline">JmsConnectionFactory()</span> can use a token of any kind. If you use text-based passwords, ensure that you have configured secure networking as described in <a href="../security/o_tls.html">Checklist: Secure Network Traffic with the Gateway</a>.</span>
+            
+            </li>
+            <li><p>Create a session, and pass in session parameters. Sessions are either transacted or not. In this example, set this to false (non-transacted). Sessions  declare how incoming messages will be acknowledged. In this case, use <kbd>AUTO_ACKNOWLEDGE</kbd>. Here, you can also change the <strong>Connection</strong> button label to <kbd>Disconnect</kbd>.</p>
+              <p><b>Replace:</b></p>
+              <p><kbd>// TODO3</kbd></p>
+              <p><b>With:</b></p>
+              <pre class="brush: js; toolbar: false;">
+            connect.innerHTML = "Disconnect";
+           var session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);</pre>
+            </li>
+            <li><p>Once you have created the session, you can subscribe to topics or queues. Specify the  topic name <strong>stock</strong>.</p>
+              <p><b>Replace:</b></p>
+              <p><kbd>// TODO4</kbd></p>
+              <p><b>With:</b></p>
+              <pre class="brush: js; toolbar: false;">
+                            var topic = session.createTopic("/topic/stock");
+                            var consumer = session.createConsumer(topic);
+              </pre>
+            </li>
+            <li><p>Create an <span class="code_inline">onMessage</span> function to handle incoming messages and save the file.</p>
+              <p><b>Replace:</b></p>
+              <p><kbd>// TODO5</kbd></p>
+              <p><b>With:</b></p>
+              <pre class="brush: js; toolbar: false;">                            consumer.setMessageListener(onMessage);
+                            connection.start(function () { /* Started */ });</pre>
+            </li>
+            <li>Now, you'll need to perform a configuration step to enable the Gateway to accept incoming connections on port 8001. To do so, in a text editor, open the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>.</li>
+            <li>Under the <span class="code_inline">jms</span> service entry, add a second <span class="code_inline">&lt;accept&gt;</span> statement:
+<p class="code"> &lt;accept&gt;ws://build-macmini3.kaazing.test:8000/jms&lt;/accept&gt;</p>
+              <p>The section should then look like this:</p>
+              <pre class="brush: xml; highlight: 3; toolbar: false;">
+&lt;service&gt;
+  &lt;accept&gt;ws://build-macmini3.kaazing.test:${gateway.extras.port}/jms&lt;/accept&gt;
+  &lt;accept&gt;ws://build-macmini3.kaazing.test:8000/jms&lt;/accept&gt;
+
+  &lt;type&gt;jms&lt;/type&gt;
+.
+.
+.
+&lt;/service&gt;</pre>
+            </li>
+            <li>Save the file, then stop and start the Gateway by following the steps in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+            <li>Ensure the Gateway, the stock ticker, and Apache ActiveMQ are running. For information about starting the Apache ActiveMQ, see <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+            <li><p>In a browser, open <span class="uri">http://localhost:8000/samples/jms-js-stock/stock.html</span>. Your application should look like the following figure.</p> 
+                <p>Alternatively, if you are not certain if you have performed the steps correctly, you can also open <span class="uri">http://localhost:8000/samples/jms-js-stock/stock-completed.html</span>, which is the completed example.</p>
+            <img src="../images/js-jms-stock-completed.png" width="810" height="555" alt="Completed JavaScript Example"></li>
+          </ol><br>
+
+ <p><span class="note"><strong>Note</strong>: All JMS exceptions are inherited from Error.</span></p>
+</p>
+
+<h2><a name="migrate"></a>Migrate JavaScript Applications to Kaazing Gateway 4.x</h2>
+<p>If you wish to migrate your Kaazing Gateway 3.3-3.5 JavaScript clients to Kaazing Gateway 4.x and use its new library, do the following:</p>
+  <ol>
+  <li>Add the new WebSocket.js library to your client, as described in this procedure.</li>
+  <li>Use the new JmsClient.js library in Gateway 4.x. This has replaced the StompJms.js library from 3.3-3.5.</li>
+  <li>Change any StompJms.js references to JmsClient.js.</li>
+  <li>Change any instances of <code>StompConnectionFactory</code> to <code>JmsConnectionFactory</code>.</li>
+  <li><p>Modify challenge handlers. In Kaazing Gateway 4.x, <code>ChallengeHandlers</code> from 3.3-3.5 was replaced with by the <code>ChallengeHandler</code> method of <code>WebSocketFactory</code>. The <code>ChallengeHandler</code> method is used during authentication for connections and subsequent revalidation that occurs at regular intervals.</p>
+    
+    <p>Kaazing Gateway 3.3-3.5:</p>
+
+<pre class="auto-links: false; brush: js; toolbar: false;">
+function setupSSO() {
+    /* Respond to authentication challenges with popup login dialog */
+    var basicHandler = new BasicChallengeHandler();
+    basicHandler.loginHandler = function(callback) {
+        popupLoginDialog(callback);
+    }
+    ChallengeHandlers.setDefault(basicHandler);
+}
+</pre>
+    
+    <p>Kaazing Gateway 4.x:</p>
+<pre class="auto-links: false; brush: js; toolbar: false;">
+function setupSSO(webSocketFactory) {
+    /* Respond to authentication challenges with popup login dialog */
+    var basicHandler = new BasicChallengeHandler();
+    basicHandler.loginHandler = function(callback) {
+        popupLoginDialog(callback);
+    }
+    webSocketFactory.setChallengeHandler(basicHandler);
+}
+</pre>
+  </li>
+  <li>Review the <a href="../apidoc/client/javascript/jms/index.html">JavaScript JMS Client API</a>.</li>
+</ol>
+
+<h2><a name="Durable"></a>Durable Subscribers</h2>
+
+<span class="note"><b>Note:</b> Currently, the Gateway does not support durable subscribers with Apache ActiveMQ. You may use durable subscribers with <a href="../integration-jms/p_jms_integrate_tibco.html">TIBCO EMS</a> or <a href="../integration-jms/p_jms_integrate_informatica.html">Informatica UM</a>. For more information, see <a href="../admin-reference/r_stomp_service.html#durables">Durable Subscribers</a>.</span><br>
+
+
+<p>If your JMS client needs to receive all of the messages published on a topic, including the ones published while the subscriber is inactive because it is not being used or has lost connections (which is common when using mobile devices), create a durable <a href="../apidoc/client/javascript/jms/TopicSubscriber.html">TopicSubscriber</a> using the <a href="../apidoc/client/javascript/jms/Session.html#createDurableSubscriber">Session.createDurableSubscriber()</a> method.</p>
+
+<p>To unsubscribe from a durable subscription that has been created by a client and delete the state being maintained on behalf of the subscriber by the broker, use the <code><a href="../apidoc/client/javascript/jms/Session.html#unsubscribe">unsubscribe()</a></code> method available in the <code>Session</code> object.</p>
+
+<p>The JMS provider retains a separate record of each durable subscription and ensures that all messages from the topic's publishers are retained until they are acknowledged by each durable subscriber or they have expired. Whether messages have been acknowledged is tracked separately for each durable subscriber, and each durable subscriber is identified by the combination of its name and the clientID (if any) set on the Connection. Ensure your application confirms that the clientID (if used) is unique to the user or device, or, if it does not use clientID's, ensure that the durable name is unique to the user or device.</p>
+
+<h4>Example</h4>
+<p>In the following example, a web application enables users to connect to a JMS broker via the Gateway and specify both a username and durable name to create a durable subscriber. First, we'll look at the HTML content of the web application, and then look at the JavaScript functions that use the <a href="../apidoc/client/javascript/jms/index.html">JavaScript JMS API</a>.</p>
+
+<p>In the connection section of the web application, a username field is included.</p>
+
+<pre class="auto-links: false; brush: xml; toolbar: false; highlight:[4,5];">
+&lt;div id=&quot;login_div&quot; class=&quot;panel&quot;&gt;
+&lt;label for=&quot;url&quot;&gt;Location&lt;/label&gt;
+&lt;input id=&quot;url&quot; /&gt;&lt;br/&gt;
+&lt;label for=&quot;username&quot;&gt;Username&lt;/label&gt;
+&lt;input id=&quot;username&quot;&gt;&lt;br/&gt;
+&lt;label for=&quot;password&quot;&gt;Password&lt;/label&gt;
+&lt;input type=&quot;password&quot; id=&quot;password&quot;&gt;&lt;br/&gt;
+&lt;button id=&quot;connect&quot; &gt;Connect&lt;/button&gt;
+&lt;button id=&quot;disconnect&quot; &gt;Close&lt;/button&gt;
+</pre>
+
+<p>The following section of the web app shows a web form that enables users to subscribe, send messages, and unsubscribe to a particular destination and durable name.</p>
+
+<pre class="auto-links: false; brush: xml; toolbar: false; highlight:[4,5,8,9];">
+&lt;div id=&quot;subscribe_div&quot; class=&quot;panel&quot;&gt;
+    &lt;span class=&quot;info&quot;&gt;Subscribe, set message selectors, send messages, 
+        and add message properties&lt;/span&gt;
+    &lt;label for=&quot;destination&quot;&gt;Destination&lt;/label&gt;
+    &lt;input id=&quot;destination&quot; value=&quot;/topic/destination&quot;&gt;&lt;br/&gt;
+    &lt;label for=&quot;messageSelector&quot;&gt;Message Selector&lt;/label&gt;
+    &lt;input id=&quot;messageSelector&quot; placeholder=&quot;Example: symbol=&#x27;KZNG&#x27;&quot;&gt;&lt;br /&gt;
+    &lt;label for=&quot;durableName&quot;&gt;Durable Name&lt;/label&gt;
+    &lt;input id=&quot;durableName&quot; value=&quot;&quot;&gt;&lt;br /&gt;
+    &lt;button id=&quot;subscribe&quot; &gt;Subscribe&lt;/button&gt;
+&lt;/div&gt;</pre>
+
+
+<p>Next, variable names are assigned to each form element (note the variable that is a concatenation of the username and the durable name to ensure that the durable subscription is unique):</p>
+<pre class="auto-links: false; brush: js; toolbar: false; highlight:[3,4,5,6,20,21,22,23];">
+// Declare variables
+var url, username, password, connect, close, disconnect, message, messageSelector, subscribe;
+var destination;
+var durName;
+var durableName;
+var UniqueDurName;
+
+// Assign UI elements to variables
+url = document.getElementById("url");
+username = document.getElementById("username");
+password = document.getElementById("password");
+connect = document.getElementById("connect");
+close = document.getElementById("close");
+disconnect = document.getElementById("disconnect");
+message = document.getElementById("message");
+messageSelector = document.getElementById("messageSelector");
+subscribe = document.getElementById("subscribe");
+send = document.getElementById("send");
+
+destination = document.getElementById("destination");
+durableName = document.getElementById("durableName");
+// Create a unique durable name using a concatenation of user name and durable name
+UniqueDurName = username + "@" + durableName; 
+</pre>
+
+<p>To create a connection, the user enters the location of the jms service (<span class="code_inline">ws://example.com:8001/jms</span>), a username, and then clicks <strong>Connect</strong> (password is optional). The following code creates the connection using the location and username:</p>
+
+<pre class="auto-links: false; brush: js; toolbar: false; highlight:[5,10,11];">
+function handleConnect() {
+    // log the location and username values to the log text area in the UI
+    log("CONNECT: " + url.value + " " + username.value);
+    // Create a new connection to the JMS provider at the location entered by the user
+    var jmsConnectionFactory = new JmsConnectionFactory(url.value);
+    try {
+        /*Create the actual JMS Connection via WebSocket.
+        Username and password are options used to authenticate with the Gateway.*/
+        var connectionFuture =
+            jmsConnectionFactory.createConnection(
+                username.value, password.value, function () {
+            if (!connectionFuture.exception) {
+                try {
+                    connection = connectionFuture.getValue();
+                    connection.setExceptionListener(handleException);
+
+                    log("CONNECTED");
+
+                    session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+                    transactedSession = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
+
+                        connection.start(function () {
+                            updateConnectionButtons(true);
+                        });
+                }
+                catch (e) {
+                    handleException(e);
+                }
+            }
+            else {
+                handleException(connectionFuture.exception);
+            }
+        });
+    }
+    catch (e) {
+        handleException(e);
+    }
+}
+</pre>
+
+<p>To create a durable subscriber for a topic when a user clicks the <strong>Subscribe</strong> button, the web application calls the <a href="../apidoc/client/javascript/jms/Session.html#createDurableSubscriber">createDurableSubscriber()</a> method of a Session object. Note the use of <span class="code_inline">UniqueDurName</span>, the variable created using a concatenation of username and durable name in order to create a unique durable subscription.</p> 
+
+<p>There are two instances of <span class="code_inline">createDurableSubscriber()</span>: the first instance is used if a message selector is entered by the user (lines 14-15), and the second is used if no message selector is entered (line 19).</p>
+
+<pre class="auto-links: false; brush: js; toolbar: false; highlight:[14,15,19];">
+function handleSubscribe() {
+    // Assign the destination entered by the user to a variable
+    var name = destination.value;
+    // Create the destination and assign it to a variable
+    var dest = createDestination(name, session);
+    // Create a variable to hold the durable topic
+    var consumer;
+    // If a durable name is entered by the user, do the following
+    if (durableName.value.length > 0) {
+      // If a message selector was entered, use it when creating the durable topic
+      if (messageSelector.value.length > 0) {
+            /*Create the durable topic using the destination, name,
+            and message selector entered by the user*/
+          consumer = session.createDurableSubscriber(
+                    dest, UniqueDurName, messageSelector.value, false);
+      }
+      else {
+        // Or create the durable topic without the message selector
+        consumer = session.createDurableSubscriber(dest, UniqueDurName);
+      }
+    }
+    else if (messageSelector.value.length > 0) {
+    consumer = session.createConsumer(dest, messageSelector.value);
+    }
+    else {
+    consumer = session.createConsumer(dest);
+    }
+
+    consumer.setMessageListener(function(message) {
+    handleMessage(name, destinationId, message);
+    });
+}
+</pre>
+  
+<span class="note"><b>Notes:</b><br>
+ <ul class="arrow-2">
+     <li>Clients built using Kaazing Gateway 3.x libraries will work against Kaazing Gateway 4.x. If you wish to upgrade your 3.x client to the 4.x libraries, please note that the 3.x clients used a single JMS library and 4.x clients include and use separate WebSocket and JMS libraries. Update your client library file and code references to include both the WebSocket and JMS libraries, as described in the 4.x documentation.</li>
+     <li>To see a working example of this code, see the JavaScript JMS Messaging Demo (http://localhost:8001/demo/index.html), and view the source code here: <span class="code_inline"><em>GATEWAY_HOME</em>/web/extras/demo/jms/javascript/jms-javascript.html</span> (Mac and Linux), or <span class="code_inline"><em>GATEWAY_HOME</em>\web\extras\demo\jms\javascript\jms-javascript.html</span> (Windows).</li>
+   <li>Sessions with durable subscribers may be created using a unique client ID or with no client ID specified. For more information, see the <a href="../admin-reference/r_stomp_service.html#stompjms">jms</a> service.</li>
+   <li>A client can change an existing durable subscription by creating a durable TopicSubscriber with the same name and a new topic and/or message selector. Changing a durable subscriber is equivalent to unsubscribing (deleting) the old one and creating a new one.</li>
+     <li><span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span> objects are destroyed when the client loses its connection to the Gateway, or when the JMS-compliant message broker loses its connection to the Gateway. To address this, monitor the client's exception listener to handle recovery for your application. Once the connection is re-established, recreate <span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span>. <span class="code_inline">ConnectionDroppedException</span> and <span class="code_inline">ConnectionInterruptedException</span> are delivered to the connection's exception listener via <span class="code_inline">onException</span>, indicating that messages in flight might be lost, depending on message delivery options. <span class="code_inline">ConnectionRestoredException</span> is delivered to indicate that the connection through to the JMS-compliant message broker has been re-established. <span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span> should be recreated at that time to resume operations.</li>
+ </ul>
+</span>
+
+<h2>Next Step</h2>
+<p><a href="p_dev_js_secure.html">Secure Your JavaScript Client</a></p>
+
+
+
+                  </section>
+                </article>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!--
+
+    Copyright (c) 2007-2015, Kaazing Corporation. All rights reserved.
+
+-->
+
+<!DOCTYPE html>
+
+<!--
+
+    Copyright (c) 2007-2013, Kaazing Corporation. All rights reserved.
+
+-->
+
+   <!--[if IE 7 ]>    <html lang="en-US" class="isie ie7 oldie no-js"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en-US" class="isie ie8 oldie no-js"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en-US" class="isie ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en-US" class="no-js"> <!--<![endif]-->
+<!-- Testing GIT -->
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/java/o_dev_android/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+<h1>Checklist: Build Android JMS Clients Using Kaazing Gateway <img src="../../images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></h1>
+<p>This checklist provides the steps necessary to enable your Android client to communicate with your JMS-compliant message broker using the <a href="../apidoc/client/android/jms/index.html">Android JMS Client API</a> available in Kaazing Gateway:</p>
+
+<table class="checklist">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col" width="400">Step</th>
+    <th scope="col">Topic or Reference</th>
+  </tr>
+  <tr>
+  <td>1</td>
+    <td>Learn about supported browsers, operating systems, and platform versions.</td>
+    <td><a href="../../release-notes.html">Release Notes</a></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Learn to use the Kaazing Gateway Android JMS Client API and the supported methods. This topic also includes a walkthrough to show you how to build a simple Android JMS client.</td>
+    <td><a href="p_dev_android_client.html">Use the Kaazing Gateway Android JMS Client API</a></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Learn how to authenticate your client by implementing a challenge handler to respond to authentication challenges from the Gateway.</td>
+    <td><a href="../dev-java/p_dev_java_secure.html">Secure Your Java and Android Clients</a></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Learn how to gather data on your Kaazing Gateway Android JMS client.</td>
+    <td><a href="p_dev_android_log.html">Display Logs for the Android JMS Client</a></td>
+  </tr>
+</table>     
+
+<span class="note"><b>Notes:</b>
+ <ul>
+   <li>For information about the Android JMS Client API classes and methods, see the <a href="../apidoc/client/android/jms/index.html">Android JMS Client API</a>.</li>
+   <li>Java Developer Kit (JDK) or Java Runtime Environment (JRE) 1.6 and above are required.</li>
+ </ul>
+</span>
+
+<p>This document contains the following sections:</p>
+<ul class="arrow-2">
+  <li><a href="#Introduction">Introduction</a></li>
+  <li><a href="#Overview">Overview of the Kaazing Gateway Android JMS Client API</a></li>
+  <li><a href="#About">About the Kaazing Gateway Android JMS Client API</a></li>
+  <li><a href="#Android">About Android</a></li>
+  <li><a href="#Demo">Take a Look at the Kaazing Gateway Android Client Demo</a></li>
+</ul>
+
+<h2><a name="Introduction"></a>Introduction</h2>
+<p>In this how-to, you will learn how to use the Kaazing Gateway Android JMS Client API available in Kaazing Gateway to enable your web application to communicate with your JMS-compliant message broker, such as TIBCO Enterprise Message Service (EMS), Informatica UM, Apache ActiveMQ, and JBoss, using Android.</p>
+
+<p>This document contains information for an Android developer who wants to enable communication with their JMS-compliant message broker through the Gateway.</p>
+
+<h2><a name="Overview"></a>Overview of the Kaazing Gateway Android JMS Client API</h2>
+<p>Kaazing Gateway includes an Android JMS Client API that allows Android clients to subscribe from and publish messages to their JMS-compliant message broker. With the Android JMS Client API and the Gateway, you can leverage WebSocket in your Android client. Communication between your Android client and the JMS-compliant message broker is performed over WebSocket, as shown in the following figure:</p>
+
+  <figure>
+    <img src="../images/f-stomp-jms-android-client.png">
+  <figcaption><strong>Figure: Enable Communication Between Your Client and the JMS-compliant message broker</strong></figcaption>  
+  </figure>
+
+<h2><a name="About"></a>About the Kaazing Gateway Android JMS Client API</h2>
+<p>Kaazing Gateway includes an Android JMS Client API to enable you to create JMS-based clients specifically for your Android devices. As an Android developer, you can use this API to publish and subscribe to JMS-based messages between your client and your JMS-compliant message broker.</p>
+
+<p>The Android JMS Client API exposes capabilities similar to the Java Message Service (JMS) API in Java, including the JMS concepts of connection, session, destination, message consumer, and message producer. Refer to the JMS API documentation, located at <a href="http://www.oracle.com/technetwork/java/docs-136352.html">http://www.oracle.com/technetwork/java/docs-136352.html</a>, for specific information about how to use each of the interfaces.</p>
+<p>For a description of the methods currently supported by the Kaazing Gateway JMS Client APIs, see <a href="../about/kaazing-jms-api.html">Kaazing Gateway JMS Client API: Supported APIs</a>.</p>
+
+<span class="note"><b>Note:</b> Java Naming and Directory Interface (JNDI) is a Java API for a directory service. The Kaazing Gateway Android JMS Client API does not support JNDI. JNDI is supported in the Java JMS Client API. For more information, see <a href="../dev-java/o_dev_java.html">Checklist: How to Build Java Clients Using Kaazing Gateway</a>.</span>
+
+<h2><a name="Android"></a>About Android</h2>
+<p>Android is an operating system used by touchscreen smart phones and tablets. Android clients are developed in the Java programming language using the Android software development kit (SDK). The SDK includes development tools, software libraries, and an Android device emulator.</p>
+<p>The officially supported integrated development environment (IDE) for Android development by Google is Eclipse using the Android Development Tools (ADT) plugin. To develop Android clients, download the <a href="http://developer.android.com/sdk/index.html">ADT Bundle</a> that includes both Eclipse and the ADT plugin.</p>
+
+<h3><a name="messagebroker" id="messagebroker"></a>Overview of Apache ActiveMQ</h3><p>Apache ActiveMQ is an open source message broker and JMS provider developed, distributed, and licensed by the Apache Foundation. Apache ActiveMQ provides a publish-subscribe model based on the Java Message Service (JMS) specification. It is  a  highly viable, light-weight solution  for both queue-based peer-to-peer messaging and topic-based  publish-subscribe communication. Refer to <a href="http://activemq.apache.org/" class="uri">http://activemq.apache.org/</a> for more information about Apache ActiveMQ.</p><p><span class="note"><strong>Note</strong>: For this how-to, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on port 61616. You can configure the connect URL in the file <span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../integration-jms/o_jms_integrate.html">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
+
+<h2><a name="Demo"></a>Take a Look at the Kaazing Gateway Android Client Demo</h2>
+<p>There are two Android demos included in the Gateway bundle:</p>
+<ul class="arrow-2">
+  <li><strong>JMS Messaging Demo</strong> - This out of the box demo uses a JMS Client API to send and receive messages over WebSocket using JMS.</li>
+  <li><strong>JMS Stock Demo</strong> - This out of the box demo shows stock ticker feeds served by the JMS-compliant message broker.</li>
+</ul>
+<p>The files for both out of the box demos are located here: <span class="uri"><em>GATEWAY_HOME</em>/demo/android/</span>.</p>
+
+<p>Before you start to build your Android client, look at a demonstration built using the Android JMS Client API: the Android demo is part of the full Kaazing Gateway bundle (<strong>Gateway + Documentation + Demos</strong>). To see this Android demo in action, perform the following steps:</p>
+
+<ol>
+  <li>Download the Android ADT Bundle from <a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a>. For information on using the Android SDK with an existing Eclipse IDE, see <a href="http://developer.android.com/sdk/installing/index.html">http://developer.android.com/sdk/installing/index.html</a>.</li>
+  <li>To setup the ADT Bundle, see <a href="http://developer.android.com/sdk/installing/bundle.html"ß>http://developer.android.com/sdk/installing/bundle.html</a>.</li>
+  <li>Launch Eclipse from the installed ADT Bundle.</li>
+  <li>In Eclipse, click <strong>Window</strong>, and then click <strong>Android SDK Manager</strong>.
+    <ol type="a">
+      <li>Select any package from <strong>Android 2.3.3</strong> or higher and then click <strong>Install package</strong>.</li>
+    </ol>
+  </li>
+  <li>In the Eclipse Package Explorer, right-click in an empty space and select <strong>Import</strong>.</li>
+  <li>Expand the <strong>Android</strong> folder and click <strong>Existing Android Code Into Workspace</strong>, and then click <strong>Next</strong>.</li>
+  <li>In <strong>Import Projects</strong>, for <strong>Root Directory</strong>, click <strong>Browse</strong>.</li>
+  <li>Navigate to the Android Demo project files: <span class="uri"><em>GATEWAY_HOME</em>/demo/android/src/jms</span></li>
+  <li>Click <strong>Open</strong>.</li>
+  <li>In <strong>Import Projects</strong>, click <strong>Select All</strong> (to select the <strong>JMSDemoActivity</strong> project), select <strong>Copy projects into workspace</strong>, and then click <strong>Finish</strong>. The Android Demo is added to Eclipse.</li>
+  <li>Create a new Android Virtual Device in Eclipse. For information on creating an AVD, see <a href="http://developer.android.com/tools/devices/managing-avds.html">Managing AVDs with AVD Manager</a>.</li>  
+  <li>Ensure Apache ActiveMQ is running.</li>
+  <li>Modify the <span class="uri">jms</span> service in the Gateway configuration file to accept connections containing your local IP address:
+    <ol type="a">
+      <li>Open the Gateway configuration file located at <span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>.</li>
+      <li>Modify the <span class="uri">jms</span> service to accept connections containing your local IP address (replace <span class="uri">local-ip-address</span> with your IP address):
+<pre class="auto-links: false; brush: xml; toolbar: false;">
+&lt;service&gt;
+  &lt;name&gt;JMS&lt;/name&gt;
+  &lt;description&gt;JMS service to JMS server&lt;/description&gt;
+
+  &lt;accept&gt;ws://build-macmini3.kaazing.test:${gateway.extras.port}/jms&lt;/accept&gt;
+  &lt;accept&gt;ws://local-ip-address:${gateway.extras.port}/jms&lt;/accept&gt;
+
+  &lt;type&gt;jms&lt;/type&gt;
+
+  &lt;properties&gt;
+    &lt;connection.factory.name&gt;ConnectionFactory&lt;/connection.factory.name&gt;
+    &lt;context.lookup.topic.format&gt;dynamicTopics/%s&lt;/context.lookup.topic.format&gt;
+    &lt;context.lookup.queue.format&gt;dynamicQueues/%s&lt;/context.lookup.queue.format&gt;
+    &lt;env.java.naming.factory.initial&gt;
+      org.apache.activemq.jndi.ActiveMQInitialContextFactory
+    &lt;/env.java.naming.factory.initial&gt;
+    &lt;env.java.naming.provider.url&gt;
+      tcp://localhost:61616
+    &lt;/env.java.naming.provider.url&gt;
+  &lt;/properties&gt;
+
+  &lt;realm-name&gt;demo&lt;/realm-name&gt;
+
+  &lt;cross-site-constraint&gt;
+    &lt;allow-origin&gt;http://build-macmini3.kaazing.test:${gateway.extras.port}&lt;/allow-origin&gt;
+  &lt;/cross-site-constraint&gt;
+&lt;/service&gt;
+</pre>
+      </li>
+    </ol>
+  </li>
+  <li>Save the file, then restart the Gateway by following the steps in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+  <li>In Eclipse, right-click the <strong>JMSDemoActivity</strong> project in <strong>Package Explorer</strong>, select <strong>Run As</strong>, and then click <strong>Android Application</strong>. The Android emulator launches.
+    <figure>
+      <img src="../images/android-TUI.png">
+    <figcaption><strong>Figure: Android JMS Client</strong></figcaption>  
+    </figure>
+  </li>
+  <li>In the <strong>Location</strong> field, enter <span class="uri">ws://&lt;Local IP Address&gt;:8001/jms</span> using your local IP address. For example, <span class="uri">ws://192.168.0.103:8001/jms</span>.</li>
+  <li>Click <strong>Connect</strong>. The messages <span class="uri">CONNECTING</span> and then <span class="uri">CONNECTED</span> appear. The WebSocket connection to the Gateway and Apache ActiveMQ was successful.</li>
+  <li>Click <strong>Subscribe</strong>. The message <span class="uri">SUBSCRIBE - /topic/destination</span> appears. You have subscribed to the destination.</li>
+  <li>Click <strong>Send</strong>. The following messages appear:<br>
+    <span class="uri">RECEIVED TextMessage: Hello, message<br>
+        SEND TextMessage: Hello, message</span>
+    <p>You sent the message <span class="uri">Hello, message</span> to the destination and received the same message because you are subscribed to that destination.</p>
+  </li>
+  <li>Click the <strong>Send Binary</strong> checkbox and click <strong>Send</strong> again. The following messages appear:<br>
+    <span class="uri">SEND BytesMessage: Hello, message<br>
+        RECEIVED BytesMessage: 0,14,72,101,108,108,111,44,32,109,101,115,115,97,103,101</span>
+  </li>
+  <li>Click <strong>Disconnect</strong> to end the session. </li>
+</ol>
+
+<h2>See Also</h2>
+<p><a href="../apidoc/client/android/jms/index.html">Android JMS Client API</a></p>
+
+                  </section>
+                </article>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+<h1>Use the Kaazing WebSocket Gateway Android Client API</h1>
+
+<p>This procedure describes how you can use the Android Client API to create an Android client that connects to and sends and receives message from the Echo service running on the Kaazing WebSocket Gateway. This API allows you to take advantage of the WebSocket standard as described in the <a href="http://www.w3.org/TR/websockets/">HTML5 specification</a>.</p>
+
+<p>The Android Client API is nearly identical to the Java API and you can review the Java API information in <a href="../dev-java/p_dev_java_websocket.html">Interact with Kaazing WebSocket Gateway Using the WebSocket API</a> to understand the general functionality of both APIs:</p>
+<ul>
+    <li><a href="../dev-java/p_dev_java_websocket.html#useAPI">To Use the WebSocket API in Java</a></li>
+    <li><a href="../dev-java/p_dev_java_websocket.html#websocket">WebSocket and WsURLConnection</a></li>
+    <li><a href="../dev-java/p_dev_java_websocket.html#URLFactory">URLFactory</a></li>
+    <li><a href="../dev-java/p_dev_java_websocket.html#WebSocketFactory">Setting and Overriding Defaults on the WebSocketFactory</a></li>
+    <li><a href="../dev-java/p_dev_java_websocket.html#Binary">Methods for Text and Binary Messages</a></li>
+</ul>
+
+<p>Refer to the <a href="../apidoc/client/android/gateway/index.html">Android Client API</a> documentation for a complete description of all of the available methods.</p>
+
+<p>In this procedure you will do the following:</p>
+<ol>
+    <li><a href="#Install">Install the Android Client API.</a></li>
+    <li><a href="#Set">Set up an Android project in Eclipse.</a></li>
+    <li><a href="#Import">Import the Kaazing WebSocket Gateway Android libraries.</a></li>
+    <li><a href="#TUI">Create the Android client Touch User Interface (TUI).</a></li>
+    <li><a href="#dispatch">Add a dispatch queue class to the Android client.</a></li>
+    <li><a href="#common">Add the import statements for the common Java and Android classes.</a></li>
+    <li><a href="#classes">Add the import statements for the Kaazing WebSocket Gateway Android API classes.</a></li>
+    <li><a href="#variables">Add the variables for the program.</a></li>
+    <li><a href="#onCreate">Add the <span class="uri">onCreate()</span> method with event listeners.</a></li>
+    <li><a href="#MessageReceiver">Add the MessageReceiver that uses the WebSocketMessageReader to receive binary and text messages.</a></li>
+    <li><a href="#connect">Add the <span class="uri">connect()</span> to connect to the Gateway and receive messages.</a></li>
+    <li><a href="#disconnect">Add the <span class="uri">disconnect()</span> method called when a user clicks the Disconnect button.</a></li>
+    <li><a href="#updating">Add the methods for updating buttons according to the state of the WebSocket connection.</a></li>
+    <li><a href="#logMessage">Add the <span class="uri">logMessage()</span> method for Log area displayed in the client.</a></li>
+    <li><a href="#Echo">Update the Echo service on the Gateway configuration file to accept on your local IP address.</a></li>
+    <li><a href="#Run">Run the Android client in the Android Emulator.</a></li>
+    <li><a href="#Test">Test the Android client in the Android Emulator.</a></li>
+</ol>
+
+<h2>Before You Begin</h2>
+<p>This procedure is part of <a href="o_dev_android.html">Checklist: Build Android Clients Using Kaazing WebSocket Gateway</a>:</p>
+<ol>
+    <li><strong>Use the Kaazing WebSocket Gateway Android Client API</strong></li>
+    <li><a href="../dev-java/p_dev_java_secure.html">Secure Your Java and Android Clients</a></li>
+    <li><a href="p_dev_android_log.html">Display Logs for the Android Client</a></li>
+</ol>
+
+<p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../release-notes.html">Release Notes</a>.</span></p>
+
+<h2>Build the Android Client API WebSocket Demo</h2>
+
+<p>The following procedure walks through the steps of creating the out of the box Android WebSocket demo that is included with the Kaazing WebSocket Gateway bundle. The demo code displays how to use the Android Client API to create a client that creates a WebSocket connection with the Gateway and sends and receives text and binary messages.</p>
+
+<span class="note"><b>Note:</b> The following procedure uses the Android ADT Bundle (which includes the Eclipse IDE). You can download the Android ADT Bundle from <a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a>.</span>
+
+<ol>
+    <li>Install the full version of the Gateway (<strong>Gateway + Documentation + Demos</strong>) as described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>. You need the Gateway installed to access the Android demo files, but you do not need to start the Gateway to test the demo.</li>
+    <li>Download the Android ADT Bundle from <a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a>. For steps on installing the Android SDK with an existing Eclipse IDE, see <a href="http://developer.android.com/sdk/installing/index.html">http://developer.android.com/sdk/installing/index.html</a>.</li>
+    <li>To set up the ADT Bundle, see <a href="http://developer.android.com/sdk/installing/bundle.html">http://developer.android.com/sdk/installing/bundle.html</a>.</li>
+    <li>Launch Eclipse from the installed ADT Bundle.</li>
+    <li><a name="Install"></a>Install the Android Client API.
+        <ol type="a">
+            <li>In Eclipse, click <strong>Window</strong>, and then click <strong>Android SDK Manager</strong>.</li>
+            <li>Select any package from <strong>Android 2.3.3</strong> or later and then click <strong>Install package</strong>.</li>
+        </ol>
+    </li>
+    <li><a name="Set"></a>Set up an Android project in Eclipse.
+        <ol type="a">
+            <li>From the <strong>File</strong> menu, click <strong>New</strong> and then <strong>Android Application Project</strong>.</li>
+            <li>In <strong>Application Name</strong>, name the project <strong>EchoActivity</strong>.</li>
+            <li>In <strong>Package Name</strong>, enter <strong>com.kaazing.gateway.client.demo</strong>. </li>
+            <li><p>In <strong>Minimum Required SDK</strong>, choose <strong>API 10: Android 2.3.3 (Gingerbread)</strong> and click <strong>Next</strong>. </p>
+                <p><span class="note"><b>Note:</b> To confirm or modify the SDK requirement on a project, right-click the project, and click <strong>Properties</strong>. Click <strong>Android</strong>, and then look at the <strong>Project Build Target</strong> settings. </span></p></li>
+            <li>On the <strong>New Android Application</strong> page, click <strong>Next</strong>.</li>
+            <li><p>On the <strong>Configure Launcher Icon</strong> page, in <strong>Image File</strong>, click <strong>Browse</strong>, navigate to the following location in the Gateway bundle and select the <strong>icon.png</strong> file:</p>
+            <p><span class="uri"><em>GATEWAY_HOME</em>/demo/android/echo-demo/res/drawable-hdpi/icon.png</span></p></li>
+            <li>Click <strong>Next</strong>.</li>
+            <li>In <strong>Create Activity</strong>, select <strong>Blank Activity</strong> and click <strong>Next</strong>.</li>
+            <li>In <strong>New Blank Activity</strong>, in <strong>Activity Name</strong>, enter <strong>EchoActivity</strong>. </li>
+            <li>In <strong>Layout Name</strong> enter <strong>main</strong> and click <strong>Finish</strong>. If there are dependencies that you need to install, the <strong>Finish</strong> button is not available. </li>
+            <li>The new project is generated.</li>
+        </ol>
+    </li>
+    <li><a name="Import"></a>Import the Kaazing WebSocket Gateway Android libraries.
+        <ol type="a">
+            <li>Right-click the new project and click <strong>Properties</strong>.</li>
+            <li>In the <strong>Properties</strong> dialog, click <strong>Java Build Path</strong>, click the <strong>Libraries</strong> tab, and click <strong>Add External JARs</strong>.</li>
+            <li>Locate and select the Kaazing WebSocket Gateway Android library. The library is located in <span class="uri"><em>GATEWAY_HOME</em>/lib/client/android</span>. The library you need is <strong>com.kaazing.gateway.client.android.jar</strong>.</li>
+            <li>In the <strong>Properties</strong> dialog, click <strong>OK</strong>. You can see the imported library and its classes in your project under <strong>Reference Libraries</strong>.</li>
+        </ol>
+    </li>
+    <li><a name="TUI"></a>Create the Android client Touch User Interface (TUI). Next you will add the text strings and layout for the Android client TUI. When you are finished, the Android client will look like this:
+            <figure>
+                <img src="../images/f-html5-android-TUI-web.png" height="50%" width="50%">
+            <figcaption><strong>Figure: Android Client TUI</strong></figcaption>    
+            </figure>
+            <ol type="a">
+                <li>Open the <strong>strings.xml</strong> file located at <span class="uri">EchoActivity/res/values/strings.xml</span> and replace its contents with the following:
+
+<pre class="auto-links: false; brush: xml; toolbar: false;">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;resources&gt;
+    &lt;string name=&quot;app_name&quot;&gt;WebSocket Demo&lt;/string&gt;
+    &lt;string name=&quot;username_hint&quot;&gt;Username&lt;/string&gt;
+    &lt;string name=&quot;password_hint&quot;&gt;Password&lt;/string&gt;
+    &lt;string name=&quot;ok_label&quot;&gt;OK&lt;/string&gt;
+    &lt;string name=&quot;cancel_label&quot;&gt;Cancel&lt;/string&gt;
+    &lt;string name=&quot;location_default&quot;&gt;ws://echo.websocket.org/&lt;/string&gt;
+    &lt;string name=&quot;disconnect_label&quot;&gt;Disconnect&lt;/string&gt;
+    &lt;string name=&quot;connect_label&quot;&gt;Connect&lt;/string&gt;
+    &lt;string name=&quot;message_default&quot;&gt;Hello World!&lt;/string&gt;
+    &lt;string name=&quot;send_label&quot;&gt;Send&lt;/string&gt;
+    &lt;string name=&quot;clear_label&quot;&gt;Clear&lt;/string&gt;
+    &lt;string name=&quot;location_label&quot;&gt;Location&lt;/string&gt;
+    &lt;string name=&quot;message_label&quot;&gt;Message&lt;/string&gt;
+    &lt;string name=&quot;sendBinary_label&quot;&gt;Send Binary&lt;/string&gt;
+&lt;/resources&gt;
+</pre>
+                    <p>You can see all of the buttons that will be displayed in the TUI. The <span class="uri">location_default</span> field is empty but you enter the location into the Android client when you test it.</p>
+                </li>
+                <li>Open the <strong>main.xml</strong> file located at <span class="uri">EchoActivity/res/layout/main.xml</span> and replace its contents with the following:
+
+<pre class="auto-links: false; brush: xml; toolbar: false;">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;fill_parent&quot;
+    android:layout_height=&quot;fill_parent&quot;
+    android:background=&quot;#F27A31&quot;&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/locationText&quot;
+        android:layout_width=&quot;fill_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;@string/location_label&quot;
+        android:textColor=&quot;#ffffff&quot;
+        android:textSize=&quot;@dimen/edit_text_size&quot; /&gt;
+
+    &lt;EditText
+        android:id=&quot;@+id/location&quot;
+        android:layout_width=&quot;fill_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_below=&quot;@id/locationText&quot;
+        android:background=&quot;@android:drawable/editbox_background&quot;
+        android:text=&quot;@string/location_default&quot;
+        android:textSize=&quot;@dimen/edit_text_size&quot; &gt;
+
+        &lt;requestFocus /&gt;
+    &lt;/EditText&gt;
+      
+    &lt;Button
+        android:id=&quot;@+id/connect&quot;
+        style=&quot;?android:attr/buttonStyleSmall&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_alignParentRight=&quot;true&quot;
+        android:layout_below=&quot;@id/location&quot;
+        android:layout_marginLeft=&quot;10dip&quot;
+        android:text=&quot;@string/connect_label&quot;
+        android:textSize=&quot;@dimen/edit_text_size&quot; /&gt;
+
+    &lt;Button
+        android:id=&quot;@+id/disconnect&quot;
+        style=&quot;?android:attr/buttonStyleSmall&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_below=&quot;@id/location&quot;
+        android:layout_marginLeft=&quot;10dip&quot;
+        android:layout_toLeftOf=&quot;@+id/connect&quot;
+        android:enabled=&quot;false&quot;
+        android:text=&quot;@string/disconnect_label&quot;
+        android:textSize=&quot;@dimen/edit_text_size&quot; /&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/label&quot;
+        android:layout_width=&quot;fill_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_below=&quot;@id/connect&quot;
+        android:text=&quot;@string/message_label&quot;
+        android:textColor=&quot;#ffffff&quot; /&gt;
+
+    &lt;EditText
+        android:id=&quot;@+id/message&quot;
+        android:layout_width=&quot;fill_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_below=&quot;@id/label&quot;
+        android:background=&quot;@android:drawable/editbox_background&quot;
+        android:text=&quot;@string/message_default&quot;
+        android:textSize=&quot;@dimen/edit_text_size&quot; /&gt;
+
+    &lt;CheckBox
+        android:id=&quot;@+id/sendBinaryCheckBox&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_alignBottom=&quot;@+id/send&quot;
+        android:layout_alignParentLeft=&quot;true&quot;
+        android:layout_below=&quot;@id/message&quot;
+        android:text=&quot;@string/sendBinary_label&quot;
+        android:textSize=&quot;@dimen/edit_text_size&quot; /&gt;
+
+    &lt;Button
+        android:id=&quot;@+id/send&quot;
+        style=&quot;?android:attr/buttonStyleSmall&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_alignParentRight=&quot;true&quot;
+        android:layout_below=&quot;@id/message&quot;
+        android:layout_marginLeft=&quot;10dip&quot;
+        android:enabled=&quot;false&quot;
+        android:text=&quot;@string/send_label&quot;
+        android:textSize=&quot;@dimen/edit_text_size&quot; /&gt;
+  
+    &lt;LinearLayout
+        android:id=&quot;@+id/logContainer&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;fill_parent&quot;
+        android:orientation=&quot;vertical&quot;
+        android:layout_below=&quot;@+id/send&quot;&gt;
+      
+         &lt;TextView
+            android:id=&quot;@+id/log&quot;
+            android:layout_width=&quot;fill_parent&quot;
+            android:layout_height=&quot;0dp&quot;
+            android:layout_weight=&quot;1&quot;
+            android:background=&quot;@android:drawable/editbox_background&quot;
+            android:maxLines=&quot;20&quot;
+            android:scrollbars=&quot;horizontal|vertical&quot;
+            android:textColor=&quot;#000000&quot;
+            android:textSize=&quot;@dimen/edit_text_size&quot; /&gt;
+       
+         &lt;Button
+             android:id=&quot;@+id/clear&quot;
+             style=&quot;?android:attr/buttonStyleSmall&quot;
+             android:layout_width=&quot;wrap_content&quot;
+             android:layout_height=&quot;wrap_content&quot;
+             android:layout_gravity=&quot;right&quot;
+             android:text=&quot;@string/clear_label&quot;
+             android:textSize=&quot;@dimen/edit_text_size&quot; /&gt;
+       
+    &lt;/LinearLayout&gt;
+&lt;/RelativeLayout&gt;
+</pre>
+
+                </li>
+            </ol>
+    </li>
+    <li><p><a name="dispatch"></a>Add a dispatch queue class to the Android client.</p> 
+        <p>A dispatch queue class is used to run tasks in a separate thread from the main thread (to run some tasks asynchronously). The dispatch queue class is used to add <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html">Runnable</a> in a queue. Runnable will be run in a first-in first-out basis. This dispatch queue class is useful to run a series of tasks sequentially in a separate thread from the main thread of the Android client. All of the blocking calls of the Android client will be run in a background thread so that the TUI is not blocked and can remain responsive.</p> 
+        <ol type="a">
+            <li>Right-click the package <strong>com.kaazing.gateway.client.demo</strong>, click <strong>New</strong>, and click <strong>Class</strong>.</li>
+            <li>In <strong>Name</strong> enter <span class="uri">DispatchQueue</span> and click <strong>Finish</strong>. The new <strong>DispatchQueue.java</strong> class is added to the <strong>src</strong> folder.</li>
+            <li>Double-click <strong>DispatchQueue.java</strong>.</li>
+            <li>Replace the contents with the following code:
+                
+<pre class="auto-links: false; brush: java; toolbar: false;">
+    package com.kaazing.gateway.client.demo;
+
+    import android.os.Handler;
+    import android.os.HandlerThread;
+
+    public class DispatchQueue extends HandlerThread {
+
+        private Handler handler;
+
+        public DispatchQueue(String name) {
+            super(name);
+        }
+    
+        // The message blocks until the thread is started. This should be called 
+        // after call to start() to ensure the thread is ready.    
+        public void waitUntilReady() {
+            handler = new Handler(getLooper());
+        }
+    
+        // Adds the Runnable to the message queue which will be run on the thread.
+        // The runnable will be run in a first-in first-out basis.    
+        public void dispatchAsync(Runnable task) {
+            handler.post(task);
+        }
+    
+        public void removePendingJobs() {
+            handler.removeCallbacksAndMessages(null);
+        }
+
+    }
+</pre>
+            </li>
+        </ol>
+    </li>
+
+    <li>Modify the main class for the Android client. In the <strong>src</strong> folder for the project, under <strong>com.kaazing.gateway.client.demo</strong>, double-click <strong>EchoActivity.java</strong>. You will add the main Java code for the Android client in this file.</li>
+    
+    <li>Delete all of the contents except the package <strong>com.kaazing.gateway.client.demo</strong> package declaration and the EchoActivity class declaration:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+package com.kaazing.gateway.client.demo;
+
+// Import statements will go here
+
+public class EchoActivity extends FragmentActivity {
+
+    // the remaining code will go here
+
+}
+</pre>
+</li>
+    
+    <li><a name="common"></a>Add the import statements for the common Java and Android classes directly after the package <strong>com.kaazing.gateway.client.demo</strong> package declaration:
+
+<pre class="auto-links: false; brush: java; toolbar: false;">
+import java.io.IOException;
+import java.net.PasswordAuthentication;
+import java.net.URI;
+import java.nio.ByteBuffer;
+import java.util.concurrent.Semaphore;
+
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.TextView;
+</pre>
+
+</li>
+    
+    <li><a name="classes"></a>Add the import statements for the Kaazing WebSocket Gateway Android Client API classes that will be used in the client:
+        
+<pre class="auto-links: false; brush: java; toolbar: false;">
+// Include these statements with any client
+import com.kaazing.net.ws.WebSocket;
+import com.kaazing.net.ws.WebSocketFactory;
+import com.kaazing.net.ws.WebSocketMessageReader;
+import com.kaazing.net.ws.WebSocketMessageType;
+import com.kaazing.net.ws.WebSocketMessageWriter;
+
+// Include these statements when a client must authenticate with the Gateway
+import com.kaazing.net.auth.BasicChallengeHandler;
+import com.kaazing.net.auth.ChallengeHandler;
+import com.kaazing.net.auth.LoginHandler;
+</pre>
+    
+    </li>
+    
+    <li><a name="variables"></a>Add the variables for the program directly after the <span class="uri">EchoActivity</span> class declaration:
+
+<pre class="auto-links: false; brush: java; toolbar: false;">
+private TextView location;
+private TextView message;
+private TextView log;
+private Button sendBtn;
+private Button connectBtn;
+private Button disconnectBtn;
+private Button clearBtn;
+private CheckBox sendBinaryCheckBox;
+
+private WebSocket webSocket;
+private DispatchQueue dispatchQueue;
+private boolean wasConnectedBeforePaused = false;
+private boolean closedExplicitly = false;
+private LoginDialogFragment loginDialog;
+</pre>
+
+    </li>
+    
+    <li><a name="onCreate"></a>Add the <span class="uri">onCreate()</span> method with event listeners for the <strong>Connect</strong>, <strong>Send</strong>, <strong>Disconnect</strong>, and <strong>Clear</strong> buttons. This is a long method that includes event listeners for user interactions (clicks), and defines the program’s actions in response to when the user clicks the <strong>Connect</strong>, <strong>Send</strong>, <strong>Disconnect</strong>, and <strong>Clear</strong> buttons.
+    
+<pre class="auto-links: false; brush: java; toolbar: false;">
+// Called when the activity is first created.
+@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.main);
+  
+    // Add values to the variables
+    location = (TextView)findViewById(R.id.location);
+    message = (TextView)findViewById(R.id.message);
+    log = (TextView)findViewById(R.id.log);
+    sendBtn = (Button)findViewById(R.id.send);
+    connectBtn = (Button)findViewById(R.id.connect);
+    disconnectBtn = (Button)findViewById(R.id.disconnect);
+    clearBtn = (Button)findViewById(R.id.clear);
+    sendBinaryCheckBox = (CheckBox)findViewById(R.id.sendBinaryCheckBox);
+  
+    // Run when the Connect button is clicked
+    connectBtn.setOnClickListener(new OnClickListener() {
+        public void onClick(View v) {
+            connectBtn.setEnabled(false);
+            // call the connect() method in the MessageReceiver class
+            connect();
+        }
+    });
+  
+    // Run when the Send button is clicked
+    sendBtn.setOnClickListener(new OnClickListener() {
+        public void onClick(View v) {
+            final boolean sendBinary = sendBinaryCheckBox.isChecked();
+          
+            // Run as part of the dispatch queue in DispatchQueue.java
+            // Receive messages in a separate thread
+            dispatchQueue.dispatchAsync(new Runnable() {
+                public void run() {
+                    try {
+                        WebSocketMessageWriter messageWriter = webSocket.getMessageWriter();
+                        if (sendBinary) {
+                            String messageToSend = message.getText().toString();
+                            ByteBuffer payload = ByteBuffer.wrap(messageToSend.getBytes());
+                            logMessage("SEND BINARY:" + getHexDump(payload));
+                            messageWriter.writeBinary(payload);
+                        }
+                        else {
+                            logMessage("SEND: " + message.getText());
+                            messageWriter.writeText(message.getText());
+                        }
+                        } catch (Exception e) {
+                        e.printStackTrace();
+                        logMessage(e.getMessage());
+                    }
+                }
+            });
+        }
+    });
+  
+    // Run when the Disconnect button is clicked,
+    // and call the disconnect() method in the MessageReceiver class.
+    disconnectBtn.setOnClickListener(new OnClickListener() {
+        public void onClick(View v) {
+            disconnect();
+        }
+    });
+  
+    // Run when the Clear button is clicked, and clear the log.
+    clearBtn.setOnClickListener(new OnClickListener() {
+        public void onClick(View v) {
+            log.setText("");
+        }
+    });
+  
+}
+</pre>
+    
+    <p>This <span class="uri">sendBtn.setOnClickListener()</span> event listener gets the text submitted by the user using <span class="uri">message.getText()</span> and then uses the <a href="../apidoc/client/android/gateway/com/kaazing/net/ws/WebSocketMessageWriter.html"><span class="uri">WebSocketMessageWriter</span></a> class to send the text message to the Gateway using the <span class="uri">writeText()</span> method. An instance of the <span class="uri">WebSocketMessageWriter</span> class is obtained by invoking the <span class="uri"><a href="../apidoc/client/android/gateway/com/kaazing/net/ws/WebSocket.html#getMessageWriter%28%29">getMessageWriter</a>()</span> method on WebSocket. Once the WebSocket connection is closed, a new <span class="uri">WebSocketMessageReader</span> should be obtained after the connection has been established. Using the old reader will result in IOException.</p>
+    
+    </li>
+    
+    <li><a name="MessageReceiver"></a>Add the <span class="uri">MessageReceiver</span> that uses the <span class="uri">WebSocketMessageReader</span> to receive binary and text messages:
+    
+<pre class="auto-links: false; brush: java; toolbar: false;">
+private class MessageReceiver implements Runnable { // run this in the background thread
+  
+  // Use WebSocketMessageReader to receive binary
+  // and text messages
+  private WebSocketMessageReader messageReader;
+
+  private MessageReceiver(WebSocketMessageReader reader) {
+      this.messageReader = reader;
+  }
+
+  public void run() {
+      WebSocketMessageType type = null;
+      try {
+          // The next() method returns the type of the received message.
+          // Returns TEXT, BINARY, and EOS if the connection is closed.
+          while ((type = messageReader.next()) != WebSocketMessageType.EOS) {
+              switch (type) {
+                  case BINARY:
+                
+                  // getBinary() returns the payload as a CharSequence.
+                  // Place sequence in a byte buffer, and send it to
+                  // getHexDump() to be converted into hexadecimal and
+                  // then ASCII characters for output.
+                  // getHexDump() is defined later in this client.
+                  ByteBuffer data = messageReader.getBinary();
+                  logMessage("RECEIVED: " + getHexDump(data));
+                  break;
+                  case TEXT:
+                  // readText() returns the payload as a CharSequence
+                  CharSequence text = messageReader.getText();
+                  logMessage("RECEIVED: " + text.toString());
+                  break;
+              }
+          }
+          if (!closedExplicitly) {
+            
+              // Connection got closed due to either of the cases
+              // - Server closing the connection because of authentication timeout
+              // - network failure
+              webSocket = null;
+              logMessage("Connection Closed!!");
+              updateButtonsForDisconnected(); // disable Disconnect button
+          }
+      }
+      catch (Exception ex) {
+          ex.printStackTrace();
+          logMessage(ex.getMessage());
+      }
+  }
+  
+}
+</pre>
+    
+    </li>
+    
+    <li>Add the <span class="uri">getHexDump()</span> method used when receiving binary messages as defined in MessageReceiver:
+    
+<pre class="auto-links: false; brush: java; toolbar: false;">
+private String getHexDump(ByteBuffer buf) {
+    if (buf.position() == buf.limit()) {
+        return "empty";
+    }
+  
+    StringBuilder hexDump = new StringBuilder();
+    for (int i = buf.position(); i &lt; buf.limit(); i++) {
+        hexDump.append(Integer.toHexString(buf.get(i)&0xFF)).append(' ');
+    }
+    return hexDump.toString();
+}
+</pre>
+    
+    </li>
+
+    <li><a name="connect"></a>Add the <span class="uri">connect()</span> to connect to the Gateway and receive messages. This method defines the parameters of the WebSocket connection (lines 21-22), connects to the Gateway (line 29), and define how received messages are handled (lines 33). Note the use of a try catch block. A try catch block is the recommended method for connections in order to catch any exceptions (lines 42-44).
+    
+<pre class="auto-links: false; brush: java; toolbar: false; highlight:[21, 22, 29, 33, 34, 42, 43, 44];">
+private void connect() {
+    closedExplicitly = false;
+    logMessage("CONNECTING");
+
+    // Initialize dispatch queue that will be used to run
+    // Blocking calls asynchronously on a separate thread
+    dispatchQueue = new DispatchQueue("Async Dispatch Queue");
+    dispatchQueue.start();
+    dispatchQueue.waitUntilReady();
+
+    // Since WebSocket.connect() is a blocking method that will not return until
+    // the connection is established or connection fails, it is a good practice to
+    // establish the connection on a separate thread and prevent the TUI from being blocked.
+    dispatchQueue.dispatchAsync(new Runnable() {
+        public void run() {
+            try {
+                WebSocketFactory webSocketFactory = 
+                    WebSocketFactory.createWebSocketFactory();
+
+                // Create the WebSocket connection using the target location
+                webSocket = webSocketFactory.createWebSocket(
+                    URI.create(location.getText().toString()));
+
+                // Connect with the server using an endpoint.
+                // The thread invoking this method will be blocked until 
+                // a successful connection is established. If the connection
+                // cannot be established, then an IOException is thrown 
+                // and the thread is unblocked.
+                webSocket.connect();
+                logMessage("CONNECTED");
+
+                // Call the messageReceiver() method in the MessageReceiver class
+                WebSocketMessageReader messageReader = webSocket.getMessageReader();
+                MessageReceiver messageReceiver = new MessageReceiver(messageReader);
+
+                // Receive messages as a separate thread
+                new Thread(messageReceiver).start();
+
+                // Change button state to reflect connection status
+                updateButtonsForConnected();
+
+                } catch (Exception e) {
+                    updateButtonsForDisconnected();
+                    logMessage(e.getMessage());
+                    dispatchQueue.quit();
+            }
+        }
+    });
+}
+</pre>
+    
+    </li>
+    
+    <li><a name="disconnect"></a>Add the <span class="uri">disconnect()</span> method called when a user clicks the <strong>Disconnect</strong> button.
+
+<pre class="auto-links: false; brush: java; toolbar: false;">
+private void disconnect() {
+    closedExplicitly = true;
+    disconnectBtn.setEnabled(false);
+    logMessage("DISCONNECTING");
+
+    dispatchQueue.removePendingJobs();
+    dispatchQueue.quit();
+
+    // Run this as a new thread        
+    new Thread(new Runnable() {
+        public void run() {
+            try {
+                // Close the WebSocket connection
+                webSocket.close();
+                logMessage("DISCONNECTED");
+            } catch (IOException e) {
+                logMessage(e.getMessage());
+            }
+            finally {
+                webSocket = null;
+                // Update buttons with connection status
+                updateButtonsForDisconnected();
+            }
+        }
+    }).start();
+}
+</pre>
+
+    </li>
+    
+    <li>Add the methods for when the client is paused, resumes, and when an activity is finished. 
+        <ol type="a">
+        <li>Add <span class="uri">onPause()</span> method to disconnect the WebSocket connection when the client is paused on the device.
+<pre class="auto-links: false; brush: java; toolbar: false;">
+public void onPause() {
+    if (webSocket != null) {
+        wasConnectedBeforePaused = true;
+        disconnect();
+    }
+    super.onPause();
+}
+</pre>
+        </li>
+
+        <li>Add the <span class="uri">onResume()</span> method to connect the client when it is resumed from a paused state.
+<pre class="auto-links: false; brush: java; toolbar: false;">
+public void onResume() {
+    if (wasConnectedBeforePaused) {
+        wasConnectedBeforePaused = false;
+        connect();
+    }
+    super.onResume();
+} 
+</pre>
+        </li>
+        <li>Add the <span class="uri">onDestroy()</span> method to perform any final cleanup before an activity is finished.
+<pre class="auto-links: false; brush: java; toolbar: false;">
+public void onDestroy() {
+    if (webSocket != null) {
+        disconnect();
+    }
+    super.onDestroy();
+}
+</pre>
+         </li>
+     </ol>
+    </li>
+
+    <li><a name="updating"></a>Add the methods for updating buttons according to the state of the WebSocket connection. The <span class="uri">updateButtonsForConnected()</span> method updates buttons for an active WebSocket connection and the <span class="uri">updateButtonsForDisconnected()</span> method updates buttons for an inactive connection.
+    
+<pre class="auto-links: false; brush: java; toolbar: false;">
+private void updateButtonsForConnected() {
+    runOnUiThread(new Runnable() {
+        public void run() {
+            connectBtn.setEnabled(false);
+            sendBtn.setEnabled(true);
+            disconnectBtn.setEnabled(true);
+        }
+    });
+}
+
+private void updateButtonsForDisconnected() {
+    runOnUiThread(new Runnable() {
+        public void run() {
+            connectBtn.setEnabled(true);
+            disconnectBtn.setEnabled(false);
+            sendBtn.setEnabled(false);
+        }
+    });
+}</pre>
+    </li>
+    
+    <li><a name="logMessage"></a>Add the logMessage() method for the <strong>Log</strong> area displayed in the client.
+
+<pre class="auto-links: false; brush: java; toolbar: false;">
+private void logMessage(final String logMessage) {
+    runOnUiThread(new Runnable() {
+        public void run() {
+            log.setText(logMessage + "\n" + log.getText());
+        }
+    });
+}
+</pre>
+
+    </li>
+
+    <li><a name="Echo"></a>Update the Echo service on the Gateway configuration file to accept on your local IP address.
+        <ol type="a">
+            <li>Open the Gateway configuration file located at <span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>.</li>
+            
+            <li>Modify the Echo service to accept on your local IP address (in the following example, the IP address 192.168.0.103 is used).
+
+<pre class="auto-links: false; brush: xml; toolbar: false; highlight:[5, 24];">
+&lt;service&gt;
+    &lt;name&gt;echo&lt;/name&gt;
+    &lt;description&gt;Simple echo service&lt;/description&gt;
+    &lt;accept&gt;ws://${gateway.hostname}:${gateway.extras.port}/echo&lt;/accept&gt;
+    &lt;accept&gt;ws://192.168.0.103:${gateway.extras.port}/echo&lt;/accept&gt;
+
+    &lt;type&gt;echo&lt;/type&gt;
+
+    &lt;realm-name&gt;demo&lt;/realm-name&gt;
+
+    &lt;!--
+    &lt;authorization-constraint&gt;
+        &lt;require-role&gt;AUTHORIZED&lt;/require-role&gt;
+    &lt;/authorization-constraint&gt;
+    --&gt;
+
+    &lt;cross-site-constraint&gt;
+        &lt;allow-origin&gt;
+            http://${gateway.hostname}:${gateway.extras.port}
+        &lt;/allow-origin&gt;
+    &lt;/cross-site-constraint&gt;
+    &lt;cross-site-constraint&gt;
+        &lt;allow-origin&gt;
+            http://192.168.0.103:${gateway.extras.port}
+        &lt;/allow-origin&gt;
+    &lt;/cross-site-constraint&gt;
+&lt;/service&gt;
+</pre>
+
+            </li>
+            <li>Save the Gateway configuration file and restart the Gateway as described in <strong>How do I start and stop the Gateway?</strong> in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+        </ol>
+    </li>
+    
+    <li><a name="Run"></a>Run the Android client in the Android Emulator. You will need to create an Android Virtual Device (AVD) first. For information on creating an AVD, see <a href="http://developer.android.com/tools/devices/managing-avds.html">Managing AVDs with AVD Manager</a>.
+        <ol type="a">
+            <li>Right-click the <strong>EchoActivity</strong> project, click <strong>Run As</strong>, and then click <strong>Android Application</strong>. The Android Emulator will launch with a locked display screen. Unlock the display screen to display the Android client.
+                    <figure>
+                        <img src="../images/f-html5-android-TUI-web.png" height="50%" width="50%">
+                    <figcaption><strong>Figure: The Android Client in the Android Emulator</strong></figcaption>    
+                    </figure>
+            </li>
+        </ol>
+    </li>
+    
+    <li><a name="Test"></a>Test the Android client in the Android Emulator.
+        <ol type="a">
+            <li>In the Android client running in the Android Emulator, in <strong>Location</strong>, enter <span class="uri">ws://&lt;Your local IP address&gt;:8001/echo</span>, replacing <span class="uri">&lt;Your local IP address&gt;</span> with your local IP address.</li>
+            <li>Click <strong>Connect</strong>. The messages <span class="uri">CONNECTING</span> and then <span class="uri">CONNECTED</span> appear. The WebSocket connection was successful.</li>
+            <li>Click <strong>Send</strong>. The message <span class="uri">Hello World!</span> is sent to the Echo service over WebSocket and the message is echoed back as <span class="uri">Hello World!</span>.</li>
+            <li>Click the <strong>Send Binary</strong> checkbox and click <strong>Send</strong> again. The message <span class="uri">Hello World!</span> is sent to the Echo service over WebSocket as binary and is echoed back as:<br>
+<span class="uri">RECEIVED: 48 65 6c 6c 6f 2c 20 57 65 62 53 6f 63 6b 65 74 21<br>
+SEND BINARY: 48 65 6c 6c 6f 2c 20 57 65 62 53 6f 63 6b 65 74 21</span></li>
+        </ol>
+    </li>
+    <li>To test the Android client on an Android device, ensure USB debugging is enabled on your Android device (<strong>Settings</strong> > <strong>Applications</strong> > <strong>Development</strong>), and plug the device into your system.</li>
+    
+    <li>In Eclipse, right-click the <strong>EchoActivity</strong> project, select <strong>Run As</strong>, and then click <strong>Android Application</strong>.The Android client is deployed to your Android device. Follow the location, connection and send steps to test the client on your device.</li>
+    
+</ol>
+
+<h2>Next Step</h2>
+<p><a href="../dev-java/p_dev_java_secure.html">Secure Your Java and Android Clients</a></p>
+
+                  </section>
+                </article>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/integration-jms/p_jms_integrate_ibm/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+
+ <h1 id="integrate-ibm-websphere-mq--">Integrate IBM WebSphere MQ  <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></h1>
+
+<p>In this procedure, you will learn how to integrate KAAZING Gateway and IBM WebSphere MQ, an IBM standard for program-to-program messaging across multiple platforms.</p>
+
+<h2 id="to-integrate-ibm-websphere-mq">To Integrate IBM WebSphere MQ</h2>
+
+<ol>
+  <li>Download and install IBM WebSphere MQ following the instructions in the WebSphere MQ documentation. The directory that contains the WebSphere MQ installation (for example,<code> C:\Program Files\IBM\WebSphere MQ</code> on Windows) is referred to as <code>WEBSPHEREMQ_HOME</code>.</li>
+  <li>Copy the following JAR files from <code>WEBSPHEREMQ_HOME/java/lib</code> to <code>GATEWAY_HOME/lib</code>.
+    <ul>
+      <li><code>com.ibm.mq.jar</code></li>
+      <li><code>com.ibm.mq.jmqi.jar</code></li>
+      <li><code>com.ibm.mqjms.jar</code></li>
+      <li><code>com.ibm.mq.headers.jar</code> (required for WebSphere client library version 7.5.0.0)</li>
+      <li><code>connector.jar</code></li>
+      <li><code>dhbcore.jar</code></li>
+      <li><code>fscontext.jar</code></li>
+      <li><code>jms.jar</code></li>
+      <li><code>jndi.jar</code></li>
+      <li><code>jta.jar</code></li>
+      <li><code>providerutil.jar</code></li>
+    </ul>
+  </li>
+  <li>Open the file <code>GATEWAY_HOME/conf/gateway-config.xml</code> in a text editor and locate the <code>jms</code> service element (search for “jms”).</li>
+  <li>Ensure that you have the <code>.bindings</code> file, which contains the queue manager, initial context, topic name, and queue name. You will need the location of this <code>.bindings</code> file for the next step.</li>
+  <li>
+    <p>Modify the <code>properties</code> element of the <a href="../../admin-reference/r_conf_jms#jms">jms</a> service with the following:</p>
+
+    <pre><code class="language-xml">  &lt;properties&gt;
+    &lt;connection.factory.name&gt;ConnectionFactory&lt;/connection.factory.name&gt;
+    &lt;context.lookup.topic.format&gt;%s&lt;/context.lookup.topic.format&gt;
+    &lt;context.lookup.queue.format&gt;%s&lt;/context.lookup.queue.format&gt;
+    &lt;env.java.naming.factory.initial&gt;
+      com.sun.jndi.fscontext.RefFSContextFactory
+    &lt;/env.java.naming.factory.initial&gt;
+
+    &lt;!-- The location of the .bindings file --&gt;
+    &lt;env.java.naming.provider.url&gt;
+      file:/bindings_file_location
+    &lt;/env.java.naming.provider.url&gt;
+    &lt;!-- Dynamic destinations support; omit for static destinations --&gt;
+    &lt;destination.strategy&gt;context&lt;/destination.strategy&gt;
+  &lt;/properties&gt;
+</code></pre>
+
+    <p>Replace <code>bindings_file_location</code> in the <code>env.java.naming.provider.url</code> element with the file path to the JNDI .bindings file <strong>folder</strong> for the connection to the broker. Do not include the .bindings file name in the file path. For example, <code>file:/C:/JNDI-Directory</code> (Windows) or <code>file:/Users/johndoe/Desktop/JNDI-Directory</code> (Mac and Linux).</p>
+
+    <p><strong>Notes:</strong></p>
+
+    <ul>
+      <li>You can also connect to your IBM WebSphere MQ server using SSL and the <code>env.java.naming.provider.url</code> element. For more information, see <a href="http://publib.boulder.ibm.com/infocenter/wmqv6/v6r0/index.jsp?topic=%2Fcom.ibm.mq.csqzas.doc%2Fsy10920_.htm">IBM WebSphere MQ documentation</a>.</li>
+      <li>
+        <p>When the Gateway detects this is a connection to IBM WebSphere MQ, the Gateway dynamically sets the following wildcard properties that are required by WebSphere:</p>
+
+        <pre><code>wildcard.any.descendent=#
+wildcard.separator=/
+wildcard.any.child=+
+</code></pre>
+
+        <p>See <a href="../../admin-reference/r_conf_jms#using-wildcards-with-last-value-cache-or-delta-messaging">Using Wildcards with Last Value Cache or Delta Messaging</a> for more information about using wildcards in the Gateway configuration.</p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="jms-integration-verification">JMS Integration Verification</h2>
+
+<p>To verify that the JMS integration is working, perform the following steps:</p>
+
+<ol>
+  <li>Start WebSphere MQ.</li>
+  <li>Start the Gateway as described in <a href="../../about/setup-guide">Setting Up the Gateway</a>.</li>
+  <li>In a browser, navigate to the out of the box demos at <code>http://localhost:8001/demo/</code>.</li>
+  <li>Click the <strong>JavaScript</strong> demo.</li>
+  <li>Enter the value for <strong>Location</strong> to <code>ws://localhost:8001/jms</code>.</li>
+  <li>Change the value of all <strong>Destination</strong> fields to <code>/topic/testTopic</code>.</li>
+  <li>Click <strong>Connect</strong>.<br />
+ The message “<code>CONNECT:  ws://localhost:8001/jms</code>” should appear in the log window followed by the message “<code>CONNECTED: ID:id_value.</code>”</li>
+  <li>Click <strong>Subscribe</strong>.</li>
+  <li>Click <strong>Send</strong>. You should see the message that you sent in the message log.</li>
+</ol>
+
+<h2 id="subscription-and-destination-support">Subscription and Destination Support</h2>
+
+<p>KAAZING Gateway integration with IBM WebSphere MQ has the following subscription and destination support:</p>
+
+<ul>
+  <li>Durable subscriptions are not supported.</li>
+  <li>Dynamic destinations are supported. Ensure that you configure the <a href="../../admin-reference/r_conf_jms#destinationstrategy"><code>destination.strategy</code></a> property to <code>context</code>.</li>
+  <li>Static destinations are supported.</li>
+</ul>
+
+<h2 id="notes">Notes</h2>
+
+<ul>
+  <li>To learn how to secure your JMS configuration, see <a href="../../security/o_jms_secure">Secure Your JMS Configuration</a>.</li>
+  <li>Because you are using a JMS provider that does not support individual message acknowledgement, you must ensure your client applications acknowledge each message received from a queue or durable subscriber. Otherwise, the client will receive only one message from that queue or durable subscriber.</li>
+</ul>
+
+<h2 id="see-also">See Also</h2>
+
+<ul>
+  <li>For information on troubleshooting JMS integration, see <a href="../p_jms_integrate_tshoot">Troubleshoot JMS Integration</a>.</li>
+  <li>For information on troubleshooting JMS clients, see <a href="../../troubleshooting/p_dev_troubleshoot">Troubleshoot Your Clients</a>.</li>
+  <li>For general troubleshooting information, see <a href="../../troubleshooting/o_troubleshoot">Troubleshoot KAAZING Gateway</a>.</li>
+</ul>
+
+
+
+</div>
+
+</div>
+
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

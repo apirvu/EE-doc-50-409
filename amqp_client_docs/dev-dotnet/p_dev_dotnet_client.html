@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+<h1>Use the Kaazing WebSocket Gateway .NET and Silverlight AMQP Client Library</h1>
+<p>In this procedure, you will learn how to use the signed Kaazing WebSocket Gateway .NET and Silverlight AMQP Client Library and the supported APIs. The steps in this procedure show you how to set up your development environment and add perform the following coding steps:</p>
+
+<ol>
+        <li><a href="#setup_silverlight_dev_env">Set up your .NET and Silverlight development environments</a></li>
+        <li><a href="#config_gateway">Configure Kaazing WebSocket Gateway to connect to an AMQP broker</a></li>
+        <li><a href="#setup_server">Setting up an AMQP broker</a></li>
+        <li><a href="#using_lib">Review the common .NET and Silverlight AMQP programming steps</a></li>
+  <li><a href="#create_object">Create the AmqpClient object</a></li>
+  <li><a href="#connect_broker">Connect to an AMQP broker</a></li>
+  <li><a href="#create_channels">Create channels</a></li>
+  <li><a href="#creating_exchanges">Declare an exchange</a></li>
+  <li><a href="#creating_queues">Declare a queue</a></li>
+  <li><a href="#binding_queues">Bind an exchange to a queue</a></li>
+  <li><a href="#publishing_messages">Publish messages</a></li>
+  <li><a href="#consuming_messages">Consume messages</a></li>
+  <li><a href="#using_transactions">Use transactions</a></li>
+  <li><a href="#control_flow">Control message flow</a></li>
+  <li><a href="#exception_handling">Handle exceptions</a></li>
+  <li><a href="#add_tag">Add the Silverlight object tag</a></li>
+</ol>
+
+
+<h2><a name="_"></a>Before You Begin</h2>
+<p>This procedure is part of <a href="o_dev_dotnet.html">Checklist: How to Build Microsoft .NET and Silverlight Clients Using Kaazing WebSocket Gateway</a>:</p>
+<!-- If the steps are optional, use an unordered list -->
+<p>
+        <ol>
+        <li><a href="o_dev_dotnet.html#keglibs">Overview of the Kaazing WebSocket Gateway AMQP Client Libraries</a></li>
+        <li><strong>Use the Kaazing WebSocket Gateway .NET and Silverlight AMQP Client Library</strong></li>
+        <li><a href="p_dev_dotnet_secure.html">Secure Your .NET and Silverlight AMQP Client</a></li>
+        </ol>
+</p>
+
+<p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../../release-notes.html">Release Notes</a>.</span></p>
+
+<h2>To Use the Kaazing WebSocket Gateway .NET and Silverlight AMQP Client Library</h2>
+<p>
+<ol>
+        <li><a name="setup_silverlight_dev_env" id="setup_silverlight_dev_env"></a><p>Setting up your .NET and Silverlight development environment.</p>
+                
+    <p>To develop applications for Silverlight or the .NET Framework, you must install the a .NET Integrated Development Environment (IDE) such as Visual Studio or the free Visual Studio Express.</p>
+
+    <p><span class="note"><strong>Note</strong>: You can develop Silverlight and .NET Framework applications in any of the .NET programming languages. Microsoft Visual C# is used in this how-to.</span></p>
+
+                <ol type="a">
+                        <li><p><a name="setup_dotnet" id="setup_dotnet"></a>Set up your .NET Framework environment.</p>
+                        
+                                <p>In addition to the Visual Studio IDE, .NET Framework application development also requires:</p>
+                        
+                                        <ul class="arrow-2">
+                                                <li>A .NET Integrated Development Environment (IDE), such as Visual Studio or the free Visual Web Developer  Express</li>
+                                                <li> Microsoft .NET Framework 4 with Microsoft .NET Framework 4 Patch KB2468871 (download the patch from <a href="http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=3556">http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=3556</a>). This is required for building or running .NET clients using the Kaazing WebSocket Gateway .NET Client Library.</li>
+                                        </ul>
+
+                                <p>To use the Kaazing WebSocket Gateway AMQP client libraries for .NET and Silverlight, you must add a reference to the libraries located in the <span class="code_inline">.DLL</span> files <span class="code_inline">Kaazing.AMQP.dll</span> and <span class="code_inline">Kaazing.Gateway.dll</span> to your .NET application. This file is in the directory <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/dotnet/Release</span>. Additional <span class="code_inline">.DLL</span>s may be required to program with other protocols.</p>
+
+                                <p>Applications based on the .NET Framework can use standard .NET Forms Controls or Windows Presentation Foundation (WPF). Note that there are slight differences in APIs for Controls, Threading and Dispatching behavior. The examples below illustrate event dispatching for WPF applications. WPF Applications, like Silverlight applications, consist of Extensible Application Markup Language (XAML) files and their corresponding code-behind classes <span class="code_inline">.XAML.CS</span> (in C#).</p>
+
+                                <p>.NET Framework applications are typically deployed as an executable <span class="code_inline">.EXE</span> file. This executable references client library <span class="code_inline">.DLL</span> files that can be deployed in the same directory alongside the executable, or registered through an installation process.</p>
+                        </li>
+
+                        <li><p><a name="setup_silverlight" id="setup_silverlight"></a>Set up your Silverlight environment.</p>
+
+                        <p>In addition to the Visual Studio IDE, Silverlight application development also requires:</p>
+
+                        <p>
+                                <ul class="arrow-2">
+                                        <li>A .NET Integrated Development Environment (IDE), such as Visual Studio  or the free Visual Web Developer Express</li>
+                                        <li>Microsoft Silverlight 4 SDK</li>
+                                        <li>The Silverlight 4 browser plugin</li>
+                                </ul>
+                        </p>
+
+                        <p>To use the Kaazing WebSocket Gateway AMQP client libraries for .NET and Silverlight, you must add a reference to the  libraries located in the <span class="code_inline">.DLL</span> files <span class="code_inline">Kaazing.AMQP.dll</span> and <span class="code_inline">Kaazing.Gateway.dll</span> to your Silverlight project. This file is in the directory <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/dotnet/Release</span>.</p>
+                        
+                        <p><span class="note"><strong>Note</strong>: You can develop Silverlight 4 applications in any of the .NET programming languages. Microsoft Visual C# is used  in this how-to.</span></p>
+                        
+                        <p>Silverlight applications primarily consist of Extensible Application Markup Language (XAML) files and their corresponding code-behind classes <span class="code_inline">.XAML.CS</span> (in C#). The <span class="code_inline">.XAML</span> files typically contain the User Interface (UI) elements and the <span class="code_inline">.XAML.CS</span> files contain the page's code-behind classes.</p>
+                        
+                        <p>A typical Silverlight application is deployed as a compressed <span class="code_inline">.XAP</span> file. Adding the reference to the Silverlight client library <span class="code_inline">.DLL</span> file in your Silverlight application   packages the <span class="code_inline">.DLL</span> file in your finished application. To deploy your Silverlight application <span class="code_inline">.XAP</span> file, you can host it on Kaazing WebSocket Gateway. For example, you can place it in the web directory: <span class="code_inline"><em>GATEWAY_HOME</em>/web/base</span>.</p>
+                        
+                        </li>
+                </ol>
+        </li>
+
+        <li><a name="config_gateway" id="config_gateway"></a><p>Configure Kaazing WebSocket Gateway to connect to an AMQP broker.</p>
+
+                        <p><span class="note"><b>Note:</b><b></b> If you have Kaazing WebSocket Gateway running on <span class="code_inline">localhost</span> and if you have an AMQP broker  running on <span class="code_inline">localhost</span> at the default AMQP port <span class="code_inline">5672</span>, you do not have to configure anything to see the AMQP demos and the interactive AMQP guide.</span></p>
+
+                        <p> The following is an example of the default configuration element for the AMQP service in the Kaazing WebSocket Gateway bundle, as specified in the configuration file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>:</p>
+
+                        <pre class="auto-links: false; brush: xml; toolbar: false;">
+                        &lt;service&gt;
+                                &lt;accept&gt;ws://localhost:8001/amqp&lt;/accept&gt;
+                                &lt;connect&gt;tcp://localhost:5672&lt;/connect&gt;
+
+                                &lt;type&gt;amqp.proxy&lt;/type&gt;
+
+                                &lt;!--
+                                &lt;authorization-constraint&gt;
+                                        &lt;require-role&gt;AUTHORIZED&lt;/require-role&gt;
+                                &lt;/authorization-constraint&gt;
+                                --&gt;
+
+                                &lt;cross-site-constraint&gt;
+                                        &lt;allow-origin&gt;http://localhost:8001&lt;/allow-origin&gt;
+                                &lt;/cross-site-constraint&gt;
+                        &lt;/service&gt;</pre>
+
+                        <p>In this case, the service is configured to accept WebSocket AMQP requests from the browser at <span class="code_inline">ws://localhost:8001/amqp</span> and proxy those requests to a locally installed AMQP broker (<span class="code_inline">localhost</span>) at port <span class="code_inline">5672</span>.</p>
+
+                        <p>To configure the Gateway to accept WebSocket requests at another URL or to connect to a different AMQP broker, you can edit <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>, update the values for the <span class="code_inline">accept</span> elements, change the <span class="code_inline">connect</span> property, and restart the Gateway. For example, the following  configuration configures Kaazing WebSocket Gateway to accept WebSocket AMQP requests at <span class="code_inline">ws://www.example.com:80/amqp</span> and proxy those requests to an AMQP broker (<span class="code_inline">amqp.example.com</span>) on port <span class="code_inline">5672</span>.</p>
+
+                        <pre class="auto-links: false; brush: xml; toolbar: false;">
+                        &lt;service&gt;
+                                &lt;accept&gt;ws://www.example.com:80/amqp&lt;/accept&gt;
+                                &lt;connect&gt;tcp://amqp.example.com:5672&lt;/connect&gt;
+  
+                                &lt;type&gt;amqp.proxy&lt;/type&gt;
+                        &lt;/service&gt;</pre>
+        </li>
+
+        <li><a name="setup_server"></a><p>Setting up an AMQP broker.</p>
+
+                        <p><span class="note"><strong>Note</strong>: The Kaazing WebSocket Gateway AMQP client libraries are compatible with AMQP version 0-9-1. Refer your AMQP broker documentation for information about supported AMQP versions.</span></p>
+
+                        <p>There are a wide variety of AMQP brokers available that implement different AMQP versions. For example, RabbitMQ, Apache Qpid, OpenAMQ, Red Hat Enterprise MRG, ZeroMQ, and Zyre. If you do not have an AMQP broker installed yet, you can use Apache Qpid AMQP broker, which supports AMQP version 0-9-1. To set up the Apache Qpid broker on your system, perform the steps described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>, open a browser, navigate to <a href="http://localhost:8001/demo/amqp/silverlight/?d=amqp-silverlight"><span class="code_inline">http://localhost:8001/demo/amqp/silverlight/?d=amqp-silverlight</span></a><a href="http://localhost:8001/demo/amqp/silverlight/?d=amqp-silverlight" class="code_inline"></a>, and log in to the demo to verify that it is working.</p>
+
+        </li>
+
+        <li><a name="using_lib" id="using_lib"></a><p>Review the common .NET and Silverlight AMQP programming steps.</p>
+
+                <p>Now that you have set up your environment to develop .NET and Silverlight applications using the Gateway's AMQP client library, you can start creating your application. You can either build a single application that both publishes and consumes messages, or create two different applications to handle each action. The demo located at <a href="http://localhost:8001/demo/amqp/silverlight/?d=amqp-silverlight">http://localhost:8001/demo/amqp/silverlight/?d=amqp-silverlight</a> shows a single application that handles both actions. You can view the source code for this demo in <span class="code_inline"><em>GATEWAY_HOME</em>/demo/dotnet/src/amqp</span>. Refer to the <a href="../apidoc/client/dotnet/html/N_Kaazing_AMQP.htm">Kaazing.AMQP</a> documentation for the complete list of all the AMQP command and callback functions.</p>
+                <p>The common .NET and Silverlight AMQP programming steps are:</p>
+                <ol type="a">
+                  <li><a href="#create_object">Create the AmqpClient object</a></li>
+                  <li><a href="#connect_broker">Connect to an AMQP broker</a></li>
+                  <li><a href="#create_channels">Create channels</a></li>
+                  <li><a href="#creating_exchanges">Declare an exchange</a></li>
+                  <li><a href="#creating_queues">Declare a queue</a></li>
+                  <li><a href="#binding_queues">Bind an exchange to a queue</a></li>
+                  <li><a href="#publishing_messages">Publish messages</a></li>
+                  <li><a href="#consuming_messages">Consume messages</a></li>
+                  <li><a href="#using_transactions">Use transactions</a></li>
+                  <li><a href="#control_flow">Control message flow</a></li>
+                  <li><a href="#exception_handling">Handle exceptions</a></li>
+                  <li><a href="#add_tag">Add the Silverlight object tag</a></li>
+                </ol>
+</li>
+<li><a name="create_object" id="create_object"></a><p>Create the AmqpClient object.</p>
+
+<p>First, create an AmqpClient client object. Before you create the client object, add the following import statements in your application page's <span class="code_inline">.XAML.CS</span> file:</p>
+<pre class="brush: js; toolbar: false;">
+using com.kaazing.gateway.client;
+using Kaazing.AMQP;</pre>
+
+<p>Add the following member variables:</p>
+
+<pre class="brush: js; toolbar: false;">
+private AmqpChannel     publishChannel = null;
+private AmqpChannel     consumeChannel = null;
+private string  exchangeName = "demo_exchange";
+private string  queueName = "myqueuename";
+private string  routingKey = "broadcastkey";
+private string  amqpVersion = "0-9-1";
+private bool    passive = false;
+private bool    durable = false;
+private bool    noWait = false;
+private bool    exclusive = false;
+private bool    autoDelete = false;
+private bool    mandatory = false;
+private bool    immediate = false;
+private bool    noLocal = false;
+private bool    noAck = false;</pre>
+
+<p>Next, declare a variable and create an instance of the <span class="code_inline">AmqpClient</span> object as shown in the following example.</p>
+<pre class="brush: js; toolbar: false;">
+private AmqpClient client = new AmqpClient();</pre>
+
+<p>Now that you have created an instance of the <span class="code_inline">AmqpClient</span> object, you can use the AMQP protocol commands. To handle open and close events, add two event handlers&mdash;one for <span class="code_inline">OpenEvent</span> and one for <span class="code_inline">CloseEvent</span>, as shown in the following example.</p>
+<pre class="brush: js; toolbar: false;">
+client.OpenEvent += new AmqpEventHandler(OpenHandler);
+client.CloseEvent += new AmqpEventHandler(CloseHandler);
+</pre></li>
+
+<li><a name="connect_broker" id="connect_broker"></a><p>Connect to an AMQP broker.</p>
+        <p>Next, you must connect and log in to an AMQP broker. <span class="stockTable">The client generally  manages all of its communication on a single connection to an AMQP broker. You establish a connection to an AMQP broker by passing in the broker address, a user name and password, the AMQP version you want to use, and, optionally, a virtual host name (the name of a collection of exchanges and queues hosted on independent server domains).</span> In the following example, the parameters are passed in when you call the <span class="code_inline">connect()</span> method.</p>
+        <pre class="auto-links: false; brush: js; toolbar: false;">client.Connect(url, virtualHost, username, password);</pre>
+
+        <p>In this example, the parameters that are passed in may be: url: <span class="code_inline">ws://localhost:8001/amqp</span>, virtualHost: <span class="code_inline">/</span>, username: <span class="code_inline">guest</span>, and password: <span class="code_inline">guest</span>.</p>
+        <p class="note"><strong>Note</strong>: The Gateway supports AMQP version 0-9-1.</p>
+</li>
+
+<li><a name="create_channels" id="create_channels"></a><p>Create channels.</p>
+<p>Once a connection to an AMQP broker has been established, the client must create a channel to communicate to the broker. A channel is a bi-directional connection between an AMQP client and an AMQP broker. AMQP is multi-channeled, which means that channels are multiplexed over a single network socket connection. Channels are light-weight and consume little resources, and therefore used in AMQP's exception handling mechanism&mdash;channels are closed when an exception occurs. The following example shows how you can create two channels (one for publishing to an exchange and one for consuming from a queue):</p>
+
+<pre class="brush: js; toolbar: false;">
+publishChannel = client.OpenChannel();
+consumeChannel = client.OpenChannel();</pre>
+
+<p>Once you have created the channels, you can add event handlers for various channel events as shown in the following example.</p>
+
+<pre class="brush: js; toolbar: false;">
+publishChannel.OpenEvent += new AmqpEventHandler(PublishOpenHandler);
+publishChannel.CloseEvent += new AmqpEventHandler(PublishCloseChannelHandler);
+publishChannel.DeclareExchangeEvent += new AmqpEventHandler(DeclareExchangeHandler);
+          
+consumeChannel.OpenEvent += new AmqpEventHandler(ConsumeOpenHandler);
+consumeChannel.CloseEvent += new AmqpEventHandler(ConsumeCloseChannelHandler);
+consumeChannel.ConsumeEvent += new AmqpEventHandler(ConsumeHandler);
+consumeChannel.BindQueueEvent += new AmqpEventHandler(BindQueueHandler);
+consumeChannel.DeclareQueueEvent += new  AmqpEventHandler(DeclareQueueHandler);
+consumeChannel.FlowEvent += new AmqpEventHandler(FlowHandler);
+consumeChannel.MessageEvent += new AmqpEventHandler(MessageHandler);</pre>
+
+<p>In this example, each of the event handlers has an associated function that processes the AMQP event. The following is an example of a <span class="code_inline">PublishOpenHandler</span> function:</p>
+
+<pre class="brush: js; toolbar: false;">
+private void PublishOpenHandler(object sender, AmqpEventArgs e){
+        this.Dispatcher.BeginInvoke(() =&gt;
+        {
+                Log(&quot;OPENED: Publish Channel&quot;);
+        });
+}</pre>
+</li>
+
+<li><a name="creating_exchanges" id="creating_exchanges"></a><p>Declare an exchange.</p>
+<p>AMQP messages are published to exchanges. Messages contain a <em>routing key</em> that contains the information about the message's destination. The exchange accepts messages and their routing keys and delivers them to a message queue. You can think of an exchange as an electronic mailman that delivers the messages to a mailbox (the queue) based on the address on the message's envelope (the routing key). Exchanges do not store messages.</p>
+
+<p><span class="note"><strong>Note</strong>:  AMQP brokers reserve the use of the <span class="code_inline">System</span> exchange type, and thus should not be used by applications.</span></p>
+
+<p>AMQP defines different exchange types. Some of these exchange types (Direct, Fanout, and Topic) must be supported by all AMQP brokers while others (Headers and System) are optional. AMQP brokers can also support custom exchange types. The following are the different types of exchanges:</p>
+
+<ul class="arrow-2">
+    <li><strong>Direct</strong>&mdash;Messages are sent only to a queue that is bound with a binding key that matches the message's routing key.</li>
+    <li><strong>Fanout</strong>&mdash;Messages are sent to every queue that is bound to the exchange.</li>
+    <li><strong>Topic</strong>&mdash;Messages are sent to a queue based on categorical binding keys and wildcards.</li>
+    <li><strong>Headers</strong>&mdash;Messages are sent to a queue based on their header property values.</li>
+    <li><strong>System</strong>&mdash;Messages are sent to system services.</li>
+</ul>
+
+<p>Exchanges can be <em>durable</em>, meaning that the exchange survives broker shut-down and must be deleted manually or <em>non-durable</em> (temporary) meaning that the exchange lasts only until the broker is shut down. Finally, to check if an exchange exists on the AMQP broker (without actually creating it), you can create a <em>passive</em> exchange. The following example shows how you can create a direct exchange on the publish channel:</p>
+
+<pre class="brush: js; toolbar: false;">
+private void DeclareExchange()
+{
+        publishChannel.DeclareExchange(exchangeName, &quot;fanout&quot;, passive, durable, noWait, null);
+}</pre>
+
+<p>
+        <span class="note"><strong>Note</strong>: In this example, the arguments <span class="code_inline">passive</span>, <span class="code_inline">durable</span>, and <span class="code_inline">noWait</span> represent boolean values. Note also that no custom parameters are passed in.</span>
+</p>
+
+<p>After the exchange is created successfully, a <span class="code_inline">DeclareExchangeEvent</span> event is raised, which calls the previously registered event handler <span class="code_inline">DeclareExchangeHandler</span>.
+</p></li>
+
+<li><a name="creating_queues" id="creating_queues"></a><p>Declare a queue.</p>
+        <p>AMQP messages are consumed from queues. You can think of a queue as a mailbox; messages addressed to a particular address (the routing key) are placed in the mailbox for the consumer to pick up. If multiple consumers are bound to a single queue, only one of the consumers receives the message (the one that picked up the mail).</p>
+
+        <p>To check if a queue exists on the AMQP broker (without creating it), you can create a <em>passive</em> queue. Additionally, queues can be marked <em>exclusive,</em> which means that they are tied to a specific connection. If a queue is marked exclusive, it is deleted when the connection on which it was created is closed.</p>
+
+        <p>Queues can be <em>durable</em>, meaning that the queue survives broker shut-down and must be deleted manually or <em>non-durable</em> (temporary) meaning that the queue lasts only until the broker is shut down. Queues can also be marked <em>auto delete</em>, which means that the queue is automatically deleted when it is no longer in use. The following example shows how you can create a  queue on the consume channel:</p>
+
+<pre class="auto-links: false; brush: js; toolbar: false;">consumeChannel.DeclareQueue(queueName, passive, durable, exclusive, autoDelete, noWait, null);</pre>
+
+<p>
+        <span class="note"><strong>Note</strong>: In this example, the arguments <span class="code_inline">passive</span>, <span class="code_inline">durable</span>, <span class="code_inline">exclusive</span>, <span class="code_inline">autoDelete</span>, and <span class="code_inline">noWait</span> represent boolean values. Note also that no custom parameters are passed in.</span>
+</p>
+
+<p>After the queue is created successfully, a <span class="code_inline">DeclareQueueEvent</span> event is raised, which calls the previously registered event handler <span class="code_inline">DeclareQueueHandler</span>. </p>
+</li>
+
+<li><a name="binding_queues" id="binding_queues"></a><p>Bind an exchange to a queue.</p>
+        <p>Once you have created an exchange and a queue in AMQP, you must bind&mdash;or map&mdash;one to the other so that messages published to a specific exchange are delivered to a particular queue. You bind a queue to an exchange with a routing key as shown in the following example.</p>
+        <pre class="auto-links: false; brush: js; toolbar: false;">consumeChannel.BindQueue(queueName, exchangeName, routingKey, noWait, null);</pre>
+        <p>After the exchange is bound to the queue successfully, a <span class="code_inline">BindQueueEvent</span> event is raised, which calls the previously registered event handler <span class="code_inline">BindQueueHandler</span>.</p>
+</li>
+
+<li><a name="publishing_messages" id="publishing_messages"></a><p>Publish messages.</p>
+        <p>Messages are published to exchanges. The established binding rules (routing keys) determine to which queue a message is delivered. Messages have content that consists of two parts:</p>
+        <ol>
+                <li><strong>Content Header</strong>&mdash;A set of  properties that describes the message</li>
+                <li><strong>Content Body</strong>&mdash;A blob of binary data</li>
+        </ol>
+        
+        <p>Additionally, messages can be marked <em>mandatory</em> to send a notification to the publisher in case a message cannot be delivered to a queue. You can also mark a message <em>immediate</em> so that it is returned to the sender if the message cannot be routed to a queue consumer immediately. The following example shows how the content body of a message is added to a buffer (AMQP uses a binary message format) and published to an exchange using the publish channel:</p>
+
+<pre class="brush: js; toolbar: false;highlight:[6,14,18,19];">
+private void PublishBasic(string text)
+        {
+                ByteBuffer buffer = new ByteBuffer();
+                buffer.PutString(text, System.Text.Encoding.UTF8);
+                buffer.Flip();
+                AmqpProperties amqpProperties = new AmqpProperties();
+                amqpProperties.MessageId = "abcdxyz1234pqr";
+                amqpProperties.CorrelationId = "23456";
+                amqpProperties.UserId = "guest";
+                amqpProperties.ContentType = AmqpProperties.TEXT_PLAIN;
+                amqpProperties.DeliveryMode = 1;
+                amqpProperties.Priority = 6;
+                amqpProperties.Timestamp = DateTime.Now.ToLocalTime();
+                AmqpArguments customHeaders = new AmqpArguments();
+                customHeaders.AddInteger("KZNG_AMQP_KEY1", 100);
+                customHeaders.AddLongString("KZNG_AMQP_KEY2", "Custom Header Value");
+                amqpProperties.Headers = customHeaders;
+                publishChannel.PublishBasic(buffer, amqpProperties, exchangeName, 
+                        routingKey, false, false);
+                Log(amqpProperties.ToString());
+                Log("Published Message Properties:");
+                Log("MESSAGE PUBLISHED: " + text);
+        }</pre>
+
+<p>The <span class="code_inline">AmqpProperties</span> class defines pre-defined properties as per AMQP 0-9-1 spec and provides type-safe getters and setters for those pre-defined properties. The value of AMQP 0-9-1's standard "headers" property is of type <a href="../apidoc/client/dotnet/html/T_Kaazing_AMQP_AmqpArguments.htm">AmqpArguments</a>. The Kaazing WebSocket Gateway AMQP implementation uses AmqpArguments to encode the table. Similarly, the Kaazing WebSocket Gateway AMQP implementation decodes the table and constructs an instance of AmqpArguments.</p>
+
+<p>The arguments <span class="code_inline">mandatory</span> and <span class="code_inline">immediate</span> use boolean values. Note also that no custom parameters are passed in.</p>
+
+<p>The username set with the <span class="code_inline">UserId</span> method must match the user that is currently authenticated with the AMQP broker. If they do not match you will see the following error: <br><span class="code_inline">PRECONDITION_FAILED - user_id property set to '&lt;<em>name</em>&gt;' but authenticated user was '&lt;<em>name</em>&gt;'</span></p>
+</li>
+
+<li><a name="consuming_messages"></a><p>Consume messages.</p>
+        <p>Once messages are published, they can be consumed from a queue. A variety of options can be applied to  messages in a queue. For example, publishers can choose to require acknowledgement (<em>ack</em>) of messages so that messages can be redelivered in the case of a delivery failure. If the queue is set to <em>exclusive</em>, it is scoped to just the current connection and deleted when the connection on which it was established is closed. Additionally, you can use the <em>no local</em> setting to notify the broker <em>not</em> to send messages to the connection on which the messages were published. The following example shows how you can consume messages from a queue on the consume channel:</p>
+
+<pre class="auto-links: false; brush: js; toolbar: false;">
+consumeChannel.DeclareQueue(queueName, false, false, false, false, false, null)
+        .BindQueue(queueName, exchangeName, routingKey, false, null)
+        .ConsumeBasic(queueName, routingKey, false, false, false, false, null);
+</pre>
+
+<p>
+        <span class="note"><strong>Note</strong>: In this example, the arguments <span class="code_inline">noLocal</span>, <span class="code_inline">noAck</span>, <span class="code_inline">noWait</span>, and <span class="code_inline">exclusive</span> represent boolean values.</span>
+</p>      
+
+<p>After the <span class="code_inline">ConsumeBasic()</span> method is successful, a <span class="code_inline">ConsumeEvent</span> event is raised, which calls the previously registered event handler <span class="code_inline">ConsumeHandler</span>. The AMQP broker can then start delivering messages to the client and these messages raise the <span class="code_inline">MessageEvent</span> event, which calls the previously registered event handler <span class="code_inline">MessageHandler</span>. The following example shows how the <span class="code_inline">MessageHandler</span> function retrieves information from the <span class="code_inline">AmqpEventArgs</span> object.</p>
+
+<pre class="brush: js; toolbar: false;">
+private void MessageHandler(object sender, AmqpEventArgs e)
+{
+        this.BeginInvoke((InvokeDelegate)(() =>
+        {
+                ByteBuffer buf = e.Body;
+                string message = buf.GetString(System.Text.Encoding.UTF8);
+                Log(e.AmqpProperties.ToString());
+                Log("Consumed Message Properties:");
+                Log("MESSAGE CONSUMED: " + message);
+
+                // Explicitly acknowledge the message as we are passing
+                // 'false' as the value of the 'noAck' parameter in
+                // the consumeChannel.ConsumeBasic() call.
+                long dt = Convert.ToInt64(e.Arguments["deliveryTag"]);
+                ((AmqpChannel)sender).AckBasic(dt, true);
+        }));
+}
+</pre>
+        
+<p>Here you can see how the properties are retrieved using the AmqpProperties method. A method from the same AmqpProperties class used to encode the properties of the published message.</p>
+
+<h5><a name="Message_Acknowledgement"></a>Message Acknowledgement</h5>
+
+<p>The Boolean parameter <code>noAck</code> is optional with the default value of <code>true</code>. If <code>noAck</code> is <code>true</code>, the AMQP broker will not expect any acknowledgement from the client before discarding the message. If <code>noAck</code> is <code>false</code>, then the AMQP broker will expect an acknowledgement before discarding the message. If <code>noAck</code> is specified to be <code>false</code>, then you must explicitly acknowledge the received message using <code>AmqpChannel</code> <code>ackBasic()</code>.</p>
+
+<p>In the AMQP demo code in this procedure, message acknowledgement is being performed because <code>false</code> was passed in for <code>noAck</code> in <code>ConsumeBasic()</code>. If the client acknowledges a message <strong>and</strong> <code>noAck</code> is <code>true</code> (the default setting), then the AMQP message broker will close the channel.</p>
+
+
+</li>
+
+<li><a name="using_transactions"></a><p>Use transactions.</p>
+<p>AMQP supports transactional messaging, through <em>server local transactions</em>. In a transaction, the server only publishes a set of messages as one unit when the client commits the transaction. Transactions only apply to message publishing and not to the consumption of the messages.</p>
+
+<p><span class="note"><strong>Note</strong>: Once you commit or rollback a transaction on a channel, a new transaction is started automatically. For this reason you must commit all future messages you want to publish on that channel or create a new, non-transactional channel on which to publish messages.</span></p>
+
+<p>The following transaction-related methods can be used to work select (start), commit, and rollback a transaction:</p>
+
+<pre class="brush: js; toolbar: false;">
+txnPublishChannel.SelectTx();
+txnPublishChannel.CommitTx();
+txnPublishChannel.RollbackTx();</pre>
+
+<p>After the transaction is successfully selected, committed, or rolled back, the corresponding events (<span class="code_inline">SelectTransactionEvent</span>, <span class="code_inline">CommitTransactionEvent</span>, and <span class="code_inline">RollbackTransactionEvent</span>) are raised. These events call previously registered event handlers. Each of the event handlers has an associated function that processes the event.</p>
+
+<pre class="auto-links: false; brush: js; toolbar: false;">
+txnPublishChannel.CommitTransactionEvent += CommitOkTxHandler;
+txnPublishChannel.RollbackTransactionEvent += RollbackOkTxHandler;
+txnPublishChannel.SelectTransactionEvent += SelectOkTxHandler;</pre>
+
+<p>To see an example of transactions in an application, see the sample demo code in <span class="code_inline"><em>GATEWAY_HOME</em>/demo/silverlight/src/amqp/Page.xaml.cs</span>.</p>
+</li>
+
+<li><a name="control_flow"></a><p>Control message flow.</p>
+<p>You can use flow control in AMQP to temporarily&mdash;or permanently&mdash;halt the flow of messages on a channel from a queue to a consumer. If you turn the message flow off, no messages are sent to the consumer. The following example shows how you can turn the flow of messages on a channel off and back on:</p>
+
+<pre class="brush: js; toolbar: false;">
+consumeChannel.FlowChannel(false); 
+consumeChannel.FlowChannel(true);</pre>
+
+<p>After the flow on a channel is halted or resumed successfully, a <span class="code_inline">FlowEvent</span> event is raised, which calls the previously registered event handler <span class="code_inline">FlowHandler</span>.</p></li>
+
+<li><a name="exception_handling"></a><p>Handle exceptions.</p>
+<p>Channels are light-weight and cheap, and therefore used in AMQP's exception handling mechanism&mdash;channels are closed when an exception occurs. When the <span class="code_inline">CloseChannelEvent</span> event is raised, the previously registered  <span class="code_inline">PublishCloseChannelHandler</span> event handler calls the associated <span class="code_inline">PublishCloseChannelHandler</span> function that processes the AMQP event. The following example shows how that function can be used to log a message about why the channel was closed:</p>
+
+<pre class="brush: js; toolbar: false;">
+private void PublishCloseChannelHandler(object sender, AmqpEventArgs args e)
+{
+        this.Dispatcher.BeginInvoke(() =&gt;
+        {
+                ByteBuffer buf = e.Body;
+                string message = buf.GetString(System.Text.Encoding.UTF8);
+                Log(&quot;MESSAGE: &quot; + message);
+                Log(&quot;Publish Channel Closed: &quot; + message);
+        });
+}</pre></li>
+
+<li><a name="add_tag" id="add_tag"></a><p>Add the Silverlight object tag.</p>
+
+<p>To ensure the Silverlight application works properly, you must add an <span class="code_inline">object</span> tag that points to the location of your XAP file to the HTML file that includes your Silverlight application. At runtime, Silverlight downloads the XAP file that is referenced and runs it in the browser. The following is an example <span class="code_inline">object</span> tag:</p>
+
+<pre class="brush: xml; toolbar: false;">
+&lt;object data=&quot;data:application/x-silverlight,&quot;
+        type=&quot;application/x-silverlight-2&quot;
+        width=&quot;100%&quot; height=&quot;100%&quot; 
+        id=&quot;MyApplicationId&quot;&gt;
+
+        &lt;param name=&quot;source&quot; value=&quot;MySilverlightApplication.xap&quot;/&gt;
+        &lt;param name=&quot;EnableHtmlAccess&quot; value=&quot;true&quot;/&gt;
+    
+        &lt;!--
+        Optional parameters
+        --&gt;
+&lt;/object&gt;</pre>
+
+<p>The following attributes are required if you want to use Kaazing WebSocket Gateway Silverlight client library in your Silverlight application.</p>
+
+<ul class="arrow-2">
+        <li><strong class="code_inline">source</strong>&mdash;The path to the Silverlight application XAP file.</li>
+        <li> <strong class="code_inline">EnableHtmlAccess</strong>&mdash;Enables the Kaazing Silverlight client library to communicate with the HTML page that contains it.</li>
+</ul></li>
+</ol>
+</p>
+
+<h2><a name="other_coding_styles"></a>Other Coding Styles</h2>
+<p>In this procedure, you have used an <em>event</em> programming style. You can also use a <em>continuation-passing</em> programming style. The following example shows how you can declare an exchange using the continuation-passing programming style:</p>
+
+<p><span class="code_inline">
+publishChannel.DeclareExchange(exchangeName, &quot;direct&quot;, passive, durable, noWait,
+null, declareExchangeHandlerContinuation, errorHandlerContinuation);</span></p>
+
+<p>You can also combine the two programming styles.</p>
+
+<h2>Notes</h2>
+  <ul>
+    <li>The Microsoft .NET 4.0 Framework has a maximum connection limit of two per domain, similar to the browser limitation. For any Microsoft .NET application that uses more than one WebSocket connection at a time, you must either ensure that any WebSocket connection is closed by using <code>WebSocket.Close()</code> before opening another WebSocket connection, or increase the connection limit on the application by updating the <code>maxconnection</code> attribute in the <code>app.config</code> file. For more information, see <strong>(KG-1851) Two Connection Limit in Kaazing Clients for Microsoft .NET</strong> in <a href="../release-notes.html#mssilverlight_netclients" title="Kaazing Developer Network">Release Notes</a>.</li>
+    <li>You can verify that Kaazing has signed the relevant .NET DLL by selecting the DLL in the File Browser, then right-clicking and opening the Properties dialog. On the Digital Signatures tab, you can view the Name of Signer value "Kaazing Corporation" and a timestamp of when the DLL was signed. The email address is "Not available." For more information, see <a href="http://msdn.microsoft.com/en-us/library/aa382384%28VS.85%29.aspx"> an example C program</a> that shows how to use the Microsoft mechanism to verify a signature (a DLL is one example of a Portable Executable, or PE, file). You can also learn more about <a href="http://support.microsoft.com/kb/2389418">preventing DLL pre-loading attacks</a>.</li>
+  </ul>
+
+<h2><a name="_"></a>Next Step</h2>
+<p><a href="p_dev_dotnet_secure.html">Secure Your .NET and Silverlight AMQP Client</a></p>
+
+                  </section>
+                </article>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

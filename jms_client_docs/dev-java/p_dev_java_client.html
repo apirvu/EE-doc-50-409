@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+<h1>Use the Kaazing Gateway Java JMS Client Library</h1>
+<p>In this procedure, you will learn how to use the Kaazing Gateway Java JMS client library and the supported methods. This topic also includes a simple Java JMS Client example.</p>
+
+
+<p><span class="note"><strong>Note</strong>: For this how-to, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61613. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../integration-jms/o_jms_integrate.html">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
+
+
+<h2>Before You Begin</h2>
+<p>This procedure is part of <a href="o_dev_java.html">Checklist: How to Build Java JMS Clients Using Kaazing Gateway</a>, that includes the following steps:</p>
+<p>
+    <ol>
+    <li><strong>Use the Kaazing Gateway Java JMS Client Library</strong></li>
+    <li><a href="p_dev_java_secure.html">Secure Your Java and Android Clients</a></li>
+    <li><a href="p_dev_java_tshoot.html">Troubleshoot Java JMS Clients</a></li>
+    <li><a href="p_dev_java_logging.html">Display Logs for the Java JMS Client</a></li>
+    </ol>
+</p>
+
+<p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../../release-notes.html">Release Notes</a>.</span></p>
+
+<h2>To Use the Kaazing Gateway Java JMS Client Library</h2>
+<p>
+<ol>
+<li><p>Set up your development environment using the following:</p>
+    <p>
+        <ol type="a">
+            <li>Ensure you have a Java IDE, such as Eclipse, which can be downloaded from <a href="http://www.eclipse.org/downloads/" title="Eclipse Downloads">http://www.eclipse.org/downloads/</a>.</li>
+            <li>If you haven't done so already, download and install Kaazing Gateway, as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+        </ol></p>
+</li>
+<li><p>Review the Java JMS Client Demo.</p>
+    <p>Before you start, take a look at an out of the box demo that was built with the Java JMS Client Library: the Java applet that is part of the Gateway  bundle. To see this Java applet  in action, perform the following steps:</p>
+    <p><ol type="a">
+            <li>Start Apache ActiveMQ as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+              <li>Start the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+              <li>In a browser, navigate to the out of the box demos at <span class="uri">http://localhost:8001/demo/</span>. </li>
+            <li>Click <strong>Java</strong>.</li>
+        </ol></p>
+      <p>The demo Java applets show  HTML5 standards being used in a Java environment.</p>
+</li>
+<li><p>Using the Java JMS Client Library.</p>
+    <span class="note"><b>Note:</b> This section describes how to use the Kaazing Gateway Java JMS Client Library and the supported methods. To find out more specific information about the supported methods or to learn which methods are not supported, refer to <a href="../about/kaazing-jms-api.html">Kaazing Gateway JMS Client Libraries</a>.</span><br>
+    <ol type="a">
+        <li><p><a name="add_java_lib"></a>Add the Kaazing Gateway Java WebSocket client library and the Kaazing Gateway Java JMS client library.</p>
+            <p>To use these Kaazing Gateway client libraries in your Java application, you must include the following JAR files, which are located in the Gateway bundle:</p>
+            <ul class="arrow-2 top">
+              <li>The JMS API, located in the JAR file <span class="uri">geronimo-jms-1.1-spec.jar</span>, <span class="uri">slf4j-api-1.5.2.jar</span>, <span class="uri">slf4j-log4j12-1.5.2.jar</span>, <span class="uri">log4j-1.2.14.jar</span> in <span class="uri"><i>GATEWAY_HOME</i>/lib</span>. </li>
+              <li>The WebSocket library, located in the JAR file <span class="uri">com.kaazing.gateway.client.jar</span>, in <span class="uri"><em>GATEWAY_HOME</em>/lib/client/java</span>.</li>
+              <li>The Java JMS Client library, located in the JAR file <span class="uri">com.kaazing.gateway.jms.client.jar</span>, in <span class="uri"><em>GATEWAY_HOME</em>/lib/client/java</span>.</li>
+            </ul>
+            <p>Refer to the Java applet documentation for more information on how to package external code in your Java applet. You can deploy this Java applet to the Gateway. For example, you can place it in the web directory: <span class="uri"><em>GATEWAY_HOME</em>/web/base</span>.</p>
+        </li>
+        <li><p>Add the InitialContext.</p>
+             <p>Ensure you add the initial context as described in the JNDI documentation, located at <span class="code_inline"><a href="http://java.sun.com/products/jndi/tutorial/beyond/env/source.html">http://java.sun.com/products/jndi/tutorial/beyond/env/source.html</a></span>. The Kaazing Gateway JmsInitialContextFactory returns the initial context.</p>
+<pre class="brush: java; toolbar: false;">
+Properties props = new Properties();
+props.put(InitialContext.INITIAL_CONTEXT_FACTORY, &quot;com.kaazing.gateway.jms.client.JmsInitialContextFactory&quot;);</pre>
+
+<p>Add the URL for the Gateway, in this case, <span class="code_inline">ws://localhost:8001/jms</span>.
+                      </p>
+<pre class="brush: java; toolbar: false;">
+props.put(Context.PROVIDER_URL, &quot;ws://localhost:8001/jms&quot;);
+InitialContext ctx = new InitialContext(props);</pre>
+        </li>
+        <li><p>Set up the Connection.</p>
+            <p>Add a JMS Client implementation of <span class="code_inline">ConnectionFactory</span> that is used to create a connection with a JMS provider via a WebSocket connection.</p>
+<pre class="brush: java; toolbar: false;">
+ConnectionFactory connectionFactory =
+    (ConnectionFactory)ctx.lookup("ConnectionFactory");</pre>
+            <p>Create a connection using the credentials (in this example, <code>userid</code> and <code>password</code> are <code>null</code>):</p>
+            <p><span class="code_inline"> Connection connection = connectionFactory.createConnection(null, null);</span></p>
+            <p>Add the <code>ExceptionListener</code> whose <code>onException()</code> method is invoked to report or deliver exceptions:</p>
+<pre class="brush: java; toolbar: false;">
+connection.setExceptionListener(new ExceptionListener() {
+    @Override
+    public void onException(JMSException arg0) { arg0.printStackTrace(); }
+});</pre>
+        </li>
+        <li><p>Create a Session.</p>
+            <p>After you create a connection, you must create a session.  The following is an example of how to create <span class="code_inline">Session</span>:</p>
+            <p><span class="code_inline">Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);</span></p>
+        </li>
+        <li><p>Add the MessageConsumer and MessageListener</p>
+            <p>After you set up the connections and create the session, add a Message Consumer for a destination. Use  <span class="code_inline">InitialContext.lookup()</span> to get a reference to a destination topic or queue. Then, you can add a MessageListener that receives messages to the client. Alternatively, you can use <span class="code_inline">receive()</span> to fetch messages.</p>
+<pre class="brush: java; toolbar: false;">
+Topic topic  = (Topic)ctx.lookup(&quot;/topic/destination&quot;);
+MessageConsumer consumer = session.createConsumer(topic);
+consumer.setMessageListener(new MessageListener() {
+  @Override
+  public void onMessage(Message message) {
+    try {
+      System.out.println(&quot;MESSAGE: &quot;+((TextMessage)message).getText());
+    } catch (JMSException e) {
+      e.printStackTrace();
+    }
+  }
+});</pre>
+<p><span class="note">
+       <strong>Note</strong>: When setting up your message consumers and producers, you must use the format <span class="code_inline">&quot;/topic/&quot;</span> for regular topics.  For regular queues, use <code>&quot;/queue/&quot;</code>. For temporary topics and temporary queues, use <code>&quot;/temp-topic/&quot;</code> or <code>&quot;/temp-queue/&quot;</code>.</span></p>
+        </li>
+        <li><p>Start the Connection.</p>
+            <p>Once the MessageConsumer is created, start the message flow by starting the connection:<br>
+            </p>
+            <p><span class="code_inline">connection.start(); </span></p>
+        </li>
+    <!-- <li><p>Use MessageConstants.</p>
+           <p><span class="code_inline">MessageConstants</span> is a Kaazing Gateway  Java JMS Client API class, which is the equivalent of constants in the <span class="code_inline">Message</span> interface in JMS. The following is an example of <span class="code_inline">MessageConstants</span>:</p>
+       <p><span class="code_inline">MessageConstants.DEFAULT_PRIORITY</span></p>
+    </li> -->
+        <li><p>Use CreateTextMessage and CreateProducer.</p>
+            <p>After you set up your connection and message handlers, you can create a message and a message producer to send to your back-end server by way of the Gateway:</p>
+<pre class="brush: java; toolbar: false;">
+// Create a simple JMS text message
+Message message = session.createTextMessage("Hello World");
+// Create a message producer that uses a specific destination for its messages:
+MessageProducer producer = session.createProducer(destination);
+// Use the message producer to send the message
+producer.send(message);</pre>
+        </li>
+        <li><p>Close the Connection.</p>
+            <p>At the end, cease the message flow by closing the  connection:<br>
+            </p>
+            <p><span class="code_inline">connection.close(); </span></p>
+            <p>For more information on the Kaazing Gateway JMS client libraries, see <a href="../about/kaazing-jms-api.html">Kaazing Gateway JMS Client Libraries: Supported APIs</a> and the <a href="../apidoc/client/java/jms/index.html">Kaazing Gateway JMS API</a> documentation.</p>
+        </li>
+    </ol>
+</li>
+</ol>
+</p>
+
+<h2><a name="migrate"></a>Migrate Java Applications to Kaazing Gateway 4.x</h2>
+<p>If you wish to migrate your Kaazing Gateway 3.3-3.5 Java clients to Kaazing Gateway 4.x and use its new libraries, do the following:</p>
+  <ol>
+  <li>Use the new WebSocket library in your client, as described above.</li>
+  <li>Use the new Java JMS Client library, as described above.</li>
+  <li>Update your Java client to use the new class names:
+    <ul>
+      <li><code>JmsConnectionFactory</code> (previously <code>StompConnectionFactory</code>)</li>
+      <li><code>JmsConnectionProperties</code> (previously <code>StompConnectionProperties</code>)</li>
+      <li><code>JmsInitialContext</code> (previously <code>StompInitialContext</code>)</li>
+      <li><code>JmsInitialContextFactory</code> (previously <code>StompInitialContextFactory</code>) </li>
+    </ul>
+  </li>
+  <li><p>Modify challenge handlers. In Kaazing Gateway 4.x, the <code>ChallengeHandlers</code> class from 3.3-3.5 was replaced with by the <code>ChallengeHandler</code> modifier of the <code>WebSocketFactory</code> class. The <code>ChallengeHandler</code> modifier is used during authentication for connections and subsequent revalidation that occurs at regular intervals.</p>
+
+    <p>Kaazing Gateway 3.3-3.5:</p>
+
+<pre class="auto-links: false; brush: java; toolbar: false;">
+import com.kaazing.gateway.client.security.BasicChallengeHandler;
+import com.kaazing.gateway.client.security.ChallengeHandlers;
+import com.kaazing.gateway.client.security.LoginHandler;
+...
+private void initLoginHandler(String location) {
+        final LoginHandler loginHandler = new LoginHandler() {
+            private String username;
+            private char[] password;
+            @Override
+            public PasswordAuthentication getCredentials() {
+                try {
+                    LoginDialog dialog = new LoginDialog(Frame.getFrames()[0]);
+                    if (dialog.isCanceled()) {
+                        return null;
+                    }
+                    username = dialog.getUsername();
+                    password = dialog.getPassword();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return new PasswordAuthentication(username, password);
+            }
+        };
+        BasicChallengeHandler challengeHandler = ChallengeHandlers.load(BasicChallengeHandler.class);
+        challengeHandler.setLoginHandler(loginHandler);
+        ChallengeHandlers.setDefault(challengeHandler);
+    }
+</pre>
+
+    <p>Kaazing Gateway 4.x:</p>
+
+<pre class="auto-links: false; brush: java; toolbar: false;">
+import com.kaazing.net.auth.BasicChallengeHandler;
+import com.kaazing.net.auth.ChallengeHandler;
+import com.kaazing.net.auth.LoginHandler;
+...
+private ChallengeHandler createChallengeHandler(String location) {
+        final LoginHandler loginHandler = new LoginHandler() {
+            private String username;
+            private char[] password;
+            @Override
+            public PasswordAuthentication getCredentials() {
+                try {
+                    LoginDialog dialog = new LoginDialog(Frame.getFrames()[0]);
+                    if (dialog.isCanceled()) {
+                        return null;
+                    }
+                    username = dialog.getUsername();
+                    password = dialog.getPassword();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return new PasswordAuthentication(username, password);
+            }
+        };
+        BasicChallengeHandler challengeHandler = BasicChallengeHandler.create();
+        challengeHandler.setLoginHandler(loginHandler);
+        return challengeHandler;
+    }
+    ...
+    // initialize the login handler for the target location
+    ChallengeHandler challengeHandler = createChallengeHandler(url);
+    stompConnectionFactory.setGatewayLocation(new URI(url));
+    WebSocketFactory webSocketFactory = stompConnectionFactory.getWebSocketFactory();
+    webSocketFactory.setDefaultChallengeHandler(challengeHandler);
+    webSocketFactory.setDefaultRedirectPolicy(HttpRedirectPolicy.SAME_DOMAIN);
+    ...
+</pre>
+  </li>
+  <li>Review the <a href="../apidoc/client/java/jms/index.html">Java JMS Client API</a>.</li>
+</ol>
+
+
+<a name="durables"></a><h2>Durable Subscribers</h2>
+
+<span class="note"><b>Note:</b> Currently, the Gateway does not support durable subscribers with Apache ActiveMQ. You may use durable subscribers with <a href="../integration-jms/p_jms_integrate_tibco.html">TIBCO EMS</a> or <a href="../integration-jms/p_jms_integrate_informatica.html">Informatica UM</a>. For more information, see <a href="../admin-reference/r_stomp_service.html#durables">Durable Subscribers</a>.</span><br>
+
+
+<p>If your JMS client needs to receive all of the messages published on a topic, including the ones published while the subscriber is inactive because it is not being used or has lost connections (which is common when using mobile devices), create a durable <a href="http://docs.oracle.com/javaee/6/api/javax/jms/TopicSubscriber.html">TopicSubscriber</a> using the <a href="http://docs.oracle.com/javaee/6/api/javax/jms/Session.html#createDurableSubscriber(javax.jms.Topic, java.lang.String)">Session.createDurableSubscriber</a> method.</p> 
+
+<p>To unsubscribe from a durable topic, use the <a href="http://docs.oracle.com/javaee/6/api/javax/jms/Session.html#unsubscribe(java.lang.String)">Session.unsubscribe</a> method.</p>
+
+<p>The JMS provider retains a separate record of each durable subscription and ensures that all messages from the topic's publishers are retained until they are acknowledged by each durable subscriber or they have expired. Whether messages have been acknowledged is tracked separately for each durable subscriber, and each durable subscriber is identified by the combination of its name and the clientID (if any) set on the Connection. Ensure your application confirms that the clientID (if used) is unique to the user or device, or, if it does not use clientID&#x27;s, ensure that the durable name is unique to the user or device.</p>
+
+<p><span class="note"><b>Note:</b> When clientID is specified in creating a connection, the <code>client.durable.name.format</code> property should be defined for the service in <span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. For more information, see <a href="../admin-reference/r_stomp_service.html#clientdurablenameformat"><code>client.durable.name.format</code></a>.</span></p>
+
+<h3>Example</h3>
+<p>In the following example code, an application enables users to subscribe to a destination by specifying the destination, message selector expression, and durable subscriber name when subscribing.</p>
+<pre class="brush: java; toolbar: false; highlight:[29,33];">
+// Obtain the destination name value entered by the user 
+String destinationName = destination.getText();
+// Obtain the message selector conditional expression entered by the user
+String selectorText = messageSelector.getText();
+// Obtain the unique name of the durable subscription entered by the user
+String durableSubscriberName = durableName.getText();
+/* Check to see if the durable subscriber name and 
+   message selector expression fields contain values */
+boolean hasDurableSubscriberName = 
+    (durableSubscriberName != null && !durableSubscriberName.isEmpty());
+boolean hasSelector = (selectorText != null && !selectorText.isEmpty());
+// Output the values entered by the user
+logMessage("SUBSCRIBE: " + destinationName + " " + durableSubscriberName + " " + selectorText);
+
+/* Create the durable subscriber to the specific topic destination 
+   Perform a JNDI lookup of the destination name entered by the user */
+Destination destination = (Destination)jndiInitialContext.lookup(destinationName);
+/* If a topic destination entered by the user is found 
+   create a durable subscriber */
+if (hasDurableSubscriberName && destination instanceof Topic) {
+    // Downcast topic from destination
+    Topic topic = (Topic)destination;
+    // Create the TopicSubscriber
+    TopicSubscriber subscriber;
+    /* If a message selector expression is entered by the user,
+       use that when creating the durable subscriber */ 
+    if (hasSelector) {
+        subscriber = 
+            session.createDurableSubscriber(topic, durableSubscriberName, selectorText, false);
+    }
+    // Or, create the durable subscriber without the message selector
+    else {
+        subscriber = session.createDurableSubscriber(topic, durableSubscriberName);
+    }
+    // Set the message listener to receive messages from the destination
+    subscriber.setMessageListener(this);
+}
+</pre>
+
+<span class="note"><b>Notes:</b><br>
+<ul class="arrow-2">
+    <li>Sessions with durable subscribers may be created using a unique client ID or with no client ID specified. For more information, see the <a href="../admin-reference/r_stomp_service.html#stompjms">jms</a> service.</li>
+    <li>A client can change an existing durable subscription by creating a durable TopicSubscriber with the same name and a new topic and/or message selector. Changing a durable subscriber is equivalent to unsubscribing (deleting) the old one and creating a new one.</li>
+</ul>
+</span>
+
+<h2>Simple Java JMS Client Example</h2>
+<p>The following code sample provides a simple example of a Java JMS Client. To understand the API calls in the code, review the <a href="../about/kaazing-jms-api.html">Kaazing Gateway JMS Client Libraries: Supported APIs</a> and the <a href="../apidoc/client/java/jms/index.html">Kaazing Gateway JMS API</a> documentation.</p>
+<pre class="auto-links: false; brush: java; toolbar: false;">
+package com.kaazing.gateway.jms.client.demo;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Properties;
+
+import javax.jms.BytesMessage;
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.ExceptionListener;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageConsumer;
+import javax.jms.MessageListener;
+import javax.jms.MessageProducer;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import javax.jms.Topic;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+import com.kaazing.net.ws.WebSocketFactory;
+import com.kaazing.gateway.jms.client.JmsConnectionFactory;
+
+public class JmsDemo {
+    public static void main(String[] args)
+    throws NamingException, URISyntaxException, JMSException {
+        
+        // Add the initial context using the InitialContext constructor.
+        Properties props = new Properties();
+        props.put(InitialContext.INITIAL_CONTEXT_FACTORY,
+        "com.kaazing.gateway.jms.client.JmsInitialContextFactory");
+        InitialContext ctx = new InitialContext(props);
+        
+        // Configure the JMS Client implementation of ConnectionFactory.
+        ConnectionFactory connectionFactory = (ConnectionFactory) ctx.lookup("ConnectionFactory");
+        
+        /* 
+        Use JmsConnectionFactory to create a connection 
+        with a JMS provider via a WebSocket connection.
+        */
+        if ( connectionFactory instanceof JmsConnectionFactory ) {
+            ((JmsConnectionFactory) connectionFactory)
+            .setGatewayLocation(new URI("ws://localhost:8000/jms"));
+        }
+        
+        /*
+        Use the createConnection method to create a JMS Connection via WebSocket.
+        The username and password specified are used as credentials to authenticate
+        with the Gateway.
+        In this example we use a password but the password does not have 
+        to be a text password. JmsConnectionFactory() can use a token of any kind.
+        */
+        final Connection connection = connectionFactory.createConnection(null, null);
+        connection.setExceptionListener(new ExceptionListener() {
+            @Override
+            public void onException(JMSException arg0) { arg0.printStackTrace(); }
+        });
+        
+        /*
+        Use the createSession method to create a session object. 
+        The first parameter ("false") indicates that the session is not transacted.
+        Session.AUTO_ACKNOWLEDGE determines that the session automatically acknowledges
+        a client's receipt of a message.
+        */
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        
+        // Use the lookup method of InitialContext to return the name of the topic object.
+        Topic topic = (Topic) ctx.lookup("/topic/destination");
+        
+        // Create a MessageConsumer for the specified destination.
+        MessageConsumer consumer = session.createConsumer(topic);
+        // Set the session's distinguished message listener. 
+        consumer.setMessageListener(new MessageListener() {
+            @Override
+            /*
+            Use the onMessage method of the MessageListener interface
+            to receive asynchronously delivered messages.
+            */
+            public void onMessage(Message message) {
+                try {
+                    String msg = null;
+                    // Check to see if the message contains a stream of uninterpreted bytes. 
+                    if ( message instanceof BytesMessage ) {
+                        BytesMessage bytesMessage = (BytesMessage) message;
+                        /*
+                        Construct a string builder to handle the conversion
+                        from bytes to strings.
+                        */
+                        StringBuilder builder = new StringBuilder();
+                        // Loop through the message and convert datum to a string.
+                        for (int i = 0; i &lt; (int) bytesMessage.getBodyLength(); i++) {
+                            builder.append((char) bytesMessage.readByte());
+                        }
+                        msg = builder.toString().trim();
+                    }
+                    else {
+                        // Get the text of the message.
+                        msg = ((TextMessage) message).getText();
+                    }
+                    // Print out the message content.
+                    System.out.println("The received message: " + msg);
+                }
+                catch (Exception e) { e.printStackTrace();
+                }
+            }
+        });
+        // Start (or restart) a connection's delivery of incoming messages.
+        connection.start();
+        
+        // Wait 2 seconds before sending a message.....
+        try { Thread.sleep(2 * 1000); }
+        catch (InterruptedException e) { e.printStackTrace(); }
+        
+        /*
+        Use a MessageProducer object to send messages to a destination.
+        Use the createProducer method to set the destination for messages.
+        */
+        MessageProducer producer = session.createProducer(topic);
+        
+        /*
+        Create a TextMessage object to send a message containing a String object,
+        and send the message using the send method using the MessageProducer's 
+        default delivery mode, priority, and time to live.
+        */        
+        TextMessage txtMsg = session.createTextMessage("Hello, message");
+        producer.send(txtMsg);
+    }
+}
+</pre>
+
+<h2>Next Step</h2>
+<p><a href="p_dev_java_secure.html">Securing Java Clients</a></p>
+
+<h2>Notes</h2>
+<ul class="arrow-2">
+    <li>Clients built using Kaazing Gateway 3.x libraries will work against Kaazing Gateway 4.x. If you wish to upgrade your 3.x client to the 4.x libraries, please note that the 3.x clients used a single JMS library and 4.x clients include and use separate WebSocket and JMS libraries. Update your client library file and code references to include both the WebSocket and JMS libraries, as described in the 4.x documentation.</li>
+    <li><span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span> objects are destroyed when the client loses its connection to the Gateway, or when the JMS-compliant message broker loses its connection to the Gateway. To address this, monitor the client's exception listener to handle recovery for your application. Once the connection is re-established, recreate <span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span>. <code>ConnectionDroppedException</code> and <code>ConnectionInterruptedException</code> are delivered to the connection's exception listener via the <code>onException()</code> method when a connection is either dropped (between the JMS client and the Gateway) or interrupted (between the Gateway and the broker or server). Also, <code>ConnectionRestoredException</code> is delivered via the <code>onException()</code> method to indicate that the connection through to the JMS-compliant message broker has been re-established. When <code>ConnectionRestoredException</code> is delivered, the <code>TemporaryTopic</code> and <code>TemporaryQueue</code> objects should be recreated by the application to resume operations.</li>
+</ul>
+
+
+
+                  </section>
+                </article>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+      <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>
