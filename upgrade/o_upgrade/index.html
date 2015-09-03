@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/upgrade/o_upgrade/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+
+ <h1 id="upgrade-the-gateway">Upgrade the Gateway</h1>
+
+<p>The upgrade procedure migrates the existing KAAZING Gateway (including any associated applications) into KAAZING Gateway release 5.0. The following checklist provides the steps necessary to upgrade KAAZING Gateway to the next release.</p>
+
+<p><strong>Note</strong>: If you are using KAAZING Gateway 3.x, please first upgrade to 4.x by following <a href="http://developer.kaazing.com/documentation/gateway/4.0/upgrade/o_upgrade.html">these instructions</a>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Step</th>
+      <th>Topic or Reference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Understand Gateway release number strategy and the upgrade process.</td>
+      <td><a href="../c_upgrade_gw">About KAAZING Gateway Releases and Upgrades</a></td>
+    </tr>
+    <tr>
+      <td>Upgrade to the new Gateway release using one of the following: Using the Windows or Linux installer to install the Gateway into conventional (default) operating system locations; Unpacking the .zip for Windows or .tar.gz for Linux, UNIX, or Mac) into any directory location.</td>
+      <td><a href="../../about/setup-guide">Setting Up the Gateway</a> See <a href="../c_upgrade_gw#upgrade-options">Upgrade Options</a> for help choosing an upgrade methodology.</td>
+    </tr>
+    <tr>
+      <td>Migrate your existing Gateway configuration file and other files to the new Gateway installation.</td>
+      <td><a href="../p_migrate_gwconfig">Migrate the Gateway Configuration</a></td>
+    </tr>
+    <tr>
+      <td>If you are using a Gateway in a cluster, then you need to perform additional steps to migrate the cluster members.</td>
+      <td><a href="../../high-availability/u_high_availability#clustering-and-load-balancing-migration">Clustering and Load Balancing Migration</a> <strong>Note:</strong> Upgrade all members of the Gateway cluster before you migrate any clients.</td>
+    </tr>
+    <tr>
+      <td>Verify the Gateway is upgraded.</td>
+      <td>View the release number via Command Center, the Gateway start-up output, or the log file.</td>
+    </tr>
+    <tr>
+      <td>If you are using 4.x SPIs, update the SPI package names.</td>
+      <td>Change <code>com.kaazing.gateway.server.spi.security</code> to <code>org.kaazing.gateway.server.spi.security</code>.</td>
+    </tr>
+    <tr>
+      <td>If you are using JMX MBeans to monitor the Gateway, update the MBean paths.</td>
+      <td>In 4.<em>x</em> and 5.<em>x</em>, the MBeans path is <code>org.kaazing.gateway.server.management &gt; gateways &gt; process_id@hostname &gt; services</code>. Note that some service names may have changed or been deprecated.</td>
+    </tr>
+    <tr>
+      <td>If you used AMQP identify promotion in your LoginModule, update the package names for 5.x</td>
+      <td><a href="../../security/p_auth_user_identity_promotion">Promote User Identity into the AMQP Protocol</a></td>
+    </tr>
+    <tr>
+      <td>Learn how clients built using KAAZING Gateway can take advantage of the KAAZING Gateway client libraries.</td>
+      <td><a href="../../dev-general/c_general_client_information">General Client Information</a></td>
+    </tr>
+    <tr>
+      <td>(Recommended) Migrate Kaazing JavaScript and Java clients that use the ByteSocket API on releases 3.3 (and later releases) to the WebSocket API in release 4.<em>x</em>.</td>
+      <td><a href="../../javascript/p_dev_js_migrate">Migrate JavaScript Applications to KAAZING Gateway 4.<em>x</em>.</a>; <a href="../../java/p_dev_android_migrate">Migrate WebSocket and ByteSocket Applications to KAAZING Gateway 5.0</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="see-also">See Also</h2>
+
+<ul>
+  <li>KAAZING Gateway <a href="../..">documentation</a>.</li>
+</ul>
+
+
+</div>
+
+</div>
+
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

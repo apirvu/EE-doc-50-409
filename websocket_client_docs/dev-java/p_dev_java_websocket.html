@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+<h1>Interact with Kaazing WebSocket Gateway Using the WebSocket API</h1>
+        <p>This procedure describes how you can use the WebSocket API provided by the Kaazing Java client library in Java. This API allows you to take advantage of the WebSocket standard as described in the <a href="http://dev.w3.org/html5/spec/Overview.html#network">HTML5 specification</a>. For example, you can create a stand-alone Java application that uses the Java HTML5 Communications client library to interact directly with a back-end server. The support for WebSocket is provided by the WebSocket class and its supporting classes.        </p>
+<p>This topic covers the following information:</p>
+<ul class="arrow-2">
+<li><a href="#useAPI">To Use the WebSocket API in Java</a></li>
+<li><a href="#websocket">WebSocket and WsURLConnection</a></li>
+<li><a href="#URLFactory">URLFactory</a></li>
+<li><a href="#WebSocketFactory">Setting and Overriding Defaults on the WebSocketFactory</a></li>
+<li><a href="#Binary">Methods for Text and Binary Messages</a></li>
+<li><a href="#Walkthrough">Build the Java API Client Demo</a></li>
+</ul>
+
+<p>There are two examples in this topic to show you how to use the WebSocket API in a Java client:</p>
+<ul class="arrow-2">
+<li><a href="#useAPI">To Use the WebSocket API in Java</a>: The first example is a brief, general example of how your client can invoke the interfaces sequentially. The relevant interface will block the next interface until it has been successful or it will throw an exception.</li>
+<li><a href="#Walkthrough">Build the Java API Client Demo</a>: The second example provides the steps to create a standalone Java client, including the steps needed to compile and run the interface in Eclipse.</li>
+</ul>
+
+<p>Refer to the <a href="../apidoc/client/java/gateway/index.html">Java AP</a>I documentation for a complete description of all the available methods.
+</p>
+
+<h2>Before You Begin</h2>
+<p>This procedure is part of <a href="o_dev_java.html">Checklist: Build Java Clients Using Kaazing WebSocket Gateway</a>:</p>
+<ol>
+    <li><a href="p_dev_java_setup.html">Set Up Your Development Environment</a></li>
+    <li><strong>Interact with Kaazing WebSocket Gateway Using the WebSocket API</strong></li>
+    <li><a href="p_dev_java_eventsource.html">Interact with Kaazing WebSocket Gateway Using the EventSource API</a></li>
+    <li><a href="p_dev_java_migrate.html">Migrate WebSocket and ByteSocket Applications to Kaazing WebSocket Gateway 4.x</a></li>
+    <li><a href="p_dev_java_secure.html">Secure Your Java and Android Clients</a></li>
+    <li><a href="p_dev_java_logging.html">Display Logs for the Java Client</a></li>
+    <li><a href="p_dev_java_tshoot.html">Troubleshoot Your Java Client</a></li>
+</ol>
+
+<p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../release-notes.html">Release Notes</a>.</span></p>
+
+<h2><a name="useAPI"></a>To Use the WebSocket API in Java</h2>
+<ol>
+    <li>Add the necessary import statements:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+import com.kaazing.net.ws.WebSocket;
+import com.kaazing.net.ws.WebSocketFactory;
+import com.kaazing.net.ws.WebSocketMessageReader;
+import com.kaazing.net.ws.WebSocketMessageType;
+import com.kaazing.net.ws.WebSocketMessageWriter;
+</pre>
+    </li>
+    
+    <li>Create a WebSocket object and connect to a server:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+wsFactory = WebSocketFactory.createWebSocketFactory();
+ws = wsFactory.createWebSocket(URI.create("ws://example.com:8001/path"));
+ws.connect(); // This will block or throw an exception if failed.
+</pre>
+    </li>
+    
+    <li>To send messages, add a <span class="uri">WebSocketMessageWriter</span> object:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+WebSocketMessageWriter writer = ws.getMessageWriter();
+String text = "Hello WebSocket!";
+writer.writeText(text);   // Send text message
+</pre>
+    </li>
+    
+    <li>To receive or consume messages, add <span class="uri">WebSocket</span> and <span class="uri">WebSocketMessageReader</span> objects:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+wsFactory = WebSocketFactory.createWebSocketFactory();
+ws = wsFactory.createWebSocket(URI.create("ws://example.com:8001/path"));
+ws.connect(); // This will block or throw an exception if failed.
+
+WebSocketMessageReader reader = ws.getMessageReader();
+WebSocketMessageType type = null; // Block till a message arrives
+  // Loop till the connection goes away
+  while ((type =  reader.next()) != WebSocketMessageType.EOS) {
+    switch (type) { // Handle both text and binary messages
+      case TEXT:
+        CharSequence text = reader.getText();
+        log("RECEIVED TEXT MESSAGE: " + text.toString());
+        break;
+      case BINARY:
+        ByteBuffer buffer = reader.getBinary();
+        log("RECEIVED BINARY MESSAGE: " + getHexDump(buffer));
+        break;
+    }
+}
+</pre>
+<p><span class="note"><b>Note:</b> The WebSocket connection is created for both the send and receive functions (<span class="uri">ws.connect()</span>). These examples are used because most clients will either send <em>or</em> receive messages. If your client both sends <em>and</em> receives messages, you would only need to create a single WebSocket connection.</span></p>
+
+<p>Here is an example using a for loop to alternate between text and binary messages, and the code is placed within try catch blocks:</p>
+
+<pre class="auto-links: false; brush: java; toolbar: false;">
+try {
+    // Create a new WebSocket object
+    wsFactory = WebSocketFactory.createWebSocketFactory();
+    ws = wsFactory.createWebSocket(URI.create("ws://example.com:8001/path"));
+    ws.connect(); // This will block or throw an exception if failed.
+  
+     /* Use the WebSocketMessageWriter class method getMessageWriter() 
+     to send text and binary messages */ 
+     WebSocketMessageWriter writer = ws.getMessageWriter();
+
+     // Send messages using a for loop to alternate between text and binary messages
+     for (int i = 0; i < 100; i++) {
+         String text = "Hello WebSocket - " + i;
+         // For even numbered loops, send text
+         if (( i %2) == 0) {
+             writer.writeText(text);   // Send text message
+         }
+         else {
+             // For odd numbered loops, send binary
+             ByteBuffer buffer = ByteBuffer.wrap(text.getBytes());
+             writer.writeBinary(buffer);   // Send binary message
+         }
+     }    
+     ws.close();
+ }
+catch (Exception ex) {
+    ex.printStackTrace();
+}
+</pre>
+
+<p>Here is how to receive messages on the consumer side using a while loop and switch statement:</p>
+
+<pre class="auto-links: false; brush: java; toolbar: false;">
+try {
+    // Create a new WebSocket object
+    wsFactory = WebSocketFactory.createWebSocketFactory();
+    ws = wsFactory.createWebSocket(URI.create("ws://example.com:8001/path"));
+    ws.connect(); // This will block or throw an exception if failed.
+
+     // Use the getMessageReader() method    
+     WebSocketMessageReader reader = ws.getMessageReader();
+
+     WebSocketMessageType type = null; // Block until a message arrives
+     while ((type =  reader.next()) != WebSocketMessageType.EOS) { // Loop until the connection is closed
+         switch (type) {
+             // Run if type is TEXT
+             case TEXT:
+                 CharSequence text = reader.getText();
+                  log("RECEIVED TEXT MESSAGE: " + text.toString());
+                  break;
+
+             // Run if type is BINARY
+             case BINARY:
+                 ByteBuffer buffer = reader.getBinary();
+                  log("RECEIVED BINARY MESSAGE: " + getHexDump(data)); // see getHexDump() below
+                  break;
+         }
+     }
+     ws.close();
+ }
+catch (Exception ex){
+   ex.printStackTrace();
+}
+
+private String getHexDump(ByteBuffer buf) {
+    if (buf.position() == buf.limit()) {
+        return "empty";
+    }
+
+    StringBuilder hexDump = new StringBuilder();
+    for (int i = buf.position(); i < buf.limit(); i++) {
+        hexDump.append(Integer.toHexString(buf.get(i)&0xFF)).append(' ');
+    }
+    return hexDump.toString();
+}
+
+</pre>
+    </li>
+</ol>
+
+<h2><a name="websocket"></a>WebSocket and WsURLConnection</h2>
+<p>The Kaazing WebSocket Gateway Java WebSocket API offers two options for creating and using WebSocket connections to enable developers to leverage their java.net Socket or URL experience:</p>
+
+<ul class="arrow-2">
+<li><strong>WebSocket</strong> - this class and its methods are provided for developers familiar with the <a href="http://docs.oracle.com/javase/7/docs/api/java/net/Socket.html">Socket</a> class in the java.net package. It implements a socket for stream-based interprocess communication over the Web.</li>
+<li><strong>WsURLConnection</strong> - this class is an extension of the <a href="http://docs.oracle.com/javase/7/docs/api/java/net/URLConnection.html">URLConnection</a> class in the java.net package. It defines a network connection to an object specified by a URL. WsURLConnection adds WebSocket support to URLConnection, allowing you to create, connect and use WebSocket connections in addition to the default URLConnection subclasses HttpURLConnection and JarURLConnection. You can use all of the methods in URLConnection and the additional methods included in the WsURLConnection extension.</li>
+</ul>
+
+<h3>WebSocket Class</h3>
+<p>The WebSocket class is demonstrated in the <a href="#Walkthrough">Build the Java API Client Demo</a> example, but there are some additional elements to be aware of such as methods for text and/or binary WebSocket messages. These methods are described in <a href="#Binary">Methods for Text and Binary Messages</a>.</p>
+
+<h3>WsURLConnection</h3>
+<p>The WsURLConnection class is provided for developers accustomed to creating an URLConnection object and then using <a href="http://docs.oracle.com/javase/7/docs/api/java/io/InputStream.html">java.io.InputStream</a> and <a href="http://docs.oracle.com/javase/7/docs/api/java/io/OutputStream.html">java.io.OutputStream</a> classes from java.io to receive and send data. The WsURLConnection extends URLConnection to enable you to use WebSocket-specific features and provide bidirectional communication.</p>
+
+<p>The following example demonstrates how WsURLConnection enables you to create a URLConnection object for a WebSocket URL:</p>
+
+<pre class="auto-links: false; brush: java; toolbar: false;">
+URL location = URLFactory.createURL("ws://localhost:8000/echo");
+URLConnection urlConn = location.openConnection();
+InputStream inStream = urlConn.getInputStream();
+</pre>
+
+<p>There are two important things to note in this example:</p>
+
+<ul class="arrow-2">
+    <li>This example uses the URLFactory class which enables you to instantiate URL objects that support custom protocols and schemes, such as the WebSocket protocol’s ws:// and wss://. <a href="http://docs.oracle.com/javase/7/docs/api/java/net/URL.html">java.net.URL</a> has native support for http, https, ftp, file, and jar protocols only.</li> 
+    <li>The URLConnection object created in the example is an instance of the WsURLConnection class. Since <span class="uri">getInputStream()</span> and <span class="uri">getOutputStream()</span> methods are available on URLConnection, there was no need to downcast URLConnection to WsURLConnection. However, if you need to access methods that are not available on URLConnection, but are only available on WsURLConnection, you can <a href="http://en.wikipedia.org/wiki/Downcasting">downcast</a> the <span class="uri">urlConn</span> object in the example and then invoke <span class="uri">getMessageReader()</span>:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+URL location = URLFactory.createURL("ws://localhost:8000/echo");
+URLConnection urlConn = location.openConnection();
+WsURLConnection  wsConn = (WsURLConnection) urlConn;   // Downcasting to WsURLConnection
+WebSocketMessageReader msgReader = wsConn.geMessageReader();
+</pre>
+    </li> 
+</ul>
+
+<p>With WsURLConnection and URLFactory, you can continue to create URLConnection objects as you have previously and simply use WebSocket to take advantage of additional methods provided by WsURLConnection.</p>
+
+<h2><a name="URLFactory"></a>URLFactory</h2>
+<p>The URLFactory class is included to support custom protocols and schemes not supported by java.net.URL. Namely, the WebSocket protocol’s ws:// and wss:// schemes. java.net.URL supports http, https, ftp, file, and jar protocols only and the java.net.URLStreamHandlerFactory class registration is not extensible. After importing the URLFactory class, one of the <span class="uri">createURL()</span> methods is used to create a WebSocket URL object from either:<br> 
+    <ul class="arrow-2">
+    <li>The String representation, by parsing the given specification within a specified context.</li>
+    <li>A specified protocol name, host name, and file name.</li>
+    <li>A specified protocol name, host name, port number, and file name.</li>
+    </ul>
+</p>
+
+<p>For more information about the URLFactory class, see the Kaazing WebSocket Gateway <a href="../apidoc/client/java/gateway/index.html">Java WebSocket API</a>.</p>
+
+<h2><a name="WebSocketFactory"></a>Setting and Overriding Defaults on the WebSocketFactory</h2>
+
+<p>You can set a default redirect-policy on the WebSocketFactory. All the WebSockets created using that factory automatically inherit the default. You can then override the defaults on an individual WebSocket, if desired. Unlike the HttpURLConnection in the Java SDK that uses the boolean InstanceFollowRedirects method to specify whether the WebSocket follows redirects automatically, the Kaazing WebSocket Gateway Java WebSocket API also provides the following options:</p>
+
+<table class="reference">
+  <tr>
+    <th scope="col">Option</th>
+    <th scope="col">Description</th>
+  </tr>
+  <tr>
+    <td>NEVER</td>
+    <td>Do not follow HTTP redirects.</td>
+  </tr>
+  <tr>
+    <td>ALWAYS</td>
+    <td>Follow the HTTP redirect requests always, regardless of the origin, domain, etc.</td>
+  </tr>
+  <tr>
+    <td>SAME_ORIGIN</td>
+    <td>Follow the HTTP redirect only if the origin of the redirect request matches. This implies that both the scheme/protocol and the authority between the current and the redirect URIs should match. The port number should also be the same between the two URIs.</td>
+  </tr>
+  <tr>
+    <td>SAME_DOMAIN</td>
+    <td>Follow HTTP redirect only if the domain of the redirect request matches the domain of the current request. For example, URIs with identical domains would be <span class="uri">ws://production.example.com:8001</span> and <span class="uri">ws://production.example.com:8002</span>.</td>
+  </tr>
+  <tr>
+    <td>PEER_DOMAIN</td>
+    <td>Follow the HTTP redirect only if the redirected request is for a peer-domain. For example, the domain in the URI ws://sales.example.com:8001 is a peer of the domain in the URI ws://marketing.example.com:8002.</td>
+  </tr>
+  <tr>
+    <td>SUB_DOMAIN</td>
+    <td>Follow the HTTP redirect only if the request is for sub-domain. For example, the domain in the URI ws://benefits.hr.example.com:8002 is a sub-domain of the domain in the URI ws://hr.example.com:8001.</td>
+  </tr>
+</table>
+
+<p>You can set the default redirect option on the WebSocket Factory using the <span class="uri">setDefaultRedirectPolicy()</span> method and then override it on a WebSocket connection using the <span class="uri">setRedirectPolicy()</span> method.</p>
+
+<pre class="auto-links: false; brush: java; toolbar: false; highlight: 6;">
+import com.kaazing.net.http.HttpRedirectPolicy;
+.
+.
+.
+WebSocket wsFactory = WebSocketFactory.createWebSocketFactory();
+wsFactory.setDefaultRedirectPolicy(HttpRedirectPolicy.SUB_DOMAIN);
+wsFactory.createWebSocket(location);
+</pre>
+
+<p>Here is an example of the SUB_DOMAIN option overridden on a WebSocket connection:</p>
+<pre class="auto-links: false; brush: java; toolbar: false; highlight: 3;">
+WebSocket ws;
+ws = wsFactory.createWebSocket(location);
+ws.setRedirectPolicy(HttpRedirectPolicy.ALWAYS);
+ws.connect();
+</pre>
+
+<h2><a name="Binary"></a>Methods for Text and Binary Messages</h2>
+<p>Both the WebSocket and WsURLConnection classes offer methods to suit the data types your client will handle.</p>
+
+<h3>Text and Binary Clients</h3>
+<p>Clients using both text and binary messages can use the <span class="uri">getMessageReader()</span> and <span class="uri">getMessageWriter()</span> methods, available in both the WebSocket and WsURLConnection classes. These methods receive binary and text messages based on the WebSocketMessageType class. The WebSocketMessageType class represents the types of messages that are received by <code>WebSocketMessageReader</code>. There are three types: TEXT, BINARY, and EOS for end&ndash;of&ndash;stream. For receiving messages,  you can use a switch block for the different message types:</p>
+
+<pre class="auto-links: false; brush: java; toolbar: false;">
+Thread messageReceivingThread = new Thread() {
+    public void run() {
+      WebSocketMessageType type = null;
+      try {
+          WebSocketMessageReader reader = webSocket.getMessageReader();
+          while ((type = reader.next()) != WebSocketMessageType.EOS) {
+              switch (type) {
+                  case BINARY:
+                      ByteBuffer data = reader.getBinary();
+                      log("RESPONSE:" + getHexDump(data));
+                      break;
+                  case TEXT:
+                      CharSequence text = reader.getText();
+                      log("RESPONSE:" + text.toString());
+                      break;
+              }                                        
+          }                                    
+      webSocket.close()
+        }
+      catch (Exception ex) {
+          log("Exception: " + ex.getMessage());
+      }
+    }
+};
+</pre>
+
+<span class="note"><b>Note:</b> In UI-based Java clients, receiving messages should be done on a separate thread to avoid blocking the java.awt <a href="http://docs.oracle.com/javase/tutorial/uiswing/concurrency/dispatch.html">EventDispatchThread</a>. Review the example in <a href="http://localhost:8001/documentation/dev-java/p_dev_java_websocket.html#Walkthrough">Build the Java API Client Demo</a> to see a demonstration.</span>
+
+<h3>Text-only Clients</h3>
+<p>Text-only clients can use the <span class="uri">getReader()</span> and <span class="uri">getWriter()</span> methods, available in both the WebSocket and WsURLConnection classes. If either method is used to receive binary messages, or the methods are invoked before a connection is made, then an IOException is thrown.</p>
+
+<h3>Binary-only Clients and I/O Streams</h3>
+<p>Both WebSocket and WsURLConnection classes support APIs that enable use the use of byte-based data streams as they define <span class="uri">getInputStream()</span> and <span class="uri">getOutputStream()</span> methods. <span class="uri">getInputStream()</span> is used for receiving binary streams and <span class="uri">getOutputStream()</span> is used to send binary streams. If either method is used to receive text messages, or the methods are invoked before a connection is made, then an IOException is thrown. Once the connection is closed, a new InputStream or OutputStream must be obtained using the <span class="uri">getInputStream()</span> and <span class="uri">OutputStream()</span> methods after the connection has been established. Using the old InputStream or OutputStream will result in IOException.</p>
+
+<h2><a name="Walkthrough"></a>Build the Java API Client Demo</h2>
+<p>The following procedure walks through the steps of creating the out of the box Java WebSocket demo that is included with the Kaazing WebSocket Gateway bundle. The demo code displays how to use the Java WebSocket API to create a client that creates a WebSocket connection with the Gateway, sends and receives text and binary messages, and includes a UI.</p>
+
+<p>In this procedure you will do the following:</p>
+<ol>
+<li>Set up a Java project in Eclipse.</li>
+<li>Import the Kaazing WebSocket Gateway Java libraries.</li>
+<li>Create the package and class for the Java client.</li>
+<li>Add the import statements for the common Java classes.</li>
+<li>Add the import statements for the Kaazing WebSocket Gateway Java library classes.</li>
+<li>Add objects for the UI elements, including labels and buttons.</li>
+<li>Add the WebSocket and WebSocketFactory objects.</li>
+<li>Add the event listeners.</li>
+<li>Start the Gateway.</li>
+<li>Test your new client.</li>
+</ol>
+
+<p>For information about the Kaazing WebSocket Gateway Java WebSocket API, see <a href="http://localhost:8001/documentation/javadoc/html5/index.html">Java WebSocket API</a>.</p>
+
+<p>With the Gateway running, the out of the box Java demo can be viewed at <span class="uri">http://localhost:8001/demo/</span>. The files for the demo are located in the following location in the bundle: <span class="uri"><em>GATEWAY_HOME</em>/demo/java/src/gateway</span>. </p>
+
+<p>The following procedure uses the Eclipse IDE. You can download Eclipse from <a href="http://www.eclipse.org">www.eclipse.org</a>. Java Developer Kit (JDK) or Java Runtime Environment (JRE) Java 7 or higher from <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Oracle</a> is required also.</p>
+
+<ol>
+    <li><p>Set up a Java project in Eclipse.</p>
+        <ol type="a">
+            <li>Create a new Java Project in Eclipse. From the <strong>File</strong> menu, click <strong>New</strong> and then <strong>Java Project</strong>. You can name the project whatever you like. This procedure uses the project name <strong>JavaDemo</strong>.</li>
+            <li>Right-click the new project, and click <strong>Properties</strong>.</li>
+        </ol>
+    </li>
+    
+    <li><p>Import the Kaazing WebSocket Gateway Java libraries.</p>
+        <ol type="a">
+            <li>In the <strong>Properties</strong> dialog, click <strong>Java Build Path</strong>, click the <strong>Libraries</strong> tab, and click <strong>Add External JARs</strong>.</li>
+            <li>Locate and select the Kaazing WebSocket Gateway Java library. The libraries are located in <span class="uri"><em>GATEWAY_HOME</em>/lib/client/java</span>. The library you need is <span class="uri">com.kaazing.gateway.client.jar</span>. The folder also contains a library for clients using Kerberos V5 Network Authentication with the Gateway, <span class="uri">com.kaazing.gateway.client.security.kerberos.jar</span>. This library is not needed for clients that do not use Kerberos V5 Network Authentication.</li>
+            <li>In the <strong>Properties</strong> dialog, click <strong>OK</strong>. You can see the imported library and its classes in your project under <span class="uri">com/kaazing/gateway/client</span>.</li>
+        </ol>
+    </li>
+    
+    <li><p>Create the package and class for the Java client.</p>
+        <ol type="a">
+            <li>In the new project, right-click the <strong>src</strong> folder, click <strong>New</strong> and then <strong>Package</strong>.</li>
+            <li>Give the package a unique name, such as <strong>com.kaazing.gateway.client.core.demo</strong>.</li>
+            <li>Right-click the new package, click <strong>New</strong> and then <strong>Class</strong>.</li>
+            <li>Name the class <strong>WebSocketFrame</strong> and click <strong>Finish</strong>.</li>
+        </ol>
+    </li>
+    
+    <li>Add the import statements for the following common Java classes that will be used in the client:
+<pre class="auto-links: false; brush: java; toolbar: false; highlight:[8,9];">
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URI;
+import java.nio.ByteBuffer;
+import java.util.Arrays;
+import java.util.Collection;
+
+import javax.swing.DefaultListModel;
+import javax.swing.GroupLayout;
+import javax.swing.JFrame;
+import javax.swing.JList;
+</pre>
+
+<p>The java.net.URI class is used to represent URI references in the program and java.nio.ByteBuffer is used to define byte buffers for sending and receiving binary.</p>
+    </li>
+    
+    <li>Add the import statements for the Kaazing WebSocket Gateway Java library classes that will be used in the client:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+import com.kaazing.net.ws.WebSocket;
+import com.kaazing.net.ws.WebSocketFactory;
+import com.kaazing.net.ws.WebSocketMessageReader;
+import com.kaazing.net.ws.WebSocketMessageType;
+import com.kaazing.net.ws.WebSocketMessageWriter;
+</pre>
+
+<p>For information about these classes, see the <a href="../apidoc/client/java/gateway/index.html">Java WebSocket API</a>.</p>
+    </li>
+    
+    <li>Change the default class statement that was generated by Eclipse to:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+public class WebSocketFrame extends JFrame {
+    private static final long serialVersionUID = 5027838948297191966L;
+</pre>
+    </li>
+    
+    <li>Add objects for the UI elements, including labels and buttons:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+private static final int LIST_SIZE = 150;
+// Buttons and fields
+private javax.swing.JButton connect; // Connect button
+private javax.swing.JButton close; // Close button
+private javax.swing.JButton sendText; // Send Text button
+private javax.swing.JButton sendBinary; // Send Binary button
+private javax.swing.JTextField location; // WebSocket service location field
+private javax.swing.JTextField message; // Message field
+private JList logList;
+private javax.swing.JButton clear;
+private DefaultListModel logModel;
+
+// Labels
+private javax.swing.JLabel locationLabel;
+private javax.swing.JLabel introLabel;
+private javax.swing.JLabel messageLabel;
+private javax.swing.JLabel logLabel;
+private javax.swing.JPanel connectPanel;
+private javax.swing.JPanel messagePanel;
+
+</pre>
+    </li>
+    
+    <li>Add the WebSocket and WebSocketFactory objects:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+private WebSocket        webSocket;
+private WebSocketFactory wsFactory;
+private boolean          closedExplicitly = false;</pre>
+    </li>
+    
+    <li>Schedule a job to create and display the client UI:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+public static void main(String[] args) {
+    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+        public void run() {
+            WebSocketFrame frame = new WebSocketFrame("WebSocket Echo Demo");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.start();
+            frame.pack();
+            frame.setVisible(true);
+        }
+    });
+}
+
+public WebSocketFrame(String string) {
+    super(string);
+}
+</pre>
+    </li>
+    
+    <li>Create the function for the WebSocket event listeners:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+public void start() {
+        logModel = new DefaultListModel();
+        Container p = this.getContentPane();
+        p.removeAll();
+        p.setLayout(new BorderLayout());
+
+        WebSocketPanel webSocketPanel = new WebSocketPanel();
+.
+.
+.
+}
+</pre>
+    </li>
+    
+    <li><p>Within the <span class="uri">start()</span> function (<span class="uri">...</span>), add the event listeners. Before you add event listeners, review what the final GUI of the client will look like so that the relationship between the buttons and GUI event listeners is clear:</p>
+            <figure>
+                <img src="../images/gateway-java-GUI.jpg">
+            <figcaption><strong>Figure: Java WebSocket Echo Demo GUI</strong></figcaption>    
+            </figure>
+
+            <p>The first event listener is for the <strong>Connect</strong> button. The function will define the parameters of the WebSocket connection (lines 1-17), connect to the server (line 18), and define how received messages are handled (lines 24-60). 
+A separate thread is used for receiving messages because we do not want to block the EventDispatchThread in the swing event handling (<a href="http://docs.oracle.com/javase/tutorial/uiswing/concurrency/dispatch.html">javax.swing.SwingUtilities.isEventDispatchThread</a>).
+Note the use of a try catch block. A try catch block is the recommended method for connections to catch any exceptions (lines 31-64). Also, a switch statement is used to switch between text and binary messages (lines 41-59).</p>
+
+<pre class="auto-links: false; brush: java; toolbar: false;">
+connect.addActionListener(new ActionListener() {
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    closedExplicitly = false;
+
+    // WebSocket.connect() is a blocking call and can lead
+    // to modal login dialogs. Do not block AWT's
+    // EventDispatchThread. Create a separate
+    // thread to connect and subsequently receive messages.
+    Thread wsThread = new Thread() {
+      public void run() {
+        try {
+          String locationText = location.getText();
+          log("CONNECT: "+locationText);
+          setupLoginHandler(Frame.getFrames()[0], locationText);
+
+          URI location = new URI(locationText);
+
+          webSocket = wsFactory.createWebSocket(location);
+          webSocket.connect();
+
+          updateButtonsForConnected();
+          log("CONNECTED");
+
+          // Receive messages using WebSocketMessageReader.
+          final WebSocketMessageReader messageReader = webSocket.getMessageReader();
+          WebSocketMessageType type = null;
+
+          while ((type = messageReader.next()) != WebSocketMessageType.EOS) {
+            switch (type) {
+              case BINARY:
+              ByteBuffer data = messageReader.getBinary();
+              log("RESPONSE:" + getHexDump(data));
+              break;
+              case TEXT:
+              CharSequence text = messageReader.getText();
+              log("RESPONSE:" + text.toString());
+              break;
+            }                                        
+          }
+
+          if (!closedExplicitly) {
+            updateButtonsForClosed();
+            log("CLOSED");
+          }
+        } 
+        catch (Exception e1) {
+          e1.printStackTrace();
+          log("EXCEPTION: "+e1.getMessage());
+        }
+      }
+    };
+
+    wsThread.setName("WebSocket ConnectAndReceiveThread");
+    wsThread.start();
+  }
+});
+</pre>
+    </li>
+    
+    <li>Within the <span class="uri">start()</span> function, add an event listener for when the <strong>Close</strong> button is clicked:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+close.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
+            log("CLOSE");
+            webSocket.close();
+            updateButtonsForClosed();
+            log("CLOSED");
+        } catch (Exception e1) {
+            e1.printStackTrace();
+            log(e1.getMessage());
+        }
+    }
+});
+</pre>
+<p>The <span class="uri">close()</span> method disconnects with the server. This is a blocking call that returns only when the shutdown is complete. You can supply a status code (section 7.4 in the WebSocket RFC 6455) and a reason for the close.</p>
+</li>
+    
+    <li>Within the <span class="uri">start()</span> function, add an event listener for when the <strong>Send Text</strong> button is clicked:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+sendText.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
+            // log("SEND TEXT:" + message.getText());
+            final WebSocketMessageWriter writer = webSocket.getMessageWriter();
+            log("SEND: " + message.getText());
+            writer.writeText(message.getText());
+        } catch (Exception e1) {
+            e1.printStackTrace();
+            log(e1.getMessage());
+        }
+    }
+});
+</pre>
+<p>This event listener gets the text submitted by the user using <span class="uri">message.getText()</span> and then uses the <a href="../apidoc/client/java/gateway/com/kaazing/net/ws/WebSocketMessageWriter.html">WebSocketMessageWriter</a> class to send the text message to the Gateway using the <span class="uri">writeText()</span> method. The WebSocketMessageWriter class is invoked by the <span class="uri"><a href="../apidoc/client/java/gateway/com/kaazing/net/ws/WebSocket.html#getMessageWriter%28%29">getMessageWriter()</a></span> method. Once the WebSocket connection is closed, a new WebSocketMessageReader should be obtained after the connection has been established. Using the old reader will result in IOException.</p>
+    </li>
+    
+    <li>Within the <span class="uri">start()</span> function, add an event listener for when the <strong>Send Binary</strong> button is clicked:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+sendBinary.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
+            ByteBuffer payload = ByteBuffer.wrap(message.getText().getBytes());
+            log("SEND BINARY:" + getHexDump(payload));
+            webSocket.getMessageWriter().writeBinary(payload);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+            log(e1.getMessage());
+        }
+    }
+});
+</pre>
+<p>This event listener gets the text submitted by the user and then gets the binary values of that text and adds them to a byte buffer. Then the binary is sent to the Gateway using the <span class="uri">getMessageWriter()</span> method and <span class="uri"><a href="../apidoc/client/java/gateway/com/kaazing/net/ws/WebSocketMessageWriter.html#writeBinary%28java.nio.ByteBuffer%29">writeBinary()</a></span>. For the log message, the binary is then sent to the <span class="uri">getHexDump()</span> function defined later in the client. The <span class="uri">getHexDump()</span> method will convert the binary into hexadecimal and then into ASCII and return that to this event listener to be written to the log. For example, the text <span class="uri">Hello WebSocket!</span> is displayed in the log as:<br><span class="uri">48 65 6c 6c 6f 2c 20 57 65 62 53 6f 63 6b 65 74 21</span>.</p>
+    </li>
+    
+    <li>Within the <span class="uri">start()</span> function, add an event listener for when the <strong>Clear</strong> button is clicked:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+clear.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        logModel.clear();
+    }
+});
+p.add(webSocketPanel, BorderLayout.CENTER);</pre>
+<p>This function clears the log of any messages.</p>
+    </li>
+    
+    <li>Close the <span class="uri">start()</span> function by setting the default location, log size, and by calling the <span class="uri">updateButtonsForClosed()</span> function to set the buttons to the closed state.
+<pre class="auto-links: false; brush: java; toolbar: false;">
+    location.setText("ws://localhost:8001/echo");
+
+    logModel.setSize(LIST_SIZE);
+
+    updateButtonsForClosed();
+
+}</pre>
+<p><span class="note"><b>Note:</b> Ensure that you closed the <span class="uri">start()</span> function using the brace (<span class="uri">}</span>) in this code.</span></p>
+    </li>
+    
+    <li>Add a stop function in case the WebSocket connection is still open after close:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+public void stop() {
+    if (webSocket != null) {
+        try {
+            webSocket.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            log("EXCEPTION: "+e.getMessage());
+        }
+    }
+}
+</pre>
+    </li>
+    
+    <li>Add the getHexDump function used by the <span class="uri">sendBinary.addActionListener</span> event listener:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+private String getHexDump(ByteBuffer buf) {
+    if (buf.position() == buf.limit()) {
+        return "empty";
+    }
+
+    StringBuilder hexDump = new StringBuilder();
+    for (int i = buf.position(); i < buf.limit(); i++) {
+        hexDump.append(Integer.toHexString(buf.get(i)&0xFF)).append(' ');
+    }
+    return hexDump.toString();
+}
+</pre>
+<p>As stated earlier, this function receives a byte buffer containing the message entered by the user converted to binary, and then convert the binary into hexadecimal and then into ASCII and returns that to the event listener to be written to the log.</p>
+    </li>
+    
+    <li>Add a function to remove any log entries beyond the 150 lines set in the <span class="uri">LIST_SIZE</span> variable created at the beginning of the code:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+private synchronized void log(String str) {
+    logModel.add(0, str);
+    if (logModel.getSize() > LIST_SIZE) {
+        logModel.removeElementAt(LIST_SIZE);
+    }
+}
+</pre>
+</li>
+    
+    <li>Add functions for updating the buttons when the connection is open or closed:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+private void updateButtonsForClosed() {
+    connect.setEnabled(true);
+    close.setEnabled(false);
+    sendText.setEnabled(false);
+    sendBinary.setEnabled(false);
+}
+
+private void updateButtonsForConnected() {
+    connect.setEnabled(false);
+    close.setEnabled(true);
+    sendText.setEnabled(true);
+    sendBinary.setEnabled(true);
+}
+</pre>
+    </li>
+    
+    <li>Next, add the JPanel GUI for the client:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+public class WebSocketPanel extends javax.swing.JPanel {
+
+    private static final long serialVersionUID = 546964538273207028L;
+
+    public WebSocketPanel() {
+        initComponents();
+    }
+
+    private void initComponents() {
+
+        connectPanel = new javax.swing.JPanel();
+        locationLabel = new javax.swing.JLabel();
+        location = new javax.swing.JTextField();
+        connect = new javax.swing.JButton();
+        close = new javax.swing.JButton();
+        introLabel = new javax.swing.JLabel();
+        messagePanel = new javax.swing.JPanel();
+        messageLabel = new javax.swing.JLabel();
+        message = new javax.swing.JTextField();
+        sendText = new javax.swing.JButton();
+        sendBinary = new javax.swing.JButton();
+        logLabel = new javax.swing.JLabel();
+        logList = new JList(logModel);
+        clear = new javax.swing.JButton();
+
+        setBackground(Color.WHITE);
+        connectPanel.setBackground(Color.WHITE);
+        messagePanel.setBackground(Color.WHITE);
+
+        Color blueText = new Color(0x3C708F);
+
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "WebSocket Demo",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new java.awt.Font("Dialog", 1, 12))); // NOI18N
+        setRequestFocusEnabled(false);
+
+        introLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        introLabel
+          .setText("<html>This is a demo of an echo server client that uses
+          WebSocket to send text or binary messages to the Echo service, 
+          <br>which echoes back the messages.</html>");
+        introLabel.setForeground(blueText);
+
+        connectPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        connectPanel.setPreferredSize(new java.awt.Dimension(400, 75));
+
+        locationLabel.setText("Location:");
+        locationLabel.setToolTipText("Enter WebSocket Location");
+
+        location.setText("ws://localhost:8001/echo");
+        location.setToolTipText("Enter the location of the WebSocket");
+        location.setColumns(25);
+
+        connect.setText("Connect");
+        connect.setToolTipText("Connect to the Kaazing Gateway via WebSocket");
+        connect.setName("connect");
+
+        close.setText("Close");
+        close.setToolTipText("Close the WebSocket");
+        close.setName("close");
+
+        FlowLayout panel1Layout = new FlowLayout(FlowLayout.LEADING, 10, 10);
+        connectPanel.setLayout(panel1Layout);
+        connectPanel.add(locationLabel);
+        connectPanel.add(location);
+        connectPanel.add(connect);
+        connectPanel.add(close);
+
+        messagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.ABOVE_TOP));
+
+        messageLabel.setText("Message:");
+        messageLabel.setToolTipText("Message");
+
+        message.setText("Hello, WebSocket!");
+        message.setToolTipText("Enter message for WebSocket");
+        message.setColumns(25);
+
+        sendText.setText("Send Text");
+        sendText.setToolTipText("Send text message to WebSocket");
+        sendText.setName("sendText");
+
+        sendBinary.setText("Send Binary");
+        sendBinary.setToolTipText("Send binary message to WebSocket");
+        sendBinary.setName("sendBinary");
+
+        FlowLayout panel2Layout = new FlowLayout(FlowLayout.LEADING, 10, 10);
+        messagePanel.setLayout(panel2Layout);
+        messagePanel.add(messageLabel);
+        messagePanel.add(message);
+        messagePanel.add(sendText);
+        messagePanel.add(sendBinary);
+
+        logLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        logLabel.setText("Log messages");
+        logLabel.setPreferredSize(new java.awt.Dimension(0, 0));
+        logLabel.setForeground(blueText);
+
+        logList.setName("log");
+        /*
+        JScrollPane logScrollPane = new JScrollPane(logList, 
+        JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+        JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        */
+        clear.setText("Clear");
+        clear.setToolTipText("Send message to WebSocket");
+        clear.setName("clear");
+
+        GroupLayout layout = new GroupLayout(this);
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+          layout.createParallelGroup()
+          .addComponent(introLabel)
+          .addComponent(connectPanel)
+          .addComponent(messagePanel)
+          .addComponent(logLabel)
+          .addComponent(logList)
+          .addComponent(clear)
+        );
+        layout.setVerticalGroup(
+          layout.createSequentialGroup()
+          .addComponent(introLabel)
+          .addComponent(
+            connectPanel,
+            GroupLayout.PREFERRED_SIZE, 
+            GroupLayout.PREFERRED_SIZE, 
+            GroupLayout.PREFERRED_SIZE)
+          .addComponent(
+            messagePanel, GroupLayout.PREFERRED_SIZE, 
+            GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+          .addComponent(logLabel)
+          .addComponent(logList, 300, 300, 300)
+          .addComponent(clear)
+         );
+
+    }// &lt;/editor-fold&gt;
+
+}
+</pre>
+<p>The GUI for the completed client will look like this when run from Eclipse:</p>
+<figure>
+    <img src="../images/gateway-java-GUI.jpg">
+<figcaption><strong>Figure: Java WebSocket Echo Demo GUI</strong></figcaption>    
+</figure>
+    </li>
+    
+    <li>Ensure that the WebSocketFrame class is closed with a final brace:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+}</pre>
+<p>Eclipse has real-time error checking to inform you of any missing syntax elements.</p>
+    </li>
+    
+    <li>Save the client in Eclipse.</li>
+    
+    <li>Start the Gateway as described in <strong>How do I start and stop the Gateway?</strong> in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+    
+    <li>Test your new client. In Eclipse, in the <strong>Run</strong> menu, click <strong>Run</strong>. The Java client launches. The <strong>Location</strong> field contains a URI for the Echo service running on the Gateway using the WebSocket scheme, ws://: <span class="uri">ws://localhost:8001/echo</span>.</li>
+    
+    <li>Click <strong>Connect</strong>. The Log displays:<br>
+    <span class="uri">
+        CONNECTED<br>
+        CONNECT: ws://localhost:8001/echo
+    </span>
+    </li>
+    
+    <li>Click <strong>Send Text</strong>. The Log displays the sent text message and the Echo response from the Gateway:<br>
+    <span class="uri">
+        RESPONSE:Hello, WebSocket!<br>
+        SENT:Hello, WebSocket!
+    </span>
+    </li>
+    
+    <li>Click <strong>Send Binary</strong>. The Log displays the sent binary message in hexadecimal and the Echo response from the Gateway:<br>
+    <span class="uri">
+        RESPONSE: 48 65 6c 6c 6f 2c 20 57 65 62 53 6f 63 6b 65 74 21<br>
+        SEND BINARY: 48 65 6c 6c 6f 2c 20 57 65 62 53 6f 63 6b 65 74 21
+    </span>
+    </li>
+    
+    <li>Click <strong>Close</strong> to close the WebSocket connection.</li>
+</ol>
+
+<p>You now have a working WebSocket client using the Kaazing WebSocket Gateway Java API. Congratulations! Using what you’ve learned here, you can now build your own Java clients and leverage the power of WebSocket.</p>
+
+        <h2>Next Step</h2>
+        <p><a href="p_dev_java_eventsource.html">Interact with Kaazing WebSocket Gateway Using the EventSource API</a></p>
+
+                  </section>
+                </article>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

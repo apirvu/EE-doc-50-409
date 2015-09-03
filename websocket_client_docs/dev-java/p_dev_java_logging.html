@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+<h1><a name="javaclientlogs"></a>Display Logs for the Java Client</h1>
+<p>You can control the log levels for the Java client in the <span class="uri">logging.properties</span> file on your operating system. For example, for Java 7 (required) on Mac OS X, this file is located in: <span class="uri">$JAVA_HOME/jre/lib/logging.properties</span>.</p>
+
+<p>For more information, see <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/logging/overview.html">Java Logging Overview</a>. Ensure that you have write permissions to this file.</p>
+
+        <h2>Before You Begin</h2>
+        <p>This procedure is part of <a href="o_dev_java.html">Checklist: Build Java Clients Using Kaazing WebSocket Gateway</a>:</p>
+        <ol>
+            <li><a href="p_dev_java_setup.html">Set Up Your Development Environment</a></li>
+            <li><a href="p_dev_java_websocket.html">Interact with Kaazing WebSocket Gateway Using the WebSocket API</a></li>
+            <li><a href="p_dev_java_eventsource.html">Interact with Kaazing WebSocket Gateway Using the EventSource API</a></li>
+            <li><a href="p_dev_java_migrate.html">Migrate WebSocket and ByteSocket Applications to Kaazing WebSocket Gateway 4.x</a></li>
+            <li><a href="p_dev_java_secure.html">Secure Your Java and Android Clients</a></li>
+            <li><strong>Display Logs for the Java Client</strong></li>            
+            <li><a href="p_dev_java_tshoot.html">Troubleshoot Your Java Client</a></li>
+        </ol>           
+
+<p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../release-notes.html">Release Notes</a>.</span></p>
+
+<h2>To Enable the Java Client Logs</h2>
+        <ol>
+          <li>Build your Java client, as described in <a href="../dev-java/o_dev_java.html">Checklist: Build Java Clients Using Kaazing WebSocket Gateway</a>.</li>
+          <li>Add the following line to the <span class="uri">logging.properties</span> file to display the complete log output:
+            <p><span class="uri">com.kaazing.gateway.client.level = ALL</span></p>
+                
+                <span class="note"><b>Note:</b> The Java Logging API has a default logging configuration file located inside the JRE directory at <span class="uri"><em>JRE_DIRECTORY</em>/lib/logging.properties</span>. For example, on a Mac: <span class="uri">/System/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home/jre/lib/logging.properties</span>.</span><br>
+          </li>
+          <li><p>Configure the <span class="uri">ConsoleLogHandler</span> to display all messages by changing the line:</p>
+            <p><span class="uri">java.util.logging.ConsoleHandler.level = <strong>INFO</strong></span></p>
+            <p>to</p>
+            <p><span class="uri">java.util.logging.ConsoleHandler.level = <strong>ALL</strong></span></p>
+          </li>
+          <li>Save the <span class="uri">logging.properties</span> file.</li>
+            <li>Enable logging in the Java Console or Java Preferences. To do so:
+            <ul class="arrow-2">
+              <li>In Windows, in the Java Control Panel, on the <strong>Advanced</strong> tab, choose <strong>Java console</strong>, then select <strong>Show console</strong>.</li>
+              <li>On Mac OS X, for Java 7 (required), access the <strong>Java</strong> system preference in <strong>System Preferences</strong>, click <strong>Advanced</strong>, and under <strong>Debugging</strong>, click <strong>Enable logging</strong>. Then, under <strong>Java console</strong>, select <strong>Show console</strong>.</li>
+            </ul>
+            </p>
+          </li>
+        <li>Start the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+        <li>Restart the browser and use the out of the box Java Echo Demo.</li>
+        <li>In a browser, navigate to the out of the box demos at <span class="uri">http://localhost:8001/demo/</span>, click <strong>Java</strong> and follow the instructions. The Java Console will open and display all logs from the Java Client. </li>
+        </ol>
+<h2>Notes</h2>
+<p>If you are using Microsoft Internet Explorer 8, you may need to restart the browser as an administrator to view the logs from the Java Client.</p>
+
+<h2>Next Step</h2>
+<p><a href="p_dev_java_tshoot.html">Troubleshoot Your Java Client</a></p>
+
+<h2>See Also</h2>
+<p>You have completed the Java client howtos. For more information on client API development, see the <a href="../apidoc/client/java/gateway/index.html">Java Client API</a>.</p>
+
+                  </section>
+                </article>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

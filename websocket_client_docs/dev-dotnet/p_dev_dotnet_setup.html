@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+<h1>Set Up Your Development Environment</h1>
+<p>In this procedure, you will learn how to set up your development environment to develop Microsoft .NET and Silverlight clients.</p>
+
+<h2>Before You Begin</h2>
+<p>This procedure is part of <a href="o_dev_dotnet.html" title="Kaazing | Documentation">Checklist: Build Microsoft .NET and Silverlight Clients Using Kaazing WebSocket Gateway</a>:</p>
+<ol>
+    <li><b>Set Up Your Development Environment</b></li>
+    <li><a href="p_dev_dotnet_websocket.html">Interact with Kaazing WebSocket Gateway Using the WebSocket API</a></li>
+    <li><a href="p_dev_dotnet_eventsource.html">Interact with Kaazing WebSocket Gateway Using the EventSource API</a></li>
+    <li><a href="p_dev_dotnet_bytesocket.html">Interact with Kaazing WebSocket Gateway Using the ByteSocket API</a></li>
+    <li><a href="p_dev_dotnet_automatic.html">Configure Automatic Connection</a></li>
+    <li><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET and Silverlight Client</a></li>
+    <li><a href="p_clientlogging_dotnet.html">Display Logs for .NET and Silverlight Clients</a></li>
+    <li><a href="p_dev_dotnet_tshoot.html">Troubleshoot Your Microsoft .NET and Silverlight Clients</a></li>
+</ol>
+
+<p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../release-notes.html">Release Notes</a>.</span></p>
+
+<h2>To Set Up Your Development Environment</h2>
+<p>To develop applications for Silverlight or the .NET Framework, you must install the a .NET Integrated Development Environment (IDE) such as Visual Studio or the free Visual Studio Express.
+<p><span class="note"><strong>Note</strong>: You can develop Silverlight and .NET Framework applications in any of the .NET programming languages. Microsoft Visual C# is used in this how-to.</span></p>
+
+<h3><a name="setup_silverlight" id="setup_silverlight"></a>Silverlight Environment Setup</h3>
+    <p>In addition to the Visual Studio IDE, Silverlight application development also requires:</p>
+<ul class="arrow-2">
+  <li>A .NET Integrated Development Environment (IDE) such as Visual Studio  or the free Visual Web Developer  Express</li>
+  <li> Microsoft Silverlight 4 SDK</li>
+  <li>The Silverlight 4 browser plugin</li>
+</ul>
+<p>To use  the Kaazing  client libraries for .NET and Silverlight, you must add a reference to the  libraries located in the <span class="uri">.DLL</span> file <span class="uri">Kaazing.Gateway.dll</span> to your Silverlight project. You can find this <span class="uri">.DLL</span> file in the directory <span class="uri"><em>GATEWAY_HOME</em>/lib/client/dotnet</span>.</p>
+<p><span class="note"><strong>Note</strong>: You can develop Silverlight 4 applications in any of the .NET programming languages. Microsoft Visual C# is used  in this how-to.</span></p>
+<p>Silverlight applications primarily consist of Extensible Application Markup Language (XAML) files and their corresponding code-behind classes <span class="uri">.XAML.CS</span> (in C#). The <span class="uri">.XAML</span> files typically contain the User Interface (UI) elements and the <span class="uri">.XAML.CS</span> files contain the page's code-behind classes.</p>
+<p>A typical Silverlight application is deployed as a compressed <span class="uri">.XAP</span> file. Adding the reference to the <span class="uri">.DLL</span> file in your Silverlight application   packages the <span class="uri">.DLL</span> file in your finished application. To deploy your Silverlight application <span class="uri">.XAP</span> file, you can host it on Kaazing WebSocket Gateway. For example, you can place it in the web directory <span class="uri"><em>GATEWAY_HOME</em>/web/base</span>.</p>
+<p>For more information on the Kaazing  client libraries for .NET and Silverlight, see the <a href="../apidoc/client/dotnet/gateway/html/N_Kaazing_HTML5.htm">.NET and Silverlight Client API</a> documentation.<br>
+</p>
+<h3><a name="setup_dotnet" id="setup_dotnet"></a>.NET Framework Environment Setup</h3>
+<p>In addition to the Visual Studio IDE, .NET Framework application development also requires:</p>
+<ul class="arrow-2">
+  <li>A .NET Integrated Development Environment (IDE), such as Visual Studio  or the free Visual Web Developer  Express</li>
+  <li> Microsoft .NET Framework 4 with Microsoft .NET Framework 4 Patch KB2468871 (download the patch from <a href="http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=3556">http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=3556</a>). This is required for building or running .NET clients using the Kaazing WebSocket Gateway .NET Client Library.</li>
+</ul>
+<p>To use the Kaazing  client libraries for .NET and Silverlight, you must add a reference to the Kaazing libraries located in the <span class="uri">.DLL</span> file <span class="uri">Kaazing.Gateway.dll</span> to your Silverlight project. This file is in the directory <span class="uri"><em>GATEWAY_HOME</em>/lib/client/dotnet/Release</span>. Additional <span class="uri">.DLL</span>s may be required to program with other protocols.          </p>
+<p>Applications based on the .NET Framework can use standard .NET Forms Controls or Windows Presentation Foundation (WPF).  Note that there are slight differences in APIs for Controls, Threading and Dispatching behavior.  The steps in this document illustrate event dispatching for WPF applications.  WPF Applications, like Silverlight applications, consist of Extensible Application Markup Language (XAML) files and their corresponding code-behind classes <span class="uri">.XAML.CS</span> (in C#).</p>
+<p>.NET Framework applications are typically deployed as an executable <span class="uri">.EXE</span> file.  This executable references the<span class="uri">.DLL</span> file and can be deployed in the same directory alongside the executable, or registered through an installation process.</p>  
+
+<h3><a name="api_documentation" id="api_documentation"></a>API Documentation</h3>
+<p>For more information on the Kaazing client libraries for .NET and Silverlight, see the <a href="../apidoc/client/dotnet/gateway/html/N_Kaazing_HTML5.htm">.NET and Silverlight Client API</a> documentation. Alternatively, to access the Kaazing client libraries for .NET and Silverlight API documentation in Visual Studio (after you have added  a reference to the client libraries to your .NET or Silverlight project), select <strong>Object Browser</strong> from the View menu and choose <span class="uri"><strong>Kaazing.HTML5</strong></span>.</p>
+
+<h2>Next Step</h2>
+<p><a href="p_dev_dotnet_websocket.html">Interact with Kaazing WebSocket Gateway Using the WebSocket API</a></p>
+
+<h2>See Also</h2>
+    <p><a href="../apidoc/client/dotnet/gateway/html/N_Kaazing_HTML5.htm">.NET and Silverlight Client API</a></p> 
+
+                  </section>
+                </article>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

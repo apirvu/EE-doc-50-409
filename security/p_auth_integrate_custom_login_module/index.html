@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/security/p_auth_integrate_custom_login_module/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+
+ <h1 id="integrate-an-existing-custom-login-module-into-the-gateway">Integrate an Existing Custom Login Module into the Gateway</h1>
+
+<p>KAAZING Gateway supports a plug-in mechanism for integration with custom authentication modules based on the Java <code>LoginModule</code> API. This document provides an example of how you can use your existing custom login module with the Gateway.</p>
+
+<h2 id="before-you-begin">Before You Begin</h2>
+
+<p>This optional procedure is part of <a href="../o_auth_configure">Configure Authentication and Authorization</a>:</p>
+
+<ol>
+  <li><a href="../p_authentication_config_http_challenge_scheme">Configure the HTTP Challenge Scheme</a></li>
+  <li><a href="../p_auth_configure_login_module">Configure a Chain of Login Modules</a>
+    <ul>
+      <li><a href="../p_auth_configure_custom_login_module">Create a Custom Login Module (Optional)</a></li>
+      <li><strong>Integrate an Existing Custom Login Module into the Gateway (Optional)</strong></li>
+    </ul>
+  </li>
+  <li><a href="../p_auth_configure_challenge_handler">Configure a Challenge Handler on the Client</a></li>
+  <li><a href="../p_authorization_configure">Configure Authorization</a></li>
+</ol>
+
+<h2 id="to-integrate-an-existing-custom-login-module-into-the-gateway">To Integrate an Existing Custom Login Module into the Gateway</h2>
+
+<ol>
+  <li>
+    <p>Copy the login module to the <code>GATEWAY_HOME/web/base</code> directory.</p>
+
+    <p>Before you begin, you need the Gateway, your Java custom login module (for demo purposes, you can use the sample custom login module called <code>GATEWAY_HOME/web/extras/samples/security/CustomLoginModule.java</code>), and the fully qualified class name of your custom login module. Note that the <code>GATEWAY_HOME/web/extras</code> directory is read-only. So, to modify the provided <code>CustomLoginModule.java</code> file, you must copy the file to your <code>GATEWAY_HOME/web/base</code> directory.</p>
+  </li>
+  <li>Compile your Java custom login module file into a JAR file and place it in <code>GATEWAY_HOME/lib</code>. You can also update the <code>CLASSPATH</code> to point to the desired directory containing the JAR file.</li>
+  <li>
+    <p>In the Gateway configuration (for example, <code>GATEWAY_HOME/conf/gateway-config.xml</code>), add the custom login module and set the <code>type</code> to point to <code>class:the-fully-qualified-class-name</code>. For example, if you are using the sample custom login module provided with the Gateway, the fully qualified class name is <code>org.kaazing.demo.loginmodules.CustomLoginModule</code>. The following is the <code>login-module</code> entry for this sample:</p>
+
+    <pre><code class="language-xml">&lt;login-module&gt;
+  &lt;type&gt;class:org.kaazing.demo.loginmodules.CustomLoginModule&lt;/type&gt;
+  &lt;success&gt;required&lt;/success&gt;
+&lt;/login-module&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>Enable configuration for the services that are required to use this custom login module to authenticate with the back-end server. You can do this using the <code>authorization-constraint</code> element. The following is an example of the echo service configured to use this custom login module:</p>
+
+    <pre><code class="language-xml">&lt;service&gt;
+  &lt;accept&gt;ws://localhost:8001/echo&lt;/accept&gt;
+  &lt;accept&gt;wss://localhost:9001/echo&lt;/accept&gt;
+  &lt;type&gt;echo&lt;/type&gt;
+
+  &lt;authorization-constraint&gt;
+    &lt;require-role&gt;AUTHORIZED&lt;/require-role&gt;
+  &lt;/authorization-constraint&gt;
+
+  &lt;cross-site-constraint&gt;
+    &lt;allow-origin&gt;http://localhost:8000&lt;/allow-origin&gt;
+  &lt;/cross-site-constraint&gt;
+
+  &lt;cross-site-constraint&gt;
+    &lt;allow-origin&gt;https://localhost:9000&lt;/allow-origin&gt;
+  &lt;/cross-site-constraint&gt;
+&lt;/service&gt;
+</code></pre>
+  </li>
+  <li>Add this login module to the chain, as described in <a href="../p_auth_configure_login_module">Configure a Chain of Login Modules</a>.</li>
+  <li>Save <code>gateway-config.xml</code> and restart the Gateway.</li>
+</ol>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p><a href="../p_auth_configure_challenge_handler">Configure a Challenge Handler on the Client</a></p>
+
+<h2 id="see-also">See Also</h2>
+
+<ul>
+  <li><a href="../../admin-reference/o_configure_gateway_checklist">Configure the Gateway</a></li>
+  <li><a href="../..">Server API Documentation</a></li>
+</ul>
+
+
+</div>
+
+</div>
+
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

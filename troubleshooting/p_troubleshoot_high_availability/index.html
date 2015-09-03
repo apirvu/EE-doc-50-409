@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/troubleshooting/p_troubleshoot_high_availability/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+
+ <h1 id="troubleshoot-kaazing-gateway-clusters-and-load-balancing">Troubleshoot KAAZING Gateway Clusters and Load Balancing</h1>
+
+<p>When you configure KAAZING Gateway for high availability, you may encounter one of the following errors. To resolve an issue, follow the guidance provided for the associated error.</p>
+
+<h2 id="troubleshooting-kaazing-gateway">Troubleshooting KAAZING Gateway</h2>
+
+<p>This topic is part of <a href="../o_troubleshoot">Troubleshoot KAAZING Gateway</a> that groups troubleshooting topics into the categories shown in the following table:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>What Problem Are You Having?</th>
+      <th>Topic or Reference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Configuration and startup</td>
+      <td><a href="../p_troubleshoot_gateway_configuration">Troubleshoot KAAZING Gateway Configuration and Startup</a></td>
+    </tr>
+    <tr>
+      <td><strong>Clusters and load balancing</strong></td>
+      <td><strong>Troubleshoot KAAZING Gateway Cluster and Load Balancing</strong></td>
+    </tr>
+    <tr>
+      <td>Security</td>
+      <td><a href="../p_troubleshoot_security">Troubleshoot KAAZING Gateway Security</a></td>
+    </tr>
+    <tr>
+      <td>Clients</td>
+      <td><a href="../p_dev_troubleshoot">Troubleshoot Your Clients</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="what-problem-are-you-having">What Problem Are You Having?</h2>
+
+<ul>
+  <li><a href="#accept-uri-uri-does-not-match-balance-uri-uri-in-all-but-hostname-unable-to-launch-gateway">Accept URI: [URI] does not match balance URI: [URI] in all but hostname. Unable to launch Gateway</a></li>
+  <li><a href="#balance-uri-uri-does-not-point-to-a-balancer-services-accept-uri-in-the-configuration-file-unable-to-launch-the-gateway">Balance URI: [URI] does not point to a balancer service’s accept URI in the configuration file, unable to launch the Gateway</a></li>
+  <li><a href="#detected-orphaned-balancer-accept-uri-uri-no-balance-uris-in-the-configuration-file-point-to-this-balancer-service-unable-to-launch-the-gateway">Detected orphaned balancer accept URI: [URI], no balance URIs in the configuration file point to this balancer service. Unable to launch the Gateway</a></li>
+</ul>
+
+<h3 id="accept-uri-uri-does-not-match-balance-uri-uri-in-all-but-hostname-unable-to-launch-gateway">Accept URI: [URI] does not match balance URI: [URI] in all but hostname. Unable to launch Gateway.</h3>
+
+<p><strong>Cause:</strong> The <code>balance</code> and <code>accept</code> element URIs in a <code>service</code> must use the same port number and path. The hostnames in the URIs may be different.</p>
+
+<p><strong>Solution:</strong> Correct the <code>balance</code> or <code>accept</code> URIs by using the same port number and path. In the following example, the <code>balance</code> and <code>accept</code> URIs have different hostnames but the same port number (<code>8081</code>) and path (<code>echo</code>):</p>
+
+<pre><code class="language-xml">&lt;service&gt;
+  &lt;accept&gt;ws://node1.example.com:8081/echo&lt;/accept&gt;
+  &lt;balance&gt;ws://balancer.example.com:8081/echo&lt;/balance&gt;
+
+  &lt;type&gt;echo&lt;/type&gt;
+
+  &lt;cross-site-constraint&gt;
+    &lt;allow-origin&gt;http://directory.example.com:8080&lt;/allow-origin&gt;
+  &lt;/cross-site-constraint&gt;
+&lt;/service&gt;
+</code></pre>
+
+<h3 id="balance-uri-uri-does-not-point-to-a-balancer-services-accept-uri-in-the-configuration-file-unable-to-launch-the-gateway">Balance URI: [URI] does not point to a balancer service’s accept URI in the configuration file, unable to launch the Gateway.</h3>
+
+<p><strong>Cause:</strong> The <code>balance</code> URI in a <code>service</code> must match the <code>accept</code> URI in a <code>balancer</code> service in the same Gateway configuration file (<code>GATEWAY_HOME/conf/gateway-config.xml</code>).</p>
+
+<p><strong>Solution:</strong> Ensure that the <code>balance</code> URI in a <code>service</code> matches at least one <code>accept</code> URI in a <code>balancer</code> service. In the following example, the <code>accept</code> URI in the <code>balancer</code> service matches the <code>balance</code> URI in the Echo <code>service</code>:</p>
+
+<pre><code class="language-xml">&lt;service&gt;
+  &lt;accept&gt;ws://balancer.example.com:8081/echo&lt;/accept&gt;
+
+  &lt;type&gt;balancer&lt;/type&gt;
+
+  &lt;accept-options&gt;
+      &lt;ws.bind&gt;192.168.2.10:8081&lt;/ws.bind&gt;
+  &lt;/accept-options&gt;
+
+&lt;/service&gt;
+
+&lt;service&gt;
+  &lt;accept&gt;ws://node1.example.com:8081/echo&lt;/accept&gt;
+  &lt;balance&gt;ws://balancer.example.com:8081/echo&lt;/balance&gt;
+
+  &lt;type&gt;echo&lt;/type&gt;
+
+  &lt;cross-site-constraint&gt;
+    &lt;allow-origin&gt;http://directory.example.com:8080&lt;/allow-origin&gt;
+  &lt;/cross-site-constraint&gt;
+&lt;/service&gt;
+</code></pre>
+
+<h3 id="detected-orphaned-balancer-accept-uri-uri-no-balance-uris-in-the-configuration-file-point-to-this-balancer-service-unable-to-launch-the-gateway">Detected orphaned balancer accept URI: [URI], no balance URIs in the configuration file point to this balancer service. Unable to launch the Gateway.</h3>
+
+<p><strong>Cause:</strong> There is an <code>accept</code> URI in a <code>balancer</code> service that does not have a corresponding <code>balance</code> URI in a <code>service</code>. Every <code>accept</code> URI in a <code>balancer</code> service must have a corresponding <code>balance</code> URI in a <code>service</code>.</p>
+
+<p><strong>Solution:</strong> Remove the <code>accept</code> from the <code>balancer</code> service or add a corresponding <code>balance</code> URI to a <code>service</code>.</p>
+
+<h2 id="see-also">See Also</h2>
+
+<p><a href="../../high-availability/o_high_availability">Configure the Gateway for High Availability</a></p>
+
+
+</div>
+
+</div>
+
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

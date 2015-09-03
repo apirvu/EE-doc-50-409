@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/" />
+  <link rel="icon" href="img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/pygments.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/syntax.css">
+  <link rel="stylesheet" href="css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.html"><img id="kaazing-logo-header" src="img/KAAZING.png" alt="KAAZING.org"></img></a>		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="/download/">Download</a></li>
+				<li><a href="/demos/">Demos</a></li>
+				<li><a href="/demos/quick-start/">Quick Start</a></li>
+				<li><a href="/blog/">Blog</a></li>
+				<li class="hidden-sm"><a href="/developer-subscription/">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+
+ <h1 id="kaazing-documentation-for-enterprise-edition">KAAZING Documentation for Enterprise Edition</h1>
+
+<h2 id="essentials">Essentials</h2>
+
+<ul>
+  <li><a href="about/about">Documentation Conventions</a></li>
+  <li><a href="kaazing-glossary">KAAZING Glossary</a></li>
+  <li><a href="admin-reference/c_topologies">Common KAAZING Gateway Production Topologies</a></li>
+  <li><a href="about/setup-guide">Setting Up the Gateway</a></li>
+  <li><a href="upgrade/o_upgrade">Upgrade the Gateway</a></li>
+</ul>
+
+<h2 id="for-developers">For Developers</h2>
+
+<h3 id="mobile">Mobile</h3>
+
+<h4 id="websocket-mobile-clients">WebSocket Mobile Clients</h4>
+
+<ul>
+  <li><a href="websocket_client_docs/dev-objc/o_dev_objc.html">Build Objective-C (iOS) WebSocket Clients</a></li>
+  <li><a href="websocket_client_docs/dev-android/o_dev_android.html">Build Android WebSocket Clients</a></li>
+</ul>
+
+<h4 id="jms-mobile-clients">JMS Mobile Clients</h4>
+
+<ul>
+  <li><a href="jms_client_docs/dev-js/hybrid_ios_walkthrough.html">Walkthrough: Deploy a JavaScript JMS App as a Hybrid iOS App</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li><a href="jms_client_docs/dev-js/hybrid_android_walkthrough.html">Walkthrough: Deploy a JavaScript JMS App as a Hybrid Android App</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li><a href="jms_client_docs/dev-dotnet/xamarin_dotnet_walkthrough_websocket.html">Walkthrough: Deploy Microsoft .NET or Silverlight JMS Clients to iOS or Android Using Xamarin</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+</ul>
+
+<h3 id="web-and-desktop">Web and Desktop</h3>
+
+<h4 id="websocket-clients">WebSocket Clients</h4>
+
+<ul>
+  <li><a href="websocket_client_docs/dev-js/o_dev_js.html">Build JavaScript WebSocket Clients</a></li>
+  <li><a href="websocket_client_docs/dev-flash/o_dev_flash.html">Build Flash WebSocket Clients</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li><a href="websocket_client_docs/dev-dotnet/o_dev_dotnet.html">Build Microsoft .NET and Silverlight WebSocket Clients</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+</ul>
+
+<h4 id="amqp-clients">AMQP Clients</h4>
+
+<ul>
+  <li><a href="amqp_client_docs/dev-js/o_dev_js.html">Build JavaScript AMQP Clients</a></li>
+  <li><a href="amqp_client_docs/dev-flash/o_dev_flash.html">Build Flash AMQP Clients</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li><a href="amqp_client_docs/dev-dotnet/o_dev_dotnet.html">Build Microsoft .NET and Silverlight AMQP Clients</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li><a href="amqp_client_docs/dev-java/o_dev_java.html">Build Java AMQP Clients</a></li>
+  <li><a href="amqp_client_docs/dev-c/o_dev_c.html">Build C AMQP Clients</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+</ul>
+
+<h4 id="jms-clients">JMS Clients</h4>
+
+<ul>
+  <li><a href="jms_client_docs/dev-objc/o_dev_objc.html">Build Objective-C (iOS) JMS Clients</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li><a href="jms_client_docs/dev-android/o_dev_android.html">Build Android JMS Clients</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li><a href="jms_client_docs/dev-js/o_dev_js.html">Build JavaScript JMS Clients</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li><a href="jms_client_docs/dev-flash/o_dev_flash.html">Build Flash JMS Clients</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li><a href="jms_client_docs/dev-dotnet/o_dev_dotnet.html">Build Microsoft .NET and Silverlight JMS Clients</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li><a href="jms_client_docs/dev-dotnet/excel_walkthrough.html">Walkthrough: Integrate Excel with KAAZING Gateway</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li><a href="jms_client_docs/dev-java/o_dev_java.html">Build Java JMS Clients</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+</ul>
+
+<h3 id="embedded">Embedded</h3>
+
+<ul>
+  <li><a href="embedded-gateway/o_embedded_gateway">Embed the Gateway in Your Java Application</a></li>
+</ul>
+
+<h3 id="cross-platform-topics">Cross-Platform Topics</h3>
+
+<ul>
+  <li><a href="dev-general/c_general_client_information">General Client Information</a></li>
+  <li><a href="troubleshooting/p_dev_troubleshoot">Troubleshoot Your Clients</a></li>
+</ul>
+
+<h2 id="for-administrators">For Administrators</h2>
+
+<h3 id="configuration">Configuration</h3>
+
+<ul>
+  <li><a href="admin-reference/r_configure_gateway_element_index">Configuration Element Index</a></li>
+  <li><a href="admin-reference/c_configure_gateway_concepts">About Gateway Configuration</a></li>
+  <li><a href="admin-reference/o_configure_gateway_checklist">Configure the Gateway</a></li>
+  <li><a href="internal-network/p_protocol_binding">Configure the Gateway on an Internal Network</a></li>
+  <li><a href="admin-reference/p_configure_multicast">Configure the Gateway to Use Multicast</a></li>
+  <li><a href="integration-amqp/p_amqp_integrate_rabbitmq">Integrate RabbitMQ Messaging</a></li>
+</ul>
+
+<h3 id="security">Security</h3>
+
+<ul>
+  <li><a href="security/c_security_about">About Security with KAAZING Gateway</a></li>
+  <li><a href="security/o_auth_configure">Configure Authentication and Authorization</a></li>
+  <li><a href="security/p_kerberos_configure">Configure Kerberos V5 Network Authentication</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li><a href="security/o_tls">Configure Secure Network Traffic with the Gateway</a></li>
+  <li><a href="security/o_jms_secure">Configure a Secure JMS Configuration</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li><a href="enterprise-shield/o_enterprise_shield_checklist">Configure Enterprise Shield™ with the Gateway</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+</ul>
+
+<h3 id="monitor-and-troubleshoot">Monitor and Troubleshoot</h3>
+
+<ul>
+  <li><a href="management/o_monitor">Monitor the Gateway</a></li>
+  <li><a href="troubleshooting/o_troubleshoot">Troubleshoot the Gateway</a></li>
+</ul>
+
+<h3 id="high-availability">High Availability</h3>
+
+<ul>
+  <li><a href="high-availability/u_high_availability">Using the Gateway to Support High Availability</a></li>
+  <li><a href="high-availability/o_high_availability">Configure the Gateway for High Availability</a></li>
+</ul>
+
+<h3 id="jms-compliant-message-brokers">JMS-Compliant Message Brokers</h3>
+<ul>
+  <li><a href="integration-jms/o_jms_integrate">Integrate with JMS-Compliant Message Brokers</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+</ul>
+
+<h2 id="client-api-documentation">Client API Documentation</h2>
+
+<h3 id="websocket-client-api-documentation">WebSocket Client API Documentation</h3>
+
+<ul>
+  <li><a href="http://developer.kaazing.com/documentation/gateway/4.0/apidoc/client/ios/gateway/index.html">Objective-C WebSocket Client API</a></li>
+  <li><a href="http://developer.kaazing.com/documentation/gateway/4.0/apidoc/client/android/gateway/index.html">Android WebSocket Client API</a></li>
+  <li><a href="http://developer.kaazing.com/documentation/gateway/4.0/apidoc/client/javascript/gateway/index.html">JavaScript WebSocket Client API</a></li>
+  <li><a href="http://developer.kaazing.com/documentation/gateway/4.0/apidoc/client/flash/gateway/index.html">ActionScript (Flex) WebSocket Client API</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li>.NET and Silverlight WebSocket Client API  <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /><br />
+<a href="http://developer.kaazing.com/documentation/gateway/4.0/apidoc/client/dotnet/gateway/html/N_Kaazing_HTML5.htm">(Kaazing.HTML5)</a><br />
+<a href="http://developer.kaazing.com/documentation/gateway/4.0/apidoc/client/dotnet/gateway/html/N_Kaazing_Security.htm">(Kaazing.Security)</a></li>
+  <li><a href="http://developer.kaazing.com/documentation/gateway/4.0/apidoc/client/java/gateway/index.html">Java WebSocket Client API</a></li>
+</ul>
+
+<h3 id="amqp-client-api-documentation">AMQP Client API Documentation</h3>
+
+<ul>
+  <li><a href="http://developer.kaazing.com/documentation/amqp/4.0/apidoc/client/javascript/amqp/index.html">JavaScript AMQP Client API</a></li>
+  <li><a href="http://developer.kaazing.com/documentation/amqp/4.0/apidoc/client/C/AMQP-0-9-1/index.html">C AMQP Client API</a></li>
+  <li><a href="http://developer.kaazing.com/documentation/amqp/4.0/apidoc/client/flash/amqp/index.html">ActionScript (Flex) AMQP Client API</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li>.NET and Silverlight AMQP Client API  <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /> <a href="http://developer.kaazing.com/documentation/amqp/4.0/apidoc/client/dotnet/html/N_Kaazing_AMQP.htm">(Kaazing AMQP)</a> <a href="http://developer.kaazing.com/documentation/amqp/4.0/apidoc/client/dotnet/gateway/html/N_Kaazing_Security.htm">(Kaazing.Security)</a></li>
+  <li><a href="http://developer.kaazing.com/documentation/amqp/4.0/apidoc/client/java/amqp/client/index.html">Java AMQP Client API</a></li>
+</ul>
+
+<h3 id="jms-client-api-documentation">JMS Client API Documentation</h3>
+
+<ul>
+  <li><a href="about/kaazing-jms-api">KAAZING Gateway JMS Client Libraries: Supported APIs</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li><a href="http://developer.kaazing.com/documentation/jms/4.0/apidoc/client/javascript/jms/index.html?JmsConnectionFactory">JavaScript JMS Client API</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li><a href="http://developer.kaazing.com/documentation/jms/4.0/apidoc/client/ios/jms/KMStompJMS/index.html">Objective-C JMS Client API</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li><a href="http://developer.kaazing.com/documentation/jms/4.0/apidoc/client/android/jms/index.html">Android JMS Client API</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+  <li><a href="http://developer.kaazing.com/documentation/jms/4.0/apidoc/client/flash/jms/index.html">Flash JMS Client API</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>.
+  <li>.NET and Silverlight Client API <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /> (<a href="http://developer.kaazing.com/documentation/jms/4.0/apidoc/client/dotnet/jms/html/N_Kaazing_JMS.htm">Kaazing.JMS</a>) (<a href="http://developer.kaazing.com/documentation/jms/4.0/apidoc/client/dotnet/jms/html/N_Kaazing_JMS_Stomp.htm">Kaazing.JMS.Stomp</a>) (<a href="http://developer.kaazing.com/documentation/jms/4.0/apidoc/client/dotnet/jms/html/N_Kaazing_JMS_Util.htm">Kaazing.JMS.Util</a>) (<a href="http://developer.kaazing.com/documentation/5.0/apidoc/client/dotnet/gateway/html/N_Kaazing_Security.htm">Kaazing.Security</a>)</li>
+  <li><a href="http://developer.kaazing.com/documentation/jms/4.0/apidoc/client/java/jms/index.html">Java JMS Client API</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+</ul>
+
+<h2 id="server-api-documentation">Server API Documentation</h2>
+
+<ul>
+  <li><a href="http://developer.kaazing.com/documentation/5.0/apidoc/server/gateway/server/spi/index.html">Server Provider Interface</a></li>
+  <li><a href="http://developer.kaazing.com/documentation/jms/4.0/apidoc/server/jms/server/spi/index.html">JMS Server Security</a> <img src="images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+</ul>
+
+<h3 id="aws-amazon-web-services">AWS (Amazon Web Services)</h3>
+<ul>
+  <li><a href="http://developer.kaazing.com/documentation/aws/marketplace/index.html">AWS (Amazon Web Services) documentation</a></li>
+</ul>
+
+<h2 id="specifications">Specifications</h2>
+
+<ul>
+  <li><a href="http://www.w3.org/TR/html5/">HTML5 Specification</a></li>
+  <li><a href="http://dev.w3.org/html5/websockets/">HTML5 WebSocket API Specification</a></li>
+  <li><a href="http://tools.ietf.org/html/rfc6455">HTML5 WebSocket Protocol Specification</a></li>
+  <li><a href="http://dev.w3.org/html5/eventsource/">HTML5 Server-Sent Events Specification</a></li>
+  <li><a href="http://www.amqp.org/">AMQP Protocol Specification</a></li>
+  <li><a href="http://www.oracle.com/technetwork/java/docs-136352.html">Java Message Service (JMS) API Specification</a></li>
+  <li><a href="http://stomp.github.io/stomp-specification-1.0.html">Stomp Protocol Specification, Version 1.0</a></li>
+</ul>
+
+
+</div>
+
+</div>
+
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

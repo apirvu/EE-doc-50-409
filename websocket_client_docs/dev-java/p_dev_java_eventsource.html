@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+<h1>Interact with Kaazing WebSocket Gateway Using the EventSource API</h1>
+        <p>This procedure describes how you can use the <span class="uri">EventSource</span> API--provided by the Kaazing Java client library--in Java. This API allows you to take advantage of the server-sent events standard as described in the <a href="http://www.w3.org/html/wg/html5/#server-sent-events">HTML5 specification</a>. For example, you can create a Java applet or stand-alone Java application that uses the Java HTML5 Communications client library to receive streaming data from a news feed or streaming financial data. The support for server-sent events is provided by the <span class="uri">EventSource</span> class and its supporting classes.</p>
+        <p>The following steps show you how to  use the <span class="uri">EventSource</span> API in a Java applet or stand-alone Java application. This example highlights some of the most commonly used <span class="uri">EventSource</span> methods  and is not meant to be an end-to-end tutorial. Refer to the <a href="../apidoc/client/java/gateway/index.html">EventSource API documentation</a> for a complete description of all the available methods. View the out of the box Server Sent Events demo code in <span class="uri"><em>GATEWAY_HOME</em>/demo/java/src/core/com/kaazing/net/sse/demo/ServerSentEventsApplet.java</span>. The example code below is taken from this demo.</p>
+
+        <h2>Before You Begin</h2>
+        <p>This procedure is part of <a href="o_dev_java.html">Checklist: Build Java Clients Using Kaazing WebSocket Gateway</a>:</p>
+        <ol>
+            <li><a href="p_dev_java_setup.html">Set Up Your Development Environment</a></li>
+            <li><a href="p_dev_java_websocket.html">Interact with Kaazing WebSocket Gateway Using the WebSocket API</a></li>
+            <li><b>Interact with Kaazing WebSocket Gateway Using the EventSource API</b></li>
+            <li><a href="p_dev_java_migrate.html">Migrate WebSocket and ByteSocket Applications to Kaazing WebSocket Gateway 4.x</a></li>
+            <li><a href="p_dev_java_secure.html">Secure Your Java and Android Clients</a></li>
+            <li><a href="p_dev_java_logging.html">Display Logs for the Java Client</a></li>
+            <li><a href="p_dev_java_tshoot.html">Troubleshoot Your Java Client</a></li>
+        </ol>    
+
+<p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../release-notes.html">Release Notes</a>.</span></p>
+
+        <h2>To Use the EventSource API in Java</h2>
+                <ol>
+                <li>
+                  <p>Add the necessary import statements:</p>
+<pre class="auto-links: false; brush: java; toolbar: false;">
+// Import java.net classes
+import java.net.URI;
+import java.net.URL;
+
+// Import EventSource API classes
+import com.kaazing.net.sse.SseEventReader;
+import com.kaazing.net.sse.SseEventSource;
+import com.kaazing.net.sse.SseEventSourceFactory;
+import com.kaazing.net.sse.SseEventType;
+</pre>
+</li>
+
+<li>Create a new SseEventSource object and connection using the Server Sent Events factory class:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+SseEventSource eventSource = null; // Create a variable for the Event Source
+
+// Create Event Source factory
+SseEventSourceFactory factory = SseEventSourceFactory.createEventSourceFactory();
+
+// Create a target location using the java.net.URI create() method
+eventSource = factory.createEventSource(URI.create(url.getText()));
+
+// Connect to the event source.                
+eventSource.connect();
+</pre>
+</li>
+
+<li>Use the SseEventReader class to create a new reader object, and then use <span class="uri">getEventReader()</span> method to receive events:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+Thread sseEventReaderThread = new Thread() {
+    public void run() {
+      try {
+          SseEventReader reader = eventSource.getEventReader(); // Receive event stream
+  
+          SseEventType type = null;
+          while ((type = reader.next()) != SseEventType.EOS) { // Wait until type is DATA
+              switch (type) {
+                  case DATA:
+                      // Return the payload of the last received event
+                      logArea.setText(&quot;&lt;html&gt;&quot; + reader.getData() + &quot;&lt;/html&gt;&quot;);
+                      break;
+                  case EMPTY:
+                      logArea.setText(&quot;&lt;html&gt;&quot; + &quot;&lt;/html&gt;&quot;);
+                      break;
+              }
+          }
+  
+      }
+      catch (Exception ex) {
+          logArea.setText("Exception: " + ex.getMessage());
+      }
+    }
+};
+</pre>
+<span class="note"><b>Notes:</b><br>
+ <ul class="arrow-2">
+     <li>The SseEventReader class has a <span class="uri">next()</span> method that causes the thread to block until an event is received.</li>
+     <li>The <span class="uri">getData()</span> method returns the payload of the last received event. This is not a blocking call. This method should be invoked after <span class="uri">next()</span> only if the returned type is <span class="uri">SseEventType.DATA</span>. Otherwise, an IOException is thrown.</li>
+     <li>Receiving events is performed in a separate thread. In UI-based Java clients, receiving events should be done on a separate thread to avoid blocking the java.awt EventDispatchThread.</li>
+     <li>A switch block is used to manage different types of events. The SseEventType class is used to identify the type. It has three values: <span class="uri">EOS</span> for end of stream, <span class="uri">EMPTY</span> for empty events, and <span class="uri">DATA</span> for events. </li></ul>
+</span>
+</li>
+
+<li>Later, you can call the <span class="uri">close()</span> method in case you want to stop listening to messages from a particular event source.
+<pre class="auto-links: false; brush: java; toolbar: false;">
+eventSource.close();
+</pre>
+</li>
+</ol>
+        
+        <h2>Next Step</h2>
+        <p><a href="p_dev_java_migrate.html">Migrate WebSocket and ByteSocket Applications to Kaazing WebSocket Gateway 4.x</a></p>
+
+
+                  </section>
+                </article>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

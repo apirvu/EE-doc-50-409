@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/management/p_monitor_configure_secure/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+
+ <h1 id="secure-kaazing-gateway-monitoring">Secure KAAZING Gateway Monitoring</h1>
+
+<p>KAAZING Gateway monitoring is secured by an explicitly specified security realm name. The <code>realm-name</code> element refers to one of the named realms inside the <code>service</code> element.</p>
+
+<h2 id="before-you-begin">Before You Begin</h2>
+
+<p>This procedure is part of <a href="../o_monitor">Monitor the Gateway</a>:</p>
+
+<ol>
+  <li><a href="../o_monitor#introduction-to-monitoring-kaazing-gateway">Introduction to Monitoring KAAZING Gateway</a></li>
+  <li><strong>Secure KAAZING Gateway Monitoring</strong></li>
+  <li>Monitor a Gateway or Gateway cluster
+    <ul>
+      <li><a href="../p_monitor_cc">Monitor with Command Center</a> (Recommended)</li>
+      <li><a href="../p_monitor_jmx">Monitor with JMX</a></li>
+    </ul>
+  </li>
+  <li><a href="../../troubleshooting/o_troubleshoot">Troubleshoot the Gateway</a></li>
+</ol>
+
+<h2 id="to-secure-management-for-the-gateway">To Secure Management for the Gateway</h2>
+
+<ol>
+  <li>Open the Gateway configuration file (for example, <code>GATEWAY_HOME/conf/gateway-config.xml)</code> in a text editor.</li>
+  <li>
+    <p>Add a realm and a security authorization constraint as shown in the following example for the SNMP Management service:</p>
+
+    <pre><code class="language-xml">    &lt;service&gt;
+      &lt;name&gt;SNMP Management&lt;/name&gt;
+      &lt;description&gt;SNMP Management Service&lt;/description&gt;
+      &lt;accept&gt;ws://${gateway.hostname}:${gateway.base.port}/snmp&lt;/accept&gt;
+
+      &lt;type&gt;management.snmp&lt;/type&gt;
+
+      &lt;!-- secure monitoring using a security realm --&gt;
+      &lt;realm-name&gt;commandcenter&lt;/realm-name&gt;
+
+      &lt;!-- configure the authorized user roles --&gt;
+      &lt;authorization-constraint&gt;
+        &lt;require-role&gt;ADMINISTRATOR&lt;/require-role&gt;
+      &lt;/authorization-constraint&gt;
+
+      &lt;cross-site-constraint&gt;
+        &lt;allow-origin&gt;*&lt;/allow-origin&gt;
+      &lt;/cross-site-constraint&gt;
+    &lt;/service&gt;
+</code></pre>
+  </li>
+</ol>
+
+<p><strong>Note:</strong> Password authentication over the Secure Sockets Layer (SSL) and Transport Layer Security (TLS) is enabled by default in JMX. Consequently, you must have a digital certificate for the hostname of the Gateway in the keystore.db file used by the Gateway. In addition, access to port 2020 must be enabled in your network for the remote monitoring agent to connect to the Gateway. For information on how to create a certificate for the hostname of the Gateway, see <a href="../../security/o_tls">Secure Network Traffic with the Gateway</a>.</p>
+
+<h2 id="see-also">See Also</h2>
+
+<ul>
+  <li>The <code>management.snmp</code> and <code>management.jmx</code> service types in the <a href="../../admin-reference/r_configure_gateway_service">Service Reference</a> documentation</li>
+  <li><a href="../../security/c_security_about">About Security with KAAZING Gateway</a></li>
+</ul>
+
+
+</div>
+
+</div>
+
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

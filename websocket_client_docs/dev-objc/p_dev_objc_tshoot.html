@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+<h1>Troubleshoot Your Objective-C Client</h1>
+<p>This topic contains descriptions of common errors that might occur when using the Objective-C Client API and provides steps on how to prevent these errors.</p>
+
+<h2>Before You Begin</h2>
+<p>This procedure is part of Checklist: <a href="o_dev_objc.html">Build Objective-C (iOS) Clients Using Kaazing WebSocket Gateway</a>:</p>
+<ol>
+<li><a href="p_dev_objc_client.html">Use the Kaazing WebSocket Gateway Objective-C Client API</a></li>
+<li><a href="p_dev_objc_secure.html">Secure Your Objective-C Client</a></li>
+<li><a href="p_dev_objc_log.html">Display Logs for the Objective-C Client</a></li>
+<li><strong>Troubleshoot Your Objective-C Client</strong></li>
+</ol>
+
+<p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../release-notes.html">Release Notes</a>.</span></p>
+
+<h2>What Problem Are You Having?</h2>
+<ul class="arrow-2">
+    <li><a href="#problem1">Lexical or Preprocessor Issue: KGWebSocket not found</a></li> 
+    <li><a href="#problem2">Apple Mach-O Linker (Id) Error</a></li> 
+    <li><a href="#problem3">Error: Selector Not Recognized or NSInvalidArgumentException</a></li> 
+</ul>
+
+<h2><a name="problem1"></a>Lexical or Preprocessor Issue: KGWebSocket not found</h2>
+<p><strong>Cause:</strong> This error occurs because Xcode cannot locate the KGWebSocket.framework file that references a header file.</p>
+<p><strong>Solution:</strong> To resolve this error, correct the <strong>Framework Search Paths</strong> setting by performing the following steps:</p>
+<ol>
+    <li><p>Navigate to the location of the Kaazing WebSocket Gateway Objective-C framework:</p>
+    <p><span class="uri"><em>GATEWAY_HOME</em>/lib/client/ios/KGWebSocket.dmg</span></p>
+    <p>Expand kaazing-ios-library.zip if necessary.</p></li>
+    <li>Double-click the the <strong>KGWebSocket.dmg</strong> image to mount it.</li>
+    <li>Drag the <strong>KGWebSocket.framework</strong> file from the mounted volume into the <strong>Frameworks</strong> folder in the Xcode project navigator.</li>
+    <li><p>In the <strong>Choose options for adding these files</strong> dialog that appears, enable the <strong>Copy items into destination group’s folder</strong> checkbox, select your project in <strong>Add to targets</strong>, and click <strong>Finish</strong>.</p>
+    <p>Xcode adds the framework to the project navigator, updates the <strong>Framework Search Paths</strong> setting in <strong>Build Settings</strong> with the path to the framework, and updates the <strong>Link Binary With Libraries</strong> settings in <strong>Build Phases</strong> automatically.</p></li>
+    <p><strong>Note:</strong> You can also choose to add the <strong>KGWebSocket.framework</strong> file into your local <strong>/Library/Frameworks/</strong> folder or a network share before adding it to your project. This is a common practice for managing frameworks.</p>
+    </li>
+</ol>
+
+<h2><a name="problem2"></a>Apple Mach-O Linker (Id) Error</h2>
+<p><strong>Cause:</strong> This error will refer to "undefined symbols" beginning with <span class="uri">_CFHTTP</span>, for example <span class="uri">_CFHTTPMessageAddAuthentication</span>. The error occurs because the Xcode project is missing the CFNetwork.framework file. Clients built using the Kaazing WebSocket Gateway Objective-C library also require the CFNetwork.framework.</p>
+
+<p><strong>Solution:</strong> To resolve this error, add CFNetwork.framework by performing the following steps:</p>
+<ol>
+    <li>Click <strong>Build Phases</strong> at the top of the project editor.</li>
+    <li>Open the <strong>Link Binary With Libraries</strong> section.</li>
+    <li>Click the <strong>Add (+)</strong> button to add a library or framework.</li>
+    <li><p>Enter <span class="uri">CFNetwork.framework</span> in the search field. <strong>CFNetwork.framework</strong> is displayed automatically.</p> 
+        <p>If you do not see <strong>CFNetwork.framework</strong>, then you might not have iOS SDK 5.1 or later installed. You can install the SDK as part of the Xcode bundle.</p></li>
+    <li>Select <strong>CFNetwork.framework</strong> and click <strong>Add</strong>. CFNetwork.framework is added to the Xcode project and appears in the Xcode project navigator. You can drag CFNetwork.framework into the <strong>Frameworks</strong> folder.</li>
+</ol>
+
+
+<h2><a name="problem3"></a>Error: Selector Not Recognized or NSInvalidArgumentException</h2>
+<p><strong>Cause:</strong> These errors occur because the Xcode project is linking against an Objective-C static library that contains categories and the <span class="uri">-ObjC</span> value for the <strong>Other Linker Flags</strong> build setting is not configured. Basically, the error occurs when a library extends one of the built-in classes using a category. An example of the Selector Not Recognized error:</p>
+
+<p class="code">[__NSCFConstantString indexOf:]: unrecognized selector sent to instance 0x...</p>
+
+<p>Objective-C does not define linker symbols for each function (or method, in Objective-C). Linker symbols are only generated for each class. If you extend a pre-existing class with categories, the linker does not know to associate the object code of the core class implementation and the category implementation. This prevents objects created in the resulting application from responding to a selector that is defined in the category.  The <span class="uri">-ObjC</span> flag causes the linker to load every object file in the library that defines an Objective-C class or category.</p>
+
+<p>For more information, see <a href="http://developer.apple.com/library/mac/#qa/qa1490/_index.html">Building Objective-C static libraries with categories</a>.</p>
+
+<p><strong>Solution:</strong> To resolve this error, add the <span class="uri">-ObjC</span> value for the <strong>Other Linker Flags</strong> build setting by performing the following steps:</p>
+<ol>
+<li>In the project navigator, select the target to which you want to add a library or framework.</li>
+<li>Click the <strong>Build Settings</strong> tab and scroll down to the <strong>Linking</strong> section.</li>
+<li>In <strong>Other Linker Flags</strong>, add the value <span class="uri">-ObjC</span>.</li>
+</ol>
+
+<span class="note"><b>Note:</b> NSInvalidArgumentException is a constant in the Foundation framework (defined by NSException) and is thrown whenever you pass an invalid argument to a method. Consequently, it might be thrown for reasons other than the missing <span class="uri">-ObjC</span> flag.</span>
+
+<h2>See Also</h2>
+<ul class="arrow-2">
+<li><a href="http://developer.apple.com/library/mac/navigation/#section=Resource%20Types&amp;topic=Technical%20Q%26amp%3BAs">Mac Developer Library Technical Q&amp;As</a></li>
+<li><a href="http://developer.apple.com/library/ios/#documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Introduction/Introduction.html">Instruments User Guide</a></li>
+<li><a href="http://www.tuaw.com/${enterprise.logo}1/02/21/how-to-inspect-ioss-http-traffic-without-spending-a-dime/">How to inspect iOS's HTTP traffic without spending a dime</a></li>
+</ul>
+
+
+    
+                  </section>
+                </article>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

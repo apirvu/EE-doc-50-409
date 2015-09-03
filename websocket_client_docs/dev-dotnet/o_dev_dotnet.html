@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+<h1>Checklist: Build Microsoft .NET and Silverlight Clients Using Kaazing WebSocket Gateway</h1>
+<p></p>
+
+<p>This checklist provides the steps to enable your .NET Framework or Silverlight application to communicate with Kaazing WebSocket Gateway using the signed client libraries:</p>
+
+<table class="checklist">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col" width="400">Step</th>
+    <th scope="col">Topic or Reference</th>
+  </tr>
+  <tr>
+  <td>1</td>
+    <td>Learn about supported browsers, operating systems, and platform versions.</td>
+    <td><a href="../release-notes.html">Release Notes</a></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Set up the development environment for Microsoft Silverlight or .NET development with the Gateway.</td>
+    <td><a href="p_dev_dotnet_setup.html">Set Up Your Development Environment</a></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Learn how to use the WebSocket API provided by the Kaazing client library.</td>
+    <td><a href="p_dev_dotnet_websocket.html">Interact with Kaazing WebSocket Gateway Using the WebSocket API</a></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Learn how to use the EventSource API provided by the Kaazing client library.</td>
+    <td><a href="p_dev_dotnet_eventsource.html">Interact with Kaazing WebSocket Gateway Using the EventSource API</a></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Learn how to use the ByteSocket API provided by the Kaazing client library.</td>
+    <td><a href="p_dev_dotnet_bytesocket.html">Interact with Kaazing WebSocket Gateway Using the ByteSocket API</a></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Configure your client to connect automatically during startup.</td>
+    <td><a href="p_dev_dotnet_automatic.html">Configure Automatic Connection</a></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Learn how to authenticate your client with the Gateway.</td>
+    <td><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET and Silverlight Client</a></td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>Set up logging for your client.</td>
+    <td><a href="p_clientlogging_dotnet.html">Display Logs for .NET and Silverlight Clients</a></td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>Troubleshoot the most common issues that occur when using Microsoft .NET and Silverlight clients with the Gateway.</td>
+    <td><a href="p_dev_dotnet_tshoot.html">Troubleshoot Your Microsoft .NET and Silverlight Clients</a></td>
+  </tr>
+</table>     
+
+  <h2><a name="overview_sl" id="overview_sl"></a>Overview of Microsoft Silverlight</h2>
+  <p>Microsoft Silverlight  (Silverlight) is a browser plugin that enables rich Internet applications. It runs in browsers on the Microsoft Windows and Mac operating systems. Silverlight version 4.0 provides  support for .NET languages and development tools.</p>
+  <p>For more information about Silverlight, visit <span class="uri"><a href="http://www.microsoft.com/silverlight/">http://www.microsoft.com/silverlight/</a></span>.</p>
+
+  <h2><a name="overview_dotnet" id="overview_dotnet"></a>Overview of Microsoft .NET Framework</h2>
+      <p>Microsoft .NET Framework (.NET) provides a common language runtime, base libraries, and development technologies to build applications for Microsoft Windows desktop, mobile and server platforms.</p>
+      <p>For more information about the .NET Framework, visit <span class="uri"><a href="http://www.microsoft.com/NET/">http://www.microsoft.com/NET/</a></span>.
+
+    <h2><a name="websocket_sl" id="websocket_sl"></a>WebSocket and the Microsoft Silverlight and .NET Framework</h2>
+  <p>Kaazing WebSocket Gateway provides client libraries that enable you to use HTML5 Communication protocols (for example, WebSocket and Server-Sent Events) in new or existing Silverlight or .NET Framework applications. For example, you can create a .NET  application that receives streaming news data through Server-Sent Events (SSE). The following figure shows a high-level overview of the architecture:</p>
+    <figure>
+        <img src="../images/f-html5-.net-client2-web.jpg" width="781" height="207" alt="Silverlight and .NET architecture overview"> 
+    <figcaption><strong>Figure: Silverlight and .NET architecture overview</strong></figcaption>    
+    </figure>
+
+  <h2><a name="demo" id="demo"></a>Taking a Look at a Demo Using Kaazing Client Libraries for  Microsoft Silverlight and .NET</h2>
+  <p>Before you start, take a look at an out of the box demo that was built with the Kaazing client libraries for Silverlight and .NET: the WebSocket Echo demo that is part of the Kaazing WebSocket Gateway bundle.</p>
+  <p>To see this Silverlight demo in action, perform the following steps:</p>
+  <ol>
+    <li>Start the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+    <li>In a browser, navigate to the out of the box demos at <span class="uri">http://localhost:8001/demo/</span>. </li>
+    <li>Click <strong>Silverlight</strong> and follow the instructions.</li>
+</ol>
+  <p>The Silverlight demo shows a simple WebSocket Echo procedure.</p>
+
+                  </section>
+                </article>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>KAAZING.org - KAAZING.org Docs</title>
+  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
+  <link rel="icon" href="/img/favicon.ico">
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/pygments.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/doc.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+				<li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+				<li><a href="http://kaazing.org/download">Download</a></li>
+				<li><a href="http://kaazing.org/demos">Demos</a></li>
+				<li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+				<li><a href="http://kaazing.org/blog">Blog</a></li>
+				<li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+
+    <div class="container page-content text-left">
+
+  <link rel="stylesheet" href="/css/doc.css">
+
+<div class="container page-content text-left">
+<h1>Secure Your Flash Client</h1>
+
+<p>Before you add security to your clients, follow the steps in <a href="../security/o_aaa_config_authentication.html">Checklist: Configure Authentication and Authorization</a> to set up security on Kaazing WebSocket Gateway for your client. The authentication and authorization methods configured on the Gateway influence your client's security implementation. For information on secure network connections between clients and the Gateway, see <a href="../security/o_tls.html">Checklist: Secure Network Traffic with the Gateway</a>.</p>
+
+<h2>Before You Begin</h2><p>This procedure is part of <a href="o_dev_flash.html">Checklist: Build Flash Clients Using Kaazing WebSocket Gateway</a>:</p><ol><li><a href="p_dev_flash_setup.html">Set Up Your Development Environment</a></li><li><a href="p_dev_flash_websocket.html">Interact with Kaazing WebSocket Gateway Using the WebSocket API</a></li><li><a href="p_dev_flash_eventsource.html">Interact with Kaazing WebSocket Gateway Using the EventSource API</a></li><li><b>Secure Your Flash Client</b></li><li><a href="p_clientlogging_flash.html">Display Logs for the Flash Client</a></li><li><a href="p_dev_flash_tshoot.html">Troubleshoot Your Flash Client</a></li></ol>
+
+                <h2>To Secure Your Flash Client</h2>
+                <p>This section contains the following topics:</p>
+                <ul>
+                <li><a href="#basicchalengehandler">Creating a Basic Challenge Handler</a></li>
+    <li><a href="#wildcards_challenge">Using Wildcards to Match Sub-domains and Paths</a></li>
+                <li><a href="#basicloginhandler">Creating a Basic Login Handler</a></li>
+                <li><a href="#complexloginhandler">Creating a More Complex Login Handler</a></li>
+        <li><a href="#manage">Managing Log In Attempts</li> 
+                <li><a href="#kerberos">Creating Kerberos Challenge Handlers</a></li>
+                <li><a href="#kerberos_directly">Directly Establish a Global Kerberos Challenge Handler</a></li>
+                <li><a href="#kerberos_directly_location">Directly Establish a Global Kerberos Challenge Handler for a Specific Location</a></li>
+                <li><a href="#kerberos_negotiate">Implementing a Global Negotiate HTTP Authentication Strategy</a></li>
+                <li><a href="#kerberos_negotiate_location">Implementing a Negotiate HTTP Authentication Strategy for a Specific Location</a></li>
+                </ul>
+
+                <p>Authenticating your client involves implementing a challenge handler to respond to authentication challenges from the Gateway. If your challenge handler is responsible for obtaining user credentials, then you will also need to implement a login handler.</p>
+
+                 <p class="note-para"><span class="note"><strong>Note</strong>: To use the Kaazing WebSocket Gateway Flash client security library, ensure you add the following argument to the Flash compiler:<br><br><span class="uri">-include-libraries<br><span class="uri"><em>GATEWAY_HOME</em></span>/lib/client/flash/com.kaazing.gateway.client.swc</span><br><br>If you built your application using Flash Builder, you can do this by choosing <strong>Project</strong> &gt; <strong>Properties</strong>. In the dialog, choose <strong>Flex Compiler</strong>, then add the argument to the <strong>Additional compiler arguments</strong> text box. Otherwise, add the argument to the Flash compiler manually.</span></p>
+
+
+                <h3><a name="basicchalengehandler"></a>Creating a Basic Challenge Handler</h3>
+                <p>A challenge handler is a constructor used in an application to respond to authentication challenges from the Gateway when the application attempts to access a protected resource. Each of the resources protected by the Gateway is configured with a different authentication scheme (for example, Basic, Application Basic, Application Negotiate, or Application Token), and your application requires a challenge handler for each of the schemes that it will encounter or a single challenge handler that will respond to all challenges. Also, you can add a dispatch challenge handler to route challenges to specific challenge handlers according to the URI of the requested resource.</p>
+
+                <p>For information about each authentication scheme type, see <a href="../security/p_aaa_config_authscheme.html">Configure the HTTP Challenge Scheme</a>.</p>
+
+                <p>Clients with a single challenge handling strategy for all 401 challenges can simply set a specific challenge handler as the default using <span class="uri">ChallengeHandlers.setDefault()</span>. The following is an example of how to implement the authentication challenge in your client taken from the out of the box Flash &amp; Flex demo at <span class="uri">http://localhost:8001/demo/</span>:</p>
+                <pre class="auto-links: false; brush: js; toolbar: false;"> 
+                // Configure a Basic Challenge Handler
+                var basicHandler:BasicChallengeHandler = new DefaultBasicChallengeHandler();
+                basicHandler.setLoginHandler(new DemoLoginHandler(this));
+                ChallengeHandlers.setDefault(basicHandler);</pre>
+                <p>For a complete example of a Flash client using security, see the out of the box demos located in <span class="uri"><em>GATEWAY_HOME</em>/demo/flash</span>.</p>
+                
+                <p><span class="note"><b>Note:</b> When using a <code>BasicChallengeHandler</code>, you must load the <code>DefaultBasicChallengeHandler</code>. To do so, either explicitly set this in your code (as shown in the previous code example), or add the necessary compiler argument to Flash Builder by going to Project Properties > Build path > Flex compiler and typing following into the Additional Compiler Arguments text box:<br>
+                        <code>-includes com.kaazing.gateway.client.security.impl.DefaultBasicChallengeHandler</code>
+                </p>
+
+                <p>Here is an example of how to set a global challenge handler declaratively:</p>
+                <pre class="auto-links: false; brush: js; toolbar: false;">
+                var loginHandler:LoginHandler = new SampleLoginHandler1();
+
+                ChallengeHandlers.setDefault(
+                        (ChallengeHandlers.load(BasicChallengeHandler) as BasicChallengeHandler)
+                        .setLoginHandler(loginHandler)</pre>
+
+                <p>The following example demonstrates how to register a location-specific challenge handler:</p>
+
+                <pre class="auto-links: false; brush: js; toolbar: false;">
+                var dispatchChallengeHandler:DispatchChallengeHandler = 
+                        ChallengeHandlers.load(DispatchChallengeHandler);
+
+                var basicChallengeHandler:BasicChallengeHandler = ChallengeHandlers.load(BasicChallengeHandler);
+
+                basicChallengeHandler.loginHandler =  new SampleLoginHandler1();
+
+                dispatchChallengeHandler.register("ws://my.server.com", basicChallengeHandler);
+
+                ChallengeHandlers.setDefault(dispatchChallengeHandler);</pre>
+
+                <p>Here is how to register a location-specific challenge handler declaratively:</p>
+
+                <pre class="auto-links: false; brush: js; toolbar: false;">
+                ChallengeHandlers.setDefault(ChallengeHandlers.load(DispatchChallengeHandler)
+                        .register("ws://my.server.com",
+                                (ChallengeHandlers.load(BasicChallengeHandler) as BasicChallengeHandler)
+                                .setLoginHandler(new SampleLoginHandler1()))
+                );</pre>
+
+                <p>To following example demonstrates how to register multiple location-specific challenge handlers declaratively:</p>
+
+                <pre class="auto-links: false; brush: js; toolbar: false;">
+                var myServerLoginHandler:LoginHandler = new SampleLoginHandler1();
+
+                var anotherServerLoginHandler:LoginHandler = new SampleLoginHandler2();
+
+                ChallengeHandlers.setDefaultImplementation(ChallengeHandler, SampleChallengeHandler);
+
+                ChallengeHandlers.setDefault(ChallengeHandlers.load(DispatchChallengeHandler)
+                        .register("ws://my.server.com",
+                                (ChallengeHandlers.load(BasicChallengeHandler) as BasicChallengeHandler)
+                                        .setLoginHandler(myServerLoginHandler))
+                        .register("ws://another.server.com",
+                                (ChallengeHandlers.load(ChallengeHandler) as SampleChallengeHandler)
+                                        .setLoginHandler(anotherServerLoginHandler))
+                );</pre>
+
+                <h3><a name="wildcards_challenge"></a>Using Wildcards to Match Sub-domains and Paths</h3>
+                <p>You can use wildcards (&ldquo;*&rdquo;) when registering locations using <span class="uri">DispatchChallengeHandler</span>. Some examples of <span class="uri">locationDescription</span> values with wildcards are:</p>
+                <ul>
+                    <li><span class="uri">*/</span> matches all requests to any host on port 80 (default port), with no user information or path specified.</li> 
+                        <li><span class="uri">*.hostname.com:8000</span> matches all requests to port 8000 on any sub-domain of hostname.com, but not hostname.com itself.</li> 
+                        <li><span class="uri">server.hostname.com:*/*</span> matches all requests to a particular server on any port on any path but not the empty path.</li>
+                 </ul>
+
+                <h3><a name="basicloginhandler"></a>Creating a Basic Login Handler</h3>
+                          <p>The following example demonstrates how to implement a login handler in your client:</p>
+                       <pre class="auto-links: false; brush: js; toolbar: false;">
+
+                // Implement a login handler class
+                public class SampleLoginHandler extends LoginHandler {
+                    public function SampleLoginHandler() {
+                        super(this);
+                    }
+                    override public function getCredentials(continuation:Function):void {
+                        continuation(&quot;joe&quot;, &quot;welcome&quot;);
+                    }
+                }</pre>
+
+                <h3><a name="complexloginhandler"></a>Creating a More Complex Login Handler</h3>
+                    <p>The following example implements a more complex login handler to restrict login attempts to 3:</p>
+                    <pre class="auto-links: false; brush: js; toolbar: false;">
+                package com.kaazing.gateway.client.security.demo {
+                        import com.kaazing.gateway.client.security.LoginHandler; 
+                        import flash.display.DisplayObject; 
+                        import flash.utils.ByteArray; 
+                        import mx.managers.PopUpManager; 
+
+                        public class LimitedRetriesDemoLoginHandler extends LoginHandler {
+                        private var displayObject: DisplayObject;
+                        private const LIMIT: int = 3;
+                        private var attempts: int = 0;
+                        public function LimitedRetriesDemoLoginHandler(displayObject: DisplayObject) {
+                                 super(this);
+                                 this.displayObject = displayObject;
+                             }
+
+                                override public function getCredentials(continuation:Function):void {
+                                 attempts++;
+
+                                 if ( attempts &gt; LIMIT ) {
+                                     // send an event perhaps to notify the wider application of attempt violation
+                                     attempts = 0;
+                                     continuation(null, null);
+                                 } else {
+                                     var loginWindow:LoginForm=LoginForm(PopUpManager.createPopUp(displayObject, 
+                                            LoginForm, false));
+                                     PopUpManager.centerPopUp(loginWindow);
+                                     loginWindow.continuation = continuation;
+                                 }
+                                }
+                    }
+                }</pre>
+
+<a id="manage"></a><h4>Managing Log In Attempts</h4>
+<p>As displayed above, when it is not possible for the Kaazing WebSocket Gateway client to create a challenge response, the client must return <code>null</code> to the Gateway to stop the Gateway from continuing to issue authentication challenges.</p>
+
+<p>The following sample taken from <a href="#complexloginhandler">Creating a More Complex Login Handler</a> demonstrates how to stop the Gateway from issuing further challenges.</p>
+
+<pre class="auto-links: false; brush: js; toolbar: false;">
+if ( attempts &gt; LIMIT ) {
+    // send an event perhaps to notify the wider application of attempt violation
+    attempts = 0;
+    continuation(null, null);
+} else {
+    var loginWindow:LoginForm=LoginForm(PopUpManager.createPopUp(displayObject, 
+           LoginForm, false));
+    PopUpManager.centerPopUp(loginWindow);
+    loginWindow.continuation = continuation;
+}</pre>
+
+                <h3><a name="kerberos"></a>Creating Kerberos Challenge Handlers</h3>
+                <p>The following examples demonstrate different implementations of Kerberos challenge handlers. When registered with the <span class="uri">DispatchChallengeHandler</span>, a <span class="uri">KerberosChallengeHandler</span> directly responds to Negotiate challenges where Kerberos-generated authentication credentials are required. In addition, a <span class="uri">KerberosChallengeHandler</span> can be used indirectly in conjunction with a <span class="uri">NegotiateChallengeHandler</span> to assist in the construction of a challenge response using object identifiers. For more information, see the <a href="../apidoc/client/flash/gateway/index.html"><i>ActionScript Client API</i></a>.</p>
+
+                <h3><a name="kerberos_directly"></a>Directly Establish a Global Kerberos Challenge Handler</h3>
+
+                <p>The following example uses <span class="uri">KerberosChallengeHandler</span> to create a global Kerberos challenge handler:</p>
+
+                <pre class="auto-links: false; brush: js; toolbar: false;">
+                var loginHandler:LoginHandler = new SampleLoginHandler1();
+                ChallengeHandlers.setDefault(
+                        (ChallengeHandlers.load(KerberosChallengeHandler) as KerberosChallengeHandler)
+                        .setLoginHandler(loginHandler));</pre>
+
+                <h3><a name="kerberos_directly_location"></a>Directly Establish a Global Kerberos Challenge Handler for a Specific Location</h3>
+                <p>The following example uses the <span class="uri">register()</span> method to establish a challenge handler for a specific location:</p>
+                <pre class="auto-links: false; brush: js; toolbar: false;">
+                var loginHandler:LoginHandler = new SampleLoginHandler1();
+
+                ChallengeHandlers.setDefault(
+                        (ChallengeHandlers.load(DispatchChallengeHandler) as DispatchChallengeHandler)
+                        .register("ws://some.server.com:8010/kerberos5",
+                                (ChallengeHandlers.load(KerberosChallengeHandler) as KerberosChallengeHandler)
+                                .setDefaultLocation("ws://kb.hostname.com/kerberos5")
+                                .setRealmLocation("ATHENA.MIT.EDU", "ws://athena.hostname.com/kerberos5")
+                                .setServiceName("HTTP/servergw.hostname.com")
+                                .setLoginHandler(loginHandler))
+                );</pre>
+
+                <h3><a name="kerberos_negotiate"></a>Creating a Global Negotiate HTTP Authentication Strategy</h3>
+                <p>The following example establishes a single HTTP authentication strategy for all challenges.</p>
+                <pre class="auto-links: false; brush: js; toolbar: false;">
+                var loginHandler:LoginHandler = new SampleLoginHandler1();
+
+                ChallengeHandlers.setDefault(
+                        (ChallengeHandlers.load(NegotiateChallengeHandler) as NegotiateChallengeHandler)
+                        .register((ChallengeHandlers.load(KerberosChallengeHandler) as KerberosChallengeHandler)
+                                .setLoginHandler(loginHandler))
+                        // register additional alternatives to negotiate here.
+                );</pre>        
+
+                <h3><a name="kerberos_negotiate_location"></a>Creating a Negotiate HTTP Authentication Strategy for a Specific Location</h3>
+                <p>The following example uses the <span class="uri">register()</span> method to establish a location-specific negotiate HTTP authentication strategy:</p>
+
+                <pre class="auto-links: false; brush: js; toolbar: false;">
+                var loginHandler:LoginHandler = new SampleLoginHandler1();
+                ChallengeHandlers.setDefault(
+                        (ChallengeHandlers.load(DispatchChallengeHandler) as DispatchChallengeHandler)
+                        .register("ws://some.server.com",
+                                (ChallengeHandlers.load(NegotiateChallengeHandler) as NegotiateChallengeHandler)
+                                .register((ChallengeHandlers.load(KerberosChallengeHandler) as 
+                                                        KerberosChallengeHandler)
+                                                .setDefaultLocation("ws://kb.hostname.com/kerberos5")
+                                            .setRealmLocation("ATHENA.MIT.EDU", "ws://athena.hostname.com/kerberos5")
+                                            .setServiceName("HTTP/servergw.hostname.com")
+                                            .setLoginHandler(loginHandler))
+                        // register additional alternatives to negotiate here.
+                        )
+                );</pre>
+
+
+                <!-- <h2>Next Step</h2>
+                <p><a href="p_clientlogging_flash.html">Display Logs for the Flash Client</a></p> -->
+
+                  </section>
+                </article>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+    <footer>
+  <div class="container">
+
+    <div class="row text-center social-media">
+      <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+      <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+      <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+      <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+      <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+      <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+    </div>
+
+    <div class="row copyright">
+      <div class="col-xs-12 col-sm-5 text-left">
+        &copy; 2007-2015 Kaazing Corporation
+      </div>
+      <div class="col-xs-12 col-sm-7 license">
+        This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- start:javascript for this page -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1771436-3', 'auto');
+  ga('send', 'pageview');
+  </script
+  <!-- end:javascript for this page -->
+
+
+</body>
+</html>
