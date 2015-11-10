@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/doc.css">
 
-  
+
   <!--[if lt IE 9]>
     <script src="/js/jquery-1.11.1.min.js"></script>
     <script src="/js/html5shiv.min.js"></script>
@@ -91,7 +91,7 @@
 <li>Update the <strong>JMSViewController</strong> class in <strong>JMSViewController.m</strong> to use the <strong>StompConnectionListener</strong>, <strong>MessageListener</strong>, and <strong>ExceptionListener</strong> code.</li>
 <li>Start Apache ActiveMQ and Kaazing Gateway.</li>
 <li>Build and run the client in the iPhone Simulator.</li>
-</ol> 
+</ol>
 
 <p>For information about the Kaazing Gateway Objective-C JMS client library, see <a href="../apidoc/client/ios/jms/KMStompJMS/index.html">Objective-C JMS Client API</a>.</p>
 
@@ -122,8 +122,8 @@
 <ol>
     <li>Set up your development environment using the following:
         <ul class="arrow-2">
-            <li>Download and install Kaazing Gateway, as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li> 
-            <li>Download and install Apple <a href="https://developer.apple.com/xcode/">Xcode 4.4</a> or later (requires Mac OS X 10.7.4 or later). The Xcode bundle includes the iOS SDK.</li> 
+            <li>Download and install Kaazing Gateway, as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+            <li>Download and install Apple <a href="https://developer.apple.com/xcode/">Xcode 4.4</a> or later (requires Mac OS X 10.7.4 or later). The Xcode bundle includes the iOS SDK.</li>
         </ul>
     </li>
 
@@ -143,7 +143,7 @@ In this file, user interface objects and outlet connections (connections between
             <tr><td>JMSViewController class</td><td>The fundamental view-management model for the client. This class defines how the client’s data and its visual appearance are linked. For more information, see <a href="http://developer.apple.com/library/ios/#documentation/uikit/reference/UIViewController_Class/Reference/Reference.html">UIViewController Class</a>.</td></tr>
         </table>
     </li>
-    
+
     <li>Launch Xcode.</li>
     <li><p>Create a new Xcode project.</p>
         <ol type="a">
@@ -151,7 +151,7 @@ In this file, user interface objects and outlet connections (connections between
             <li><p>Under <strong>iOS</strong>, click <strong>Application</strong>, and click <strong>Single View Application</strong>. Click <strong>Next</strong>. The project options page appears.</p>
                     <figure>
                         <img src="../images/dev-io-client-project-options.jpg">
-                    <figcaption><strong>Figure: Options for the Single View Application project</strong></figcaption>    
+                    <figcaption><strong>Figure: Options for the Single View Application project</strong></figcaption>
                     </figure>
             </li>
             <li>Enter a name for your product in <strong>Product Name</strong>, such as <span class="code_inline">JMSDemo</span>, and a class prefix such as <span class="code_inline">JMS</span> in <strong>Class Prefix</strong>. Xcode uses the product name you entered to name your project and the client, and the class prefix to name the classes and files it generates for you.</li>
@@ -163,12 +163,12 @@ In this file, user interface objects and outlet connections (connections between
             <p>The new project is created along with the default files.</p>
                 <figure>
                     <img src="../images/dev-ios-client-project.jpg">
-                <figcaption><strong>Figure: New Xcode Project</strong></figcaption>    
+                <figcaption><strong>Figure: New Xcode Project</strong></figcaption>
                 </figure>
             </li>
         </ol>
     </li>
-    
+
     <li><p>Next, add the Kaazing Gateway Objective-C framework to the project.</p>
         <ol type="a">
             <li><p>Navigate to the location of the Kaazing Gateway Objective-C frameworks:</p>
@@ -182,7 +182,7 @@ In this file, user interface objects and outlet connections (connections between
             </li>
         </ol>
     </li>
-    
+
     <li><p>Add CFNetwork.framework to the project. CFNetwork is a framework in the iOS Core Services framework that provides a library of abstractions for network protocols.</p>
         <ol type="a">
             <li>In the project navigator, select the target to which you want to add a library or framework. In this example, <span class="code_inline">JMSDemo</span>.</li>
@@ -193,7 +193,7 @@ In this file, user interface objects and outlet connections (connections between
 <p>The CFNetwork.framework is now listed in the <strong>Frameworks</strong> folder in the project navigator.</p></li>
         </ol>
     </li>
-    
+
     <li><p>Add the <span class="code_inline">-ObjC</span> value to the <strong>Other Linker Flags</strong> build setting because the Kaazing Gateway Objective-C API code you add links against an Objective-C static library that contains categories. You must add this value to prevent a runtime exception of "selector not recognized". For more information, see <a href="http://developer.apple.com/library/mac/#qa/qa1490/_index.html">Building Objective-C static libraries with categories</a>.</p>
         <ol>
             <li>In the project navigator, select the target to which you want to add a library or framework. In this example, <span class="code_inline">JMSDemo</span>.</li>
@@ -202,9 +202,9 @@ In this file, user interface objects and outlet connections (connections between
         </ol>
     </li>
   <li><p>Apply the <strong>-fobjc-arc-exceptions</strong> flag. By default in Objective-C, ARC is not exception-safe for normal releases. If the <strong>-fobjc-arc-exceptions</strong> flag is not specified, then the lifetime of <code>__strong</code> variables are not ended when their scopes are abnormally terminated by an exception. To enable exceptions, on the <strong>Build Settings</strong> tab, under <strong>Apple LLVM compiler 4.2 Language</strong>, expand <strong>Other C Flags</strong>, click the + button next to <strong>Release</strong> and add the flag <strong>-fobjc-arc-exceptions</strong>.</p>
-  
+
     <p>For more information, see <a href="http://clang.llvm.org/docs/AutomaticReferenceCounting.html#exceptions">http://clang.llvm.org/docs/AutomaticReferenceCounting.html#exceptions</a>.</p>
-  
+
     </li>
     <li><p>Build the interface for the client using <strong>MainStoryboard.storyboard</strong> and the View Controller.</p>
         <ol type="a">
@@ -230,19 +230,19 @@ In this file, user interface objects and outlet connections (connections between
                 <p>When you are finished, the scene should look like the following:</p>
                     <figure>
                         <img src="../images/dev-ios-client-view.jpg">
-                    <figcaption><strong>Figure: Completed View Controller Scene</strong></figcaption>    
+                    <figcaption><strong>Figure: Completed View Controller Scene</strong></figcaption>
                     </figure>
             </li>
         </ol>
     </li>
-    
+
     <li><p>Add the actions for the buttons to the view controller header file. In our example, the file is named <span class="code_inline">JMSViewController.h</span>.</p>
         <ol type="a">
             <li><p>Modify the <span class="code_inline">JMSViewController</span> class as follows:</p>
-            
+
 <pre class="auto-links: false; brush: java; toolbar: false;">
 #import &lt;UIKit/UIKit.h&gt;
-                
+
 // Declare the JMSViewController class and add the log and updateUI methods
 @interface JMSViewController : UIViewController&lt;UITextFieldDelegate&gt;
 - (void) log:(NSString *)str;
@@ -250,7 +250,7 @@ In this file, user interface objects and outlet connections (connections between
 - (void) cleanup;</pre>
             </li>
             <li><p>Control-drag the UI controls into the <span class="code_inline">JMSViewController</span> class extension in JMSViewController.h to create actions and outlet connections (an outlet describes a connection between two objects). Configure the actions and outlet connections so that JMSViewController.h appears as follows:</p>
-            
+
 <pre class="auto-links: false; brush: java; toolbar: false; first-line: 7;">
 /* Add the action method declarations. Corresponding stub methods
 are added to JMSViewController.m automatically */
@@ -273,16 +273,16 @@ automatically */
 @property (weak, nonatomic) IBOutlet UITextView *logView;
 
 @end</pre>
-                
+
         <p>When you Control-drag the UI controls in the <span class="code_inline">JMSViewController</span>, the popover control appears:</p>
-        
+
           <figure>
             <img src="../images/dev-ios-popover-control.png">
-          <figcaption><strong>Figure: The Xcode popover control</strong></figcaption>  
+          <figcaption><strong>Figure: The Xcode popover control</strong></figcaption>
           </figure>
-        
+
         <p>For action method declarations (<span class="code_inline">IBAction</span>), choose <strong>Action</strong> in the the <strong>Connection</strong> drop-down. For outlet connections (<span class="code_inline">IBOutlet</span>), choose <strong>Outlet</strong> in the <strong>Connection</strong> drop-down. This is a common Xcode procedure. If you are unfamiliar with this procedure, see <a href="http://klanguedoc.hubpages.com/hub/IOS-5-A-Beginners-Guide-to-Storyboard-Connection">A Beginner’s Guide to Storyboard</a>.</p>
-        
+
                 <span class="note"><b>Notes:</b>
                  <ul class="arrow-2">
                      <li>For all of the buttons, ensure that <strong>Touch Up Inside</strong> is selected in the <strong>Sent Events</strong> section of the <strong>Connections Inspector</strong>. Xcode will likely configure this automatically.</li>
@@ -339,12 +339,12 @@ automatically */
 }
 
 -(NSURLCredential *) credentials {
-  
+
   _buttonIndex = -1;
   dispatch_async(dispatch_get_main_queue(), ^{
     [self popupLogin];
   });
-  
+
   // Wait for click
   while (_buttonIndex &lt; 0) {
     [NSThread sleepForTimeInterval:.2];
@@ -373,7 +373,7 @@ automatically */
   otherButtonTitles:@&quot;OK&quot;, nil];
 
   _alertView.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-  
+
   // Show alert on screen.
   [_alertView show];
 }
@@ -395,7 +395,7 @@ automatically */
   if (self) {
     _controller = controller;
   }
-  
+
   return self;
 }
 
@@ -433,7 +433,7 @@ automatically */
   if (self) {
     _controller = controller;
   }
-  
+
   return self;
 }
 
@@ -457,7 +457,7 @@ automatically */
   if ([message isKindOfClass:[KMTextMessage class]]) {
     KMTextMessage *textMessage = (KMTextMessage *)message;
     [_controller log:[NSString stringWithFormat:@&quot;RECEIVED KMTextMessage: %@&quot;, [textMessage text]]];
-      
+
   } else if ([message isKindOfClass:[KMBytesMessage class]])  {
     KMBytesMessage *bytesMessage = (KMBytesMessage *)message;
     NSString *utf8String = [bytesMessage readUTF];
@@ -475,7 +475,7 @@ automatically */
       count++;
     }
     [_controller log:[NSString stringWithFormat:@&quot;%d entries&quot;, count]];
-      
+
   } else {
     [_controller log:@&quot;RECEIVED UNKNOWN MESSAGE&quot;];
   }
@@ -496,7 +496,7 @@ automatically */
   if (self) {
     _controller = controller;
   }
-  
+
   return self;
 }
 
@@ -543,7 +543,7 @@ KMMessageConsumer        *notifyingConsumer = nil;
   subscribeButton.alpha = 0.5f;
   sendButton.enabled = NO;
   sendButton.alpha = 0.5f;
-  
+
   [[NSNotificationCenter defaultCenter] addObserver:self
   selector:@selector(suspendOrResume:)
   name:@&quot;suspendOrResume&quot;
@@ -560,12 +560,12 @@ KMMessageConsumer        *notifyingConsumer = nil;
   [self setSendButton:nil];
   [self setSubscribeButton:nil];
   [self setClearButton:nil];
-  
+
   subscribeButton.enabled = NO;
   subscribeButton.alpha = 0.5f;
   sendButton.enabled = NO;
   sendButton.alpha = 0.5f;
-  
+
   [super viewDidUnload];
   // Release any retained subviews of the main view.
 }
@@ -583,7 +583,7 @@ KMMessageConsumer        *notifyingConsumer = nil;
 #pragma mark &lt;UITextFieldDelegate Method&gt;
 
 - (BOOL) textFieldShouldReturn:(UITextField *)theTextField {
-  if ((theTextField == self.locationField)    || 
+  if ((theTextField == self.locationField)    ||
   (theTextField == self.destinationField) ||
   (theTextField == self.messageField)) {
     [theTextField resignFirstResponder];
@@ -602,29 +602,18 @@ KMMessageConsumer        *notifyingConsumer = nil;
     if (!connected) {
       NSURL                       *url = [[NSURL alloc] initWithString:location];
       KMStompConnectionProperties *props = [[KMStompConnectionProperties alloc] init];
-          
+
       props-&gt;_connectionTimeout = 5000;
-          
+
       @try {
         factory = [[KMStompConnectionFactory alloc] initWithUrl:url properties:props];
-              
+
         KGWebSocketFactory   *webSocketFactory = [factory webSocketFactory];
         KGChallengeHandler   *challengeHandler = [self createBasicChallengeHandler];
         JMSAppDelegate       *delegate = [[UIApplication sharedApplication] delegate];
         NSData               *devToken = [delegate deviceToken];
-              
+
         [webSocketFactory setDefaultChallengeHandler:challengeHandler];
-
-        if (devToken != nil) {
-          // App is configured to receive push notifications via APNS.
-          NSString *apnsExtensionName = [[KGApnsExtension apnsExtension] name];
-          NSArray  *enabledExtensions = [NSArray arrayWithObjects:apnsExtensionName, nil];
-          NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
-
-          [webSocketFactory setDefaultEnabledExtensions:enabledExtensions];
-          [webSocketFactory setDefaultParameter:[KGApnsExtension deviceToken] value:devToken];
-          [webSocketFactory setDefaultParameter:[KGApnsExtension bundleId] value:bundleId];
-        }
 
         [self log:@&quot;CONNECTING&quot;];
         id&lt;KMStompConnectionListener&gt; listener = [[JMSConnectionListener alloc] initWithController:self];
@@ -633,27 +622,23 @@ KMMessageConsumer        *notifyingConsumer = nil;
         [conn start];
         session = (KMSession *)[conn createSession:KMSessionAutoAcknowledge transacted:NO];
 
-        if (devToken != nil) {
-          // Create a notifying-session for APNS.
-          notifyingSession = (KMNotifyingSession *) [conn createSession:KMSessionNotifyAcknowledge transacted:NO];
-        }
       }
       @catch (NSException *ex) {
         [self log:[NSString stringWithFormat:@&quot;EXCEPTION: %@&quot;, [ex reason]]];
         NSLog(@&quot;Exception: %@&quot;, [ex reason]);
-              
+
         if (notifyingSession != nil) {
           [notifyingSession close];
         }
-              
+
         if (session != nil) {
           [session close];
         }
-              
+
         if (conn != nil) {
           [conn close];
         }
-              
+
         notifyingSession = nil;
         session = nil;
         conn = nil;
@@ -662,7 +647,7 @@ KMMessageConsumer        *notifyingConsumer = nil;
     } else {
       connected = NO;
       [self log:@&quot;CLOSING&quot;];
-          
+
       if (notifyingSession != nil) {
         [notifyingSession close];
       }
@@ -676,7 +661,7 @@ KMMessageConsumer        *notifyingConsumer = nil;
   // Cache values from the UI widgets in the main thread itself to avoid warnings/errors
   // related to UIKit invoked from secondary thread.
   NSString      *destinationName = [destinationField text];
-  
+
   // Subscribing can be a blocking operation, so perform it in the background.
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     @try {
@@ -685,17 +670,10 @@ KMMessageConsumer        *notifyingConsumer = nil;
       if (dest == nil) {
         return;
       }
-          
+
       // Create a consumer and attach a listener.
       consumer = [session createConsumer:dest];
       [consumer setMessageListener:[[JMSMessageListener alloc] initWithController:self]];
-
-      if (notifyingSession != nil) {
-        // Create a notifying-consumer for APNS.
-        notifyingConsumer = [notifyingSession createDurableNotification:(KMTopic *)dest
-        durableName:@&quot;notifyingDurableSubscriber&quot;
-        notificationPayload:[self payload]];
-      }
 
       // Update the UI. These calls will schedule themselves in the main queue.
       [self log:[NSString stringWithFormat:@&quot;SUBSCRIBED TO: %@&quot;, destinationName]];
@@ -704,27 +682,19 @@ KMMessageConsumer        *notifyingConsumer = nil;
     @catch (NSException *exception) {
       NSString *msg = [exception reason];
       [self log:[NSString stringWithFormat:@&quot;EXCEPTION: %@&quot;, msg]];
-          
+
       if (consumer != nil) {
         [consumer close];
       }
-          
+
       if (notifyingConsumer != nil) {
         [notifyingConsumer close];
       }
-          
+
       consumer = nil;
       notifyingConsumer = nil;
     }
   });
-}
-
-- (KGNotificationPayload *)payload {
-  KGSimpleAlertNotification  *alert = [[KGSimpleAlertNotification alloc]
-  initWithBody:@&quot;Hello from APNs&quot;];
-  KGNotificationPayload *payload = [[KGNotificationPayload alloc]
-  initWithAlert:alert];
-  return payload;
 }
 
 - (IBAction) send:(id)sender {
@@ -746,22 +716,22 @@ KMMessageConsumer        *notifyingConsumer = nil;
       // Create a producer and message.
       producer = [session createProducer:dest];
       KMTextMessage *message = [session createTextMessage];
-          
+
       // Set the message text and send it away.
       [message setText:messageText];
       [producer send:message];
-          
+
       // Update the UI. This call will schedule itself in the main queue.
       [self log:[NSString stringWithFormat:@&quot;MESSAGE SENT TO %@: %@&quot;, destinationName, messageText]];
     }
     @catch (NSException *exception) {
       NSString *msg = [exception reason];
       [self log:[NSString stringWithFormat:@&quot;EXCEPTION: %@&quot;, msg]];
-          
+
       if (producer != nil) {
         [producer close];
       }
-          
+
       producer = nil;
     }
   });
@@ -779,7 +749,7 @@ KMMessageConsumer        *notifyingConsumer = nil;
   // Set up ChallengeHandlers to handle authentication challenge.
   KGLoginHandler          *loginHandler = [[DemoLoginHandler alloc] init];
   KGBasicChallengeHandler *challengeHandler = [KGBasicChallengeHandler create];
-  
+
   [challengeHandler setLoginHandler:loginHandler];
   return challengeHandler;
 }
@@ -792,7 +762,7 @@ KMMessageConsumer        *notifyingConsumer = nil;
   else if ([destinationName hasPrefix:@&quot;/queue/&quot;]) {
     return [session createQueue:destinationName];
   }
-  
+
   // Make sure that the error dialog is shown in the main UI thread.
   dispatch_async(dispatch_get_main_queue(), ^{
     UIAlertView *badPrefixAlert = [[UIAlertView alloc] initWithTitle:@&quot;Invalid destination&quot;
@@ -802,7 +772,7 @@ KMMessageConsumer        *notifyingConsumer = nil;
     otherButtonTitles:nil];
     [badPrefixAlert show];
   });
-  
+
   return nil;
 }
 
@@ -810,27 +780,27 @@ KMMessageConsumer        *notifyingConsumer = nil;
   if (producer != nil) {
     [producer close];
   }
-  
+
   if (consumer != nil) {
     [consumer close];
   }
-  
+
   if (notifyingConsumer != nil) {
     [notifyingConsumer close];
   }
-  
+
   if (notifyingSession != nil) {
     [notifyingSession close];
   }
-  
+
   if (session != nil) {
     [session close];
   }
-  
+
   if (conn != nil) {
     [conn close];
   }
-  
+
   producer = nil;
   consumer = nil;
   notifyingConsumer = nil;
@@ -844,16 +814,16 @@ KMMessageConsumer        *notifyingConsumer = nil;
   dispatch_async(dispatch_get_main_queue(), ^{
     NSString *text = str;
     NSString *log = [logView text];
-      
+
     if ((log != nil) &amp;&amp; ([log length] &gt; 0)) {
       text = [NSString stringWithFormat:@&quot;%@\n%@&quot;, [logView text], str];
     }
-      
+
     // remove old text if text field is too large
     if ([[logView text] length] &gt; 5000) {
       text = [text substringFromIndex:3000];
     }
-      
+
     [logView setText:text];
     [logView scrollRangeToVisible:NSMakeRange([logView.text length], 0)];
   });
@@ -871,7 +841,7 @@ KMMessageConsumer        *notifyingConsumer = nil;
   NSString          *str = (NSString *) [dict valueForKey:@&quot;CONNECTION_STATE&quot;];
   JMSAppDelegate    *delegate = [[UIApplication sharedApplication] delegate];
   NSData            *devToken = [delegate deviceToken];
-  
+
   if ([str isEqualToString:@&quot;resume&quot;]) {
     @try {
       if (devToken == nil) {
@@ -882,23 +852,18 @@ KMMessageConsumer        *notifyingConsumer = nil;
         }
         return;
       }
-      // App is configured to receive push notifications via APNS.
-          
+
       NSString                 *location = [locationField text];
       NSURL                    *url = [[NSURL alloc] initWithString:location];
       KMStompConnectionFactory *factory = [[KMStompConnectionFactory alloc] initWithUrl:url];
       KGWebSocketFactory       *webSocketFactory = [factory webSocketFactory];
       KGChallengeHandler       *challengeHandler = [self createBasicChallengeHandler];
-          
+
       [webSocketFactory setDefaultChallengeHandler:challengeHandler];
-      NSString *apnsExtensionName = [[KGApnsExtension apnsExtension] name];
-      NSArray  *enabledExtensions = [NSArray arrayWithObjects:apnsExtensionName, nil];
       NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
-              
+
       [webSocketFactory setDefaultEnabledExtensions:enabledExtensions];
-      [webSocketFactory setDefaultParameter:[KGApnsExtension deviceToken] value:devToken];
-      [webSocketFactory setDefaultParameter:[KGApnsExtension bundleId] value:bundleId];
-          
+
       [self log:@&quot;CONNECTING&quot;];
       id&lt;KMStompConnectionListener&gt; listener = [[JMSConnectionListener alloc] initWithController:self];
       conn = [factory createConnectionWithListener:listener];
@@ -906,28 +871,18 @@ KMMessageConsumer        *notifyingConsumer = nil;
       [conn start];
       session = (KMSession *)[conn createSession:KMSessionAutoAcknowledge transacted:NO];
 
-      // Create a notifying-session for APNS.
-      notifyingSession = (KMNotifyingSession *) [conn createSession:KMSessionNotifyAcknowledge transacted:NO];
-          
       // Create a destination.
       NSString      *destinationName = [destinationField text];
       KMDestination *dest = [self createDestination:destinationName];
       if (dest == nil) {
         return;
       }
-          
+
       // Create a consumer and attach a listener.
       consumer = [session createConsumer:dest];
       [consumer setMessageListener:[[JMSMessageListener alloc] initWithController:self]];
-          
-      if (notifyingSession != nil) {
-        // Create a notifying-consumer for APNS. Notifications are ONLY
-        // supported for non-durable topics.
-        notifyingConsumer = [notifyingSession createDurableNotification:(KMTopic *)dest
-        durableName:@&quot;notifyingDurableSubscriber&quot;
-        notificationPayload:[self payload]];
-      }
-          
+
+
       // Update the UI. These calls will schedule themselves in the main queue.
       [self log:[NSString stringWithFormat:@&quot;SUBSCRIBED TO: %@&quot;, destinationName]];
       connected = YES;
@@ -937,27 +892,27 @@ KMMessageConsumer        *notifyingConsumer = nil;
     @catch (NSException *ex) {
       [self log:[NSString stringWithFormat:@&quot;EXCEPTION: %@&quot;, [ex reason]]];
       NSLog(@&quot;Exception: %@&quot;, [ex reason]);
-          
+
       if (consumer != nil) {
         [consumer close];
       }
-          
+
       if (notifyingConsumer != nil) {
         [notifyingConsumer close];
       }
-          
+
       if (notifyingSession != nil) {
         [notifyingSession close];
       }
-          
+
       if (session != nil) {
         [session close];
       }
-          
+
       if (conn != nil) {
         [conn close];
       }
-          
+
       consumer = nil;
       notifyingConsumer = nil;
       notifyingSession = nil;
@@ -975,14 +930,6 @@ KMMessageConsumer        *notifyingConsumer = nil;
         }
         return;
       }
-          
-      // APNS is being used. So, we should close the connection explicitly to
-      // receive notifications.
-      connected = NO;
-      [self log:@&quot;CLOSING&quot;];
-      [conn close];
-      // conn = nil;
-      [self updateUI:NO];
     }
     @catch (NSException *ex) {
       [self log:[NSString stringWithFormat:@&quot;EXCEPTION: %@&quot;, [ex reason]]];
@@ -1040,23 +987,23 @@ KMMessageConsumer        *notifyingConsumer = nil;
     &lt;cross-site-constraint&gt;
          &lt;allow-origin&gt;http://build-macmini3.kaazing.test:${gateway.extras.port}&lt;/allow-origin&gt;
     &lt;/cross-site-constraint&gt;
-&lt;/service&gt;    
+&lt;/service&gt;
 </pre>
-    
+
     </li>
     <li><p>Build and run the client in the iPhone Simulator.</p>
         <ol type="a">
             <li>In the <strong>Scheme</strong> menu, select <strong>iPhone 5.1 Simulator</strong> (you might have a more recent version such as iPhone 6.1).
                     <figure>
                         <img src="../images/dev-ios-client-scheme.jpg">
-                    <figcaption><strong>Figure: Scheme using iPhone 5.1 Simulator</strong></figcaption>    
+                    <figcaption><strong>Figure: Scheme using iPhone 5.1 Simulator</strong></figcaption>
                     </figure>
             </li>
             <li><p>Click <strong>Run</strong>.</p>
                 <p>The iPhone Simulator displays the client.</p>
                 <figure>
                     <img src="../images/dev-ios-client-simulator.jpg">
-                <figcaption><strong>Figure: Your JMS Demo client on the iPhone Simulator</strong></figcaption>    
+                <figcaption><strong>Figure: Your JMS Demo client on the iPhone Simulator</strong></figcaption>
                 </figure>
             </li>
             <li>Click <strong>Connect</strong>. The client connects to the JMS service via a publicly available instance of the Gateway.</li>
@@ -1088,7 +1035,7 @@ KGBasicChallengeHandler *challengeHandler = [KGChallengeHandlers load:@"KGBasicC
 </pre>
 
     <p>Kaazing Gateway 4.x:</p>
-    
+
 <pre class="auto-links: false; brush: js; toolbar: false;">
 - (KGChallengeHandler *) createBasicChallengeHandler {
     // Set up ChallengeHandlers to handle authentication challenge.
@@ -1147,11 +1094,11 @@ KGBasicChallengeHandler *challengeHandler = [KGChallengeHandlers load:@"KGBasicC
 
     KMConnection *conn = [super createConnectionWithListener:listener];
     [conn start];
-    
+
     KMSession *session = [conn createSession:KMSessionAutoAcknowledge
         transacted:NO];
     KMTopic *topic = [session createTopic:@&quot;/topic/destination&quot;];
-    
+
     // Create a durable subscriber.
     KMMessageConsumer *consumer = nil;
     NSString *expectedValue = nil;
@@ -1161,26 +1108,26 @@ KGBasicChallengeHandler *challengeHandler = [KGChallengeHandlers load:@"KGBasicC
         consumer = [session createDurableSubscriber:topic name:@&quot;durable1&quot;];
         expectedValue = @&quot;Hello, Durable Subscriber!&quot;;
     }
-    
+
     // With Message Selector
     else {
-        consumer = [session createDurableSubscriber:topic 
-        name:@&quot;durable1&quot; 
-        messageSelector:@&quot;symbol=&#x27;KZNG&#x27;&quot; 
+        consumer = [session createDurableSubscriber:topic
+        name:@&quot;durable1&quot;
+        messageSelector:@&quot;symbol=&#x27;KZNG&#x27;&quot;
         noLocal:NO];
         expectedValue = @&quot;Hello, Durable Subscriber with MessageSelector!&quot;;
     }
 
-    [consumer setMessageListener:[[JMSDurableSubscriberMessageListener alloc] 
+    [consumer setMessageListener:[[JMSDurableSubscriberMessageListener alloc]
         initWithTestcase:self expectedValue:expectedValue]];
-    
+
     [consumer close];
-    
+
     // Unsubscribe durable subscriber
     [session unsubscribe:@&quot;durable1&quot;];
-    
+
     sleep(3);
-    
+
     [session close];
     [conn close];
 }
@@ -1214,7 +1161,7 @@ if (withMessageSelector) {
     <li>Clients built using Kaazing Gateway 3.x libraries will work against Kaazing Gateway 4.x. If you wish to upgrade your 3.x client to the 4.x libraries, please note that the 3.x clients used a single Stomp JMS library and 4.x clients include and use separate WebSocket and Stomp JMS libraries. Update your client library file and code references to include both the WebSocket and Stomp JMS libraries, as described in the 4.x documentation.</li>
     <li>For information about the <span class="code_inline">dispatch_get_global_queue</span> and <span class="code_inline">dispatch_get_main_queue</span> functions used in the JMSViewController implementation, see <a href="http://developer.apple.com/library/ios/#documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html">Dispatch Queues</a> in the <a href="http://developer.apple.com/library/ios/#documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html">Concurrency Programming Guide of the iOS Developer Library</a>.</li>
     <li><a href="http://developer.apple.com/library/ios/#documentation/Xcode/Conceptual/ios_development_workflow/40-iOS_Development_Troubleshooting_Guide/ios_development_troubleshooting.html">iOS Development: Troubleshooting</a></li>
-    <li><span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span> objects are destroyed when the client loses its connection to the Gateway, or when the JMS-compliant message broker loses its connection to the Gateway. To address this, monitor the client's exception listener to handle recovery for your application. Once the connection is re-established, recreate <span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span>. <span class="code_inline">ConnectionDroppedException</span> and <span class="code_inline">ConnectionInterruptedException</span> are delivered to the connection's exception listener via <span class="code_inline">onException</span>, indicating that messages in flight might be lost, depending on message delivery options. <span class="code_inline">ConnectionRestoredException</span> is delivered to indicate that the connection through to the JMS-compliant message broker has been re-established. <span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span> should be recreated at that time to resume operations.</li> 
+    <li><span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span> objects are destroyed when the client loses its connection to the Gateway, or when the JMS-compliant message broker loses its connection to the Gateway. To address this, monitor the client's exception listener to handle recovery for your application. Once the connection is re-established, recreate <span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span>. <span class="code_inline">ConnectionDroppedException</span> and <span class="code_inline">ConnectionInterruptedException</span> are delivered to the connection's exception listener via <span class="code_inline">onException</span>, indicating that messages in flight might be lost, depending on message delivery options. <span class="code_inline">ConnectionRestoredException</span> is delivered to indicate that the connection through to the JMS-compliant message broker has been re-established. <span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span> should be recreated at that time to resume operations.</li>
 </ul>
 
 
@@ -1333,7 +1280,7 @@ San Jose, CA 95002, USA</p>
 
 		</div></div></div><!-- end row -->
 
-			
+
 
 			<div class="row">
 
@@ -1341,29 +1288,29 @@ San Jose, CA 95002, USA</p>
 
 					<div class="bottom fixclear">
 
-					
 
-					<ul class="social-icons colored fixclear"><li class="title">connect &gt;</li><li class="social-twitter"><a href="http://twitter.com/kaazing" target="_blank">Twitter</a></li><li class="social-facebook"><a href="http://www.facebook.com/pages/Kaazing/143247694282" target="_blank">Facebook</a></li><li class="social-youtube"><a href="http://www.youtube.com/user/KaazingTV" target="_blank">Youtube</a></li></ul>					
 
-											
+					<ul class="social-icons colored fixclear"><li class="title">connect &gt;</li><li class="social-twitter"><a href="http://twitter.com/kaazing" target="_blank">Twitter</a></li><li class="social-facebook"><a href="http://www.facebook.com/pages/Kaazing/143247694282" target="_blank">Facebook</a></li><li class="social-youtube"><a href="http://www.youtube.com/user/KaazingTV" target="_blank">Youtube</a></li></ul>
+
+
 
 						<div class="copyright">
 
-							
 
-							
+
+
 
 							<a href="http://www-stage.kaazing.com/"><img src="http://developer.kaazing.com/wordpress/wp-content/uploads/2013/06/Kaazing-footer_logo.png" alt="" /></a><p><div style="padding:10px 0;float:left; ">Copyright &copy; 2007-2015 Kaazing Corporation</div>
 
-<div style="float:left;"><ul class="foot-menu"><li><a href="http://www.kaazing.com/legal/privacy/">Privacy Policy</a></li><li><a href="http://www.kaazing.com/legal/license/">Legal Information</a></li></ul></div></p>							
+<div style="float:left;"><ul class="foot-menu"><li><a href="http://www.kaazing.com/legal/privacy/">Privacy Policy</a></li><li><a href="http://www.kaazing.com/legal/license/">Legal Information</a></li></ul></div></p>
 
-							
+
 
 						</div><!-- end copyright -->
 
-							
 
-											
+
+
 
 
 
@@ -1373,7 +1320,7 @@ San Jose, CA 95002, USA</p>
 
 			</div><!-- end row -->
 
-			
+
 
 		</div>
 
@@ -1381,9 +1328,9 @@ San Jose, CA 95002, USA</p>
 
 </div><!-- end page_wrapper -->
 
-	
 
-    <a href="#" id="totop">TOP</a> 
+
+    <a href="#" id="totop">TOP</a>
 
 
 <script type='text/javascript' src='http://developer.kaazing.com/wordpress/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js'></script>
@@ -1405,7 +1352,7 @@ var zn_do_login = {"ajaxurl":"http:\/\/developer.kaazing.com\/wordpress\/wp-admi
 /* ]]> */
 </script>
 <script type='text/javascript' src='http://developer.kaazing.com/wordpress/wp-content/themes/kallyas/js/znscript.js'></script>
-<script type="text/javascript">	
+<script type="text/javascript">
 								var parallax = new Parallax({
 									container: '#slideshow',
 									layers: [
@@ -1417,10 +1364,10 @@ var zn_do_login = {"ajaxurl":"http:\/\/developer.kaazing.com\/wordpress\/wp-admi
 									]
 								});
 
-							
-						(function($){ 
+
+						(function($){
 							$(window).load(function(){
-								var doc = $(document), 
+								var doc = $(document),
 									win = $(window), chaser, forch,
 									forchBottom, visible;
 								function shown() { visible = true; }
@@ -1428,7 +1375,7 @@ var zn_do_login = {"ajaxurl":"http:\/\/developer.kaazing.com\/wordpress\/wp-admi
 								chaser = $('#main_menu ul.sf-menu').clone().hide()
 									.appendTo(document.body)
 									.wrap("<div class='chaser'><div class='container'><div class='row'><div class='span12'></div></div></div></div>");
-								if ( $('#content').length > 0 ) {	
+								if ( $('#content').length > 0 ) {
 									forch = $('#content').first();
 									forchBottom = forch.offset().top + 2;
 									hidden();
@@ -1448,18 +1395,18 @@ var zn_do_login = {"ajaxurl":"http:\/\/developer.kaazing.com\/wordpress\/wp-admi
 								$('.chaser ul.sf-menu').supersubs({ minWidth: 12, maxWidth: 27, extraWidth: 1}).superfish({delay:250, dropShadows:false, autoArrows:true, speed:300});
 							});
 						})(jQuery);
-						
-						(function($){ 
+
+						(function($){
 							$(document).ready(function(){
 								/* Activate Superfish Menu */
 								var sfDelay = 600;
 								if($('html').hasClass('isie'))
 									sfDelay = 300;
 								$('#main_menu > ul')
-								.supersubs({ 
-									minWidth:    12,   // minimum width of sub-menus in em units 
-									maxWidth:    27,   // maximum width of sub-menus in em units 
-									extraWidth:  1     // extra width can ensure lines don't sometimes turn over 
+								.supersubs({
+									minWidth:    12,   // minimum width of sub-menus in em units
+									maxWidth:    27,   // maximum width of sub-menus in em units
+									extraWidth:  1     // extra width can ensure lines don't sometimes turn over
 								}).superfish({
 									delay:sfDelay,
 									dropShadows:false,
@@ -1467,10 +1414,10 @@ var zn_do_login = {"ajaxurl":"http:\/\/developer.kaazing.com\/wordpress\/wp-admi
 									speed:300
 								});
 								$('#top_menu > ul')
-								.supersubs({ 
-									minWidth:    12,   // minimum width of sub-menus in em units 
-									maxWidth:    27,   // maximum width of sub-menus in em units 
-									extraWidth:  1     // extra width can ensure lines don't sometimes turn over 
+								.supersubs({
+									minWidth:    12,   // minimum width of sub-menus in em units
+									maxWidth:    27,   // maximum width of sub-menus in em units
+									extraWidth:  1     // extra width can ensure lines don't sometimes turn over
 								}).superfish({
 									delay:sfDelay,
 									dropShadows:false,
@@ -1478,23 +1425,23 @@ var zn_do_login = {"ajaxurl":"http:\/\/developer.kaazing.com\/wordpress\/wp-admi
 									speed:300
 								});
 							});
-							
-							
+
+
 							$(window).resize(function() {
 								$('#main_menu > ul')
-								.supersubs({ 
-									minWidth:    12,   // minimum width of sub-menus in em units 
-									maxWidth:    27,   // maximum width of sub-menus in em units 
-									extraWidth:  1     // extra width can ensure lines don't sometimes turn over 
+								.supersubs({
+									minWidth:    12,   // minimum width of sub-menus in em units
+									maxWidth:    27,   // maximum width of sub-menus in em units
+									extraWidth:  1     // extra width can ensure lines don't sometimes turn over
 								});
 								$('#top_menu > ul')
-								.supersubs({ 
-									minWidth:    12,   // minimum width of sub-menus in em units 
-									maxWidth:    27,   // maximum width of sub-menus in em units 
-									extraWidth:  1     // extra width can ensure lines don't sometimes turn over 
+								.supersubs({
+									minWidth:    12,   // minimum width of sub-menus in em units
+									maxWidth:    27,   // maximum width of sub-menus in em units
+									extraWidth:  1     // extra width can ensure lines don't sometimes turn over
 								});
 							});
-							
+
 						})(jQuery);
 						</script>
 
@@ -1504,7 +1451,7 @@ var zn_do_login = {"ajaxurl":"http:\/\/developer.kaazing.com\/wordpress\/wp-admi
 			$(function() {
 				// Enable jquery.details
 				//
-				
+
 				// Add conditional classname based on support
 				$('html').addClass($.fn.details.support ? 'details' : 'no-details');
 
@@ -1525,7 +1472,7 @@ var zn_do_login = {"ajaxurl":"http:\/\/developer.kaazing.com\/wordpress\/wp-admi
 		    pageTracker._trackPageview();
 		    } catch(err) {}
 		</script>
-                        
+
                         </body>
 
 
