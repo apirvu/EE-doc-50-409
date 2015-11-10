@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/integration-jms/p_jms_integrate_activemq/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -67,11 +67,11 @@
 
 <div class="container page-content text-left">
 
- <h1 id="integrate-apache-activemq--">Integrate Apache ActiveMQ  <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></h1>
+ <h1 id="integrate-apache-activemq--">Integrate Apache ActiveMQ  <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h1>
 
-<p>In this procedure, you will learn how to integrate KAAZING Gateway and Apache ActiveMQ, a powerful open source messaging server.</p>
+<p>In this procedure, you will learn how to integrate Kaazing Gateway and Apache ActiveMQ, a powerful open source messaging server.</p>
 
-<p>Apache ActiveMQ provides a factory class in their JAR files. The Apache ActiveMQ factory class that ships in the KAAZING Gateway bundle is <code>org.apache.activemq.jndi.ActiveMQInitialContextFactory</code> in the JAR file <code>activemq-client-5.10.0.jar</code>. To use the <code>jms</code> service with a different version or instance of Apache ActiveMQ, you copy the JAR files to <code>GATEWAY_HOME/lib</code> and specify the name of the factory class in the <code>jms</code> service configuration element.</p>
+<p>Apache ActiveMQ provides a factory class in their JAR files. The Apache ActiveMQ factory class that ships in the Kaazing Gateway bundle is <code>org.apache.activemq.jndi.ActiveMQInitialContextFactory</code> in the JAR file <code>activemq-client-5.10.0.jar</code>. To use the <code>jms</code> service with a different version or instance of Apache ActiveMQ, you copy the JAR files to <code>GATEWAY_HOME/lib</code> and specify the name of the factory class in the <code>jms</code> service configuration element.</p>
 
 <p>The following table lists the Java Archive (JAR) files needed by the Gateway for different versions of Apache ActiveMQ.</p>
 
@@ -172,7 +172,7 @@
 
 <h2 id="subscription-and-destination-support">Subscription and Destination Support</h2>
 
-<p>KAAZING Gateway integration with Apache ActiveMQ has the following subscription and destination support:</p>
+<p>Kaazing Gateway integration with Apache ActiveMQ has the following subscription and destination support:</p>
 
 <ul>
   <li>Durable subscriptions are not supported.</li>
@@ -187,7 +187,7 @@
   <li>
     <p>The <code>context.lookup</code> properties in the above example make use of an ActiveMQ feature that allows special JNDI namespaces to be reserved for dynamic topics and queues (dynamic means they are not predefined in the broker but are instead created by the application as needed). If you wish to use dynamic destinations but your broker does not have this JNDI feature, then you can set the <code>destination.strategy property</code> of your <code>jms</code> service to <code>session</code> to tell the Gateway to use the JMS Session methods <code>createTopic()</code> or <code>createQueue()</code> to create topics and queues as needed.</p>
 
-    <p>Client applications (using the KAAZING Gateway JMS client library) can then lookup/create their <code>Topic</code> and <code>Queue</code> objects using either the <code>session.createTopic()</code> method (for example, <code>Topic myTopic = session.createTopic("myTopic");</code>) or by performing a JNDI lookup using the <code>initialContext.lookup()</code> method (for example, <code>Topic myTopic = initialContext.lookup("/queue/myQueue");</code>). The <code>initialContext.lookup()</code> method is available to use after creating the JNDI <code>InitialContext</code> object when creating the JMS connection.</p>
+    <p>Client applications (using the Kaazing Gateway JMS client library) can then lookup/create their <code>Topic</code> and <code>Queue</code> objects using either the <code>session.createTopic()</code> method (for example, <code>Topic myTopic = session.createTopic("myTopic");</code>) or by performing a JNDI lookup using the <code>initialContext.lookup()</code> method (for example, <code>Topic myTopic = initialContext.lookup("/queue/myQueue");</code>). The <code>initialContext.lookup()</code> method is available to use after creating the JNDI <code>InitialContext</code> object when creating the JMS connection.</p>
   </li>
 </ul>
 
@@ -196,7 +196,7 @@
 <ul>
   <li>For information on troubleshooting JMS integration, see <a href="../p_jms_integrate_tshoot">Troubleshoot JMS Integration</a>.</li>
   <li>For information on troubleshooting JMS clients, see <a href="../../troubleshooting/p_dev_troubleshoot">Troubleshoot Your Clients</a>.</li>
-  <li>For general troubleshooting information, see <a href="../../troubleshooting/o_troubleshoot">Troubleshoot KAAZING Gateway</a>.</li>
+  <li>For general troubleshooting information, see <a href="../../troubleshooting/o_troubleshoot">Troubleshoot Kaazing Gateway</a>.</li>
 </ul>
 
 

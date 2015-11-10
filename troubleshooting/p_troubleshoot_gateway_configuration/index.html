@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/troubleshooting/p_troubleshoot_gateway_configuration/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -67,13 +67,13 @@
 
 <div class="container page-content text-left">
 
- <h1 id="troubleshoot-kaazing-gateway-configuration-and-startup">Troubleshoot KAAZING Gateway Configuration and Startup</h1>
+ <h1 id="troubleshoot-kaazing-gateway-configuration-and-startup">Troubleshoot Kaazing Gateway Configuration and Startup</h1>
 
-<p>When you set up and configure KAAZING Gateway, you may encounter one of the errors described in this topic. To resolve an issue, follow the guidance provided for the associated error.</p>
+<p>When you set up and configure Kaazing Gateway, you may encounter one of the errors described in this topic. To resolve an issue, follow the guidance provided for the associated error.</p>
 
-<h2 id="troubleshooting-kaazing-gateway">Troubleshooting KAAZING Gateway</h2>
+<h2 id="troubleshooting-kaazing-gateway">Troubleshooting Kaazing Gateway</h2>
 
-<p>This topic is part of <a href="../o_troubleshoot">Troubleshoot KAAZING Gateway</a> that groups troubleshooting topics into the categories shown in the following table:</p>
+<p>This topic is part of <a href="../o_troubleshoot">Troubleshoot Kaazing Gateway</a> that groups troubleshooting topics into the categories shown in the following table:</p>
 
 <table>
   <thead>
@@ -85,15 +85,15 @@
   <tbody>
     <tr>
       <td><strong>Configuration and startup</strong></td>
-      <td><strong>Troubleshoot KAAZING Gateway Configuration and Startup</strong></td>
+      <td><strong>Troubleshoot Kaazing Gateway Configuration and Startup</strong></td>
     </tr>
     <tr>
       <td>Clusters and load balancing</td>
-      <td><a href="../p_troubleshoot_high_availability">Troubleshoot KAAZING Gateway Cluster and Load Balancing</a></td>
+      <td><a href="../p_troubleshoot_high_availability">Troubleshoot Kaazing Gateway Cluster and Load Balancing</a></td>
     </tr>
     <tr>
       <td>Security</td>
-      <td><a href="../p_troubleshoot_security">Troubleshoot KAAZING Gateway Security</a></td>
+      <td><a href="../p_troubleshoot_security">Troubleshoot Kaazing Gateway Security</a></td>
     </tr>
     <tr>
       <td>Clients</td>
@@ -108,8 +108,8 @@
   <li><a href="#port-8000-or-8001-is-already-in-use">Port 8000 or 8001 Is Already in Use</a></li>
   <li><a href="#maximum-number-of-connections-reached-or-exceeded">Maximum Number of Connections Reached or Exceeded</a></li>
   <li><a href="#too-many-open-files-warning">Too Many Open Files Warning</a></li>
-  <li><a href="#out-of-memory-error-when-starting-kaazing-gateway">Out of Memory Error When Starting KAAZING Gateway</a></li>
-  <li><a href="#error-starting-kaazing-gateway-on-the-microsoft-vista-operating-system">Error Starting KAAZING Gateway on the Microsoft Vista Operating System</a></li>
+  <li><a href="#out-of-memory-error-when-starting-kaazing-gateway">Out of Memory Error When Starting Kaazing Gateway</a></li>
+  <li><a href="#error-starting-kaazing-gateway-on-the-microsoft-vista-operating-system">Error Starting Kaazing Gateway on the Microsoft Vista Operating System</a></li>
   <li><a href="#error-unable-to-bind-to-resource-network-address--network-address-cause-address-already-in-use">Error: Unable to bind to resource: [network address] @ [network address] cause: Address already in use.</a></li>
   <li><a href="#error-when-starting-the-gateway-string-value-value-does-not-match-pattern-for-datasize-in-namespace">Error When Starting the Gateway: String Value [<em>‘value’</em>] does not match pattern for DataSize in namespace</a></li>
   <li><a href="#warning-error-on-websocket-connection">Warning: Error on WebSocket connection</a></li>
@@ -121,7 +121,7 @@
 
 <h3 id="port-8000-or-8001-is-already-in-use">Port 8000 or 8001 Is Already in Use</h3>
 
-<p><strong>Cause:</strong> Port conflict is a common problem that occurs when another web server or process is already using one of the default KAAZING Gateway ports, either port 8000 (the default HTTP port to which the Gateway binds at startup) or 8001 (includes the Gateway documentation and demos).</p>
+<p><strong>Cause:</strong> Port conflict is a common problem that occurs when another web server or process is already using one of the default Kaazing Gateway ports, either port 8000 (the default HTTP port to which the Gateway binds at startup) or 8001 (includes the Gateway documentation and demos).</p>
 
 <p><strong>Solution:</strong> To avoid port conflicts, change the port number by performing the following steps:</p>
 
@@ -134,7 +134,7 @@
 
 <h3 id="maximum-number-of-connections-reached-or-exceeded">Maximum Number of Connections Reached or Exceeded</h3>
 
-<p><strong>Cause:</strong> You have exceeded the number of allowed client connections to the Gateway. The terms of your KAAZING Gateway license specify a maximum number of allowed concurrent client connections. For example, the developer’s version of the KAAZING Gateway bundle allows only a limited number of concurrent client connections.</p>
+<p><strong>Cause:</strong> You have exceeded the number of allowed client connections to the Gateway. The terms of your Kaazing Gateway license specify a maximum number of allowed concurrent client connections. For example, the developer’s version of the Kaazing Gateway bundle allows only a limited number of concurrent client connections.</p>
 
 <p>If you see the following warning message in the file <code>GATEWAY_HOME/log/error.log</code> file:</p>
 
@@ -154,7 +154,7 @@
 
 <p>java.io.IOException: Too many open files</p>
 
-<p>By default, a UNIX or Linux user may only be able to open a maximum of a few hundred or thousand files. A number of file handles are used for each client connection that is established with KAAZING Gateway: typically one for the client connection (double that in case of WebSocket emulation) and one for the back-end service connection.</p>
+<p>By default, a UNIX or Linux user may only be able to open a maximum of a few hundred or thousand files. A number of file handles are used for each client connection that is established with Kaazing Gateway: typically one for the client connection (double that in case of WebSocket emulation) and one for the back-end service connection.</p>
 
 <p><strong>Solution:</strong> To avoid running out of available file handles you should increase the limit of files that the user can open to handle your expected load.</p>
 
@@ -179,15 +179,15 @@
   </li>
 </ol>
 
-<h3 id="out-of-memory-error-when-starting-kaazing-gateway">Out of Memory Error When Starting KAAZING Gateway</h3>
+<h3 id="out-of-memory-error-when-starting-kaazing-gateway">Out of Memory Error When Starting Kaazing Gateway</h3>
 
 <p><strong>Cause:</strong> An out-of-memory error can result when starting the Gateway if the maximum heap size is not set appropriately for your physical memory capacity. The default maximum heap size is only 516 MB, which typically is not sufficient for production deployment.</p>
 
-<p><strong>Solution:</strong> Set the Java <code>-Xmx</code> option in your Gateway startup file to approximately 70% of the physical memory capacity. For example, if the physical memory capacity of the machine is 4 GB, then edit your Gateway startup script and modify the <code>GATEWAY_OPTS</code> environment variable to <code>-Xmx3072m</code>. (The default startup script is the <code>GATEWAY_HOME/bin/gateway.start</code> file.) Then start the Gateway. See <a href="../../admin-reference/p_configure_gateway_opts">Configure KAAZING Gateway Using the GATEWAY_OPTS Environment Variable</a> for more information about setting the <code>GATEWAY_OPTS</code> environment variable.</p>
+<p><strong>Solution:</strong> Set the Java <code>-Xmx</code> option in your Gateway startup file to approximately 70% of the physical memory capacity. For example, if the physical memory capacity of the machine is 4 GB, then edit your Gateway startup script and modify the <code>GATEWAY_OPTS</code> environment variable to <code>-Xmx3072m</code>. (The default startup script is the <code>GATEWAY_HOME/bin/gateway.start</code> file.) Then start the Gateway. See <a href="../../admin-reference/p_configure_gateway_opts">Configure Kaazing Gateway Using the GATEWAY_OPTS Environment Variable</a> for more information about setting the <code>GATEWAY_OPTS</code> environment variable.</p>
 
-<h3 id="error-starting-kaazing-gateway-on-the-microsoft-vista-operating-system">Error Starting KAAZING Gateway on the Microsoft Vista Operating System</h3>
+<h3 id="error-starting-kaazing-gateway-on-the-microsoft-vista-operating-system">Error Starting Kaazing Gateway on the Microsoft Vista Operating System</h3>
 
-<p><strong>Cause:</strong> If you are running KAAZING Gateway on the Microsoft Vista operating system and an IPv6 address is specified for <code>localhost</code> in your <code>hosts</code> file, then you could receive the following error message:</p>
+<p><strong>Cause:</strong> If you are running Kaazing Gateway on the Microsoft Vista operating system and an IPv6 address is specified for <code>localhost</code> in your <code>hosts</code> file, then you could receive the following error message:</p>
 
 <p>java.net.SocketException: Address family not supported by protocol family: bind</p>
 
@@ -204,7 +204,7 @@
 
     <p><code>127.0.0.1 localhost</code></p>
   </li>
-  <li>Save the file and restart KAAZING Gateway.</li>
+  <li>Save the file and restart Kaazing Gateway.</li>
 </ol>
 
 <h3 id="error-unable-to-bind-to-resource-network-address--network-address-cause-address-already-in-use">Error: Unable to bind to resource: [network address] @ [network address] cause: Address already in use.</h3>
@@ -248,13 +248,13 @@
 
 <h3 id="localhost-is-not-configured">Localhost Is Not Configured</h3>
 
-<p><strong>Cause:</strong> “Localhost” is not found when you try to access KAAZING Gateway. This can happen if your browser is configured to use a proxy server.</p>
+<p><strong>Cause:</strong> “Localhost” is not found when you try to access Kaazing Gateway. This can happen if your browser is configured to use a proxy server.</p>
 
 <p><strong>Solution:</strong> Make sure your proxy configuration bypasses the proxy to access <code>localhost</code>.</p>
 
 <h3 id="demos-do-not-work-when-using-fiddler-web-debugger-as-an-http-proxy">Demos Do Not Work When Using Fiddler Web Debugger as an HTTP Proxy</h3>
 
-<p><strong>Cause:</strong> When Fiddler is used as an HTTP proxy, it can handle both <code>http://</code> and <code>https://</code> traffic. However, to monitor the <code>https://</code> traffic, Fiddler must be able to decrypt the traffic. Fiddler can do this only if it serves a [fake] SSL certificate. When KAAZING Gateway detects that traffic is flowing through an HTTP proxy (such as Fiddler), the Gateway attempts to automatically use an SSL downstream for the emulated WebSocket because unencrypted streaming responses can be buffered by the HTTP proxy. This can cause potentially lengthy delays in message delivery. The browser automatically fails when attempting to download an <code>https://</code> URL with untrusted (fake) certificate.</p>
+<p><strong>Cause:</strong> When Fiddler is used as an HTTP proxy, it can handle both <code>http://</code> and <code>https://</code> traffic. However, to monitor the <code>https://</code> traffic, Fiddler must be able to decrypt the traffic. Fiddler can do this only if it serves a [fake] SSL certificate. When Kaazing Gateway detects that traffic is flowing through an HTTP proxy (such as Fiddler), the Gateway attempts to automatically use an SSL downstream for the emulated WebSocket because unencrypted streaming responses can be buffered by the HTTP proxy. This can cause potentially lengthy delays in message delivery. The browser automatically fails when attempting to download an <code>https://</code> URL with untrusted (fake) certificate.</p>
 
 <p><strong>Solution:</strong> When the main URL for the entire page is from the fake URL the page displays some links allowing the user to <em>trust</em> the fake certificate anyway. For example, surfing to <code>https://localhost:9000/</code> with Fiddler as the HTTP proxy presents the opportunity to trust the fake localhost certificate served by Fiddler. Once the browser has been instructed to trust the fake Fiddler certificate, then the demos should continue to work as before.</p>
 
@@ -262,7 +262,7 @@
 
 <h3 id="error-using-the-gateway-to-proxy-from-back-end-server-over-tcp-to-client-over-websocket">Error Using the Gateway to Proxy from Back-End Server over TCP to Client over WebSocket</h3>
 
-<p><strong>Cause:</strong> When the Gateway is configured as a proxy receiving binary data over TCP from a back-end server and sends that data over WebSocket to Flash. .NET, or Silverlight client applications, the client applications must use a ByteSocket client library to send and receive binary data. In this scenario, using a WebSocket client library on the client application will fail. Note: the WebSocket class in KAAZING Gateway JavaScript, Java, Objective-C, and Android clients supports binary.</p>
+<p><strong>Cause:</strong> When the Gateway is configured as a proxy receiving binary data over TCP from a back-end server and sends that data over WebSocket to Flash. .NET, or Silverlight client applications, the client applications must use a ByteSocket client library to send and receive binary data. In this scenario, using a WebSocket client library on the client application will fail. Note: the WebSocket class in Kaazing Gateway JavaScript, Java, Objective-C, and Android clients supports binary.</p>
 
 <p><strong>Solution:</strong> Include a ByteBuffer class (included with all of the APIs) that provides an automatically expanding byte buffer for ByteSocket.</p>
 

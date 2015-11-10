@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/high-availability/u_high_availability/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -69,7 +69,7 @@
 
  <h1 id="using-the-gateway-to-support-high-availability">Using the Gateway to Support High Availability</h1>
 
-<p>You can configure KAAZING Gateway to be highly available, something that is mission critical to the success of today’s enterprises. Configuring KAAZING Gateway for high availability protects applications from hardware and software failures.</p>
+<p>You can configure Kaazing Gateway to be highly available, something that is mission critical to the success of today’s enterprises. Configuring Kaazing Gateway for high availability protects applications from hardware and software failures.</p>
 
 <p>This document describes the various aspects of high availability configuration:</p>
 
@@ -80,7 +80,7 @@
   <li><a href="#configure-a-two-member-local-demo-cluster">Configure a Two-Member Local Demo Cluster</a></li>
 </ul>
 
-<p>To resolve issues encountered when configuring high availability, see <a href="../../troubleshooting/p_troubleshoot_high_availability">Troubleshoot KAAZING Gateway Clusters and Load Balancing</a>.</p>
+<p>To resolve issues encountered when configuring high availability, see <a href="../../troubleshooting/p_troubleshoot_high_availability">Troubleshoot Kaazing Gateway Clusters and Load Balancing</a>.</p>
 
 <h2 id="gateway-clustering">Gateway Clustering</h2>
 
@@ -90,7 +90,7 @@
 
 <p>You configure a cluster by adding the <code>cluster</code> configuration element to the <code>gateway-config.xml</code> file. In the <code>cluster</code> element, you add the address on which the Gateway instance is listening for other cluster members (typically, the local IP address of the Gateway) and the cluster group address used by all cluster members to discover other cluster members.</p>
 
-<p>There is no concept of cluster masters and slaves; each cluster member has its own connection to the back-end server. If a cluster member terminates unexpectedly, the KAAZING Gateway client will reconnect to the cluster.</p>
+<p>There is no concept of cluster masters and slaves; each cluster member has its own connection to the back-end server. If a cluster member terminates unexpectedly, the Kaazing Gateway client will reconnect to the cluster.</p>
 
 <ol>
   <li>
@@ -101,7 +101,7 @@
     <p><strong>Figure: Cluster Member Connections During Steady State</strong></p>
   </li>
   <li>
-    <p>In the case when one of the cluster members terminates unexpectedly, then the KAAZING Gateway clients connected to that member will reconnect to the cluster and other members will no longer redirect to that cluster member. This is shown in the following figure:</p>
+    <p>In the case when one of the cluster members terminates unexpectedly, then the Kaazing Gateway clients connected to that member will reconnect to the cluster and other members will no longer redirect to that cluster member. This is shown in the following figure:</p>
 
     <p><img src="../../images/f-ha-cluster-fail-web.jpg" alt="This figure shows a cluster of three members but one member has failed. The two surviving cluster members and the clients reestablish connections to each other and no longer connect to the failed node." /></p>
 
@@ -114,7 +114,7 @@
 
 <h2 id="load-balancing-services">Load Balancing Services</h2>
 
-<p>KAAZING Gateway provides the <code>balancer</code> service, which allows you to balance load for requests from any Gateway service type. Services running on KAAZING Gateway support peer load balancer awareness with the <code>balance</code> element.</p>
+<p>Kaazing Gateway provides the <code>balancer</code> service, which allows you to balance load for requests from any Gateway service type. Services running on Kaazing Gateway support peer load balancer awareness with the <code>balance</code> element.</p>
 
 <p>All cluster members that wish to participate in load balancing are configured with a <code>balancer</code> service. Each member then acts as a <em>balancer Gateway</em> to the other members.</p>
 
@@ -128,18 +128,18 @@
     <p><strong>Note</strong>: The Gateway supports cookies. If the client has accessed a particular node before, the <code>balancer</code> service checks to see if that node is available; if the node is available, the <code>balancer</code> service chooses this node for the client connection. The <code>balancer</code> service follows the same process for terminated connections: if a connection terminates unexpectedly, the <code>balancer</code> service first checks to see if the node to which the client was originally connected is still available, and then tells the client to connect to that node.</p>
   </li>
   <li>The client establishes a connection with the node assigned by the <code>balancer</code> service (for example, <code>ws://node1.example.com:8081/echo</code>), bypassing the first Gateway after the initial connection is established.</li>
-  <li>If a connected KAAZING Gateway instance terminates unexpectedly, the client reconnects to the original Gateway URI (<code>ws://balancer.example.com:8081/echo</code>).</li>
+  <li>If a connected Kaazing Gateway instance terminates unexpectedly, the client reconnects to the original Gateway URI (<code>ws://balancer.example.com:8081/echo</code>).</li>
   <li>The <code>balancer</code> service checks the cluster again to see which nodes are still available and chooses a new one for the client to connect to directly.</li>
   <li>
     <p>The client establishes a connection with the new node assigned by the <code>balancer</code> service (for example, <code>ws://node2.example.com:8081/echo</code>), once again bypassing the first Gateway after the initial connection is established. </p>
 
-    <p><strong>Note</strong>: The Gateways (members) of a KAAZING Gateway cluster share information across the cluster. If a connection or one of the Gateways fails, then a client can connect to another member within the cluster.</p>
+    <p><strong>Note</strong>: The Gateways (members) of a Kaazing Gateway cluster share information across the cluster. If a connection or one of the Gateways fails, then a client can connect to another member within the cluster.</p>
   </li>
 </ol>
 
 <h2 id="clustering-and-load-balancing-migration">Clustering and Load Balancing Migration</h2>
 
-<p>The following checklists describe how to migrate a KAAZING Gateway 3.3-3.5 load-balanced cluster to KAAZING Gateway 4.x. The tasks in the checklists are a part of the overall Gateway configuration migration sequence described in the <a href="../../upgrade/p_migrate_gwconfig">Migrate the Gateway Configuration</a> topic. Before you migrate your existing cluster, review the procedures in <a href="../o_high_availability">Configure the Gateway for High Availability</a>.</p>
+<p>The following checklists describe how to migrate a Kaazing Gateway 3.3-3.5 load-balanced cluster to Kaazing Gateway 4.x. The tasks in the checklists are a part of the overall Gateway configuration migration sequence described in the <a href="../../upgrade/p_migrate_gwconfig">Migrate the Gateway Configuration</a> topic. Before you migrate your existing cluster, review the procedures in <a href="../o_high_availability">Configure the Gateway for High Availability</a>.</p>
 
 <h3 id="cluster-migration-checklist">Cluster Migration Checklist</h3>
 
@@ -155,12 +155,12 @@
     <tr>
       <td>1</td>
       <td>Modify the <code>name</code> element in <code>cluster</code>, if desired.</td>
-      <td>In KAAZING Gateway 3.3-3.5, the <code>name</code> element was required to be <code>kzha</code>. This is no longer a requirement. The <code>name</code> element can be any name. The name must be the same in the <code>cluster</code> service of every Gateway that wishes to join this cluster.</td>
+      <td>In Kaazing Gateway 3.3-3.5, the <code>name</code> element was required to be <code>kzha</code>. This is no longer a requirement. The <code>name</code> element can be any name. The name must be the same in the <code>cluster</code> service of every Gateway that wishes to join this cluster.</td>
     </tr>
     <tr>
       <td>2</td>
       <td>Revise the <code>connect</code> element to contain a multicast address, if desired.</td>
-      <td>In KAAZING Gateway 3.3-3.5, at least one <code>connect</code> element containing the unicast address of another cluster member was required, but in KAAZING Gateway 4.x you can choose to use a multicast address in the <code>connect</code> element instead (for example, <code>udp://224.2.2.44:54327</code>). If you use a multicast address in the <code>connect</code> element, then the same <code>connect</code> element can be used in the <code>cluster</code> service on each cluster member.</td>
+      <td>In Kaazing Gateway 3.3-3.5, at least one <code>connect</code> element containing the unicast address of another cluster member was required, but in Kaazing Gateway 4.x you can choose to use a multicast address in the <code>connect</code> element instead (for example, <code>udp://224.2.2.44:54327</code>). If you use a multicast address in the <code>connect</code> element, then the same <code>connect</code> element can be used in the <code>cluster</code> service on each cluster member.</td>
     </tr>
   </tbody>
 </table>
@@ -189,7 +189,7 @@
     <tr>
       <td>3</td>
       <td>Copy the <code>balancer</code> service to each cluster member.</td>
-      <td>In KAAZING Gateway 3.3-3.5, there was the concept of a single Gateway running a <code>balancer</code> service on behalf of the other cluster members (a <em>balancer Gateway</em>). In KAAZING Gateway 4.x, every cluster member with a load-balanced service must include a <code>balancer</code> service.</td>
+      <td>In Kaazing Gateway 3.3-3.5, there was the concept of a single Gateway running a <code>balancer</code> service on behalf of the other cluster members (a <em>balancer Gateway</em>). In Kaazing Gateway 4.x, every cluster member with a load-balanced service must include a <code>balancer</code> service.</td>
     </tr>
     <tr>
       <td>4</td>
@@ -339,7 +339,7 @@ Ethernet adapter Local Area Connection:
     </ol>
   </li>
   <li>
-    <p>Navigate to <code>GATEWAY_HOME/bin</code>, and launch the first cluster member using the following command, where <code>GATEWAY_HOME</code> is the full path to the directory that contains KAAZING Gateway and its components (for more information, see <a href="../../about/setup-guide">Setting Up the Gateway</a>):</p>
+    <p>Navigate to <code>GATEWAY_HOME/bin</code>, and launch the first cluster member using the following command, where <code>GATEWAY_HOME</code> is the full path to the directory that contains Kaazing Gateway and its components (for more information, see <a href="../../about/setup-guide">Setting Up the Gateway</a>):</p>
 
     <ul>
       <li>
@@ -398,9 +398,9 @@ Members [2] {
 <ul>
   <li><a href="../o_high_availability">Configure the Gateway for High Availability</a>
     <ul>
-      <li><a href="../p_high_availability_cluster">Configure a KAAZING Gateway Cluster</a></li>
-      <li><a href="../p_high_availability_loadbalance">Set Up KAAZING Gateway as a Load Balancer</a></li>
-      <li><a href="../../troubleshooting/p_troubleshoot_high_availability">Troubleshoot KAAZING Gateway Clusters and Load Balancing</a></li>
+      <li><a href="../p_high_availability_cluster">Configure a Kaazing Gateway Cluster</a></li>
+      <li><a href="../p_high_availability_loadbalance">Set Up Kaazing Gateway as a Load Balancer</a></li>
+      <li><a href="../../troubleshooting/p_troubleshoot_high_availability">Troubleshoot Kaazing Gateway Clusters and Load Balancing</a></li>
     </ul>
   </li>
 </ul>

@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/admin-reference/c_configure_gateway_concepts/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -71,17 +71,17 @@
 
 <p>After you install the Gateway, you can configure it by modifying the settings in the configuration file <code>GATEWAY_HOME/conf/gateway-config.xml</code> file. The actual location of the <code>GATEWAY_HOME</code> directory depends on your operating system and the method (standalone or installer) used to install the Gateway. You can find more information about <code>GATEWAY_HOME</code> and the directory structure that is set up during installation in <a href="../../about/setup-guide">Setting Up the Gateway</a>. This document describes the types of configuration files and <a href="../r_configure_gateway_element_index">Configuration Element Index</a> provides a list of the individual configuration elements.</p>
 
-<p>By default, the Gateway uses the values in the Gateway configuration file when you start the Gateway. Optionally, you can override one or more Gateway configuration settings by specifying the <code>GATEWAY_OPTS</code> environment variable before you start the Gateway. This method is described in <a href="../p_configure_gateway_opts">Configure KAAZING Gateway Using the GATEWAY_OPTS Environment Variable</a>.</p>
+<p>By default, the Gateway uses the values in the Gateway configuration file when you start the Gateway. Optionally, you can override one or more Gateway configuration settings by specifying the <code>GATEWAY_OPTS</code> environment variable before you start the Gateway. This method is described in <a href="../p_configure_gateway_opts">Configure Kaazing Gateway Using the GATEWAY_OPTS Environment Variable</a>.</p>
 
 <p>This topic covers the following information:</p>
 
 <ul>
-  <li><a href="#about-kaazing-gateway-configuration-files">About KAAZING Gateway Configuration Files</a></li>
-  <li><a href="#about-kaazing-gateway-configuration-file-elements-and-properties">About KAAZING Gateway Configuration File Elements and Properties</a></li>
-  <li><a href="#about-kaazing-gateway-namespace-declarations">About KAAZING Gateway Namespace Declarations</a></li>
+  <li><a href="#about-kaazing-gateway-configuration-files">About Kaazing Gateway Configuration Files</a></li>
+  <li><a href="#about-kaazing-gateway-configuration-file-elements-and-properties">About Kaazing Gateway Configuration File Elements and Properties</a></li>
+  <li><a href="#about-kaazing-gateway-namespace-declarations">About Kaazing Gateway Namespace Declarations</a></li>
 </ul>
 
-<h2 id="about-kaazing-gateway-configuration-files">About KAAZING Gateway Configuration Files</h2>
+<h2 id="about-kaazing-gateway-configuration-files">About Kaazing Gateway Configuration Files</h2>
 
 <p>The Gateway provides two configuration file options:</p>
 
@@ -114,16 +114,16 @@
   <li>For additional information about the location of your <code>GATEWAY_HOME</code>, the configuration files and starting the Gateway, see <a href="../../about/setup-guide">Setting Up the Gateway</a>.</li>
 </ul>
 
-<h2 id="about-kaazing-gateway-configuration-file-elements-and-properties">About KAAZING Gateway Configuration File Elements and Properties</h2>
+<h2 id="about-kaazing-gateway-configuration-file-elements-and-properties">About Kaazing Gateway Configuration File Elements and Properties</h2>
 
-<p>KAAZING Gateway configuration file (<code>gateway-config.xml</code> or <code>gateway-config.xml</code>) can include a number of configuration elements and properties contained within the top-level <code>gateway-config</code> element.</p>
+<p>Kaazing Gateway configuration file (<code>gateway-config.xml</code> or <code>gateway-config.xml</code>) can include a number of configuration elements and properties contained within the top-level <code>gateway-config</code> element.</p>
 
 <p>At a minimum, the Gateway configuration file must contain the following components (which are included in the default configuration files):</p>
 
 <ul>
-  <li>The Gateway namespace declaration, as described in <a href="#about-kaazing-gateway-namespace-declarations">About KAAZING Gateway Namespace Declarations</a></li>
+  <li>The Gateway namespace declaration, as described in <a href="#about-kaazing-gateway-namespace-declarations">About Kaazing Gateway Namespace Declarations</a></li>
   <li>The Gateway <a href="../r_configure_gateway_service#service"><code>name</code></a> element.</li>
-  <li>The <a href="../r_configure_gateway_service"><code>service</code></a> element with the <a href="../r_configure_gateway_service#directory"><code>directory</code></a> type to specify the path of your static files relative to <code>GATEWAY_HOME/web</code>, where <em>GATEWAY_HOME</em> is the directory where you installed KAAZING Gateway.</li>
+  <li>The <a href="../r_configure_gateway_service"><code>service</code></a> element with the <a href="../r_configure_gateway_service#directory"><code>directory</code></a> type to specify the path of your static files relative to <code>GATEWAY_HOME/web</code>, where <em>GATEWAY_HOME</em> is the directory where you installed Kaazing Gateway.</li>
 </ul>
 
 <p>For example, the following is an example of a minimally configured Gateway configuration file:</p>
@@ -160,11 +160,11 @@
 &lt;/gateway-config&gt;
 </code></pre>
 
-<p>To customize your configuration, see the <a href="../p_configure_gateway_files">Configure KAAZING Gateway</a> topic for a step-by-step procedure to configure the Gateway. Also, you can find a complete list of elements in the <a href="../r_configure_gateway_element_index">Configuration Element Index.</a></p>
+<p>To customize your configuration, see the <a href="../p_configure_gateway_files">Configure Kaazing Gateway</a> topic for a step-by-step procedure to configure the Gateway. Also, you can find a complete list of elements in the <a href="../r_configure_gateway_element_index">Configuration Element Index.</a></p>
 
-<h2 id="about-kaazing-gateway-namespace-declarations">About KAAZING Gateway Namespace Declarations</h2>
+<h2 id="about-kaazing-gateway-namespace-declarations">About Kaazing Gateway Namespace Declarations</h2>
 
-<p>Your KAAZING Gateway configuration file must contain a namespace declaration. Each release of the Gateway has a unique namespace declaration. The namespace is defined by the <code>xmlns</code> attribute in the <a href="../r_configure_gateway_gwconfig">gateway-config</a> element and has the syntax: <code>xmlns=**"URI"**</code> as shown in the following examples.</p>
+<p>Your Kaazing Gateway configuration file must contain a namespace declaration. Each release of the Gateway has a unique namespace declaration. The namespace is defined by the <code>xmlns</code> attribute in the <a href="../r_configure_gateway_gwconfig">gateway-config</a> element and has the syntax: <code>xmlns=**"URI"**</code> as shown in the following examples.</p>
 
 <h4 id="example-gateway-configxml-file">Example: gateway-config.xml file</h4>
 
@@ -188,7 +188,7 @@
 
 <ul>
   <li>If you use the default <code>gateway-config.xml</code> or <code>gateway-config-minimal.xml</code> configuration file, and the <code>jaas-config.xml</code> configuration file that are installed in <code>GATEWAY_HOME/conf/</code>, then you can start the Gateway without making any changes to the namespace declaration. This is because the default configuration files that are installed with the Gateway explicitly set the namespace declaration to the most current namespace.</li>
-  <li>If you create your own configuration files, then you must ensure that the files contain a namespace declaration that is appropriate for your Gateway release before you start the Gateway. See <a href="#about-kaazing-gateway-namespace-declarations">About KAAZING Gateway Namespace Declarations</a> to ensure the elements used in your configuration file match what is supported by the namespace specified in the configuration file.</li>
+  <li>If you create your own configuration files, then you must ensure that the files contain a namespace declaration that is appropriate for your Gateway release before you start the Gateway. See <a href="#about-kaazing-gateway-namespace-declarations">About Kaazing Gateway Namespace Declarations</a> to ensure the elements used in your configuration file match what is supported by the namespace specified in the configuration file.</li>
 </ul>
 
 <p><strong>Notes:</strong><br />

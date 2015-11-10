@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -73,11 +73,11 @@
 
                 <p>For information about each authentication scheme type, see <a href="../security/p_aaa_config_authscheme.html">Configure the HTTP Challenge Scheme</a>.</p>
                 
-                <p>Before you add security to your clients, follow the steps in <a href="../security/o_tls.html">Checklist: Secure Network Traffic with the Gateway</a> and <a href="../security/o_aaa_config_authentication.html">Checklist: Configure Authentication and Authorization</a> to set up security on Kaazing WebSocket Gateway for your client. The authentication and authorization methods configured on the Gateway influence your client security implementation. In this procedure, we provide an example of the most common implementation.</p>
+                <p>Before you add security to your clients, follow the steps in <a href="../security/o_tls.html">Checklist: Secure Network Traffic with the Gateway</a> and <a href="../security/o_aaa_config_authentication.html">Checklist: Configure Authentication and Authorization</a> to set up security on Kaazing Gateway for your client. The authentication and authorization methods configured on the Gateway influence your client security implementation. In this procedure, we provide an example of the most common implementation.</p>
 
-<h2>Before You Begin</h2><p>This procedure is part of <a href="o_dev_java.html">Checklist: Build Java Clients Using Kaazing WebSocket Gateway</a>:</p><ol><li><a href="p_dev_java_setup.html">Set Up Your Development Environment</a></li><li><a href="p_dev_java_websocket.html">Interact with Kaazing WebSocket Gateway Using the WebSocket API</a></li><li><a href="p_dev_java_eventsource.html">Interact with Kaazing WebSocket Gateway Using the EventSource API</a></li><li><a href="p_dev_java_migrate.html">Migrate WebSocket and ByteSocket Applications to Kaazing WebSocket Gateway 4.x</a></li><li><b>Secure Your Java and Android Clients</b></li><li><a href="p_dev_java_logging.html">Display Logs for the Java Client</a></li><li><a href="p_dev_java_tshoot.html">Troubleshoot Your Java Client</a></li></ol>
+<h2>Before You Begin</h2><p>This procedure is part of <a href="o_dev_java.html">Checklist: Build Java Clients Using Kaazing Gateway</a>:</p><ol><li><a href="p_dev_java_setup.html">Set Up Your Development Environment</a></li><li><a href="p_dev_java_websocket.html">Interact with Kaazing Gateway Using the WebSocket API</a></li><li><a href="p_dev_java_eventsource.html">Interact with Kaazing Gateway Using the EventSource API</a></li><li><a href="p_dev_java_migrate.html">Migrate WebSocket and ByteSocket Applications to Kaazing Gateway 4.x</a></li><li><b>Secure Your Java and Android Clients</b></li><li><a href="p_dev_java_logging.html">Display Logs for the Java Client</a></li><li><a href="p_dev_java_tshoot.html">Troubleshoot Your Java Client</a></li></ol>
 
-<!-- <p><span class="note"><b>Note:</b> This procedure is also part of <a href="../dev-android/o_dev_android.html">Checklist: Build Android Clients Using Kaazing WebSocket Gateway</a>.</span></p> -->
+<!-- <p><span class="note"><b>Note:</b> This procedure is also part of <a href="../dev-android/o_dev_android.html">Checklist: Build Android Clients Using Kaazing Gateway</a>.</span></p> -->
 
 <h2>To Secure Your Java and Android Clients</h2>
                 <p>This section includes the following topics:</p>
@@ -202,14 +202,14 @@ wsFactory.setDefaultChallengeHandler(
 <p>After you have developed your own challenge handler, you can install it for future use. For example, to install your own implementation of <code>BasicChallengeHandler</code> for a Java client:</p>
 
 <ol>
-        <li>Add a JAR file with your <code>BasicChallengeHandler</code> implementation to your classpath parameter before the Kaazing WebSocket Gateway Java client libraries.</li>
+        <li>Add a JAR file with your <code>BasicChallengeHandler</code> implementation to your classpath parameter before the Kaazing Gateway Java client libraries.</li>
         <li>Ensure the JAR file contains the following file inside:<br>
                 META-INF/services/com.kaazing.gateway.client.security.BasicChallengeHander. The contents of the file should consist of a single line listing the fully-qualified name of your new implementation class (for example, <code>fully.qualified.challenge.handler.impl.MyChallengeHandler</code>). For more information, see the <a href="http://docs.oracle.com/javase/7/docs/api/java/util/ServiceLoader.html">Service Loader</a> documentation.
         </li>
 </ol>
 
 <a id="manage"></a><h2>Managing Log In Attempts</h2>
-<p>When it is not possible for the Kaazing WebSocket Gateway client to create a challenge response, the client must return <code>null</code> to the Gateway to stop the Gateway from continuing to issue authentication challenges.</p>
+<p>When it is not possible for the Kaazing Gateway client to create a challenge response, the client must return <code>null</code> to the Gateway to stop the Gateway from continuing to issue authentication challenges.</p>
 
 <p>The following example demonstrates how to stop the Gateway from issuing further challenges.</p>
 

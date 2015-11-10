@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -68,9 +68,9 @@
 <div class="container page-content text-left">
 <h1>General Client Information</h1>
 
-<p>This topic contains information that applies to clients built using the Kaazing WebSocket Gateway JavaScript, Java, and Objective-C WebSocket APIs. In addition, native WebSocket clients, meaning clients that implement the <a href="http://www.w3.org/TR/websockets/">WebSocket API standard</a> but are built without the Kaazing WebSocket Gateway APIs, can take advantage of the features of the Gateway described in this topic.</p>
+<p>This topic contains information that applies to clients built using the Kaazing Gateway JavaScript, Java, and Objective-C WebSocket APIs. In addition, native WebSocket clients, meaning clients that implement the <a href="http://www.w3.org/TR/websockets/">WebSocket API standard</a> but are built without the Kaazing Gateway APIs, can take advantage of the features of the Gateway described in this topic.</p>
 
-<p><span class="note"><b>Note:</b> The Objective-C client information in this topic applies to the Objective-C client libraries in the Kaazing WebSocket Gateway JMS 4.0 and Gateway 4.0 Editions only.</span></p>
+<p><span class="note"><b>Note:</b> The Objective-C client information in this topic applies to the Objective-C client libraries in the Kaazing Gateway JMS 4.0 and Gateway 4.0 Editions only.</span></p>
 
 <p>This topic contains the following sections:</p>
 <ul class="arrow-2">
@@ -110,7 +110,7 @@
 <h2><a name="Reading"></a>Reading WebSocket Connection State in the JavaScript and Objective-C WebSocket APIs</h2>
 <p>The <a href="http://www.w3.org/TR/websockets/#dom-websocket-readystate"><span class="code_inline">readyState</span></a> attribute of the WebSocket interface represents the state of the WebSocket connection. A number is associated with each connection state and you can read the <span class="code_inline">readyState</span> to determine the state of the WebSocket connection between your client and the Gateway.</p>
 
-<p>In version 3.x of Kaazing WebSocket Gateway, numeric values for <span class="code_inline">readyState</span> are different than those in the finalized WebSocket API standard. The JavaScript, Java, and Objective-C WebSocket APIs in version 4.x of the Gateway use the <span class="code_inline">readyState</span> values of the <a href="http://dev.w3.org/html5/websockets/#dom-websocket-readystate" title="The WebSocket API">WebSocket API standard</a>.</p>
+<p>In version 3.x of Kaazing Gateway, numeric values for <span class="code_inline">readyState</span> are different than those in the finalized WebSocket API standard. The JavaScript, Java, and Objective-C WebSocket APIs in version 4.x of the Gateway use the <span class="code_inline">readyState</span> values of the <a href="http://dev.w3.org/html5/websockets/#dom-websocket-readystate" title="The WebSocket API">WebSocket API standard</a>.</p>
 
 <p>The following table includes both the previous numeric values and the current numeric values.</p>
 
@@ -161,10 +161,10 @@ w.onopen = function() {
 <p><span class="note"><b>Note:</b> Developers migrating applications to the latest version of the Gateway will need to update any code that uses readyState values to use the latest values.</span></p>
 
 <h2><a name="Best"></a>Best Practices</h2>
-<p>Kaazing WebSocket Gateway client libraries dispatch messages on the message-dispatch thread to the client application. The application receives messages on the message-dispatch thread via an event-listener method or a callback function. Message receiving and message sending should be performed on separate threads. Do not try to send a message or perform other long-running operations in the message-dispatch thread. If a message needs to be sent in response to a received message, then the message should be sent on a separate thread. On single-threaded client platforms such as Javascript and Flash, the message delivery can be scheduled for a later time using the <code>setTimeout()</code> function.</p>
+<p>Kaazing Gateway client libraries dispatch messages on the message-dispatch thread to the client application. The application receives messages on the message-dispatch thread via an event-listener method or a callback function. Message receiving and message sending should be performed on separate threads. Do not try to send a message or perform other long-running operations in the message-dispatch thread. If a message needs to be sent in response to a received message, then the message should be sent on a separate thread. On single-threaded client platforms such as Javascript and Flash, the message delivery can be scheduled for a later time using the <code>setTimeout()</code> function.</p>
 
 <h2>See Also</h2>
-<p>Kaazing WebSocket Gateway <a href="../index.html#api_topics">Client API documentation</a>.</p>
+<p>Kaazing Gateway <a href="../index.html#api_topics">Client API documentation</a>.</p>
                                   <!-- CONTENT GOES HERE -->
         
                        </section>
@@ -259,7 +259,7 @@ w.onopen = function() {
 </ul>
 </li>
 </ul></div></div></div><div class="span3"><div id="text_contact-2" class="widget widget_text_contact"><h3 class="widgettitle title m_title">Get in Touch</h3>
-			<div class="textwidget contact-details"><p>T +1 (877)&shy; KAAZING<br />
+			<div class="textwidget contact-details"><p>T +1 (877)&shy; Kaazing<br />
 
 T +1 (877)&shy; 522-9464<br />
 

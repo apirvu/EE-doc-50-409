@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -66,8 +66,8 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Checklist: How to Build C AMQP Clients Using Kaazing WebSocket Gateway</h1>
-<p>This checklist provides the steps necessary to build AMQP clients to communicate with Kaazing WebSocket Gateway:</p>
+<h1>Checklist: How to Build C AMQP Clients Using Kaazing Gateway</h1>
+<p>This checklist provides the steps necessary to build AMQP clients to communicate with Kaazing Gateway:</p>
 
 <table width="789" border="0">
   <tr>
@@ -82,13 +82,13 @@
   </tr> -->
   <tr>
         <td>1</td>
-    <td>Learn about the Kaazing WebSocket Gateway C AMQP client.</td>
-    <td><a href="#keglibs">Overview of the Kaazing WebSocket Gateway C AMQP Client Library</a></td>
+    <td>Learn about the Kaazing Gateway C AMQP client.</td>
+    <td><a href="#keglibs">Overview of the Kaazing Gateway C AMQP Client Library</a></td>
   </tr>
   <tr>
         <td>2</td>
   <td>Learn how to use the Gateway C Client Library and the supported APIs.</td>
-  <td><a href="p_dev_c_client.html">Use the Kaazing WebSocket Gateway C AMQP Client Library</a></td>
+  <td><a href="p_dev_c_client.html">Use the Kaazing Gateway C AMQP Client Library</a></td>
   </tr>
   <tr>
         <td>3</td>
@@ -111,23 +111,23 @@
 
 
 <h2><a name="websocket" id="websocket"></a>WebSocket and AMQP</h2>
-<p>Kaazing WebSocket Gateway enables direct WebSocket communication from the AMQP client to the Gateway and then onto an AMQP broker over TCP. The Gateway radically simplifies C application design by providing the AMQP client libraries for C client technologies.</p>
+<p>Kaazing Gateway enables direct WebSocket communication from the AMQP client to the Gateway and then onto an AMQP broker over TCP. The Gateway radically simplifies C application design by providing the AMQP client libraries for C client technologies.</p>
 
 <p>Using the AMQP client libraries, you can take advantage of the AMQP features, making the C client a first-class citizen in AMQP systems.</p>
 
-<h2><a name="keglibs"></a>Overview of the Kaazing WebSocket Gateway C AMQP Client Library</h2>
-<p>Kaazing WebSocket Gateway  - AMQP Edition includes AMQP client libraries that allow clients to subscribe and publish messages to a message broker using AMQP. With the Kaazing WebSocket Gateway AMQP client libraries, you can leverage WebSocket in your C client. This WebSocket-enabled C client then communicates between your application and the message broker, as shown in the following figure:</p><br>
+<h2><a name="keglibs"></a>Overview of the Kaazing Gateway C AMQP Client Library</h2>
+<p>Kaazing Gateway  - AMQP Edition includes AMQP client libraries that allow clients to subscribe and publish messages to a message broker using AMQP. With the Kaazing Gateway AMQP client libraries, you can leverage WebSocket in your C client. This WebSocket-enabled C client then communicates between your application and the message broker, as shown in the following figure:</p><br>
 
         <figure>
-                <img src="../images/f-amqp-web-c-client-web.png" width="729" height="207" alt="Kaazing WebSocket Gateway C AMQP Client">
-        <figcaption><strong>Figure: Kaazing WebSocket Gateway C AMQP Client Connection</strong></figcaption> 
+                <img src="../images/f-amqp-web-c-client-web.png" width="729" height="207" alt="Kaazing Gateway C AMQP Client">
+        <figcaption><strong>Figure: Kaazing Gateway C AMQP Client Connection</strong></figcaption> 
         </figure>
 
 <h2><a name="setup_server"></a>Starting an AMQP Broker</h2>
  
 <p>There are a wide variety of AMQP brokers available that implement different AMQP versions. For example, RabbitMQ, Apache Qpid, OpenAMQ, Red Hat Enterprise MRG, UMQ, and Zyre. If you do not have an AMQP broker installed yet, you can use the Apache Qpid AMQP broker included in the Gateway download package, that supports AMQP version 0-9-1.</p>
 
-<p>To set up and start the Apache Qpid broker on your system, perform the steps described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</p>
+<p>To set up and start the Apache Qpid broker on your system, perform the steps described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</p>
 <p><span class="note"><strong>Note</strong>: The AMQP client libraries are compatible with AMQP version 0-9-1. Refer your AMQP broker documentation for information about certified AMQP versions.</span></p>
 
 <p>For information on integrating with RabbitMQ, see <a href="../integration-amqp/p_amqp_integrate_rabbitmq.html">Integrate RabbitMQ Messaging</a>.</p>
@@ -135,13 +135,13 @@
 <h2><a name="demo" id="demo"></a>Taking a Look at the AMQP Demo Files</h2>
 <p>Take a look at demonstration files built with the C version of the AMQP client library: <span class="uri"><em>GATEWAY_HOME</em>/demo/c/src/amqp</span></p>
 <!-- <ol>
-<li>Start the Kaazing WebSocket Gateway and Apache Qpid as described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+<li>Start the Kaazing Gateway and Apache Qpid as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
 <li>In a browser, navigate to <a href="http://localhost:8001/demo/amqp/c/?d=amqp-c" class="code_inline">http://localhost:8001/demo/amqp/c/?d=amqp-c</a>.
 From this page, you can navigate to additional AMQP demos for different client technologies (Java, Silverlight, .NET Framework, C, and Adobe Flash and Flex).</li>
 </ol> -->
 
 <h2>Next Step</h2>
-<p><a href="p_dev_c_client.html">Use the Kaazing WebSocket Gateway C AMQP Client Library</a></p>
+<p><a href="p_dev_c_client.html">Use the Kaazing Gateway C AMQP Client Library</a></p>
 
                   </section>
                 </article>

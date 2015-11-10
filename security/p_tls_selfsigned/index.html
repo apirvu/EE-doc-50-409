@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/security/p_tls_selfsigned/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -71,7 +71,7 @@
 
 <p><strong>Warning:</strong> Using self-signed certificates can result in unpredictable behavior because various browsers, plug-ins, operating systems, and related run-time systems handle self-signed certificates differently. Resulting issues may include connectivity failures and other security issues which can be difficult to diagnose. Instead, use <a href="../p_tls_trusted">trusted certificates</a> issued from a trusted certificate authority (CA) for real-world development, test, and production environments.</p>
 
-<p>You can configure secure networking between KAAZING Gateway and its clients and back-end servers using <strong>self-signed certificates</strong>. A self-signed certificate is not issued from a trusted Certificate Authority (CA), but created independently and intended for limited use between individuals that trust its autonomy.</p>
+<p>You can configure secure networking between Kaazing Gateway and its clients and back-end servers using <strong>self-signed certificates</strong>. A self-signed certificate is not issued from a trusted Certificate Authority (CA), but created independently and intended for limited use between individuals that trust its autonomy.</p>
 
 <p>In this procedure, you will do the following:</p>
 
@@ -131,7 +131,7 @@ password -alias example.com -keyalg RSA -dname "CN=example.com, OU=Example, O=Ex
 L=Mountain View, ST=California, C=US"
 </code></pre>
 
-    <p>To troubleshoot TLS/SSL errors and exceptions, see <a href="../../troubleshooting/p_troubleshoot_security">Troubleshooting KAAZING Gateway Security</a>.</p>
+    <p>To troubleshoot TLS/SSL errors and exceptions, see <a href="../../troubleshooting/p_troubleshoot_security">Troubleshooting Kaazing Gateway Security</a>.</p>
 
     <p><strong>Notes:</strong></p>
 
@@ -164,7 +164,7 @@ L=Mountain View, ST=California, C=US"
   <li>
     <p>Verify that the certificate is valid by starting the Gateway. If the Gateway does not start, it might not be accepting the same host name used in the certificate. Check the directory service in <code>gateway-config.xml</code> and confirm that the host name in the <code>service</code> element’s <code>accept-domain</code> matches the host name used in the certificate. If they do not match, update the <code>accept-domain</code> in <code>gateway-config.xml</code>, save the file, and then start the Gateway.</p>
 
-    <p>To troubleshoot TLS/SSL errors and exceptions, see <a href="../../troubleshooting/p_troubleshoot_security">Troubleshooting KAAZING Gateway Security</a>.</p>
+    <p>To troubleshoot TLS/SSL errors and exceptions, see <a href="../../troubleshooting/p_troubleshoot_security">Troubleshooting Kaazing Gateway Security</a>.</p>
   </li>
   <li>
     <p>Once the Gateway is running, enter the secure URL in a web browser using HTTPS, for example <code>https://www.example.com:9000</code>. The browser will display a warning stating that the certificate is not trusted. The warning is the result of using a self-signed certificate instead of a trusted certificate created by a Certification Authority. Accept the untrusted certificate and proceed to the web page.</p>
@@ -185,7 +185,7 @@ offline.example.com -keyalg RSA -dname "CN=offline.example.com, OU=Example, O=Ex
 L=Mountain View, ST=California, C=US"
 </code></pre>
 
-    <p>To troubleshoot TLS/SSL errors and exceptions, see <a href="../../troubleshooting/p_troubleshoot_security">Troubleshooting KAAZING Gateway Security</a>.</p>
+    <p>To troubleshoot TLS/SSL errors and exceptions, see <a href="../../troubleshooting/p_troubleshoot_security">Troubleshooting Kaazing Gateway Security</a>.</p>
 
     <p>The Gateway is now configured with a certificate for the host name of the back-end server, and you can use the host name to connect to the back-end server over TLS/SSL. As an example, configure the Gateway to act as a back-end server proxy for the secure networking requests from the client.</p>
   </li>

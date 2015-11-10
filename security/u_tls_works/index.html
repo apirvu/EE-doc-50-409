@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/security/u_tls_works/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -69,7 +69,7 @@
 
  <h1 id="how-tlsssl-works-with-the-gateway">How TLS/SSL Works with the Gateway</h1>
 
-<p>You can secure network traffic between KAAZING Gateway and its clients and back-end servers using the widespread networking protocol Transport Layer Security (TLS, also known as SSL). TLS/SSL is the protocol you use when accessing secure websites with a URL that begins with https://. TLS/SSL protects data from modification during transit and verifies its authenticity. WebSocket connections are secured by tunneling through TLS/SSL using the WebSocket Secure (WSS) URL scheme wss://. By securing Gateway communication with TLS/SSL, you protect the confidentiality, integrity, and availability of your network communications.</p>
+<p>You can secure network traffic between Kaazing Gateway and its clients and back-end servers using the widespread networking protocol Transport Layer Security (TLS, also known as SSL). TLS/SSL is the protocol you use when accessing secure websites with a URL that begins with https://. TLS/SSL protects data from modification during transit and verifies its authenticity. WebSocket connections are secured by tunneling through TLS/SSL using the WebSocket Secure (WSS) URL scheme wss://. By securing Gateway communication with TLS/SSL, you protect the confidentiality, integrity, and availability of your network communications.</p>
 
 <p>In addition, configuring the Gateway with TLS/SSL ensures that network intermediaries, such as transparent proxy servers and firewalls that are unaware of WebSocket, do not drop the WebSocket connection. WebSocket uses the same HTTP upgrade method commonly used to upgrade HTTP connections to HTTPS. Intermediaries unfamiliar with WebSocket might drop the unfamiliar WebSocket upgrade as a security precaution, preventing the WebSocket connection. When using the WSS connection over TLS/SSL, however, intermediaries trust the connection and allow it to pass.</p>
 
@@ -130,7 +130,7 @@
   <tbody>
     <tr>
       <td>The Gateway and its configuration file (<code>gateway-config.xml</code>)</td>
-      <td>You will configure the Gateway configuration file (<code>GATEWAY_HOME/conf/gateway-config.xml</code>) for secure networking between the Gateway and clients and the Gateway and back-end servers. For more information on <code>gateway-config.xml</code>, see <a href="../../admin-reference/c_configure_gateway_concepts#about-kaazing-gateway-configuration-files">About KAAZING Gateway Configuration Files</a>.</td>
+      <td>You will configure the Gateway configuration file (<code>GATEWAY_HOME/conf/gateway-config.xml</code>) for secure networking between the Gateway and clients and the Gateway and back-end servers. For more information on <code>gateway-config.xml</code>, see <a href="../../admin-reference/c_configure_gateway_concepts#about-kaazing-gateway-configuration-files">About Kaazing Gateway Configuration Files</a>.</td>
     </tr>
     <tr>
       <td>host names</td>

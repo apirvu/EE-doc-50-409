@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/integration-jms/p_jms_integrate_tshoot/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -67,13 +67,13 @@
 
 <div class="container page-content text-left">
 
- <h1 id="troubleshoot-jms-integration--">Troubleshoot JMS Integration  <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></h1>
+ <h1 id="troubleshoot-jms-integration--">Troubleshoot JMS Integration  <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h1>
 
-<p>This topic covers troubleshooting issues related to integrating a JMS-compliant message broker with KAAZING Gateway.</p>
+<p>This topic covers troubleshooting issues related to integrating a JMS-compliant message broker with Kaazing Gateway.</p>
 
 <p>For information on troubleshooting JMS clients, see <a href="../../troubleshooting/p_dev_troubleshoot">Troubleshoot Your Clients</a>.</p>
 
-<p>For general troubleshooting information, see <a href="../../troubleshooting/o_troubleshoot">Troubleshoot KAAZING Gateway</a>.</p>
+<p>For general troubleshooting information, see <a href="../../troubleshooting/o_troubleshoot">Troubleshoot Kaazing Gateway</a>.</p>
 
 <h2 id="what-problem-are-you-having">What Problem Are You Having?</h2>
 
@@ -132,11 +132,11 @@
 <p><strong>Cause:</strong> There are two typical scenarios specific to JMS integration with the Gateway:</p>
 
 <ol>
-  <li>The Gateway goes offline when a message sent by a JMS client is in transit. The result is that the message is lost and consumers do not get the message even after the Gateway comes back online. (If messages are sent after the Gateway is offline, the KAAZING Gateway JMS client accumulates the messages as pending frames and when the Gateway comes back online, the pending messages are sent.)</li>
+  <li>The Gateway goes offline when a message sent by a JMS client is in transit. The result is that the message is lost and consumers do not get the message even after the Gateway comes back online. (If messages are sent after the Gateway is offline, the Kaazing Gateway JMS client accumulates the messages as pending frames and when the Gateway comes back online, the pending messages are sent.)</li>
   <li>The JMS-compliant message broker goes offline and the JMS client sends a message. The result is that messages are queued by the Gateway until the broker comes back online, at which point the messages are sent to the broker and on to subscribers (topics or queues).</li>
 </ol>
 
-<p><strong>Solution:</strong> From the JMS client side, the KAAZING Gateway Client APIs have several exception classes that can be used to determine what condition resulted in a connection error. For example, see the <a href="http://developer.kaazing.com/documentation/jms/4.0/apidoc/client/java/jms/index.html">Java JMS Client API</a>. A few of the key exception classes are:</p>
+<p><strong>Solution:</strong> From the JMS client side, the Kaazing Gateway Client APIs have several exception classes that can be used to determine what condition resulted in a connection error. For example, see the <a href="http://developer.kaazing.com/documentation/jms/4.0/apidoc/client/java/jms/index.html">Java JMS Client API</a>. A few of the key exception classes are:</p>
 
 <ul>
   <li>ConnectionDisconnectedException</li>
@@ -204,7 +204,7 @@
 
 <ul>
   <li>Include the <a href="../../admin-reference/r_conf_jms#connectionsecurityprincipal"><code>connection.security.principal</code></a> and <a href="../../admin-reference/r_conf_jms#connectionsecuritycredentials"><code>connection.security.credentials</code></a> properties in the <code>jms</code> service. The Gateway uses these properties for each connection it creates to the message broker. This is the recommended solution. For more information, see <a href="../../admin-reference/r_conf_jms#jms">jms</a>.</li>
-  <li>Provide the required authentication credentials at each <code>createConnection()</code> method call in your KAAZING Gateway JMS client. If you choose this option, the Gateway passes the credentials from the JMS client to the message broker, but the Gateway itself does not authenticate with the message broker. For more information, see <code>createConnection()</code> in each of the KAAZING Gateway JMS Client APIs under <strong>Client API Documentation</strong>.</li>
+  <li>Provide the required authentication credentials at each <code>createConnection()</code> method call in your Kaazing Gateway JMS client. If you choose this option, the Gateway passes the credentials from the JMS client to the message broker, but the Gateway itself does not authenticate with the message broker. For more information, see <code>createConnection()</code> in each of the Kaazing Gateway JMS Client APIs under <strong>Client API Documentation</strong>.</li>
   <li>Disable authentication at the message broker. This solution should be used to simplify development and testing environments only.</li>
 </ul>
 
@@ -214,7 +214,7 @@
 
 <p><strong>Cause:</strong> A required jar file is missing from the <code>GATEWAY_HOME/lib</code> folder.</p>
 
-<p><strong>Solution:</strong> Review the procedure for integrating KAAZING Gateway with the message broker and ensure that all of the required jar files listed in the procedure are in the <code>GATEWAY_HOME/lib</code> folder. To locate the procedure, see <a href="../o_jms_integrate">About Integrating KAAZING Gateway and JMS-Compliant Message Brokers</a>.</p>
+<p><strong>Solution:</strong> Review the procedure for integrating Kaazing Gateway with the message broker and ensure that all of the required jar files listed in the procedure are in the <code>GATEWAY_HOME/lib</code> folder. To locate the procedure, see <a href="../o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a>.</p>
 
 <h2 id="tibco-ems-unable-to-free-up-durable-subscribers">TIBCO EMS Unable to Free Up Durable Subscribers</h2>
 
@@ -235,7 +235,7 @@
 
 <h2 id="see-also">See Also</h2>
 
-<p>For more information about KAAZING Gateway administration, see the <a href="../..">documentation</a>.</p>
+<p>For more information about Kaazing Gateway administration, see the <a href="../..">documentation</a>.</p>
 
 
 

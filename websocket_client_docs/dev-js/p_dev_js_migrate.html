@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -66,34 +66,34 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Migrate JavaScript Applications to Kaazing WebSocket Gateway 4.x</h1>
+<h1>Migrate JavaScript Applications to Kaazing Gateway 4.x</h1>
 
-<p>This topic explains how to migrate Kaazing WebSocket Gateway 3.3-3.5 JavaScript clients built using the ByteSocket API to the WebSocket API in Kaazing WebSocket Gateway 4.x. Kaazing WebSocket Gateway 4.x no longer includes the ByteSocket API because the WebSocket API in the Kaazing WebSocket Gateway 4.x JavaScript library supports binary messaging.</p>
+<p>This topic explains how to migrate Kaazing Gateway 3.3-3.5 JavaScript clients built using the ByteSocket API to the WebSocket API in Kaazing Gateway 4.x. Kaazing Gateway 4.x no longer includes the ByteSocket API because the WebSocket API in the Kaazing Gateway 4.x JavaScript library supports binary messaging.</p>
 
 <p>After the simple code changes described in this topic, updated ByteSocket implementations can continue to deliver binary messages using a ByteBuffer object in which you store the bytes that you want to send. The ByteBuffer interface is now included in the WebSocket library to support existing ByteBuffer implementations. To continue to use ByteBuffer, you must replace references to ByteSocket.js with WebSocket.js.</p>
 
 <span class="note"><b>Notes:</b><br>
  <ul class="arrow-2">
-     <li>Developers of WebSocket-based clients built using previous versions of Kaazing WebSocket Gateway should be aware connection state changes in Kaazing WebSocket Gateway 4.x. Previous versions of the Gateway used numeric values for <span class="code_inline">readyState</span> that are different than those in the finalized WebSocket API standard. Kaazing WebSocket Gateway 4.x uses the <span class="code_inline">readyState</span> values of the WebSocket API standard. For more information, see <a href="../dev-general/c_general_client_information.html">Reading WebSocket Connection State</a>.</li>
-   <li>When using ByteBuffer in Kaazing WebSocket Gateway 4.x, the Gateway defaults to sending binary messages over the network.</li>
+     <li>Developers of WebSocket-based clients built using previous versions of Kaazing Gateway should be aware connection state changes in Kaazing Gateway 4.x. Previous versions of the Gateway used numeric values for <span class="code_inline">readyState</span> that are different than those in the finalized WebSocket API standard. Kaazing Gateway 4.x uses the <span class="code_inline">readyState</span> values of the WebSocket API standard. For more information, see <a href="../dev-general/c_general_client_information.html">Reading WebSocket Connection State</a>.</li>
+   <li>When using ByteBuffer in Kaazing Gateway 4.x, the Gateway defaults to sending binary messages over the network.</li>
    <li>The numeric value of the readyState attribute of a WebSocket connection has changed to align with the finalized WebSocket API standard. For more information, see <a href="../dev-general/c_general_client_information.html">Reading WebSocket Connection State</a>.</li>
    <li>For binary data support details specific to the Gateway, see <a href="../dev-general/c_general_client_information.html">the Gateway Configuration Options</a>.</li>
  </ul>
 </span>
 
 <h2>Before You Begin</h2>
-<p>This procedure is part of <a href="o_dev_js.html">Checklist: Build JavaScript Clients Using Kaazing WebSocket Gateway</a>:</p>
+<p>This procedure is part of <a href="o_dev_js.html">Checklist: Build JavaScript Clients Using Kaazing Gateway</a>:</p>
 <ol>
-    <li><a href="p_dev_js_websocket.html">Interact with Kaazing WebSocket Gateway Using the WebSocket API</a></li>
-    <li><a href="p_dev_js_eventsource.html">Interact with Kaazing WebSocket Gateway Using the EventSource API</a></li>
-    <li><strong>Migrate JavaScript Applications to Kaazing WebSocket Gateway 4.x</strong></li>
+    <li><a href="p_dev_js_websocket.html">Interact with Kaazing Gateway Using the WebSocket API</a></li>
+    <li><a href="p_dev_js_eventsource.html">Interact with Kaazing Gateway Using the EventSource API</a></li>
+    <li><strong>Migrate JavaScript Applications to Kaazing Gateway 4.x</strong></li>
     <li><a href="p_dev_js_secure.html">Secure Your JavaScript Client</a></li>
     <li><a href="p_clientlogging_js.html">Display Logs for the JavaScript Client</a></li>
 </ol>
 
 <p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../release-notes.html">Release Notes</a>.</span></p>
 
-<h2>To Migrate ByteSocket Applications to Kaazing WebSocket Gateway 4.x</h2>
+<h2>To Migrate ByteSocket Applications to Kaazing Gateway 4.x</h2>
 
 <ol>
     <li>In your JavaScript client, replace the following <span class="code_inline">script</span> tag:
@@ -117,11 +117,11 @@ var factory = new WebSocketFactory();
 websocket = factory.createWebSocket(&quot;ws://example.com:8000/path&quot;);
 websocket.binaryType = "bytebuffer";
 </pre>
-<p>The <span class="code_inline">websocket.binaryType = "bytebuffer"</span> statement creates a <span class="code_inline">ByteBuffer</span> object with the data received from the WebSocket message event. This is similar to how ByteSocket data objects were managed in Kaazing WebSocket Gateway 3.x.</p>
+<p>The <span class="code_inline">websocket.binaryType = "bytebuffer"</span> statement creates a <span class="code_inline">ByteBuffer</span> object with the data received from the WebSocket message event. This is similar to how ByteSocket data objects were managed in Kaazing Gateway 3.x.</p>
     </li>
     
     <li><p>The remaining code from a ByteSocket object needs only a minor change (highlighted below). When you send messages, you send binary data using a ByteBuffer object as shown in the following example. Since you are sending binary data, you first have to create a ByteBuffer object in which you store the bytes that you want to send.</p>
-    <p>Here is an example of ByteSocket code from earlier versions of Kaazing WebSocket Gateway. The function takes a text string entered by a user (<span class="code_inline">message.value</span>), puts the string into a buffer using the UTF-8 character set to encode the string as bytes (<span class="code_inline">putString()</span>), flips the buffer to put in read mode (<span class="code_inline">flip()</span>), and sends the buffer to the Gateway (<span class="code_inline">byteSocket.send(buf)</span>):</p>
+    <p>Here is an example of ByteSocket code from earlier versions of Kaazing Gateway. The function takes a text string entered by a user (<span class="code_inline">message.value</span>), puts the string into a buffer using the UTF-8 character set to encode the string as bytes (<span class="code_inline">putString()</span>), flips the buffer to put in read mode (<span class="code_inline">flip()</span>), and sends the buffer to the Gateway (<span class="code_inline">byteSocket.send(buf)</span>):</p>
 <pre class="auto-links: false; brush: js; toolbar: false;">
 send.onclick = function() {
     var buf = new ByteBuffer();
@@ -131,7 +131,7 @@ send.onclick = function() {
     byteSocket.send(buf);
 }
 </pre>
-    <p>Here is the equivalent function in WebSocket code from Kaazing WebSocket Gateway 4.x:</p>
+    <p>Here is the equivalent function in WebSocket code from Kaazing Gateway 4.x:</p>
 <pre class="auto-links: false; brush: js; toolbar: false;">
 send.onclick = function() {
     var buf = new ByteBuffer();
@@ -148,7 +148,7 @@ send.onclick = function() {
 <p>For more information, see the ByteBuffer in the <a href="http://tech.kaazing.com/documentation/gateway/4.0/apidoc/client/javascript/gateway/index.html" target="_blank">JavaScript API</a>.</p>
 
 <h2>Binary Support with Blob and Array Buffer</h2>
-<p>In addition to including binary support with ByteBuffer, Kaazing WebSocket Gateway 4.x includes support for blob and array buffer.</p>
+<p>In addition to including binary support with ByteBuffer, Kaazing Gateway 4.x includes support for blob and array buffer.</p>
 
 <ul class="arrow-2">
     <li><strong>Blob</strong> - A pointer to a single, raw binary object called a blob (binary large object). Blobs can be multimedia, images, or even executable code. Blob objects are considered safe to spool to disk because the entire data object is intact. You might use a Blob data type when you do not intend to manipulate the data, but simply write it to disk, or you might use a blob when you want to slice a file into byte ranges. The blob data type will work on any web browser that supports the <a href="http://www.w3.org/TR/FileAPI/" title="File API">File API</a>. For a list of web browsers that support the File API, see <a href="http://caniuse.com/#feat=fileapi">caniuse.com</a>.</li>

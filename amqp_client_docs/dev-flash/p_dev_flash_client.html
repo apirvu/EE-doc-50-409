@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -66,8 +66,8 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Use the Kaazing WebSocket Gateway Flash AMQP Client Library</h1>
-<p>In this procedure, you will learn how to use the Kaazing WebSocket Gateway Flash AMQP Client Library and the supported APIs. The steps in this section show you how to set up your development environment and add perform the following coding steps:</p>
+<h1>Use the Kaazing Gateway Flash AMQP Client Library</h1>
+<p>In this procedure, you will learn how to use the Kaazing Gateway Flash AMQP Client Library and the supported APIs. The steps in this section show you how to set up your development environment and add perform the following coding steps:</p>
 <ol>
         <li><a href="#setup_flex_dev_env">Set up your Flex development environment</a></li>
         <li><a href="#using_lib_flex">Review the common Flash AMQP programming steps</a></li>
@@ -87,29 +87,29 @@
 
 
 <h2><a name="_"></a>Before You Begin</h2>
-<p>This procedure is part of <a href="o_dev_flash.html">Checklist: How to Build Flash Clients Using Kaazing WebSocket Gateway</a>:</p>
+<p>This procedure is part of <a href="o_dev_flash.html">Checklist: How to Build Flash Clients Using Kaazing Gateway</a>:</p>
 
 <p>
         <ol>
-        <li><a href="o_dev_flash.html#keglibs">Overview of the Kaazing WebSocket Gateway AMQP Client Library</a></li>
-        <li><strong>Use the Kaazing WebSocket Gateway Flash AMQP Client Library</strong></li>
+        <li><a href="o_dev_flash.html#keglibs">Overview of the Kaazing Gateway AMQP Client Library</a></li>
+        <li><strong>Use the Kaazing Gateway Flash AMQP Client Library</strong></li>
         <li><a href="p_dev_flash_secure.html">Secure Your Flash AMQP Client</a></li>
         </ol>
 </p>
 
 <p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../../release-notes.html">Release Notes</a>.</span></p>  
 
-<h2>To Use the Kaazing WebSocket Gateway Flash AMQP Client Library</h2>
+<h2>To Use the Kaazing Gateway Flash AMQP Client Library</h2>
 <p>
 <ol>
 <li><a name="setup_flex_dev_env" id="setup_flex_dev_env"></a><p>Set up your Flex development environment.</p>
         <ol type="a">
                 <li>To develop a Flex application, you must download the Adobe Flex 3 SDK. The Adobe Flex 3 SDK can be used to compile ActionScript source files into a SWF file, which is the target application. You can download the Adobe Flex 3 SDK from the Adobe download site and install it into your local drive.</li>
-                <li>To use the Kaazing WebSocket Gateway AMQP client libraries for Flex, you must add a reference to the libraries located in the <code>com.kaazing.net.ws.amqp.client.swc</code> and <code>com.kaazing.gateway.client.swc</code> to your Flash application. The files are in the directory <span class="uri"><em>GATEWAY_HOME</em>/lib/client/flash</span>.</li>
-    <li><p><a name="config_gateway" id="config_gateway"></a>Configure Kaazing WebSocket Gateway to connect to an AMQP broker.</p>
-                        <p><span class="note"><b>Note:</b> If you have Kaazing WebSocket Gateway running on <span class="code_inline">localhost</span> and if you have an AMQP broker running on <span class="code_inline">localhost</span> at the default AMQP port <span class="code_inline">5672</span>, you do not have to configure anything to see the AMQP demos and the interactive AMQP guide.</span></p>
+                <li>To use the Kaazing Gateway AMQP client libraries for Flex, you must add a reference to the libraries located in the <code>com.kaazing.net.ws.amqp.client.swc</code> and <code>com.kaazing.gateway.client.swc</code> to your Flash application. The files are in the directory <span class="uri"><em>GATEWAY_HOME</em>/lib/client/flash</span>.</li>
+    <li><p><a name="config_gateway" id="config_gateway"></a>Configure Kaazing Gateway to connect to an AMQP broker.</p>
+                        <p><span class="note"><b>Note:</b> If you have Kaazing Gateway running on <span class="code_inline">localhost</span> and if you have an AMQP broker running on <span class="code_inline">localhost</span> at the default AMQP port <span class="code_inline">5672</span>, you do not have to configure anything to see the AMQP demos and the interactive AMQP guide.</span></p>
 
-                        <p>The following is an example of the default configuration element for the AMQP service in the Kaazing WebSocket Gateway bundle, as specified in the configuration file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>:</p>
+                        <p>The following is an example of the default configuration element for the AMQP service in the Kaazing Gateway bundle, as specified in the configuration file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>:</p>
 
                         <pre class="auto-links: false; brush: xml; toolbar: false;">
                         &lt;!-- Proxy service to AMQP server --&gt;
@@ -302,7 +302,7 @@ public function publishSendHandler(e:Event):void {
 
 <p>A custom parameter is passed in for the message. The message text entered by the user is stored in a variable and converted to binary (<span class="code_inline">body.putString(message.text, Charset.UTF8);</span>), and then sent to the exchange specified by the user (<span class="code_inline">exchangeName</span>). Also note that the last two arguments use boolean values for <span class="code_inline">mandatory</span> and <span class="code_inline">immediate</span>.</p>
 
-<p>The <span class="code_inline">AmqpProperties</span> class defines pre-defined properties as per AMQP 0-9-1 spec and provides type-safe getters and setters for those pre-defined properties. The value of AMQP 0-9-1's standard "headers" property is of type <a href="../apidoc/client/flash/amqp/com/kaazing/gateway/amqp/client/AmqpArguments.html">AmqpArguments</a>. The Kaazing WebSocket Gateway AMQP implementation uses AmqpArguments to encode the table. Similarly, the Kaazing WebSocket Gateway AMQP implementation decodes the table and constructs an instance of AmqpArguments.</p>
+<p>The <span class="code_inline">AmqpProperties</span> class defines pre-defined properties as per AMQP 0-9-1 spec and provides type-safe getters and setters for those pre-defined properties. The value of AMQP 0-9-1's standard "headers" property is of type <a href="../apidoc/client/flash/amqp/com/kaazing/gateway/amqp/client/AmqpArguments.html">AmqpArguments</a>. The Kaazing Gateway AMQP implementation uses AmqpArguments to encode the table. Similarly, the Kaazing Gateway AMQP implementation decodes the table and constructs an instance of AmqpArguments.</p>
 
 <span class="note"><b>Notes:</b><br>
  <ul class="arrow-2">
@@ -402,7 +402,7 @@ private function closePublishChannelHandler(e:AmqpEvent):void {
 }</pre></li>
 
 <li><a name="run_client" id="run_client"></a><p>Compile and run the Flex application.</p>
-        <p>Once you are finished coding the client (typically, an <span class="code_inline">.MXML</span> file), you must use the Adobe Flex 3 SDK from Adobe to compile your Flex client. Ensure that your library path points to the Kaazing WebSocket Gateway Flex library <span class="code_inline">.SWC</span> file <span class="code_inline">kaazing-websocket-gateway-client-<em>release-version</em>.swc</span>. This <span class="code_inline">.SWC</span> file can be found in the Kaazing WebSocket Gateway bundle in the directory <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/flex</span>. Once you have compiled a SWF file, you can  execute this SWF file from the flash player or use a Web page to invoke it. For example, you can host it in the web directory <span class="code_inline"><em>GATEWAY_HOME</em>/web</span>.</p></li>
+        <p>Once you are finished coding the client (typically, an <span class="code_inline">.MXML</span> file), you must use the Adobe Flex 3 SDK from Adobe to compile your Flex client. Ensure that your library path points to the Kaazing Gateway Flex library <span class="code_inline">.SWC</span> file <span class="code_inline">kaazing-websocket-gateway-client-<em>release-version</em>.swc</span>. This <span class="code_inline">.SWC</span> file can be found in the Kaazing Gateway bundle in the directory <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/flex</span>. Once you have compiled a SWF file, you can  execute this SWF file from the flash player or use a Web page to invoke it. For example, you can host it in the web directory <span class="code_inline"><em>GATEWAY_HOME</em>/web</span>.</p></li>
 </ol>
 </p>
 

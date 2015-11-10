@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -66,8 +66,8 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Use the Kaazing WebSocket Gateway Java AMQP Client Library</h1>
-<p>In this procedure, you will learn how to use the Kaazing WebSocket Gateway Java AMQP client library and the supported APIs. This topic shows you how to set up your development environment and perform the following:</p>
+<h1>Use the Kaazing Gateway Java AMQP Client Library</h1>
+<p>In this procedure, you will learn how to use the Kaazing Gateway Java AMQP client library and the supported APIs. This topic shows you how to set up your development environment and perform the following:</p>
 <ol>
 <li><a href="#setup">Set up your development environment</a></li>
 <li><a href="#review">Review the common Java AMQP programming steps</a></li>
@@ -88,28 +88,28 @@
 </ol>
 
 <h2><a name="_"></a>Before You Begin</h2>
-<p>This procedure is part of <a href="o_dev_java.html">Checklist: How to Build Java AMQP Clients Using Kaazing WebSocket Gateway</a>:</p>
+<p>This procedure is part of <a href="o_dev_java.html">Checklist: How to Build Java AMQP Clients Using Kaazing Gateway</a>:</p>
 <ol>
-<li><a href="o_dev_java.html#overview">Overview of the Kaazing WebSocket Gateway AMQP Client Library</a></li>
-<li><strong>Use the Kaazing WebSocket Gateway Java AMQP Client Library</strong></li>
+<li><a href="o_dev_java.html#overview">Overview of the Kaazing Gateway AMQP Client Library</a></li>
+<li><strong>Use the Kaazing Gateway Java AMQP Client Library</strong></li>
 <li><a href="p_dev_java_secure.html">Secure Your JavaScript AMQP Client</a></li>
 </ol>
 
 <p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../../release-notes.html">Release Notes</a>.</span></p>  
 
-<p>For information about migrating your JavaScript AMQP 3.3-3.5 client to JavaScript 4.x, see <a href="#migrate">Migrate Java AMQP Applications to Kaazing WebSocket Gateway 4.x</a>.
+<p>For information about migrating your JavaScript AMQP 3.3-3.5 client to JavaScript 4.x, see <a href="#migrate">Migrate Java AMQP Applications to Kaazing Gateway 4.x</a>.
 </p>
 
-<h2>To Use the Kaazing WebSocket Gateway Java AMQP Client Library</h2>
+<h2>To Use the Kaazing Gateway Java AMQP Client Library</h2>
 <p>
 <ol>
         <li><a name="setup"></a><p>Set up your development environment.</p>
                 <ol>
                         <li>Ensure you have a Java IDE, such as Eclipse, which can be downloaded from <a href="http://www.eclipse.org/downloads/">http://www.eclipse.org/downloads/</a>.</li>
-                        <li>If you haven't done so already, download and install Kaazing WebSocket Gateway, as described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
-                        <li><p>To develop clients using the Kaazing WebSocket Gateway Java AMQP client library, you must configure the Gateway to communicate with an AMQP broker.</p>
-                        <p>Note: If you have the Kaazing WebSocket Gateway running on localhost and if you have an AMQP broker running on localhost at the default AMQP port 5672, you do not have to configure anything to see the AMQP demos and the <a href="../guide-amqp.html">Real-Time Interactive Guide to AMQP</a>.</p>
-                        <p>The following is an example of the default configuration element for the AMQP service in the Kaazing WebSocket Gateway bundle, as specified in the configuration file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>:</p>
+                        <li>If you haven't done so already, download and install Kaazing Gateway, as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+                        <li><p>To develop clients using the Kaazing Gateway Java AMQP client library, you must configure the Gateway to communicate with an AMQP broker.</p>
+                        <p>Note: If you have the Kaazing Gateway running on localhost and if you have an AMQP broker running on localhost at the default AMQP port 5672, you do not have to configure anything to see the AMQP demos and the <a href="../guide-amqp.html">Real-Time Interactive Guide to AMQP</a>.</p>
+                        <p>The following is an example of the default configuration element for the AMQP service in the Kaazing Gateway bundle, as specified in the configuration file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>:</p>
                         <pre class="auto-links: false; brush: xml; toolbar: false;">
                                 &lt;!-- Proxy service to AMQP server --&gt;
                                 &lt;service&gt;
@@ -164,7 +164,7 @@
         </li>
         <li><a name="libraries"></a><p>Import the libraries.</p>
                 <p>Import the Java client library from the Gateway. The client library instructs the application to use the AmqpClient protocol commands provided by the Gateway.</p>
-                <p>To use the Kaazing WebSocket Gateway Java AMQP client library in your Java applet or stand-alone Java application, you must include the Java AMQP client library, located in the JAR files <strong>com.kaazing.gateway.client.jar</strong> and <strong>com.kaazing.gateway.amqp.client.java.jar</strong>, in <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/java</span>.</p>
+                <p>To use the Kaazing Gateway Java AMQP client library in your Java applet or stand-alone Java application, you must include the Java AMQP client library, located in the JAR files <strong>com.kaazing.gateway.client.jar</strong> and <strong>com.kaazing.gateway.amqp.client.java.jar</strong>, in <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/java</span>.</p>
                 <p><span class="note"><b>Note:</b> Refer to the Java applet documentation for more information on how to package external code in your Java applet. You can deploy this Java applet to the Gateway. For example, you can place it in the web directory: <span class="code_inline"><em>GATEWAY_HOME</em>/web/base</span>.</span></p>
                 <p>To import the Java client library into an Eclipse project, you add it as an External JAR file:</p>
                 <ol>
@@ -180,7 +180,7 @@
                                                         <img src="../images/f-amqp-web-java-app.jpg">
                                                 <figcaption><strong>Figure: The Java AMQP Demo Run from Eclipse Using the Java Sources Files</strong></figcaption>      
                                                 </figure>
-                                                <p>Ensure that both the Gateway and Apache Qpid are running, and then test the application. See <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a> for information on setting up the Gateway and Apache Qpid.</p>
+                                                <p>Ensure that both the Gateway and Apache Qpid are running, and then test the application. See <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a> for information on setting up the Gateway and Apache Qpid.</p>
                         </li>
                 </ol>
         </li>
@@ -497,7 +497,7 @@ else if(arg0.getSource()==jButton3){
 
 <p>A custom parameter is passed in for the message. The message text entered by the user is stored in a variable and converted to binary (<span class="code_inline">buffer.putString(jTextField6.getText(), Charset.forName("UTF-8"));</span>), and then sent to the exchange specified by the user (<span class="code_inline">jTextField5.getText()</span>). Also note that the last two arguments use boolean values for <span class="code_inline">mandatory</span> and <span class="code_inline">immediate</span>.</p>       
 
-<p>The <span class="code_inline">AmqpProperties</span> class defines pre-defined properties as per AMQP 0-9-1 spec and provides type-safe getters and setters for those pre-defined properties. The value of AMQP 0-9-1's standard "headers" property is of type <a href="../apidoc/client/java/amqp/client/com/kaazing/net/ws/amqp/AmqpArguments.html">AmqpArguments</a>. The Kaazing WebSocket Gateway AMQP implementation uses AmqpArguments to encode the table. Similarly, the Kaazing WebSocket Gateway AMQP implementation decodes the table and constructs an instance of AmqpArguments.</p>
+<p>The <span class="code_inline">AmqpProperties</span> class defines pre-defined properties as per AMQP 0-9-1 spec and provides type-safe getters and setters for those pre-defined properties. The value of AMQP 0-9-1's standard "headers" property is of type <a href="../apidoc/client/java/amqp/client/com/kaazing/net/ws/amqp/AmqpArguments.html">AmqpArguments</a>. The Kaazing Gateway AMQP implementation uses AmqpArguments to encode the table. Similarly, the Kaazing Gateway AMQP implementation decodes the table and constructs an instance of AmqpArguments.</p>
 
 <p>The username set with the <span class="code_inline">setUserId()</span> method must match the user that is currently authenticated with the AMQP broker. If they do not match you will see the following error: <br><span class="code_inline">PRECONDITION_FAILED - user_id property set to '&lt;<em>name</em>&gt;' but authenticated user was '&lt;<em>name</em>&gt;'</span></p>
 
@@ -665,13 +665,13 @@ public void onError(final ChannelEvent e) {
 </ol>
 </p>
 
-<h2><a name="migrate"></a>Migrate Java AMQP Applications to Kaazing WebSocket Gateway 4.x</h2>
-<p>If you wish to migrate your Kaazing WebSocket Gateway 3.3-3.5 Java AMQP clients to Kaazing WebSocket Gateway  - AMQP Edition 4.x and use its new libraries, do the following:</p>
+<h2><a name="migrate"></a>Migrate Java AMQP Applications to Kaazing Gateway 4.x</h2>
+<p>If you wish to migrate your Kaazing Gateway 3.3-3.5 Java AMQP clients to Kaazing Gateway  - AMQP Edition 4.x and use its new libraries, do the following:</p>
 
 <table width="789" border="0">
   <tr>
-    <th scope="col">Kaazing WebSocket Gateway 3.3-3.5 Package</th>
-    <th scope="col">Kaazing WebSocket Gateway  - AMQP Edition 4.x Package</th>
+    <th scope="col">Kaazing Gateway 3.3-3.5 Package</th>
+    <th scope="col">Kaazing Gateway  - AMQP Edition 4.x Package</th>
   </tr>
   <tr>
     <td>com.kaazing.gateway.amqp.client</td>
@@ -693,7 +693,7 @@ public void onError(final ChannelEvent e) {
   <li><p>Update your Java AMQP client to use the new package names: <code>com.kaazing.gateway.amqp.client</code> is now <code>com.kaazing.net.ws.amqp</code>. For example, import <code>com.kaazing.gateway.amqp.client.AmqpClient</code> is now <code>com.kaazing.net.ws.amqp.AmqpClient</code>. Also, the security package names have changed. For example, <code>com.kaazing.gateway.client.security.LoginHandler</code> is now <code>com.kaazing.net.auth.LoginHandler</code>.</p></li>
   <li><p>Update your Java AMQP client to use the new factory class:</p>
   
-  <p>Kaazing WebSocket Gateway 3.3-3.5:</p>
+  <p>Kaazing Gateway 3.3-3.5:</p>
   
 <pre class="auto-links: false; brush: java; toolbar: false;">
 import com.kaazing.gateway.amqp.client.AmqpClient;
@@ -707,7 +707,7 @@ public void actionPerformed(ActionEvent arg0) {
           ...
 </pre>
   
-  <p>Kaazing WebSocket Gateway 4.x:</p>
+  <p>Kaazing Gateway 4.x:</p>
 
 <pre class="auto-links: false; brush: java; toolbar: false;">
 import com.kaazing.net.ws.WebSocketFactory;
@@ -727,9 +727,9 @@ amqpClientFactory = AmqpClientFactory.createAmqpClientFactory();
                 ...</pre>
   
   </li>
-  <li><p>Modify challenge handlers. In Kaazing WebSocket Gateway 4.x, the ChallengeHandlers class from 3.3-3.5 was replaced with by the ChallengeHandler modifier of the WebSocketFactory class. The ChallengeHandler modifier is used during authentication for connections and subsequent revalidation that occurs at regular intervals. Also, note the new package names.</p>
+  <li><p>Modify challenge handlers. In Kaazing Gateway 4.x, the ChallengeHandlers class from 3.3-3.5 was replaced with by the ChallengeHandler modifier of the WebSocketFactory class. The ChallengeHandler modifier is used during authentication for connections and subsequent revalidation that occurs at regular intervals. Also, note the new package names.</p>
 
-<p>Kaazing WebSocket Gateway 3.3-3.5:</p>
+<p>Kaazing Gateway 3.3-3.5:</p>
 <pre class="auto-links: false; brush: java; toolbar: false;">
 import com.kaazing.gateway.client.security.BasicChallengeHandler;
 import com.kaazing.gateway.client.security.ChallengeHandlers;
@@ -760,7 +760,7 @@ private void initLoginHandler(String location) {
     }
     ...</pre>
 
-<p>Kaazing WebSocket Gateway 4.x:</p>
+<p>Kaazing Gateway 4.x:</p>
 <pre class="auto-links: false; brush: java; toolbar: false;">
 import com.kaazing.net.auth.BasicChallengeHandler;
 import com.kaazing.net.auth.LoginHandler;

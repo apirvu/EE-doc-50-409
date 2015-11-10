@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -66,9 +66,9 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Checklist: Build JavaScript Clients Using Kaazing WebSocket Gateway</h1>
+<h1>Checklist: Build JavaScript Clients Using Kaazing Gateway</h1>
 
-<p>The following checklist provides the steps necessary to build clients to communicate with Kaazing WebSocket Gateway:</p>
+<p>The following checklist provides the steps necessary to build clients to communicate with Kaazing Gateway:</p>
 
 <table class="checklist">
   <tr>
@@ -84,17 +84,17 @@
   <tr>
     <td>2</td>
     <td>Learn how to use the common methods of the HTML5 WebSocket API in your client.</td>
-    <td><a href="p_dev_js_websocket.html">Interact with Kaazing WebSocket Gateway Using the WebSocket API</a></td>
+    <td><a href="p_dev_js_websocket.html">Interact with Kaazing Gateway Using the WebSocket API</a></td>
   </tr>
   <tr>
     <td>3</td>
     <td>Learn how to use the common methods of the HTML5 Server-Sent Events standard in your client.</td>
-    <td><a href="p_dev_js_eventsource.html">Interact with Kaazing WebSocket Gateway Using the EventSource API</a></td>
+    <td><a href="p_dev_js_eventsource.html">Interact with Kaazing Gateway Using the EventSource API</a></td>
   </tr>
   <tr>
        <td>4</td>
-    <td>Migrate your legacy Kaazing WebSocket Gateway WebSocket or ByteSocket-based client to the WebSocket API-compliant libraries in Kaazing WebSocket Gateway 4.x.</td>
-    <td><a href="p_dev_js_migrate.html">Migrate JavaScript Applications to Kaazing WebSocket Gateway 4.x</a></td>
+    <td>Migrate your legacy Kaazing Gateway WebSocket or ByteSocket-based client to the WebSocket API-compliant libraries in Kaazing Gateway 4.x.</td>
+    <td><a href="p_dev_js_migrate.html">Migrate JavaScript Applications to Kaazing Gateway 4.x</a></td>
   </tr>
   <tr>
     <td>5</td>
@@ -109,24 +109,24 @@
 </table>
 
 <h2><a name="overview" id="overview"></a>Overview</h2>
-<p>Kaazing WebSocket Gateway provides support for its HTML5 Communication protocol libraries in JavaScript. Using the JavaScript client library, you can enable the HTML5 Communication protocols (for example, WebSocket and Server-Sent Events) in new or existing web applications. For example, you can create an application that uses WebSocket to get streaming financial data from a back-end server, or you can create a JavaScript client that receives streaming news data through Server-Sent Events. The following figure shows a high-level overview of the architecture:<br>&nbsp;</p>
+<p>Kaazing Gateway provides support for its HTML5 Communication protocol libraries in JavaScript. Using the JavaScript client library, you can enable the HTML5 Communication protocols (for example, WebSocket and Server-Sent Events) in new or existing web applications. For example, you can create an application that uses WebSocket to get streaming financial data from a back-end server, or you can create a JavaScript client that receives streaming news data through Server-Sent Events. The following figure shows a high-level overview of the architecture:<br>&nbsp;</p>
 
     <figure>
         <img src="../images/f-html5-javascript-client2-web.jpg" width="769" height="207" alt="JavaScript client architecture overview">
     <figcaption><strong>Figure: JavaScript client architecture overview</strong></figcaption>    
     </figure>
 
-<h2>Kaazing WebSocket Gateway Has Full WebSocket API Compliance</h2>
-    <p>Clients built using the Kaazing WebSocket Gateway JavaScript libraries are fully-compliant with the <a href="http://dev.w3.org/html5/websockets/" title="The WebSocket API">WebSocket API standard</a>. All of the standards and features of the API such as sending and receiving binary using an <a href="http://www.khronos.org/registry/typedarray/specs/latest/" title="Typed Array Specification">ArrayBuffer</a>, ArrayBufferView, and Blob are supported. </p>
+<h2>Kaazing Gateway Has Full WebSocket API Compliance</h2>
+    <p>Clients built using the Kaazing Gateway JavaScript libraries are fully-compliant with the <a href="http://dev.w3.org/html5/websockets/" title="The WebSocket API">WebSocket API standard</a>. All of the standards and features of the API such as sending and receiving binary using an <a href="http://www.khronos.org/registry/typedarray/specs/latest/" title="Typed Array Specification">ArrayBuffer</a>, ArrayBufferView, and Blob are supported. </p>
 
 <h2><a name="demo" id="demo"></a>Taking a Look at the JavaScript Client Demo</h2>
-          <p>Before you start, take a look at an out of the box demo that was built with the JavaScript client library: the JavaScript that is part of the Kaazing WebSocket Gateway bundle. To see these JavaScript clients in action, perform the following steps:</p>
+          <p>Before you start, take a look at an out of the box demo that was built with the JavaScript client library: the JavaScript that is part of the Kaazing Gateway bundle. To see these JavaScript clients in action, perform the following steps:</p>
           <ol>
-            <li>Start the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+            <li>Start the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
             <li><p>In a  browser, navigate to the out of the box demos at <span class="uri">http://localhost:8001/demo/</span> and try the JavaScript WebSocket Echo demo.<br>
                             You can find the out of the box demos for Server-Sent Events, PostMessage, and other platforms here:<br>   <span class="uri">http://localhost:8001/demo/#javascript</span>.</p>
                         </li>
-                        <li>Using the demo, connect to your Kaazing WebSocket Gateway, send messages to the Echo service running on the Gateway, and see an Echo reply message from the Gateway.</li>
+                        <li>Using the demo, connect to your Kaazing Gateway, send messages to the Echo service running on the Gateway, and see an Echo reply message from the Gateway.</li>
           </ol>
 
 <p>To view the WebSocket information on the network, do the following:</p>
