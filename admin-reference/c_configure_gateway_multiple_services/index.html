@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/admin-reference/c_configure_gateway_multiple_services/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -98,7 +98,7 @@
 
 <p>All inbound requests can communicate with multiple services on a specific host and port, and collisions are avoided because the requests use different paths. The example uses <code>remoteService1</code> and <code>remoteService2</code>, but you can specify any name on the path so long as it conforms internet URL standards (<a href="http://tools.ietf.org/html/rfc3986">RFC 3986</a>). In fact, you may chose to tailor the path to reflect the actual function of the service.</p>
 
-<p><strong>Note:</strong> KAAZING Gateway follows the generic syntax defined for all URI schemes as defined by <a href="http://tools.ietf.org/html/rfc3986">RFC 3986</a>. See <a href="../../about/about">Documentation Conventions</a> for more information about URI schemes with the Gateway.</p>
+<p><strong>Note:</strong> Kaazing Gateway follows the generic syntax defined for all URI schemes as defined by <a href="http://tools.ietf.org/html/rfc3986">RFC 3986</a>. See <a href="../../about/about">Documentation Conventions</a> for more information about URI schemes with the Gateway.</p>
 
 <p>The Gateway determines which of the two addresses to use when the client sends a request to connect with one of the pathnames. Thus, if a client makes a WebSocket connection to <code>ws://example.com:80/remoteService1</code>, then the Gateway reads the network headers and routes the request as configured by the <code>accept</code> in <code>&lt;accept&gt;ws://example.com:80/remoteService1&lt;/accept&gt;</code>.</p>
 

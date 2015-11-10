@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -66,16 +66,16 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Use the Kaazing WebSocket Gateway JavaScript AMQP Client Library</h1>
-<p>In this procedure, you will learn how to use the Kaazing WebSocket Gateway JavaScript AMQP Client Library and the supported APIs. This topic shows you how to set up your development environment and perform the following coding steps:</p>
+<h1>Use the Kaazing Gateway JavaScript AMQP Client Library</h1>
+<p>In this procedure, you will learn how to use the Kaazing Gateway JavaScript AMQP Client Library and the supported APIs. This topic shows you how to set up your development environment and perform the following coding steps:</p>
 
 
 <h2><a name="_"></a>Before You Begin</h2>
-<p>This procedure is part of <a href="o_dev_js.html">Checklist: How to Build JavaScript Clients Using Kaazing WebSocket Gateway</a>:</p>
+<p>This procedure is part of <a href="o_dev_js.html">Checklist: How to Build JavaScript Clients Using Kaazing Gateway</a>:</p>
 <p>
         <ol>
-        <li><a href="o_dev_js.html#keglibs">Overview of the Kaazing WebSocket Gateway AMQP Client Library</a></li>
-        <li><strong>Use the Kaazing WebSocket Gateway JavaScript AMQP Client Library</strong></li>
+        <li><a href="o_dev_js.html#keglibs">Overview of the Kaazing Gateway AMQP Client Library</a></li>
+        <li><strong>Use the Kaazing Gateway JavaScript AMQP Client Library</strong></li>
         <li><a href="p_dev_js_secure.html">Secure Your JavaScript AMQP Client</a></li>
         </ol>
 </p>
@@ -93,8 +93,8 @@
     <th scope="col">Location</th>
   </tr>
   <tr>
-    <td>Kaazing WebSocket Gateway  - AMQP Edition</td>
-    <td>For a detailed description of the Kaazing WebSocket Gateway  - AMQP Edition, see <a href="http://kaazing.com/products/editions/kaazing-websocket-gateway-amqp/">http://kaazing.com/products/editions/kaazing-websocket-gateway-amqp/</a>.</td>
+    <td>Kaazing Gateway  - AMQP Edition</td>
+    <td>For a detailed description of the Kaazing Gateway  - AMQP Edition, see <a href="http://kaazing.com/products/editions/kaazing-websocket-gateway-amqp/">http://kaazing.com/products/editions/kaazing-websocket-gateway-amqp/</a>.</td>
     <td><a href="http://developer.kaazing.com/downloads/amqp-edition-download/" title="Kaazing Developer Network | AMQP Edition Download">http://developer.kaazing.com/downloads/amqp-edition-download/</a></td>
   </tr>
   <tr>
@@ -106,8 +106,8 @@
   </tr>
   <tr>
     <td>AMQP broker that supports AMQP 0-9-1</td>
-    <td>Any AMQP broker that supports AMQP 0-9-1 will work with the Kaazing WebSocket Gateway  - AMQP Edition and the JavaScript AMQP library. The full Kaazing WebSocket Gateway  - AMQP Edition download (Gateway + Documentation + Demos) includes the Apache Qpid broker.</td>
-    <td>Qpid_HOME: The installer creates the default Qpid_HOME destination in <span class="uri">C:\Program Files\Kaazing\amqp\version\qpid</span> (Windows) or <span class="uri">/usr/share/kaazing/amqp/version/</span> (Linux). The full Kaazing WebSocket Gateway  - AMQP Edition download contains the Apache Qpid broker folder in its root directory.</td>
+    <td>Any AMQP broker that supports AMQP 0-9-1 will work with the Kaazing Gateway  - AMQP Edition and the JavaScript AMQP library. The full Kaazing Gateway  - AMQP Edition download (Gateway + Documentation + Demos) includes the Apache Qpid broker.</td>
+    <td>Qpid_HOME: The installer creates the default Qpid_HOME destination in <span class="uri">C:\Program Files\Kaazing\amqp\version\qpid</span> (Windows) or <span class="uri">/usr/share/kaazing/amqp/version/</span> (Linux). The full Kaazing Gateway  - AMQP Edition download contains the Apache Qpid broker folder in its root directory.</td>
   </tr>
   <tr>
     <td>Text Editor or JavaScript IDE</td>
@@ -117,7 +117,7 @@
 </table>
 
 
-<h2><a name="procedure"></a>To Use the Kaazing WebSocket Gateway JavaScript AMQP Client Library</h2>
+<h2><a name="procedure"></a>To Use the Kaazing Gateway JavaScript AMQP Client Library</h2>
 
 <p>In this section, you will learn the major steps when developing clients using the JavaScript AMQP client library, and then develop the JavaScript AMQP demo included in the Gateway download:</p>
 
@@ -157,9 +157,9 @@
 <ul>
   <li>HTML file and CSS for the client interface.</li>
   <li>WebSocket and AMQP JavaScript AMQP libraries.</li>
-  <li>Kaazing WebSocket Gateway  - AMQP Edition.</li>
+  <li>Kaazing Gateway  - AMQP Edition.</li>
   <li>AMQP broker.</li>
-  <li>Web server. Kaazing WebSocket Gateway  - AMQP Edition including a directory service for hosting web clients.</li>
+  <li>Web server. Kaazing Gateway  - AMQP Edition including a directory service for hosting web clients.</li>
 </ul>
 
 <p>For more information, see <a href="#Components_and_Tools">Components and Tools</a>.</p>
@@ -387,7 +387,7 @@ var addProperties = function(props) {
 }
 </pre>
 
-<p>The <code>AmqpProperties</code> class defines pre-defined properties as per AMQP 0-9-1 spec and provides type-safe getters and setters for those pre-defined properties. The value of AMQP 0-9-1's standard "headers" property is of type <code>AmqpArguments</code>. The Kaazing WebSocket Gateway AMQP implementation uses <code>AmqpArguments</code> to encode the table. Similarly, the Kaazing WebSocket Gateway AMQP implementation decodes the table and constructs an instance of <code>AmqpArguments</code>.</p>
+<p>The <code>AmqpProperties</code> class defines pre-defined properties as per AMQP 0-9-1 spec and provides type-safe getters and setters for those pre-defined properties. The value of AMQP 0-9-1's standard "headers" property is of type <code>AmqpArguments</code>. The Kaazing Gateway AMQP implementation uses <code>AmqpArguments</code> to encode the table. Similarly, the Kaazing Gateway AMQP implementation decodes the table and constructs an instance of <code>AmqpArguments</code>.</p>
 
 <span class="note"><b>Notes:</b>
 <ul>
@@ -668,8 +668,8 @@ var popupLoginDialog = function(callback) {
 
 <ol>
         <li><p>Configure the Gateway for JavaScript client and AMQP broker connections.</p>
-                <p>To develop applications using the Kaazing WebSocket Gateway AMQP client libraries, you must configure the Gateway to communicate with your broker and an AMQP broker.</p>
-                <p>Locate the following default configuration element for the AMQP service in the Kaazing WebSocket Gateway bundle, located in the configuration file <span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>:</p>
+                <p>To develop applications using the Kaazing Gateway AMQP client libraries, you must configure the Gateway to communicate with your broker and an AMQP broker.</p>
+                <p>Locate the following default configuration element for the AMQP service in the Kaazing Gateway bundle, located in the configuration file <span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>:</p>
                 
 <pre class="auto-links: false; brush: xml; toolbar: false;">
 &lt;!-- Proxy service to AMQP server --&gt;
@@ -699,7 +699,7 @@ var popupLoginDialog = function(callback) {
 &lt;/service&gt;
 </pre>
                 
-                <p>In this case, the service is configured to accept WebSocket AMQP requests from the browser at <span class="uri">ws://localhost:8001/amqp</span> (using the Property defaults described in <a href="../admin-reference/p_conf_files.html" title="Kaazing Developer Network">Configure Kaazing WebSocket Gateway</a>) and proxy those requests to a locally installed AMQP broker (localhost) at port 5672.</p>
+                <p>In this case, the service is configured to accept WebSocket AMQP requests from the browser at <span class="uri">ws://localhost:8001/amqp</span> (using the Property defaults described in <a href="../admin-reference/p_conf_files.html" title="Kaazing Developer Network">Configure Kaazing Gateway</a>) and proxy those requests to a locally installed AMQP broker (localhost) at port 5672.</p>
                 
                 <p>To configure the Gateway to accept WebSocket requests at another URL or to connect to a different AMQP broker, you can edit <span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>, update the values for the accept elements, change the connect property, and restart the Gateway.</p>
                 
@@ -764,7 +764,7 @@ var popupLoginDialog = function(callback) {
                 </pre>
         </li>
         <li>In index.html, enter the JavaScript AMQP Client API calls from <a href="#javascript_for_demo">JavaScript for index.html</a>.</li>
-        <li>Start the Gateway and AMQP broker as described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+        <li>Start the Gateway and AMQP broker as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
         <li>Open index.html in a web browser to test the client.
                 <ol>
                         <li>In <strong>Location</strong>, enter <span class="uri">ws://localhost:8000/amqp</span>.</li>
@@ -1799,14 +1799,14 @@ var popupLoginDialog = function(callback) {
 <p>You can also combine one or more of these programming styles.</p>
 
 
-<h2><a name="migrate"></a>Migrate JavaScript Applications to Kaazing WebSocket Gateway 4.x</h2>
+<h2><a name="migrate"></a>Migrate JavaScript Applications to Kaazing Gateway 4.x</h2>
 
-<p>If you wish to migrate your Kaazing WebSocket Gateway  - AMQP Edition 3.3-3.5 JavaScript clients to Kaazing WebSocket Gateway 4.x  - AMQP Edition and use its new library, do the following:</p>
+<p>If you wish to migrate your Kaazing Gateway  - AMQP Edition 3.3-3.5 JavaScript clients to Kaazing Gateway 4.x  - AMQP Edition and use its new library, do the following:</p>
 
 <ul>
-        <li>Add the new WebSocket.js library to your client, as described in the procedure <a href="#procedure">To Use the Kaazing WebSocket Gateway JavaScript AMQP Client Library</a>.</li>
+        <li>Add the new WebSocket.js library to your client, as described in the procedure <a href="#procedure">To Use the Kaazing Gateway JavaScript AMQP Client Library</a>.</li>
         <li>Add the new AmqpClient.js library in AMQP Edition 4.x. WebSocket.js and AmqpClient.js have replaced the AmqpClient.js library from 3.3-3.5.</li>
-        <li><p>Update fixed parameter position API calls to configuration style API calls (i.e. using the Configuration object). In Kaazing WebSocket Gateway  - AMQP Edition 3.3-3.5, the JavaScript AMQP API classes <code>AmqpClient</code> and <code>AmqpChannel</code> supported two styles, a fixed parameter position API and a configuration style API. In Kaazing WebSocket Gateway  - AMQP Edition 4.x, only configuration style APIs are supported. For example, if you had the following code:</p>
+        <li><p>Update fixed parameter position API calls to configuration style API calls (i.e. using the Configuration object). In Kaazing Gateway  - AMQP Edition 3.3-3.5, the JavaScript AMQP API classes <code>AmqpClient</code> and <code>AmqpChannel</code> supported two styles, a fixed parameter position API and a configuration style API. In Kaazing Gateway  - AMQP Edition 4.x, only configuration style APIs are supported. For example, if you had the following code:</p>
         
 <pre class="auto-links: false; brush: js; toolbar: false;">
 var client = new amqpClient();
@@ -1829,9 +1829,9 @@ amqpClient.connect({
         openHandler);
 </pre>
         </li>
-        <li><p>Modify challenge handler registration. In Kaazing WebSocket Gateway  - AMQP Edition 4.x, <code>ChallengeHandlers</code> from 3.3-3.5 was replaced with the <code>setChallengeHandler</code> method of <code>WebSocketFactory</code>. The <code>setChallengeHandler</code> method is used to register a ChallengeHandler, which is then used during authentication for connections and subsequent revalidation that occurs at regular intervals.</p>
+        <li><p>Modify challenge handler registration. In Kaazing Gateway  - AMQP Edition 4.x, <code>ChallengeHandlers</code> from 3.3-3.5 was replaced with the <code>setChallengeHandler</code> method of <code>WebSocketFactory</code>. The <code>setChallengeHandler</code> method is used to register a ChallengeHandler, which is then used during authentication for connections and subsequent revalidation that occurs at regular intervals.</p>
         
-        <p>Kaazing WebSocket Gateway 3.3-3.5:</p>
+        <p>Kaazing Gateway 3.3-3.5:</p>
         
 <pre class="auto-links: false; brush: js; toolbar: false;">
 function setupSSO() {
@@ -1844,7 +1844,7 @@ function setupSSO() {
 }
 </pre>
 
-        <p>Kaazing WebSocket Gateway 4.x:</p>
+        <p>Kaazing Gateway 4.x:</p>
         
 <pre class="auto-links: false; brush: js; toolbar: false;">
 function setupSSO(webSocketFactory) {

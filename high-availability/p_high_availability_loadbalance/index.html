@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/high-availability/p_high_availability_loadbalance/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -67,9 +67,9 @@
 
 <div class="container page-content text-left">
 
- <h1 id="set-up-kaazing-gateway-as-a-load-balancer">Set Up KAAZING Gateway as a Load Balancer</h1>
+ <h1 id="set-up-kaazing-gateway-as-a-load-balancer">Set Up Kaazing Gateway as a Load Balancer</h1>
 
-<p>Load balancing is used to balance client connection loads for a group of Gateways that have been configured as a cluster using the <code>cluster</code> service. For more information, see <a href="../p_high_availability_cluster">Configure a KAAZING Gateway Cluster</a>. You can configure load balancing using a third-party load balancer, but this procedure describes how to use the built-in load balancing features of the Gateway.</p>
+<p>Load balancing is used to balance client connection loads for a group of Gateways that have been configured as a cluster using the <code>cluster</code> service. For more information, see <a href="../p_high_availability_cluster">Configure a Kaazing Gateway Cluster</a>. You can configure load balancing using a third-party load balancer, but this procedure describes how to use the built-in load balancing features of the Gateway.</p>
 
 <p>To configure load balancing, you configure each Gateway in the cluster with a <code>balancer</code> service. The <code>balancer</code> service has <code>accept</code> elements for each URI that will be balanced across the cluster. Each cluster member configured with a <code>balancer</code> service acts as a load balancer to the other members.</p>
 
@@ -81,9 +81,9 @@
 
 <ol>
   <li><a href="../u_high_availability">Using the Gateway to Support High Availability</a></li>
-  <li><a href="../p_high_availability_cluster">Configure a KAAZING Gateway Cluster</a></li>
-  <li><strong>Set Up KAAZING Gateway as a Load Balancer</strong></li>
-  <li><a href="../../troubleshooting/p_troubleshoot_high_availability">Troubleshoot KAAZING Gateway Clusters and Load Balancing</a></li>
+  <li><a href="../p_high_availability_cluster">Configure a Kaazing Gateway Cluster</a></li>
+  <li><strong>Set Up Kaazing Gateway as a Load Balancer</strong></li>
+  <li><a href="../../troubleshooting/p_troubleshoot_high_availability">Troubleshoot Kaazing Gateway Clusters and Load Balancing</a></li>
 </ol>
 
 <h2 id="to-set-up-the-gateway-as-a-load-balancer">To Set Up The Gateway as a Load Balancer</h2>
@@ -143,7 +143,7 @@
       <li>For information on the order of subordinate elements in a service, see the <a href="../../admin-reference/r_configure_gateway_service#service">service</a> element reference.</li>
     </ul>
   </li>
-  <li>Ensure that each Gateway participating in load balancing is configured with a <code>cluster</code> service, as described in <a href="../p_high_availability_cluster">Configure a KAAZING Gateway Cluster</a>.</li>
+  <li>Ensure that each Gateway participating in load balancing is configured with a <code>cluster</code> service, as described in <a href="../p_high_availability_cluster">Configure a Kaazing Gateway Cluster</a>.</li>
   <li>Configure client applications to connect to the cluster using the URI(s) configured in the <code>balancer</code> service (for example, <code>ws://balancer.example.com:8081/echo</code> or <code>wss://balancer.example.com:9091/echo</code>).</li>
   <li>Start all cluster members.</li>
   <li>Monitor the cluster using the steps in <a href="../../management/p_monitor_cc">Monitor with Command Center</a>. To monitor a cluster, the default URL is: <code>http://localhost:8080/commandcenter</code>.</li>
@@ -207,7 +207,7 @@
 <h2 id="see-also">See Also</h2>
 
 <ul>
-  <li><a href="../../admin-reference/c_topologies">Common KAAZING Gateway Production Topologies</a>.</li>
+  <li><a href="../../admin-reference/c_topologies">Common Kaazing Gateway Production Topologies</a>.</li>
   <li>For information about the order of subordinate elements in a service, see the <a href="../../admin-reference/r_configure_gateway_service#service">service</a> element reference.</li>
 </ul>
 

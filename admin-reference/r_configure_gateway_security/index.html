@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/admin-reference/r_configure_gateway_security/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -69,7 +69,7 @@
 
  <h1 id="security-reference">Security Reference</h1>
 
-<p>This document describes all of the elements and properties you can use to configure KAAZING Gateway security.</p>
+<p>This document describes all of the elements and properties you can use to configure Kaazing Gateway security.</p>
 
 <h2 id="overview">Overview</h2>
 
@@ -109,8 +109,8 @@
                   <li><a href="#authentication">http-query-parameter</a></li>
                   <li><a href="#authentication">http-cookie</a></li>
                   <li><a href="#authentication">authorization-mode</a></li>
-                  <li><a href="#authentication">authorization-timeout</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
-                  <li><a href="#authentication">session-timeout</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></li>
+                  <li><a href="#authentication">authorization-timeout</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
+                  <li><a href="#authentication">session-timeout</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
                   <li><a href="#login-module">login-modules</a>
                     <ul>
                       <li><a href="#login-module">login-module</a>
@@ -154,11 +154,11 @@
   <tbody>
     <tr>
       <td>keystore</td>
-      <td>The keystore contains the encryption keys for secure communications with KAAZING Gateway (see <a href="#keystore">keystore</a>)</td>
+      <td>The keystore contains the encryption keys for secure communications with Kaazing Gateway (see <a href="#keystore">keystore</a>)</td>
     </tr>
     <tr>
       <td>truststore</td>
-      <td>The truststore contains digital certificates for certificate authorities trusted by KAAZING Gateway (see <a href="#truststore">truststore</a>)</td>
+      <td>The truststore contains digital certificates for certificate authorities trusted by Kaazing Gateway (see <a href="#truststore">truststore</a>)</td>
     </tr>
     <tr>
       <td>realm</td>
@@ -300,7 +300,7 @@
   ...
   &lt;realm&gt;
     &lt;name&gt;demo&lt;/name&gt;
-    &lt;description&gt;KAAZING Gateway Demo&lt;/description&gt;
+    &lt;description&gt;Kaazing Gateway Demo&lt;/description&gt;
     &lt;authentication&gt;
       &lt;http-challenge-scheme&gt;Basic&lt;/http-challenge-scheme&gt;
       &lt;http-header&gt;X-Custom-Authorization-Header&lt;/http-header&gt;
@@ -353,7 +353,7 @@
 
     <ul>
       <li>Use <code>Basic</code> or <code>Negotiate</code> to allow the browser to respond to authentication challenges. </li>
-      <li>Use <code>Application Basic</code> or <code>Application Negotiate</code> to allow the client to respond to authentication challenges. The client in this case is the KAAZING Gateway client that is built based on the KAAZING Gateway client libraries. To use client-level authentication, configure the client to handle the authentication information, as described in <a href="../..">developer how-to</a> documentation.</li>
+      <li>Use <code>Application Basic</code> or <code>Application Negotiate</code> to allow the client to respond to authentication challenges. The client in this case is the Kaazing Gateway client that is built based on the Kaazing Gateway client libraries. To use client-level authentication, configure the client to handle the authentication information, as described in <a href="../..">developer how-to</a> documentation.</li>
       <li>Use <code>Application Token</code> to allow the client to present a third-party token or custom token to be presented to your custom login module.  </li>
       <li>Use <code>Negotiate</code> or <code>Application Negotiate</code> if using Kerberos Network Authentication. For more information, see <a href="../../security/o_tls">Secure Network Traffic with the Gateway</a>.</li>
     </ul>
@@ -379,13 +379,13 @@
     </ul>
   </li>
   <li>
-    <h5 id="section-5"><code>authorization-timeout</code><img src="../../windows/images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></h5>
+    <h5 id="section-5"><code>authorization-timeout</code><img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h5>
     <p>For directory services, this element specifies the time interval that must elapse without service access before the Gateway challenges the client for credentials.</p>
 
     <p>For WebSocket services, this is the time interval before which the client must reauthenticate the WebSocket. If reauthentication has not occurred within the specified time, then the Gateway closes the WebSocket connection.</p>
   </li>
   <li>
-    <h5 id="section-6"><code>session-timeout</code><img src="../../windows/images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></h5>
+    <h5 id="section-6"><code>session-timeout</code><img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h5>
     <p>For WebSocket services only. This is the time interval after which the Gateway closes the WebSocket connection, regardless of other settings. Effectively, the <code>session-timeout</code> element specifies the maximum lifetime of the WebSocket connection.</p>
   </li>
   <li>
@@ -459,7 +459,7 @@ String cookiePart = token.get(“Acme”);
 
 <p><strong>Required?</strong> Optional; <strong>Occurs:</strong> zero or one</p>
 
-<p>This is the element for adding options to specific types of login modules. The options listed here are specific to public KAAZING Gateway login modules. See <a href="../../security/p_auth_configure_login_module">Configure a Chain of Login Modules</a> for more information about the types of login modules. </p>
+<p>This is the element for adding options to specific types of login modules. The options listed here are specific to public Kaazing Gateway login modules. See <a href="../../security/p_auth_configure_login_module">Configure a Chain of Login Modules</a> for more information about the types of login modules. </p>
 
 <p><code>options</code> contains the following elements:</p>
 
@@ -540,7 +540,7 @@ String cookiePart = token.get(“Acme”);
 &lt;/login-module&gt;
 </code></pre>
 
-<p>For information about configuring the Kerberos login module options, see the <a href="http://docs.oracle.com/javase/7/docs/jre/api/security/jaas/spec/com/sun/security/auth/module/Krb5LoginModule.html" title="Krb5LoginModule (Java Authentication and Authorization Service )">Krb5LoginModule</a> documentation. For information about how to use KAAZING Gateway with Kerberos, see <a href="../../security/o_auth_configure">Configure Kerberos V5 Network Authentication</a>.</p>
+<p>For information about configuring the Kerberos login module options, see the <a href="http://docs.oracle.com/javase/7/docs/jre/api/security/jaas/spec/com/sun/security/auth/module/Krb5LoginModule.html" title="Krb5LoginModule (Java Authentication and Authorization Service )">Krb5LoginModule</a> documentation. For information about how to use Kaazing Gateway with Kerberos, see <a href="../../security/o_auth_configure">Configure Kerberos V5 Network Authentication</a>.</p>
 
 <h5 id="login-module-1"><a name="gss-login-module"></a><code>gss</code> login module</h5>
 
@@ -592,7 +592,7 @@ String cookiePart = token.get(“Acme”);
 
 <h5 id="example-of-a--login-module-4"><a name="example-of-a-custom-login-module"></a>Example of a <code>custom</code> login module</h5>
 
-<p>KAAZING Gateway also supports a plugin mechanism for integration with custom authentication modules based on the Java LoginModule API.</p>
+<p>Kaazing Gateway also supports a plugin mechanism for integration with custom authentication modules based on the Java LoginModule API.</p>
 
 <p>For information about creating a custom login module using this API, see:</p>
 
@@ -619,7 +619,7 @@ String cookiePart = token.get(“Acme”);
 
   &lt;realm&gt;
     &lt;name&gt;demo&lt;/name&gt;
-    &lt;description&gt;KAAZING Gateway Demo&lt;/description&gt;
+    &lt;description&gt;Kaazing Gateway Demo&lt;/description&gt;
     &lt;authentication&gt;
       &lt;http-challenge-scheme&gt;Basic&lt;http-challenge-scheme&gt;
       &lt;http-header&gt;X-Custom-Authorization-Header&lt;/http-header&gt;
@@ -655,7 +655,7 @@ String cookiePart = token.get(“Acme”);
 
 <h2 id="summary">Summary</h2>
 
-<p>In this document, you learned about the Gateway <code>security</code> configuration element and how to specify it in your Gateway configuration file. For more information about the location of the configuration files and starting the Gateway, see <a href="../../about/setup-guide">Setting Up the Gateway</a>. For more information about KAAZING Gateway administration, see the <a href="../..">documentation</a>.</p>
+<p>In this document, you learned about the Gateway <code>security</code> configuration element and how to specify it in your Gateway configuration file. For more information about the location of the configuration files and starting the Gateway, see <a href="../../about/setup-guide">Setting Up the Gateway</a>. For more information about Kaazing Gateway administration, see the <a href="../..">documentation</a>.</p>
 
 
 </div>

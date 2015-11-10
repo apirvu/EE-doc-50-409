@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/security/p_kerberos_configure/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -67,9 +67,9 @@
 
 <div class="container page-content text-left">
 
- <h1 id="configuring-kerberos-v5-network-authentication-overview-">Configuring Kerberos V5 Network Authentication Overview <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></h1>
+ <h1 id="configuring-kerberos-v5-network-authentication-overview-">Configuring Kerberos V5 Network Authentication Overview <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h1>
 
-<p>KAAZING Gateway can be configured to accept a Kerberos service ticket (Ticket-Protected Gateway or TPG) from a browser client using a standard <code>Negotiate</code> challenge. Additionally, if you want to combine a TPG with a Ticket Granting Gateway (TGG) to proxy Kerberos protocol traffic from clients to a KDC, then you can configure the TPG to use the <code>Application Negotiate</code> challenge, which sends the Kerberos authentication protocol traffic over WebSocket to a TGG.</p>
+<p>Kaazing Gateway can be configured to accept a Kerberos service ticket (Ticket-Protected Gateway or TPG) from a browser client using a standard <code>Negotiate</code> challenge. Additionally, if you want to combine a TPG with a Ticket Granting Gateway (TGG) to proxy Kerberos protocol traffic from clients to a KDC, then you can configure the TPG to use the <code>Application Negotiate</code> challenge, which sends the Kerberos authentication protocol traffic over WebSocket to a TGG.</p>
 
 <h2 id="before-you-begin">Before You Begin</h2>
 
@@ -107,20 +107,20 @@
 <p><strong>Figure: Application Negotiate authentication using a TPG and a TGG to proxy Kerberos protocol traffic from clients to a KDC</strong></p>
 
 <ol>
-  <li>A KAAZING Gateway client running in the browser tries to access a ticket-protected service through a Ticket Protected Gateway (TPG).</li>
-  <li>The TPG sends the authentication challenge <code>Application Negotiate</code> to the browser. <code>Application Negotiate</code> is the KAAZING Gateway feature that allows a client to use the Kerberos authentication protocol over WebSocket.</li>
+  <li>A Kaazing Gateway client running in the browser tries to access a ticket-protected service through a Ticket Protected Gateway (TPG).</li>
+  <li>The TPG sends the authentication challenge <code>Application Negotiate</code> to the browser. <code>Application Negotiate</code> is the Kaazing Gateway feature that allows a client to use the Kerberos authentication protocol over WebSocket.</li>
   <li>The client requests a ticket from the Ticket Granting Gateway (TGG).</li>
   <li>The TGG proxies the request to the KDC.</li>
   <li>The KDC returns an encrypted ticket (session ticket) to the TGG.</li>
   <li>The TGG returns the encrypted ticket to the browser.</li>
-  <li>The KAAZING Gateway client responds to the challenge with the ticket.</li>
+  <li>The Kaazing Gateway client responds to the challenge with the ticket.</li>
   <li>On successful validation of the ticket, access is granted and the client can access the ticket-protected service through Ticket-Protected Gateway (TPG).</li>
 </ol>
 
-<p>In this scenario, by configuring KAAZING Gateway to use Kerberos, you enable your browsers and KAAZING Gateway clients to take advantage of your Kerberos security to authenticate with KAAZING Gateway.</p>
+<p>In this scenario, by configuring Kaazing Gateway to use Kerberos, you enable your browsers and Kaazing Gateway clients to take advantage of your Kerberos security to authenticate with Kaazing Gateway.</p>
 
 <p><strong>Note:</strong> You can configure one Gateway as a TPG and another Gateway as a TGG or you can configure a single Gateway as both the TPG and TGG.<br />
-The following example shows a sample <code>gateway-config.xml</code> entry for using Kerberos security. In this example, a service with type <code>kerberos5.proxy</code> is added, accepts connections on <code>wss://localhost:9000/kerberos5</code>, and connects over <code>tcp://kerberos.example.com:88</code> to the Kerberos Key Distribution Center. The authentication scheme is <code>Application Negotiate</code>, which tells the Gateway to challenge the KAAZING Gateway client for a Kerberos ticket. When the Gateway receives the ticket, it sends the ticket to the URI specified in the KAAZING Gateway client Kerberos challenge handler (see <a href="#notes">Notes</a> below). A <code>kerberos5</code> login-module includes sample configuration options, and is followed by the <code>gss</code> login-module that is required for SPNEGO-based Kerberos security.</p>
+The following example shows a sample <code>gateway-config.xml</code> entry for using Kerberos security. In this example, a service with type <code>kerberos5.proxy</code> is added, accepts connections on <code>wss://localhost:9000/kerberos5</code>, and connects over <code>tcp://kerberos.example.com:88</code> to the Kerberos Key Distribution Center. The authentication scheme is <code>Application Negotiate</code>, which tells the Gateway to challenge the Kaazing Gateway client for a Kerberos ticket. When the Gateway receives the ticket, it sends the ticket to the URI specified in the Kaazing Gateway client Kerberos challenge handler (see <a href="#notes">Notes</a> below). A <code>kerberos5</code> login-module includes sample configuration options, and is followed by the <code>gss</code> login-module that is required for SPNEGO-based Kerberos security.</p>
 
 <h5 id="ticket-granting-gateway-tgg">Ticket Granting Gateway (TGG)</h5>
 
@@ -170,7 +170,7 @@ The following example shows a sample <code>gateway-config.xml</code> entry for u
 <h2 id="notes">Notes</h2>
 
 <ul>
-  <li>For information on creating KAAZING Gateway client Kerberos challenge handlers, see the <a href="../..">Howto</a> documentation for developers.</li>
+  <li>For information on creating Kaazing Gateway client Kerberos challenge handlers, see the <a href="../..">Howto</a> documentation for developers.</li>
 </ul>
 
 <h2 id="see-also">See Also</h2>

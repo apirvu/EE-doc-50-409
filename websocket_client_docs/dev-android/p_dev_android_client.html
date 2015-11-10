@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -66,11 +66,11 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Use the Kaazing WebSocket Gateway Android Client API</h1>
+<h1>Use the Kaazing Gateway Android Client API</h1>
 
-<p>This procedure describes how you can use the Android Client API to create an Android client that connects to and sends and receives message from the Echo service running on the Kaazing WebSocket Gateway. This API allows you to take advantage of the WebSocket standard as described in the <a href="http://www.w3.org/TR/websockets/">HTML5 specification</a>.</p>
+<p>This procedure describes how you can use the Android Client API to create an Android client that connects to and sends and receives message from the Echo service running on the Kaazing Gateway. This API allows you to take advantage of the WebSocket standard as described in the <a href="http://www.w3.org/TR/websockets/">HTML5 specification</a>.</p>
 
-<p>The Android Client API is nearly identical to the Java API and you can review the Java API information in <a href="../dev-java/p_dev_java_websocket.html">Interact with Kaazing WebSocket Gateway Using the WebSocket API</a> to understand the general functionality of both APIs:</p>
+<p>The Android Client API is nearly identical to the Java API and you can review the Java API information in <a href="../dev-java/p_dev_java_websocket.html">Interact with Kaazing Gateway Using the WebSocket API</a> to understand the general functionality of both APIs:</p>
 <ul>
     <li><a href="../dev-java/p_dev_java_websocket.html#useAPI">To Use the WebSocket API in Java</a></li>
     <li><a href="../dev-java/p_dev_java_websocket.html#websocket">WebSocket and WsURLConnection</a></li>
@@ -85,11 +85,11 @@
 <ol>
     <li><a href="#Install">Install the Android Client API.</a></li>
     <li><a href="#Set">Set up an Android project in Eclipse.</a></li>
-    <li><a href="#Import">Import the Kaazing WebSocket Gateway Android libraries.</a></li>
+    <li><a href="#Import">Import the Kaazing Gateway Android libraries.</a></li>
     <li><a href="#TUI">Create the Android client Touch User Interface (TUI).</a></li>
     <li><a href="#dispatch">Add a dispatch queue class to the Android client.</a></li>
     <li><a href="#common">Add the import statements for the common Java and Android classes.</a></li>
-    <li><a href="#classes">Add the import statements for the Kaazing WebSocket Gateway Android API classes.</a></li>
+    <li><a href="#classes">Add the import statements for the Kaazing Gateway Android API classes.</a></li>
     <li><a href="#variables">Add the variables for the program.</a></li>
     <li><a href="#onCreate">Add the <span class="uri">onCreate()</span> method with event listeners.</a></li>
     <li><a href="#MessageReceiver">Add the MessageReceiver that uses the WebSocketMessageReader to receive binary and text messages.</a></li>
@@ -103,9 +103,9 @@
 </ol>
 
 <h2>Before You Begin</h2>
-<p>This procedure is part of <a href="o_dev_android.html">Checklist: Build Android Clients Using Kaazing WebSocket Gateway</a>:</p>
+<p>This procedure is part of <a href="o_dev_android.html">Checklist: Build Android Clients Using Kaazing Gateway</a>:</p>
 <ol>
-    <li><strong>Use the Kaazing WebSocket Gateway Android Client API</strong></li>
+    <li><strong>Use the Kaazing Gateway Android Client API</strong></li>
     <li><a href="../dev-java/p_dev_java_secure.html">Secure Your Java and Android Clients</a></li>
     <li><a href="p_dev_android_log.html">Display Logs for the Android Client</a></li>
 </ol>
@@ -114,12 +114,12 @@
 
 <h2>Build the Android Client API WebSocket Demo</h2>
 
-<p>The following procedure walks through the steps of creating the out of the box Android WebSocket demo that is included with the Kaazing WebSocket Gateway bundle. The demo code displays how to use the Android Client API to create a client that creates a WebSocket connection with the Gateway and sends and receives text and binary messages.</p>
+<p>The following procedure walks through the steps of creating the out of the box Android WebSocket demo that is included with the Kaazing Gateway bundle. The demo code displays how to use the Android Client API to create a client that creates a WebSocket connection with the Gateway and sends and receives text and binary messages.</p>
 
 <span class="note"><b>Note:</b> The following procedure uses the Android ADT Bundle (which includes the Eclipse IDE). You can download the Android ADT Bundle from <a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a>.</span>
 
 <ol>
-    <li>Install the full version of the Gateway (<strong>Gateway + Documentation + Demos</strong>) as described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>. You need the Gateway installed to access the Android demo files, but you do not need to start the Gateway to test the demo.</li>
+    <li>Install the full version of the Gateway (<strong>Gateway + Documentation + Demos</strong>) as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>. You need the Gateway installed to access the Android demo files, but you do not need to start the Gateway to test the demo.</li>
     <li>Download the Android ADT Bundle from <a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a>. For steps on installing the Android SDK with an existing Eclipse IDE, see <a href="http://developer.android.com/sdk/installing/index.html">http://developer.android.com/sdk/installing/index.html</a>.</li>
     <li>To set up the ADT Bundle, see <a href="http://developer.android.com/sdk/installing/bundle.html">http://developer.android.com/sdk/installing/bundle.html</a>.</li>
     <li>Launch Eclipse from the installed ADT Bundle.</li>
@@ -146,11 +146,11 @@
             <li>The new project is generated.</li>
         </ol>
     </li>
-    <li><a name="Import"></a>Import the Kaazing WebSocket Gateway Android libraries.
+    <li><a name="Import"></a>Import the Kaazing Gateway Android libraries.
         <ol type="a">
             <li>Right-click the new project and click <strong>Properties</strong>.</li>
             <li>In the <strong>Properties</strong> dialog, click <strong>Java Build Path</strong>, click the <strong>Libraries</strong> tab, and click <strong>Add External JARs</strong>.</li>
-            <li>Locate and select the Kaazing WebSocket Gateway Android library. The library is located in <span class="uri"><em>GATEWAY_HOME</em>/lib/client/android</span>. The library you need is <strong>com.kaazing.gateway.client.android.jar</strong>.</li>
+            <li>Locate and select the Kaazing Gateway Android library. The library is located in <span class="uri"><em>GATEWAY_HOME</em>/lib/client/android</span>. The library you need is <strong>com.kaazing.gateway.client.android.jar</strong>.</li>
             <li>In the <strong>Properties</strong> dialog, click <strong>OK</strong>. You can see the imported library and its classes in your project under <strong>Reference Libraries</strong>.</li>
         </ol>
     </li>
@@ -388,7 +388,7 @@ import android.widget.TextView;
 
 </li>
     
-    <li><a name="classes"></a>Add the import statements for the Kaazing WebSocket Gateway Android Client API classes that will be used in the client:
+    <li><a name="classes"></a>Add the import statements for the Kaazing Gateway Android Client API classes that will be used in the client:
         
 <pre class="auto-links: false; brush: java; toolbar: false;">
 // Include these statements with any client
@@ -785,7 +785,7 @@ private void logMessage(final String logMessage) {
 </pre>
 
             </li>
-            <li>Save the Gateway configuration file and restart the Gateway as described in <strong>How do I start and stop the Gateway?</strong> in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+            <li>Save the Gateway configuration file and restart the Gateway as described in <strong>How do I start and stop the Gateway?</strong> in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
         </ol>
     </li>
     

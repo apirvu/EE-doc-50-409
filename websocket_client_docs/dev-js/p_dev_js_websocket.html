@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -66,10 +66,10 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1><a name="websocket" id="websocket"></a>Interact with Kaazing WebSocket Gateway Using the WebSocket API</h1>
-<p>This section describes how you can use the <span class="uri">WebSocket</span> API provided by the Kaazing WebSocket Gateway JavaScript client library (<a href="../apidoc/client/javascript/gateway/index.html" title="JsDoc">JavaScript Client API</a>). This API allows you to take advantage of the WebSocket standard as described in the <a href="http://www.w3.org/TR/html5/" title="HTML5">HTML5 specification</a> and <a href="http://dev.w3.org/html5/websockets/" title="The WebSocket API">WebSocket API</a> including the sending and receiving of string and binary messages. </p>
+<h1><a name="websocket" id="websocket"></a>Interact with Kaazing Gateway Using the WebSocket API</h1>
+<p>This section describes how you can use the <span class="uri">WebSocket</span> API provided by the Kaazing Gateway JavaScript client library (<a href="../apidoc/client/javascript/gateway/index.html" title="JsDoc">JavaScript Client API</a>). This API allows you to take advantage of the WebSocket standard as described in the <a href="http://www.w3.org/TR/html5/" title="HTML5">HTML5 specification</a> and <a href="http://dev.w3.org/html5/websockets/" title="The WebSocket API">WebSocket API</a> including the sending and receiving of string and binary messages. </p>
 
-<p>The steps in this topic show you how to create a simple JavaScript client using the WebSocket API as implemented in the Kaazing WebSocket Gateway JavaScript WebSocket library. The Gateway JavaScript client library is fully-compliant with the WebSocket API standard and includes several enhancements. The JavaScript client you will create in this topic is the same as the out of the box JavaScript WebSocket Echo demo that is included with the Gateway bundle. When the Gateway is running, that out of the box demo is located here: <span class="uri">http://localhost:8001/demo/gateway/javascript/ws.html</span>.</p>
+<p>The steps in this topic show you how to create a simple JavaScript client using the WebSocket API as implemented in the Kaazing Gateway JavaScript WebSocket library. The Gateway JavaScript client library is fully-compliant with the WebSocket API standard and includes several enhancements. The JavaScript client you will create in this topic is the same as the out of the box JavaScript WebSocket Echo demo that is included with the Gateway bundle. When the Gateway is running, that out of the box demo is located here: <span class="uri">http://localhost:8001/demo/gateway/javascript/ws.html</span>.</p>
 
 <p>This topic covers the following information:</p>
 <ul class="arrow-2">
@@ -81,11 +81,11 @@
 <p>The examples in this topic highlight some of the most commonly used WebSocket methods. Refer to the <a href="../apidoc/client/javascript/gateway/index.html" title="JsDoc">JavaScript Client API</a> for a complete description of all the available methods.</p>
 
 <h2>Before You Begin</h2>
-<p>This procedure is part of <a href="o_dev_js.html">Checklist: Build JavaScript Clients Using Kaazing WebSocket Gateway</a>:</p>
+<p>This procedure is part of <a href="o_dev_js.html">Checklist: Build JavaScript Clients Using Kaazing Gateway</a>:</p>
 <ol>
-    <li><b>Interact with Kaazing WebSocket Gateway Using the WebSocket API</b></li>
-    <li><a href="p_dev_js_eventsource.html">Interact with Kaazing WebSocket Gateway Using the EventSource API</a></li>
-    <li><a href="p_dev_js_migrate.html">Migrate JavaScript Applications to Kaazing WebSocket Gateway 4.x</a></li>
+    <li><b>Interact with Kaazing Gateway Using the WebSocket API</b></li>
+    <li><a href="p_dev_js_eventsource.html">Interact with Kaazing Gateway Using the EventSource API</a></li>
+    <li><a href="p_dev_js_migrate.html">Migrate JavaScript Applications to Kaazing Gateway 4.x</a></li>
     <li><a href="p_dev_js_secure.html">Secure Your JavaScript Client</a></li>
     <li><a href="p_clientlogging_js.html">Display Logs for the JavaScript Client</a></li>
 </ol>
@@ -98,7 +98,7 @@
     <li><strong>String</strong> - A text WebSocket message (UTF-8).</li>
     <li><strong>Blob</strong> - A pointer to a single, raw binary object called a blob (binary large object). Blobs can be multimedia, images, or even executable code. Blob objects are considered safe to spool to disk because the entire data object is intact. You might use a Blob data type when you do not intend to manipulate the data, but simply write it to disk, or you might use a blob when you want to slice a file into byte ranges. The blob data type will work on any web browser that supports the <a href="http://www.w3.org/TR/FileAPI/" title="File API">File API</a>. For a list of web browsers that support the File API, see <a href="http://caniuse.com/#feat=fileapi">caniuse.com</a>.</li>
     <li><strong>ArrayBuffer</strong> - A fixed-length binary data buffer used to store data temporarily. You use a ArrayBufferView mask, such as Uint8Array, to view, index and manipulate the raw binary of the ArrayBuffer. There are different ArrayBufferView masks for different integer and floating point values (for example, you use a Uint16Array view to manipulate a 16-bit array of unsigned integers).<br>Use an ArrayBuffer data type instead of a Blob when you intend to work with the data, such as perform a calculation on the data. The ArrayBuffer data type is supported by web browsers that support the <a href="https://www.khronos.org/registry/typedarray/specs/latest/#7">Typed Array Specification</a>. For a list of web browsers that support the Typed Array Specification, see <a href="http://caniuse.com/#feat=typedarrays">caniuse.com</a>.</li>
-  <li><strong>ByteBuffer</strong> - A compact byte array representation for sending, receiving and processing binary data using WebSocket. ByteBuffer is available for JavaScript clients built using the legacy Kaazing WebSocket Gateway JavaScript ByteBuffer library. Legacy clients can use the latest JavaScript WebSocket library without having to change their client code. The current WebSocket.js library is all that is needed. The current JavaScript WebSocket API enables clients to convert <code>blob</code> to and from <code>bytebuffer</code>, thereby supporting the integration of blob binary messages in legacy clients.</li>
+  <li><strong>ByteBuffer</strong> - A compact byte array representation for sending, receiving and processing binary data using WebSocket. ByteBuffer is available for JavaScript clients built using the legacy Kaazing Gateway JavaScript ByteBuffer library. Legacy clients can use the latest JavaScript WebSocket library without having to change their client code. The current WebSocket.js library is all that is needed. The current JavaScript WebSocket API enables clients to convert <code>blob</code> to and from <code>bytebuffer</code>, thereby supporting the integration of blob binary messages in legacy clients.</li>
 </ul>
 
 <p><span class="note"><b>Note:</b> In the code examples in this topic, <code>binaryType</code> is specified in the send functions prior to sending binary data. This is to ensure that the received binary data will be of same binary type as the sent binary data. If you build an application that sends binary data (ArrayBuffer, Blob, ByteBuffer), you should specify <code>binaryType</code> based on the data type that you expect your received data will be. For example, you would set <code>binaryType="arraybuffer"</code> if you intend to receive binary message as ArrayBuffer.</span></p>
@@ -113,7 +113,7 @@
 
            <li>The files in the <span class="uri"><em>GATEWAY_HOME</em>/web/extras/</span> folder are read only.</li>
 
-           <li><span class="uri"><em>GATEWAY_HOME</em></span> refers to the directory containing the Gateway. Unpacking the Kaazing WebSocket Gateway download creates a directory containing the Gateway. This directory is referred to as <span class="uri"><em>GATEWAY_HOME</em></span> in the documentation.</li>
+           <li><span class="uri"><em>GATEWAY_HOME</em></span> refers to the directory containing the Gateway. Unpacking the Kaazing Gateway download creates a directory containing the Gateway. This directory is referred to as <span class="uri"><em>GATEWAY_HOME</em></span> in the documentation.</li>
          </ul>
         </span>
          </li>
@@ -339,7 +339,7 @@ sendBlob.onclick = function() {
 </pre>
     </li>
 
-    <li>Add a ByteBuffer function for when a user clicks <strong>Send Byte Buffer</strong>. ByteBuffer is available for JavaScript clients built using the legacy Kaazing WebSocket Gateway JavaScript ByteBuffer library. Legacy clients can use the latest JavaScript WebSocket library without having to change their client code. The current WebSocket.js library is all that is needed. The current JavaScript WebSocket API enables clients to convert blob to and from Bytebuffer, thereby supporting the integration of blob binary messages in legacy clients.
+    <li>Add a ByteBuffer function for when a user clicks <strong>Send Byte Buffer</strong>. ByteBuffer is available for JavaScript clients built using the legacy Kaazing Gateway JavaScript ByteBuffer library. Legacy clients can use the latest JavaScript WebSocket library without having to change their client code. The current WebSocket.js library is all that is needed. The current JavaScript WebSocket API enables clients to convert blob to and from Bytebuffer, thereby supporting the integration of blob binary messages in legacy clients.
 <pre class="auto-links: false; brush: js; toolbar: false;">
 // Run this function when the Send Byte Buffer button is clicked
 sendByteBuffer.onclick = function() {
@@ -495,7 +495,7 @@ clear.onclick = function() {
   
   <li>Save the configuration file.</li>
     
-  <li>Start the Gateway by following the steps in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>. On Mac and Linux, you can use <span class="uri">./gateway.start</span> in the <span class="uri"><em>GATEWAY_HOME</em>/bin</span> folder. On Windows, open a Command Prompt and run <span class="uri">gateway.start.bat</span> in the <span class="uri"><em>GATEWAY_HOME</em>/bin</span> folder.</li>
+  <li>Start the Gateway by following the steps in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>. On Mac and Linux, you can use <span class="uri">./gateway.start</span> in the <span class="uri"><em>GATEWAY_HOME</em>/bin</span> folder. On Windows, open a Command Prompt and run <span class="uri">gateway.start.bat</span> in the <span class="uri"><em>GATEWAY_HOME</em>/bin</span> folder.</li>
 
     <li>Test the JavaScript client. Reload the HTML page, and enter <span class="uri">ws://localhost:8000/echo</span> in the <strong>Location</strong> field.</li>
 
@@ -535,7 +535,7 @@ clear.onclick = function() {
 
 </ol>
 <h2><a name="WebSocketFactory"></a>Setting and Overriding HttpRedirectPolicy Defaults on the WebSocketFactory</h2>
-<p>You can set a default redirect-policy on the WebSocketFactory that enables you to determine how your application handles server redirects. For example, you can set the client application to never follow HTTP redirects. All the WebSockets created using that factory automatically inherit the default. You can then override the defaults on an individual WebSocket, if desired. The Kaazing WebSocket Gateway JavaScript API also provides the following options:</p>
+<p>You can set a default redirect-policy on the WebSocketFactory that enables you to determine how your application handles server redirects. For example, you can set the client application to never follow HTTP redirects. All the WebSockets created using that factory automatically inherit the default. You can then override the defaults on an individual WebSocket, if desired. The Kaazing Gateway JavaScript API also provides the following options:</p>
 
 <table class="reference">
   <tr>
@@ -586,7 +586,7 @@ webSocket.setRedirectPolicy(HttpRedirectPolicy.PEER_DOMAIN);
 </pre>
 
 <h2>Next Step</h2>
-<p><a href="p_dev_js_eventsource.html">Interact with Kaazing WebSocket Gateway Using the EventSource API</a></p>
+<p><a href="p_dev_js_eventsource.html">Interact with Kaazing Gateway Using the EventSource API</a></p>
 
 <h2>See Also</h2>
 <p><a href="../apidoc/client/javascript/gateway/WebSocket.html">WebSocket API documentation</a></p>

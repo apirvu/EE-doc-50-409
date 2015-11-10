@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/integration-jms/p_jms_integrate_anybroker/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -67,13 +67,13 @@
 
 <div class="container page-content text-left">
 
- <h1 id="integrate-any-jms-compliant-message-broker--">Integrate Any JMS-Compliant Message Broker  <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /></h1>
+ <h1 id="integrate-any-jms-compliant-message-broker--">Integrate Any JMS-Compliant Message Broker  <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h1>
 
-<p>In this procedure, you will learn how the <a href="../../admin-reference/r_conf_jms#jms">jms</a> service allows you to configure KAAZING Gateway to connect to any back-end JMS-compliant message broker.</p>
+<p>In this procedure, you will learn how the <a href="../../admin-reference/r_conf_jms#jms">jms</a> service allows you to configure Kaazing Gateway to connect to any back-end JMS-compliant message broker.</p>
 
-<p>JMS broker implementations provide a factory class in their JAR files. (For example, the Apache ActiveMQ factory class that ships in the KAAZING Gateway bundle is <code>org.apache.activemq.jndi.ActiveMQInitialContextFactory</code> in the JAR file <code>activemq-client-5.10.0.jar</code>.) To use the <code>jms</code> service with a JMS-compliant message broker, you would copy the jar file to <code>GATEWAY_HOME/lib</code> and specify the name of the factory class in the service configuration element.</p>
+<p>JMS broker implementations provide a factory class in their JAR files. (For example, the Apache ActiveMQ factory class that ships in the Kaazing Gateway bundle is <code>org.apache.activemq.jndi.ActiveMQInitialContextFactory</code> in the JAR file <code>activemq-client-5.10.0.jar</code>.) To use the <code>jms</code> service with a JMS-compliant message broker, you would copy the jar file to <code>GATEWAY_HOME/lib</code> and specify the name of the factory class in the service configuration element.</p>
 
-<p><strong>Note</strong>: Java Naming and Directory Interface (JNDI) is a Java API for looking up objects by name (a directory service). With the Gateway, you use JNDI in two ways: 1. to set up the initial context and call the KAAZING Gateway JMS Client Library from your JMS client or 2. to connect from the Gateway to your JMS-compliant message broker and lookup topics and queues. This section focuses on the latter, where you want to configure the Gateway to communicate with your message broker. For information about setting up JMS clients, see the appropriate client developer topics in <a href="../..">For Developers</a>.</p>
+<p><strong>Note</strong>: Java Naming and Directory Interface (JNDI) is a Java API for looking up objects by name (a directory service). With the Gateway, you use JNDI in two ways: 1. to set up the initial context and call the Kaazing Gateway JMS Client Library from your JMS client or 2. to connect from the Gateway to your JMS-compliant message broker and lookup topics and queues. This section focuses on the latter, where you want to configure the Gateway to communicate with your message broker. For information about setting up JMS clients, see the appropriate client developer topics in <a href="../..">For Developers</a>.</p>
 
 <p>For information on integrating the Gateway with specific JMS-Compliant Message Brokers, see:</p>
 
@@ -142,7 +142,7 @@
 <ul>
   <li>If you use a JMS-compliant message broker that does not support individual message acknowledgement, you must ensure your client applications acknowledge each message received from a queue or durable subscriber. Otherwise, the client will receive only one message from that queue or durable subscriber.</li>
   <li>To learn how to secure your JMS configuration, see <a href="../../security/o_jms_secure">Secure Your JMS Configuration</a>.</li>
-  <li>Client applications (using the KAAZING Gateway JMS client library) can lookup/create their <code>Topic</code> and <code>Queue</code> objects using either the <code>session.createTopic()</code> method (for example, <code>Topic myTopic = session.createTopic("/topic/myTopic");</code>) or by performing a JNDI lookup using the <code>initialContext.lookup()</code> method (for example, <code>Topic myTopic = initialContext.lookup("/queue/myQueue");</code>). The <code>initialContext.lookup()</code> method is available to use after creating the JNDI <code>InitialContext</code> object when creating the JMS connection.</li>
+  <li>Client applications (using the Kaazing Gateway JMS client library) can lookup/create their <code>Topic</code> and <code>Queue</code> objects using either the <code>session.createTopic()</code> method (for example, <code>Topic myTopic = session.createTopic("/topic/myTopic");</code>) or by performing a JNDI lookup using the <code>initialContext.lookup()</code> method (for example, <code>Topic myTopic = initialContext.lookup("/queue/myQueue");</code>). The <code>initialContext.lookup()</code> method is available to use after creating the JNDI <code>InitialContext</code> object when creating the JMS connection.</li>
 </ul>
 
 <h2 id="see-also">See Also</h2>
@@ -150,7 +150,7 @@
 <ul>
   <li>For information on troubleshooting JMS integration, see <a href="../p_jms_integrate_tshoot">Troubleshoot JMS Integration</a>.</li>
   <li>For information on troubleshooting JMS clients, see <a href="../../troubleshooting/p_dev_troubleshoot">Troubleshoot Your Clients</a>.</li>
-  <li>For general troubleshooting information, see <a href="../../troubleshooting/o_troubleshoot">Troubleshoot KAAZING Gateway</a>.</li>
+  <li>For general troubleshooting information, see <a href="../../troubleshooting/o_troubleshoot">Troubleshoot Kaazing Gateway</a>.</li>
 </ul>
 
 

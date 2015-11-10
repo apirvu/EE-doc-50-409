@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/about/setup-guide/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -72,21 +72,21 @@
 <p>This guide helps you download the Gateway distribution and set it up in your environment:</p>
 
 <ul>
-  <li><a href="#setting-up-kaazing-gateway-locally-on-my-computer">Setting Up KAAZING Gateway Locally on My Computer</a></li>
-  <li><a href="#setting-up-kaazing-gateway-on-a-server">Setting Up KAAZING Gateway on a Server</a></li>
-  <li><a href="#setting-up-a-secure-kaazing-gateway-configuration">Setting Up a Secure KAAZING Gateway Configuration</a></li>
-  <li><a href="#uninstall-kaazing-gateway">Uninstall KAAZING Gateway</a></li>
+  <li><a href="#setting-up-kaazing-gateway-locally-on-my-computer">Setting Up Kaazing Gateway Locally on My Computer</a></li>
+  <li><a href="#setting-up-kaazing-gateway-on-a-server">Setting Up Kaazing Gateway on a Server</a></li>
+  <li><a href="#setting-up-a-secure-kaazing-gateway-configuration">Setting Up a Secure Kaazing Gateway Configuration</a></li>
+  <li><a href="#uninstall-kaazing-gateway">Uninstall Kaazing Gateway</a></li>
 </ul>
 
 <p>Let’s get started!</p>
 
-<h2 id="setting-up-kaazing-gateway-locally-on-my-computer">Setting Up KAAZING Gateway Locally on My Computer</h2>
+<h2 id="setting-up-kaazing-gateway-locally-on-my-computer">Setting Up Kaazing Gateway Locally on My Computer</h2>
 
-<p>Setting up KAAZING Gateway on your local computer is recommended if you want to quickly try out the Gateway.</p>
+<p>Setting up Kaazing Gateway on your local computer is recommended if you want to quickly try out the Gateway.</p>
 
-<p><img src="../../images/figures/ig-figure-cropped-01.png" alt="A Localhost configuration for KAAZING Gateway" /></p>
+<p><img src="../../images/figures/ig-figure-cropped-01.png" alt="A Localhost configuration for Kaazing Gateway" /></p>
 
-<p><strong>Figure: A Localhost Configuration for KAAZING Gateway</strong></p>
+<p><strong>Figure: A Localhost Configuration for Kaazing Gateway</strong></p>
 
 <p>To download and set up the Gateway on your local computer, perform the following steps:</p>
 
@@ -101,7 +101,7 @@
   <li>
     <p>Install the Gateway by unpacking the compressed download of the Gateway.</p>
 
-    <p>Unpack the Gateway to any directory location. Unpacking creates the Gateway directory structure into a directory of your choice (for example, <code>C:\kaazing</code> or <code>/home/username/kaazing</code>). See <a href="../about#about-gatewayhome">About GATEWAY_HOME</a> to learn more about KAAZING Gateway directory destinations.</p>
+    <p>Unpack the Gateway to any directory location. Unpacking creates the Gateway directory structure into a directory of your choice (for example, <code>C:\kaazing</code> or <code>/home/username/kaazing</code>). See <a href="../about#about-gatewayhome">About GATEWAY_HOME</a> to learn more about Kaazing Gateway directory destinations.</p>
   </li>
   <li>
     <p>Start the Gateway.</p>
@@ -113,7 +113,7 @@
       <li>For Linux, UNIX, or Mac: run the <code>gateway.start</code> script by navigating to the <code>GATEWAY_HOME/bin</code> directory where you installed the Gateway and enter <code>./gateway.start</code> on the command line.</li>
     </ul>
 
-    <p>When you successfully start the Gateway, messages display in your shell or command prompt indicating the services that are hosted by the Gateway. The startup message may differ depending on your Gateway configuration. To verify that the Gateway started correctly as a service, look at the log file in <code>GATEWAY_HOME/log/service.log</code> that is generated when the service is started or stopped. If the server does not start successfully, see <a href="../../troubleshooting/p_troubleshoot_gateway_configuration">Troubleshoot KAAZING Gateway Configuration and Startup</a> or contact your administrator.</p>
+    <p>When you successfully start the Gateway, messages display in your shell or command prompt indicating the services that are hosted by the Gateway. The startup message may differ depending on your Gateway configuration. To verify that the Gateway started correctly as a service, look at the log file in <code>GATEWAY_HOME/log/service.log</code> that is generated when the service is started or stopped. If the server does not start successfully, see <a href="../../troubleshooting/p_troubleshoot_gateway_configuration">Troubleshoot Kaazing Gateway Configuration and Startup</a> or contact your administrator.</p>
   </li>
   <li>
     <p>Verify the Gateway setup.</p>
@@ -128,21 +128,21 @@
   <li>To start building your first application, see the <a href="../..#for-developers">For Developers</a> documentation topics.</li>
   <li>For more information about configuration settings and to perform additional Gateway configuration, see <a href="../../admin-reference/c_configure_gateway_concepts">About Gateway Configuration</a>.</li>
   <li>For real-world demos, see <a href="http://kaazing.org/">http://kaazing.org/</a>.</li>
-  <li>To uninstall the Gateway, see the <a href="#uninstall-kaazing-gateway">Uninstall KAAZING Gateway</a> section at the end of this document.</li>
+  <li>To uninstall the Gateway, see the <a href="#uninstall-kaazing-gateway">Uninstall Kaazing Gateway</a> section at the end of this document.</li>
 </ul>
 
-<h2 id="setting-up-kaazing-gateway-on-a-server">Setting Up KAAZING Gateway on a Server</h2>
+<h2 id="setting-up-kaazing-gateway-on-a-server">Setting Up Kaazing Gateway on a Server</h2>
 
 <p>You can override the Gateway default behavior and accept connections on a non-localhost host name or IP address.</p>
 
-<p><img src="../../images/figures/ig-figure-cropped-02.png" alt="This graphic shows a server configuration for KAAZING Gateway" /></p>
+<p><img src="../../images/figures/ig-figure-cropped-02.png" alt="This graphic shows a server configuration for Kaazing Gateway" /></p>
 
-<p><strong>Figure: A Server Configuration for KAAZING Gateway</strong></p>
+<p><strong>Figure: A Server Configuration for Kaazing Gateway</strong></p>
 
 <p>To set up a server configuration:</p>
 
 <ol>
-  <li>Follow the directions in <a href="#setting-up-kaazing-gateway-locally-on-my-computer">Setting Up KAAZING Gateway Locally on My Computer</a>.</li>
+  <li>Follow the directions in <a href="#setting-up-kaazing-gateway-locally-on-my-computer">Setting Up Kaazing Gateway Locally on My Computer</a>.</li>
   <li>Stop the Gateway.
     <ul>
       <li>To stop the Gateway on Windows, use the Windows Services Manager, press <strong>CTRL + C</strong> at the command prompt that was used to start the Gateway or simply close the command prompt, or use the <code>net stop</code> command to stop the Gateway service.</li>
@@ -178,16 +178,16 @@
     </ol>
   </li>
   <li>If you are using a message broker, start it.</li>
-  <li>Start and verify the Gateway (as described in <a href="#setting-up-kaazing-gateway-locally-on-my-computer">Setting Up KAAZING Gateway Locally on My Computer</a>).</li>
+  <li>Start and verify the Gateway (as described in <a href="#setting-up-kaazing-gateway-locally-on-my-computer">Setting Up Kaazing Gateway Locally on My Computer</a>).</li>
 </ol>
 
-<h2 id="setting-up-a-secure-kaazing-gateway-configuration">Setting Up a Secure KAAZING Gateway Configuration</h2>
+<h2 id="setting-up-a-secure-kaazing-gateway-configuration">Setting Up a Secure Kaazing Gateway Configuration</h2>
 
 <p>By default, the Gateway listens for non-encrypted traffic. Secure communication between the browser and the server is necessary to ensure that only the intended recipient of a message can read the transmitted message and to allow the message recipient to trust that the message is indeed from the expected source.</p>
 
-<p><img src="../../images/figures/ig-figure-cropped-05.png" alt="An encrypted configuration using KAAZING Gateway" /></p>
+<p><img src="../../images/figures/ig-figure-cropped-05.png" alt="An encrypted configuration using Kaazing Gateway" /></p>
 
-<p><strong>Figure: An Encrypted Configuration Using KAAZING Gateway</strong></p>
+<p><strong>Figure: An Encrypted Configuration Using Kaazing Gateway</strong></p>
 
 <p>For secure communication with the Gateway, consider configuring for the following levels of security:</p>
 
@@ -195,10 +195,10 @@
   <li><strong>Secure network traffic</strong> Configure Transport Layer Security (TLS, also known as SSL) for secure communications channels to access the Gateway by setting up certificates. See <a href="../../security/o_tls">Secure Network Traffic with the Gateway</a> for more information.</li>
   <li><strong>Limit access to services</strong> Use Cross-Origin Resource Sharing to control access to Gateway services based on the origin of an application by configuring cross-site constraints in the <code>gateway-config.xml</code> file. See <a href="../../security/p_authentication_config_http_challenge_scheme">Configure the HTTP Challenge Scheme</a> for more information.</li>
   <li><strong>Configure authentication and authorization</strong> with constraints to limit access to Gateway services to authenticated and authorized users. See <a href="../../security/o_auth_configure">Configure Authentication and Authorization</a> for more information.</li>
-  <li><strong>Configure Kerberos network authentication</strong> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition" /> for network authentication and communication between trusted hosts on untrusted networks. See <a href="../../security/o_auth_configure">Configure Kerberos V5 Network Authentication</a> for more information.</li>
+  <li><strong>Configure Kerberos network authentication</strong> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /> for network authentication and communication between trusted hosts on untrusted networks. See <a href="../../security/o_auth_configure">Configure Kerberos V5 Network Authentication</a> for more information.</li>
 </ul>
 
-<h2 id="uninstall-kaazing-gateway">Uninstall KAAZING Gateway</h2>
+<h2 id="uninstall-kaazing-gateway">Uninstall Kaazing Gateway</h2>
 
 <p>Uninstall the Gateway by stopping all the services and deleting the directory that contains the Gateway files.</p>
 

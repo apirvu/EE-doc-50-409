@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -66,20 +66,20 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">   
-<h1>Use the Kaazing WebSocket Gateway C AMQP Client Library</h1>
-<p>In this procedure, you will learn how to use the Kaazing WebSocket Gateway C AMQP Client Library and the supported APIs:</p>
+<h1>Use the Kaazing Gateway C AMQP Client Library</h1>
+<p>In this procedure, you will learn how to use the Kaazing Gateway C AMQP Client Library and the supported APIs:</p>
 
 <ul>
-  <li>Build the client using the Eclipse IDE as described in <a href="#proc">To Use the Kaazing WebSocket Gateway C AMQP Client Library</a>.</li>
+  <li>Build the client using the Eclipse IDE as described in <a href="#proc">To Use the Kaazing Gateway C AMQP Client Library</a>.</li>
   <li>See examples for producing and consuming messages, including OpenSSL: <a href="#examples">Examples</a>.</li>
 </ul>
 
 <h2><a name="_"></a>Before You Begin</h2>
-<p>This procedure is part of <a href="o_dev_c.html">Checklist: How to Build C AMQP Clients Using Kaazing WebSocket Gateway</a>:</p>
+<p>This procedure is part of <a href="o_dev_c.html">Checklist: How to Build C AMQP Clients Using Kaazing Gateway</a>:</p>
 <p>
         <ol>
-        <li><a href="o_dev_c.html#keglibs">Overview of the Kaazing WebSocket Gateway AMQP Client Library</a></li>
-        <li><strong>Use the Kaazing WebSocket Gateway C AMQP Client Library</strong></li>
+        <li><a href="o_dev_c.html#keglibs">Overview of the Kaazing Gateway AMQP Client Library</a></li>
+        <li><strong>Use the Kaazing Gateway C AMQP Client Library</strong></li>
         <li><a href="../security/p_tls_mutualauth.html">Require Clients to Provide Certificates to the Gateway</a></li>
         </ol>
 </p>
@@ -94,18 +94,18 @@
     <th scope="col">Location</th>
   </tr>
   <tr>
-    <td>Kaazing WebSocket Gateway  - AMQP Edition</td>
-    <td>For a detailed description of the Kaazing WebSocket Gateway  - AMQP Edition, see <a href="http://kaazing.com/products/editions/kaazing-websocket-gateway-amqp">http://kaazing.com/products/editions/kaazing-websocket-gateway-amqp</a>.</td>
+    <td>Kaazing Gateway  - AMQP Edition</td>
+    <td>For a detailed description of the Kaazing Gateway  - AMQP Edition, see <a href="http://kaazing.com/products/editions/kaazing-websocket-gateway-amqp">http://kaazing.com/products/editions/kaazing-websocket-gateway-amqp</a>.</td>
     <td><a href="http://developer.kaazing.com/downloads/amqp-edition-download/">http://developer.kaazing.com/downloads/amqp-edition-download/</a></td>
   </tr>
   <tr>
     <td>AMQP broker</td>
-    <td>The full Kaazing WebSocket Gateway  - AMQP Edition download (<strong>Gateway + Documentation + Demos</strong>) includes the Apache Qpid broker.</td>
-    <td>Qpid_HOME: The installer creates the default Qpid_HOME destination in <span class="uri">C:\Program Files\Kaazing\amqp\version\qpid</span> (Windows) or <span class="uri">/usr/share/kaazing/amqp/version/</span> (Linux). The full Kaazing WebSocket Gateway  - AMQP Edition download contains the Apache Qpid broker folder in its root directory.</td>
+    <td>The full Kaazing Gateway  - AMQP Edition download (<strong>Gateway + Documentation + Demos</strong>) includes the Apache Qpid broker.</td>
+    <td>Qpid_HOME: The installer creates the default Qpid_HOME destination in <span class="uri">C:\Program Files\Kaazing\amqp\version\qpid</span> (Windows) or <span class="uri">/usr/share/kaazing/amqp/version/</span> (Linux). The full Kaazing Gateway  - AMQP Edition download contains the Apache Qpid broker folder in its root directory.</td>
   </tr>
   <tr>
-    <td>Kaazing WebSocket Gateway AMQP C Client library files</td>
-    <td>The C header files (.h) and the shared object files (.so) that make up the Kaazing WebSocket Gateway AMQP C Client library.</td>
+    <td>Kaazing Gateway AMQP C Client library files</td>
+    <td>The C header files (.h) and the shared object files (.so) that make up the Kaazing Gateway AMQP C Client library.</td>
     <td><p>The header and library files are contained in OS-specific gzip files located in <span class="uri"><em>GATEWAY_HOME</em>/lib/client/c</span>. Extract the gzip file for your operating system to see the header and library files.</p>
                         <p>AMQP header files (.h) and library (.so):</p>
 <p><span class="uri"><em>GATEWAY_HOME</em>/lib/client/c/<em>OS</em>/AMQP-0-9-1/include</span></p>
@@ -148,14 +148,14 @@
 
 <p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../../release-notes.html">Release Notes</a>.</span></p>  
 
-<h2><a name="proc"></a>To Use the Kaazing WebSocket Gateway C AMQP Client Library</h2>
-<p>Use the following steps to build and run an AMQP C client using the Kaazing WebSocket Gateway AMQP C library.</p>
+<h2><a name="proc"></a>To Use the Kaazing Gateway C AMQP Client Library</h2>
+<p>Use the following steps to build and run an AMQP C client using the Kaazing Gateway AMQP C library.</p>
 <p>
 <ol>
 <li><a name="setup_dev_env"></a><p>Setting Up Your Development Environment.</p>
-        <p>To develop applications using the Kaazing WebSocket Gateway AMQP client libraries, you must configure the Gateway to communicate with an AMQP broker.</p>
-        <p><span class="note"><b>Note:</b><b></b> If you have the Kaazing WebSocket Gateway running on <span class="code_inline">localhost</span> and if you have an AMQP broker running on <span class="code_inline">localhost</span> at the default AMQP port <span class="code_inline">5672</span>, you do not have to configure anything to see the AMQP demos and the interactive AMQP guide.</span></p>
-        <p>The following is an example of the default configuration element for the AMQP service in the Kaazing WebSocket Gateway bundle, as specified in the configuration file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>:</p>
+        <p>To develop applications using the Kaazing Gateway AMQP client libraries, you must configure the Gateway to communicate with an AMQP broker.</p>
+        <p><span class="note"><b>Note:</b><b></b> If you have the Kaazing Gateway running on <span class="code_inline">localhost</span> and if you have an AMQP broker running on <span class="code_inline">localhost</span> at the default AMQP port <span class="code_inline">5672</span>, you do not have to configure anything to see the AMQP demos and the interactive AMQP guide.</span></p>
+        <p>The following is an example of the default configuration element for the AMQP service in the Kaazing Gateway bundle, as specified in the configuration file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>:</p>
 <pre class="auto-links: false; brush: xml; toolbar: false;">
 &lt;!-- Proxy service to AMQP server --&gt;
 &lt;service&gt;
@@ -184,7 +184,7 @@
 
 </li>
 <li><a name="using_lib_javascript" id="using_lib_javascript"></a><p>Review the common C AMQP programming steps.</p>
-  <p>You can either build a single application that both publishes and consumes messages, or create two different applications to handle each action. The demo located included in the Kaazing WebSocket Gateway distrubtion shows a single application that handles both actions. You can view the source code for this demo in <span class="uri"><em>GATEWAY_HOME</em>/demo/c</span>. Refer to the AMQP Client C API documentation for the complete list of all the AMQP command and callback functions.</p>
+  <p>You can either build a single application that both publishes and consumes messages, or create two different applications to handle each action. The demo located included in the Kaazing Gateway distrubtion shows a single application that handles both actions. You can view the source code for this demo in <span class="uri"><em>GATEWAY_HOME</em>/demo/c</span>. Refer to the AMQP Client C API documentation for the complete list of all the AMQP command and callback functions.</p>
   <p>The common C AMQP programming steps are:</p>
         <ol type="a">
     <li>Download, install and configure the Eclipse IDE.</li>
@@ -224,7 +224,7 @@
     </figure>
   </li>
   <li>In <strong>Include paths</strong>, click the <strong>Add</strong> icon. The <strong>Add directory path</strong> dialog appears.</li>
-  <li><p>Click <strong>File System</strong>, and then navigate to the Kaazing WebSocket Gateway C header folders and click Open:</p>
+  <li><p>Click <strong>File System</strong>, and then navigate to the Kaazing Gateway C header folders and click Open:</p>
 <p><span class="uri"><em>GATEWAY_HOME</em>/lib/client/c/<em>OS</em>/AMQP-0-9-1/include</span></p>
 <p><span class="uri"><em>GATEWAY_HOME</em>/lib/client/c/<em>OS</em>/WebSocket/include</span></p></li>
   <li>Click <strong>Apply</strong>. The libraries appear in the project.</li>
@@ -305,9 +305,9 @@
   </ol>
 </li>
 
-<li>Start the AMQP broker as described in <strong>How do I start Apache Qpid?</strong> in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+<li>Start the AMQP broker as described in <strong>How do I start Apache Qpid?</strong> in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
 
-<li>Start the Gateway as described in <strong>How do I start and stop the Gateway?</strong> in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+<li>Start the Gateway as described in <strong>How do I start and stop the Gateway?</strong> in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
 
 <li>Run your AMQP C client program. In Eclipse, right-click the <strong>amqp-c-client-demo</strong> project, and click <strong>Run</strong>. The client will perform all of its functions in the Console.</li>
 

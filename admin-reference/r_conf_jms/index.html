@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/admin-reference/r_conf_jms/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -67,9 +67,9 @@
 
 <div class="container page-content text-left">
 
- <h1 id="jms-services-for-kaazing-gateway">JMS Services for KAAZING Gateway</h1>
+ <h1 id="jms-services-for-kaazing-gateway">JMS Services for Kaazing Gateway</h1>
 
-<p>This document describes the JMS services for KAAZING Gateway that you can use in a Gateway configuration:</p>
+<p>This document describes the JMS services for Kaazing Gateway that you can use in a Gateway configuration:</p>
 
 <ul>
   <li><a href="#jms">jms</a></li>
@@ -78,9 +78,9 @@
 
 <h2 id="jms">jms</h2>
 
-<p>This type of service is used to expose the <code>jms</code> service, which allows you to configure the Gateway to connect to any back-end JMS-compliant message brokers. To learn about common Gateway production deployments, see <a href="../c_topologies">Common KAAZING Gateway Production Topologies</a>.</p>
+<p>This type of service is used to expose the <code>jms</code> service, which allows you to configure the Gateway to connect to any back-end JMS-compliant message brokers. To learn about common Gateway production deployments, see <a href="../c_topologies">Common Kaazing Gateway Production Topologies</a>.</p>
 
-<p><strong>Note:</strong> To integrate the Gateway with different JMS-compliant message brokers, see <a href="../../integration-jms/o_jms_integrate">About Integrating KAAZING Gateway and JMS-compliant message brokers</a>. </p>
+<p><strong>Note:</strong> To integrate the Gateway with different JMS-compliant message brokers, see <a href="../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-compliant message brokers</a>. </p>
 
 <p>The <code>jms</code> service <em>offloads connections</em> and topic subscriptions using a single connection between the Gateway and your JMS-compliant message broker. The main benefit of offloading is that the Gateway scales to a massive number of clients while putting minimal pressure on your messaging system.</p>
 
@@ -103,7 +103,7 @@
 
 <p>Upon receiving a message, the client picks up the identity of the temporary destination from the <code>JMSReplyTo</code> field in the message header, performs the requested workflow, and then sends the message out to the temporary destination. The temporary destination exists only for the duration of the connection and is removed on the server side as soon as the connection or session is closed.</p>
 
-<p>JMS implementations provide a factory class in their JAR files. For example, the Apache ActiveMQ class, <code>org.apache.activemq.jndi.ActiveMQInitialContextFactory</code>, is included in the <code>activemq-all-5.10.0.jar</code> file that ships with the Gateway. The Gateway connects directly to Apache ActiveMQ when you use the <code>jms.proxy</code> service. To use another JMS implementation, see <a href="../../integration-jms/o_jms_integrate">About Integrating KAAZING Gateway and JMS-compliant message brokers</a> to learn how to copy the implementation’s JAR file to the <code>GATEWAY_HOME/lib</code> directory and specify the name of the class as the value for the <code>env.java.naming.factory.initial</code> property.</p>
+<p>JMS implementations provide a factory class in their JAR files. For example, the Apache ActiveMQ class, <code>org.apache.activemq.jndi.ActiveMQInitialContextFactory</code>, is included in the <code>activemq-all-5.10.0.jar</code> file that ships with the Gateway. The Gateway connects directly to Apache ActiveMQ when you use the <code>jms.proxy</code> service. To use another JMS implementation, see <a href="../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-compliant message brokers</a> to learn how to copy the implementation’s JAR file to the <code>GATEWAY_HOME/lib</code> directory and specify the name of the class as the value for the <code>env.java.naming.factory.initial</code> property.</p>
 
 <h3 id="how-the-jms-service-handles-connections">How the jms Service Handles Connections</h3>
 
@@ -140,7 +140,7 @@
 
 <p>See <a href="#last-value-cache">Last Value Cache</a> for more information and examples.</p>
 
-<p>The following sections provide more information about the <code>jms</code>Service for KAAZING Gateway:</p>
+<p>The following sections provide more information about the <code>jms</code>Service for Kaazing Gateway:</p>
 
 <ul>
   <li><a href="#durable-subscribers">Durable Subscribers</a></li>
@@ -468,7 +468,7 @@
 
 <ul>
   <li>Message expiration: The Gateway does not deliver messages to the client if the messages have expired.</li>
-  <li>Handling reconnections: When a client loses connectivity and then reconnects, the current set of messages from the last value cache is replayed, which may cause messages already observed by that client to be sent before the live stream. Following standard JMS practices, the JMSRedelivered field is always set on messages played from the last value cache. The client application can use this field to determine how to process the messages from the last value cache. For information about the <code>JMSRedelivered</code> property in a KAAZING Gateway client API, see the <a href="../..">Client API Documentation</a>.</li>
+  <li>Handling reconnections: When a client loses connectivity and then reconnects, the current set of messages from the last value cache is replayed, which may cause messages already observed by that client to be sent before the live stream. Following standard JMS practices, the JMSRedelivered field is always set on messages played from the last value cache. The client application can use this field to determine how to process the messages from the last value cache. For information about the <code>JMSRedelivered</code> property in a Kaazing Gateway client API, see the <a href="../..">Client API Documentation</a>.</li>
   <li>Wildcards: You can use <a href="#using-wildcards-with-last-value-cache-or-delta-messaging">wildcards</a> to identify large numbers of topics on which you want to configure a last value cache.</li>
 </ul>
 
@@ -567,7 +567,7 @@
 
 <h3 id="message-conflation">Message Conflation</h3>
 
-<p>Message conflation enables slower consumers to receive an approximation of higher rate message flows so that they do not get too far behind in the message stream. The Gateway performs message conflation, where a new message replaces the previous message, in a situation where a client cannot keep up with the live stream. KAAZING Gateway conflates messages on a topic from the JMS-compliant message broker arriving for that client. Whenever the client is able to start receiving messages, it receives the latest data. If all clients keep up with the live message stream, then no conflation occurs.</p>
+<p>Message conflation enables slower consumers to receive an approximation of higher rate message flows so that they do not get too far behind in the message stream. The Gateway performs message conflation, where a new message replaces the previous message, in a situation where a client cannot keep up with the live stream. Kaazing Gateway conflates messages on a topic from the JMS-compliant message broker arriving for that client. Whenever the client is able to start receiving messages, it receives the latest data. If all clients keep up with the live message stream, then no conflation occurs.</p>
 
 <p>Conflation is always enabled on all topics and does not require configuration or custom code. Conflation does not apply to queues and durable topic subscriptions because they provide guaranteed message delivery, which requires all unexpired messages to be delivered to the client.</p>
 
@@ -713,7 +713,7 @@
 - <code>context</code> This is the default setting. The Gateway performs a JNDI lookup for the topic or queue using the initial context factory specified in the <code>env.java.naming.factory.initial</code> property. The name used for the lookup is formed from the requested topic or queue name using the format string set in the <code>context.lookup.topic.format</code> or <code>context.lookup.queue.format</code> property. For example, if <code>context.lookup.queue.format</code> is set to “<code>/dynamicQueues/%s</code>” and the client application looks up <code>/queues/myQueue</code> or calls <code>createQueue</code>(<code>"/queues/myQueue"</code>), then the Gateway performs a JNDI lookup using the name <code>/dynamicQueues/myQueue</code>.<br />
 - <code>session</code> The Gateway uses the methods <code>createTopic</code> or <code>createQueue</code> on the JMS Session object. The <code>session</code> value is appropriate when using dynamic destinations (dynamic means they are not predefined in the broker but are instead created by the application as needed) and your broker does not have support for dynamic destinations using JNDI. The <code>session</code> value is also appropriate if your broker does not support JNDI lookup, or it is inconvenient to use JNDI lookup.</p>
 
-<p>Note that this property only controls how the Gateway behaves. Irrespective of the setting of this property, client applications (using the KAAZING Gateway JMS client library) can lookup or create Topic and Queue objects either by using the <code>session.createTopic()</code> method (for example, <code>Topic myTopic = session.createTopic("/topic/myTopic")</code>, or by performing a JNDI lookup using the <code>initialContext.lookup()</code> method (for example, <code>Topic myTopic = initialContext.lookup("/topic/myTopic"</code>). The KAAZING Gateway JMS client libraries currently require the “<code>/topic/</code>” or “<code>/queue/</code>” prefix even when using <code>createTopic</code> or <code>createQueue</code>.</p>
+<p>Note that this property only controls how the Gateway behaves. Irrespective of the setting of this property, client applications (using the Kaazing Gateway JMS client library) can lookup or create Topic and Queue objects either by using the <code>session.createTopic()</code> method (for example, <code>Topic myTopic = session.createTopic("/topic/myTopic")</code>, or by performing a JNDI lookup using the <code>initialContext.lookup()</code> method (for example, <code>Topic myTopic = initialContext.lookup("/topic/myTopic"</code>). The Kaazing Gateway JMS client libraries currently require the “<code>/topic/</code>” or “<code>/queue/</code>” prefix even when using <code>createTopic</code> or <code>createQueue</code>.</p>
 
 <h4 id="section-14"><a name="durablemaximumpendingacknowledgments"></a><code>durable.maximum.pending.acknowledgments</code></h4>
 

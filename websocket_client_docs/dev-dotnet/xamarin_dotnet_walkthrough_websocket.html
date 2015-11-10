@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -68,7 +68,7 @@
 <div class="container page-content text-left">
 <h1>Walkthrough: Deploy Microsoft .NET or Silverlight WebSocket Clients to iOS or Android Using Xamarin</h1>
 
-<p>In this walkthrough, you will learn how to deploy an existing Microsoft .NET WebSocket web client as a Xamarin app for iOS and Android. This procedure demonstrates how you can build a Microsoft .NET WebSocket client using the Kaazing WebSocket Gateway Microsoft .NET WebSocket client library and then use Xamarin to deploy the client as an app on iOS or Android devices.</p>
+<p>In this walkthrough, you will learn how to deploy an existing Microsoft .NET WebSocket web client as a Xamarin app for iOS and Android. This procedure demonstrates how you can build a Microsoft .NET WebSocket client using the Kaazing Gateway Microsoft .NET WebSocket client library and then use Xamarin to deploy the client as an app on iOS or Android devices.</p>
 
 <p>This topic walks you through the following subjects:</p>
 
@@ -98,7 +98,7 @@
 
 <h2><a name="accomplish"></a>What You Will Accomplish</h2>
 
-<p>At the end of this walkthrough, an Xamarin .NET WebSocket demo created using the Kaazing WebSocket Gateway Microsoft .NET and Silverlight WebSocket library runs as an app on iOS and Android, connects to the Gateway, and sends and receives Echo messages using an emulated WebSocket connection. Users can run the Xamarin app on any iOS or Android device.</p>
+<p>At the end of this walkthrough, an Xamarin .NET WebSocket demo created using the Kaazing Gateway Microsoft .NET and Silverlight WebSocket library runs as an app on iOS and Android, connects to the Gateway, and sends and receives Echo messages using an emulated WebSocket connection. Users can run the Xamarin app on any iOS or Android device.</p>
 
 <p>This walkthrough uses the out of the box Xamarin WebSocket demo that is included with the Gateway as the example app, but the steps outlined in this walkthrough are the same for other Xamarin WebSocket client applications built with the Gateway.</p>
 
@@ -107,7 +107,7 @@
 <p>Before starting this walkthrough you need the following:</p>
 
 <ul>
-  <li>Kaazing WebSocket Gateway. See <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+  <li>Kaazing Gateway. See <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
   <li><a href="http://xamarin.com/" title="Mobile App Development &amp; App Creation Software - Xamarin">Xamarin Platform</a> 3.</li>
   <li>An Xamarin account. To create an Xamarin account, see <a href="https://store.xamarin.com/Login?from=%2faccount%2f">https://store.xamarin.com/Login?from=%2faccount%2f</a>.</li>
   <li>iOS SDK. The iOS SDK is required in order to use the iOS Simulator. For the iOS SDK, see <a href="https://developer.apple.com/xcode/">https://developer.apple.com/xcode/</a>. You can run the Xamarin iOS demo on iOS 5.1+, 6.0+, 7.0+, and 8.0+.</li>
@@ -120,7 +120,7 @@
 <p>The following steps link to resources to take you through the installation of the software required for deploying an Xamarin app. If you already have this software installed, you can simply note the locations of the installed software for later use.</p>
 
 <ol>
-  <li>Install the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+  <li>Install the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
   <li>Download and install Xamarin 3 from <a href="http://xamarin.com/platform" title="Mobile Application Development to Build Apps in C# - Xamarin">http://xamarin.com/platform</a>.</li>
 </ol>
 
@@ -133,7 +133,7 @@
   <li>Click the <strong>Xamarin Studio</strong> menu and click <strong>Account</strong>.</li>
   <li>Click <strong>Log In</strong>. Log in with your account information.</li>
   <li>Close the <strong>Account</strong> dialog.</li>
-  <li>Add the Kaazing WebSocket Gateway demo.
+  <li>Add the Kaazing Gateway demo.
     <ol type="a">
       <li>In Xamarin Studio, click <strong>Open</strong>.</li>
       <li>Navigate to the location of the Xamarin demos in your distribution of the Gateway: <span class="uri"><em>GATEWAY_HOME</em>/demo/xamarin/src/gateway</span>.</li>
@@ -153,20 +153,20 @@
  <ul>
    <li>KaazingGatewayXamarinDemo.Android and KaazingGatewayXamarinDemo.iOS.Classic both share KaazingGatewayXamarinDemo.Common. The UI is defined once using Xamarin.Forms in KaazingGatewayXamarinDemo.Common and is reused by the iOS and Android projects. Similarly, the code that handles user events in KaazingGatewayXamarinDemo.Common is reused by the iOS and Android projects. This method demonstrates how to develop an app using C# and deploy the same app to both iOS and Android.</li>
    <li>The Xamarin.Forms package is not available for the Unified API. As a result, KaazingGatewayXamarinDemo.iOS.Unified defines its own UI using a storyboard and has code for dealing with user events. KaazingGatewayXamarinDemo.iOS.Unified is not sharing or reusing the code from KaazingGatewayXamarinDemo.Common like KaazingGatewayXamarinDemo.Android and KaazingGatewayXamarinDemo.iOS.Classic are. For more information, see <a href="http://forums.xamarin.com/discussion/24616/xamarin-forms-and-ios-unified-api" title="Xamarin.Forms and iOS Unified API - Xamarin Forums">http://forums.xamarin.com/discussion/24616/xamarin-forms-and-ios-unified-api</a>.</li>
-   <li>The Kaazing WebSocket Gateway .NET client library, <strong>Kaazing.Gateway.dll</strong>, is picked up from <span class="uri"><em>GATEWAY_HOME</em>/demo/xamarin/src/gateway/KaazingLibs</span> automatically.</li>
+   <li>The Kaazing Gateway .NET client library, <strong>Kaazing.Gateway.dll</strong>, is picked up from <span class="uri"><em>GATEWAY_HOME</em>/demo/xamarin/src/gateway/KaazingLibs</span> automatically.</li>
  </ul>
 </span>
 
 
 <h2><a name="reuse"></a>Reusing UIs with Xamarin.Forms</h2>
 
-<p><a href="http://developer.xamarin.com/guides/cross-platform/xamarin-forms/introduction-to-xamarin-forms/" title="An Introduction to Xamarin.Forms - Xamarin">Xamarin.Forms</a> is a cross-platform natively backed UI toolkit abstraction that allows developers to easily create user interfaces that can be shared across Android and iOS. The Kaazing WebSocket Gateway Xamarin demo uses Xamarin.Forms to implement the UI once and reuse it across multiple platforms and thus avoid duplication. With Xamarin.Forms, the UI is built using C# code instead of a storyboard for iOS and XAML for Android. The same C# code is then reused for iOS and Android platforms.</p>
+<p><a href="http://developer.xamarin.com/guides/cross-platform/xamarin-forms/introduction-to-xamarin-forms/" title="An Introduction to Xamarin.Forms - Xamarin">Xamarin.Forms</a> is a cross-platform natively backed UI toolkit abstraction that allows developers to easily create user interfaces that can be shared across Android and iOS. The Kaazing Gateway Xamarin demo uses Xamarin.Forms to implement the UI once and reuse it across multiple platforms and thus avoid duplication. With Xamarin.Forms, the UI is built using C# code instead of a storyboard for iOS and XAML for Android. The same C# code is then reused for iOS and Android platforms.</p>
 
 <p>Xamarin.Forms is used to share the UI in KaazingGatewayXamarinDemo.Common with KaazingGatewayXamarinDemo.Android and KaazingGatewayXamarinDemo.iOS.Classic, but not with KaazingGatewayXamarinDemo.iOS.Unified.</p>
 
 <h3><a name="classic-unified"></a>Classic and Unified APIs</a></h3>
 
-<p>The Kaazing WebSocket Gateway Xamarin includes projects that showcase how to build iOS apps under Xamarin using both Classic and Unified APIs. Xamarin recommends using the Unified API, but Xamarin.Forms works well with Classic API only, at this time. Xamarin.Forms for the Unified API is still in pre-release stage and has <a href="http://forums.xamarin.com/discussion/24616/xamarin-forms-and-ios-unified-api" title="Xamarin.Forms and iOS Unified API - Xamarin Forums">issues</a>.</p>
+<p>The Kaazing Gateway Xamarin includes projects that showcase how to build iOS apps under Xamarin using both Classic and Unified APIs. Xamarin recommends using the Unified API, but Xamarin.Forms works well with Classic API only, at this time. Xamarin.Forms for the Unified API is still in pre-release stage and has <a href="http://forums.xamarin.com/discussion/24616/xamarin-forms-and-ios-unified-api" title="Xamarin.Forms and iOS Unified API - Xamarin Forums">issues</a>.</p>
 
 <p>While the project for KaazingGatewayXamarinDemo.iOS.Classic uses the Xamarin.Forms’ reusable UI that is shared with KaazingGatewayXamarinDemo.Android, the KaazingGatewayXamarinDemo.iOS.Unified project does not use Xamarin.Forms. Instead, the UI for KaazingGatewayXamarinDemo.iOS.Unified is defined in a storyboard just as it is done in Xcode for a regular iOS project and has its own event-handling code written in C#.</p>
 
@@ -201,7 +201,7 @@
   
   <span class="note"><b>Note:</b> By default, the Gateway uses <a href="../admin-reference/c_conf_concepts.html#aboutconfelements" title="Kaazing Developer Network">Property defaults</a> for <span class="uri">ws://${gateway.hostname}:${gateway.extras.port}/echo</span> and the actual URI is <span class="uri">ws://localhost:8001/echo</span>. The Android Emulator or device will not allow the use of <span class="uri">localhost</span>. For Android, change the value of the <strong>accept</strong> tag to the local IP address of the Gateway server.</span>
   </li>
-  <li>Start the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>. Invoke the <code>gateway.start</code> command by navigating to the <span class="uri"><em>GATEWAY_HOME</em>/bin</span> directory where you installed the Gateway, and then enter the following to run the <code>gateway.start</code> script:<br>
+  <li>Start the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>. Invoke the <code>gateway.start</code> command by navigating to the <span class="uri"><em>GATEWAY_HOME</em>/bin</span> directory where you installed the Gateway, and then enter the following to run the <code>gateway.start</code> script:<br>
   <code>./gateway.start (gateway.start.bat in Windows)</code>
   </li>
 </ol>
@@ -213,7 +213,7 @@
 <ol>
   <li>For Android, right-click the Android demo named <strong>KaazingGatewayXamarinDemo.Android</strong>, and then click <strong>Build <em>Project_Name</em></strong>, where <em>Project_Name</em> is the name of the project.</li>
   <li>For iOS, right-click either the iOS demo named <strong>KaazingGatewayXamarinDemo.iOS.Unified</strong>, <strong>KaazingGatewayXamarinDemo.Common</strong>, or <strong>KaazingGatewayXamarinDemo.iOS.Classic</strong>, and then click <strong>Build <em>Project_Name</em></strong>.<br>
-    Xamarin Studio informs you that the project is built. If you encounter Kaazing WebSocket Gateway .NET library errors, ensure that you have included the library in the <strong>Reference</strong> folder for the demo as described in <a href="#configure">Configure Xamarin</a>.</li>
+    Xamarin Studio informs you that the project is built. If you encounter Kaazing Gateway .NET library errors, ensure that you have included the library in the <strong>Reference</strong> folder for the demo as described in <a href="#configure">Configure Xamarin</a>.</li>
 </ol>
 
 <h2><a name="run"></a>Run and Test the Xamarin App in iOS Simulator or Android Emulator</h2>

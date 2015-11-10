@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -66,8 +66,8 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Use the Kaazing WebSocket Gateway Objective-C Client API</h1>
-<p>In this procedure, you will learn how to create an iOS client using the Kaazing WebSocket Gateway Objective-C Client API. You will learn how to create an Xcode project and add the necessary frameworks in order to use the Objective-C Client API, and implement the Objective-C Client API methods to enable your client to send and receive Echo messages with the Echo service running on the Gateway.</p>
+<h1>Use the Kaazing Gateway Objective-C Client API</h1>
+<p>In this procedure, you will learn how to create an iOS client using the Kaazing Gateway Objective-C Client API. You will learn how to create an Xcode project and add the necessary frameworks in order to use the Objective-C Client API, and implement the Objective-C Client API methods to enable your client to send and receive Echo messages with the Echo service running on the Gateway.</p>
 
 <p>For information about deploying your Objective-C (iOS) client on devices with the arm64 architecture, see <a href="#arm64">Convert Your Objective-C (iOS) Client to a 64-Bit Runtime Environment</a>.</p>
 
@@ -77,7 +77,7 @@
     <li>Set up your development environment using the Gateway and Xcode 4.4 or later.</li>
     <li>Review the components that will be used to create the Objective-C client.</li>
     <li>Create a new Xcode project.</li>
-    <li>Add the <strong>Kaazing WebSocket Gateway Objective-C framework</strong>.</li>
+    <li>Add the <strong>Kaazing Gateway Objective-C framework</strong>.</li>
     <li>Add <strong>CFNetwork.framework</strong> to the project.</li>
     <li>Add the <span class="uri">-ObjC</span> value to the <strong>Other Linker Flags</strong> build setting.</li>
     <li>Build the interface for the client using <strong>MainStoryboard.storyboard</strong>.</li>
@@ -90,11 +90,11 @@
     <li>Add a method to update the UI in response to the connection events.</li>
     <li>Add methods for managing the WebSocket connection when the application is sent to the background or returns to the foreground.</li>
     <li>Add the remaining methods to control the interface of the client, such as when the client loads and unloads on the device.</li>
-    <li>Start the Kaazing WebSocket Gateway.</li>
+    <li>Start the Kaazing Gateway.</li>
     <li>Build and run the client in the iPhone Simulator.</li>
 </ol>
 
-<p>For information about the Kaazing WebSocket Gateway Objective-C Client API, see <a href="../apidoc/client/ios/gateway/index.html">Objective-C Client API</a>.</p>
+<p>For information about the Kaazing Gateway Objective-C Client API, see <a href="../apidoc/client/ios/gateway/index.html">Objective-C Client API</a>.</p>
 
 <span class="note"><b>Notes:</b>
  <ul class="arrow-2">
@@ -106,9 +106,9 @@
 </span>
 
 <h2>Before You Begin</h2>
-<p>This procedure is part of Checklist: <a href="o_dev_objc.html">Build Objective-C (iOS) Clients Using Kaazing WebSocket Gateway</a>:</p>
+<p>This procedure is part of Checklist: <a href="o_dev_objc.html">Build Objective-C (iOS) Clients Using Kaazing Gateway</a>:</p>
 <ol>
-<li><strong>Use the Kaazing WebSocket Gateway Objective-C Client API</strong></li>
+<li><strong>Use the Kaazing Gateway Objective-C Client API</strong></li>
 <li><a href="p_dev_objc_secure.html">Secure Your Objective-C Client</a></li>
 <li><a href="p_dev_objc_log.html">Display Logs for the Objective-C Client</a></li>
 <li><a href="p_dev_objc_tshoot.html">Troubleshoot Your Objective-C Client</a></li>
@@ -116,12 +116,12 @@
 
 <p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../release-notes.html">Release Notes</a>.</span></p>
 
-<h2>To Use the Kaazing WebSocket Gateway Objective-C Client API</h2>
+<h2>To Use the Kaazing Gateway Objective-C Client API</h2>
 
 <ol>
     <li>Set up your development environment using the following:
         <ol type="a">
-            <li>Download and install Kaazing WebSocket Gateway, as described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+            <li>Download and install Kaazing Gateway, as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
             <li>Download and install <a href="https://developer.apple.com/xcode/">Apple Xcode 4.4</a> or later (requires Mac OS X 10.7.4 or later). The Xcode bundle includes the iOS SDK.</li>
         </ol>
     </li>
@@ -134,7 +134,7 @@
           </tr>
           <tr>
             <td>KGWebSocket.framework</td>
-            <td>Kaazing WebSocket Gateway Objective-C framework</td>
+            <td>Kaazing Gateway Objective-C framework</td>
           </tr>
           <tr>
             <td>CFNetwork.framework</td>
@@ -193,9 +193,9 @@
         </ol>
     </li>
     
-    <li><p>Add the Kaazing WebSocket Gateway Objective-C framework to the project.</p>
+    <li><p>Add the Kaazing Gateway Objective-C framework to the project.</p>
         <ol type="a">
-            <li><p>Navigate to the location of the Kaazing WebSocket Gateway Objective-C framework:</p>
+            <li><p>Navigate to the location of the Kaazing Gateway Objective-C framework:</p>
             <p><span class="uri"><em>GATEWAY_HOME</em>/lib/client/ios/kaazing-ios-library.zip</span></p>
             </li>
             
@@ -229,7 +229,7 @@ The CFNetwork.framework is now listed in the Frameworks folder in the project na
         </ol>
     </li>
     
-    <li><p>Add the <span class="uri">-ObjC</span> value to the <strong>Other Linker Flags</strong> build setting because the Kaazing WebSocket Gateway Objective-C API code you add links against an Objective-C static library that contains categories. You must add this value to prevent a runtime exception of <strong>"selector not recognized"</strong>. For more information, see <a href="http://developer.apple.com/library/mac/#qa/qa1490/_index.html">Building Objective-C static libraries with categories</a>.</p>
+    <li><p>Add the <span class="uri">-ObjC</span> value to the <strong>Other Linker Flags</strong> build setting because the Kaazing Gateway Objective-C API code you add links against an Objective-C static library that contains categories. You must add this value to prevent a runtime exception of <strong>"selector not recognized"</strong>. For more information, see <a href="http://developer.apple.com/library/mac/#qa/qa1490/_index.html">Building Objective-C static libraries with categories</a>.</p>
         <ol type="a">
             <li>In the project navigator, select the target to which you want to add a library or framework. In this example, <strong>WebSocketDemo</strong>.</li>
             
@@ -368,7 +368,7 @@ The CFNetwork.framework is now listed in the Frameworks folder in the project na
              <ul class="arrow-2">
                  <li>For all of the buttons, ensure that <strong>Touch Up Inside</strong> is selected in the <strong>Sent Events</strong> section of the <strong>Connections Inspector</strong>. Xcode will likely configure this automatically.</li>
                  <li>While you can paste the above code into your header file, if you control-drag the UI elements into the code from the scene (press and hold the Control key while you drag the button to the implementation file in the assistant editor pane) and use the popover control to specify the outlet connections, you can ensure that you have all the settings correct. </li>
-                 <li>When you add the action methods, corresponding stub methods are added to the KGViewController.m implementation file automatically. You will update these methods in KGViewController.m with the Kaazing WebSocket Gateway Objective-C API in later steps.</li>
+                 <li>When you add the action methods, corresponding stub methods are added to the KGViewController.m implementation file automatically. You will update these methods in KGViewController.m with the Kaazing Gateway Objective-C API in later steps.</li>
                  <li>Some iOS clients define the interface in the implementation file instead of the header file. The client in this procedure defines the interface in the header file and the implementation methods in the implementation file.</li>
              </ul>
             </span>
@@ -678,7 +678,7 @@ The CFNetwork.framework is now listed in the Frameworks folder in the project na
     
     <li>Ensure that the <span class="uri">KGViewController</span> implementation class ends with its <span class="uri">@end</span> statement.</li>
     
-    <li>Start the Gateway as described in <strong>How do I start and stop the Gateway?</strong> in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+    <li>Start the Gateway as described in <strong>How do I start and stop the Gateway?</strong> in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
     
     <li>Build and run the client in the iPhone Simulator.
         <ol type="a">

@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -66,8 +66,8 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Checklist: Build Java AMQP Clients Using Kaazing WebSocket Gateway</h1>
-<p>This checklist provides the steps necessary to enable your Java application to communicate with any AMQP-compliant message broker, such as Apache Qpid, using the Java client libraries available in Kaazing WebSocket Gateway - AMQP Edition:</p>
+<h1>Checklist: Build Java AMQP Clients Using Kaazing Gateway</h1>
+<p>This checklist provides the steps necessary to enable your Java application to communicate with any AMQP-compliant message broker, such as Apache Qpid, using the Java client libraries available in Kaazing Gateway - AMQP Edition:</p>
 
 <table width="789" border="0">
   <tr>
@@ -82,13 +82,13 @@
   </tr>
   <tr>
         <td>2</td>
-    <td>Learn about the Kaazing WebSocket Gateway AMQP client.</td>
-    <td><a href="#overview">Overview of the Kaazing WebSocket Gateway Java AMQP Client Libraries</a></td>
+    <td>Learn about the Kaazing Gateway AMQP client.</td>
+    <td><a href="#overview">Overview of the Kaazing Gateway Java AMQP Client Libraries</a></td>
   </tr>
   <tr>
         <td>3</td>
-    <td>Learn to use the Kaazing WebSocket Gateway Java AMQP client library and the supported methods.</td>
-    <td><a href="p_dev_java_client.html">Use the Kaazing WebSocket Gateway Java AMQP Client Library</a></td>
+    <td>Learn to use the Kaazing Gateway Java AMQP client library and the supported methods.</td>
+    <td><a href="p_dev_java_client.html">Use the Kaazing Gateway Java AMQP Client Library</a></td>
   </tr>
   <tr>
         <td>4</td>
@@ -117,25 +117,25 @@
 <p>For more information about AMQP, visit <a href="http://www.amqp.org">http://www.amqp.org</a>.</p>
 
 <h2>WebSocket and AMQP</h2>
-<p>WebSocket enables direct communication from the browser to an AMQP broker. Kaazing WebSocket Gateway radically simplifies Web application design by providing the AMQP client libraries for the Java, JavaScript, Adobe Flex, .NET and Silverlight client technologies. Web developers can code directly against the back-end AMQP broker without the need for custom Servlets or server-side programming.</p>
+<p>WebSocket enables direct communication from the browser to an AMQP broker. Kaazing Gateway radically simplifies Web application design by providing the AMQP client libraries for the Java, JavaScript, Adobe Flex, .NET and Silverlight client technologies. Web developers can code directly against the back-end AMQP broker without the need for custom Servlets or server-side programming.</p>
 
 <p>Using the AMQP client libraries, you can take advantage of the AMQP features, making the browser a first-class citizen in AMQP systems (similar to C, Java, Python, and other clients). This means that you can run AMQP clients directly in a browser.</p>
 
-<p>The AMQP libraries use the Kaazing WebSocket Gateway ByteSocket client library because AMQP messages use a binary format. The implementation is layered on top of ByteSocket, which uses WebSocket (and thus the entire stack of Kaazing WebSocket Gateway HTML5 Communications client libraries). As such, applications developed using the AMQP libraries are provided with guaranteed persistence, reliability, and message-receipt acknowledgment all the way to the browser.</p>
+<p>The AMQP libraries use the Kaazing Gateway ByteSocket client library because AMQP messages use a binary format. The implementation is layered on top of ByteSocket, which uses WebSocket (and thus the entire stack of Kaazing Gateway HTML5 Communications client libraries). As such, applications developed using the AMQP libraries are provided with guaranteed persistence, reliability, and message-receipt acknowledgment all the way to the browser.</p>
 
-<h2><a name="overview"></a>Overview of the Kaazing WebSocket Gateway Java AMQP Client Libraries</h2>
-<p>Kaazing WebSocket Gateway - AMQP Edition includes AMQP client libraries, which allow clients to subscribe from and publish messages to a message broker using AMQP. With the Kaazing WebSocket Gateway AMQP client libraries, you can leverage WebSocket in your application. This WebSocket client then enables communication over AMQP between your application and the message broker, as shown in the following figure:</p>
+<h2><a name="overview"></a>Overview of the Kaazing Gateway Java AMQP Client Libraries</h2>
+<p>Kaazing Gateway - AMQP Edition includes AMQP client libraries, which allow clients to subscribe from and publish messages to a message broker using AMQP. With the Kaazing Gateway AMQP client libraries, you can leverage WebSocket in your application. This WebSocket client then enables communication over AMQP between your application and the message broker, as shown in the following figure:</p>
 
         <figure>
                 <img src="../images/f-amqp-web-java-client-web.png">
-        <figcaption><strong>Figure: Kaazing WebSocket Gateway Java AMQP Client Connection</strong></figcaption>      
+        <figcaption><strong>Figure: Kaazing Gateway Java AMQP Client Connection</strong></figcaption>      
         </figure>
 
 <h2><a name="setup_server"></a>Starting an AMQP Broker</h2>
 
 <p>There are a wide variety of AMQP brokers available that implement different AMQP versions. For example, RabbitMQ, Apache Qpid, OpenAMQ, Red Hat Enterprise MRG, &Oslash;MQ, and Zyre. If you do not have an AMQP broker installed yet, you can use the Apache Qpid AMQP broker included in the Gateway download package, that supports AMQP version 0-9-1.</p>
 
-<p>To set up and start the Apache Qpid broker on your system, perform the steps described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</p>
+<p>To set up and start the Apache Qpid broker on your system, perform the steps described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</p>
 <p><span class="note"><strong>Note</strong>: The AMQP client libraries are compatible with AMQP version 0-9-1. Refer your AMQP broker documentation for information about certified AMQP versions.</span></p>
 
 <p>For information on integrating with RabbitMQ, see <a href="../integration-amqp/p_amqp_integrate_rabbitmq.html">Integrate RabbitMQ Messaging</a>.</p>
@@ -143,7 +143,7 @@
 <h2>Taking a Look at the AMQP Demo</h2>
 <p>Before you start, take a look at a demonstration that was built with the Java version of the AMQP client library. To see this demo in action, perform the following steps:</p>
 <ol>
-<li>Start Kaazing WebSocket Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+<li>Start Kaazing Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
 <li>In a browser, navigate to <a href="http://localhost:8001/demo/amqp/java/">http://localhost:8001/demo/amqp/java/</a>. </li>
 <li>From this page, you can navigate to additional AMQP demos for different client technologies (JavaScript, Silverlight, .NET Framework, and Adobe Flash and Flex).</li>
 </ol>

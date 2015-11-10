@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/management/p_monitor_jmx/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -69,15 +69,15 @@
 
  <h1 id="monitor-with-jmx">Monitor with JMX</h1>
 
-<p>KAAZING Gateway supports Java Management Extension (JMX) access through any JMX-compliant console, such as Java’s built-in Java Management and Monitoring Console (<a href="http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html" title="Using JConsole - Java SE Monitoring and Management Guide">JConsole</a>) or MC4J, or through any program that supports communication using the JMX protocol. The Gateway supports a <code>management.jmx</code> service to allow JMX-compliant applications to monitor current Gateway service and session state and operate on individual sessions. See the <a href="../../admin-reference/r_configure_gateway_service">Service Reference</a> for information about the JMX management service (<code>management.jmx</code>).</p>
+<p>Kaazing Gateway supports Java Management Extension (JMX) access through any JMX-compliant console, such as Java’s built-in Java Management and Monitoring Console (<a href="http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html" title="Using JConsole - Java SE Monitoring and Management Guide">JConsole</a>) or MC4J, or through any program that supports communication using the JMX protocol. The Gateway supports a <code>management.jmx</code> service to allow JMX-compliant applications to monitor current Gateway service and session state and operate on individual sessions. See the <a href="../../admin-reference/r_configure_gateway_service">Service Reference</a> for information about the JMX management service (<code>management.jmx</code>).</p>
 
 <h2 id="before-you-begin">Before You Begin</h2>
 
 <p>This procedure is part of <a href="../o_monitor">Monitor the Gateway</a>:</p>
 
 <ol>
-  <li><a href="../o_monitor#introduction-to-monitoring-kaazing-gateway">Introduction to Monitoring KAAZING Gateway</a></li>
-  <li><a href="../p_monitor_configure_secure">Secure KAAZING Gateway Monitoring</a></li>
+  <li><a href="../o_monitor#introduction-to-monitoring-kaazing-gateway">Introduction to Monitoring Kaazing Gateway</a></li>
+  <li><a href="../p_monitor_configure_secure">Secure Kaazing Gateway Monitoring</a></li>
   <li>Monitor a Gateway or Gateway cluster
     <ul>
       <li><a href="../p_monitor_cc">Monitor with Command Center</a> (<strong>Recommended</strong>)</li>
@@ -93,9 +93,9 @@
   <li>
     <p>Install and start the Gateway as described in <a href="../../about/setup-guide">Setting Up the Gateway</a>. </p>
 
-    <p><strong>Note:</strong> To connect to a JMX service on a Gateway running on an EC2 instance, configure the <code>GATEWAY_OPTS</code> environment variable with the <code>-Djava.rmi.server.hostname</code> property set to the IP address or hostname being used in the RMI registry. For example, <code>GATEWAY_OPTS="-Xmx512m -Djava.rmi.server.hostname=ec2-54-205-184-88.example-1.amazonaws.com</code>. See the topic <a href="../../admin-reference/p_configure_gateway_opts">Configure KAAZING Gateway Using the GATEWAY_OPTS Environment Variable</a> for more information.</p>
+    <p><strong>Note:</strong> To connect to a JMX service on a Gateway running on an EC2 instance, configure the <code>GATEWAY_OPTS</code> environment variable with the <code>-Djava.rmi.server.hostname</code> property set to the IP address or hostname being used in the RMI registry. For example, <code>GATEWAY_OPTS="-Xmx512m -Djava.rmi.server.hostname=ec2-54-205-184-88.example-1.amazonaws.com</code>. See the topic <a href="../../admin-reference/p_configure_gateway_opts">Configure Kaazing Gateway Using the GATEWAY_OPTS Environment Variable</a> for more information.</p>
   </li>
-  <li>Ensure secure monitoring by verifying that your configuration specifies a security realm name and an authorization constraint. This is set up automatically if you use the default Gateway configuration. See <a href="../p_monitor_configure_secure">Secure KAAZING Gateway Monitoring</a> for more information.</li>
+  <li>Ensure secure monitoring by verifying that your configuration specifies a security realm name and an authorization constraint. This is set up automatically if you use the default Gateway configuration. See <a href="../p_monitor_configure_secure">Secure Kaazing Gateway Monitoring</a> for more information.</li>
   <li>Start your favorite Java monitoring console or application. This documentation uses JConsole for its examples.</li>
   <li>
     <p>Select the local process, for example <code>org.kaazing.gateway.server.Main</code> (as shown in the following screenshot), then click <strong>Connect</strong>. (For Windows, the local process name is <code>org.kaazing.gateway.server.WindowsMain</code>.)</p>
@@ -183,13 +183,13 @@
 
 <h2 id="next-step">Next Step</h2>
 
-<p>You have configured management with JMX for KAAZING Gateway.</p>
+<p>You have configured management with JMX for Kaazing Gateway.</p>
 
 <h2 id="see-also">See Also</h2>
 
 <ul>
   <li>The <a href="../../admin-reference/r_configure_gateway_security#realm">realm</a> element for reference information about the <code>user-principal-class</code> property.</li>
-  <li>KAAZING Gateway <a href="../..">documentation</a> for more information about Gateway administration.</li>
+  <li>Kaazing Gateway <a href="../..">documentation</a> for more information about Gateway administration.</li>
 </ul>
 
 

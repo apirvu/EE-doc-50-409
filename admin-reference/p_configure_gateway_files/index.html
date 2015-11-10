@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>KAAZING.org - KAAZING.org Docs</title>
+  <title>Kaazing.org - Kaazing.org Docs</title>
   <link rel="canonical" href="/documentation/5.0/admin-reference/p_configure_gateway_files/" />
   <link rel="icon" href="/img/favicon.ico">
 
@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/KAAZING.png" alt="KAAZING.org"></img></a>
+			<a class="navbar-brand" href="../../index.html"><img id="kaazing-logo-header" src="../../img/Kaazing.png" alt="Kaazing.org"></img></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -67,7 +67,7 @@
 
 <div class="container page-content text-left">
 
- <h1 id="configure-kaazing-gateway">Configure KAAZING Gateway</h1>
+ <h1 id="configure-kaazing-gateway">Configure Kaazing Gateway</h1>
 
 <p>By default, the Gateway uses the values in the <code>gateway-config.xml</code> and <code>gateway-config-minimal.xml</code> files that are located in the <code>GATEWAY_HOME/conf/</code> directory when you start the Gateway. Although you do not need to update the configuration file to run the Gateway on your local host, you must make some changes to provide services on non localhost machines.</p>
 
@@ -76,8 +76,8 @@
 <p>This procedure is part of <a href="../o_configure_gateway_checklist">Configure the Gateway</a>:</p>
 
 <ul>
-  <li><strong>Configure KAAZING Gateway</strong></li>
-  <li><a href="../p_configure_gateway_opts">Configure KAAZING Gateway Using the <code>GATEWAY_OPTS</code> Environment Variables</a></li>
+  <li><strong>Configure Kaazing Gateway</strong></li>
+  <li><a href="../p_configure_gateway_opts">Configure Kaazing Gateway Using the <code>GATEWAY_OPTS</code> Environment Variables</a></li>
   <li>Verify the Gateway configuration following the instructions for your deployment in <a href="../../about/setup-guide">Setting Up the Gateway</a></li>
 </ul>
 
@@ -86,7 +86,7 @@
 <p>The standard way to set up and maintain your Gateway configuration is by editing the settings in the Gateway configuration file in the <code>GATEWAY_HOME/conf/</code> directory. The following steps describe how to modify one of the default configuration files <code>gateway-config.xml</code> and <code>gateway-config-minimal.xml,</code>, or you can create and edit your own configuration file.</p>
 
 <ol>
-  <li>Before you configure the Gateway, ensure you have followed the steps in <a href="../../about/setup-guide">Setting Up the Gateway</a> to download and install KAAZING Gateway.</li>
+  <li>Before you configure the Gateway, ensure you have followed the steps in <a href="../../about/setup-guide">Setting Up the Gateway</a> to download and install Kaazing Gateway.</li>
   <li>Configure the Gateway using one of the following configuration files:
     <ul>
       <li>
@@ -109,9 +109,9 @@
     <p>At a minimum, the Gateway configuration file must contain the following components (which are included in the default configuration files):</p>
 
     <ul>
-      <li>The Gateway namespace declaration, as described in <a href="../c_configure_gateway_concepts#about-kaazing-gateway-namespace-declarations">About KAAZING Gateway Namespace Declarations</a>.</li>
+      <li>The Gateway namespace declaration, as described in <a href="../c_configure_gateway_concepts#about-kaazing-gateway-namespace-declarations">About Kaazing Gateway Namespace Declarations</a>.</li>
       <li>The Gateway <a href="../r_configure_gateway_service#service"><code>name</code></a> element.</li>
-      <li>The <a href="../r_configure_gateway_service"><code>service</code></a> element with the <a href="../r_configure_gateway_service#directory"><code>directory</code></a> type to specify the path of your static files relative to <code>GATEWAY_HOME/web</code>, where <em>GATEWAY_HOME</em> is the directory where you installed KAAZING Gateway.</li>
+      <li>The <a href="../r_configure_gateway_service"><code>service</code></a> element with the <a href="../r_configure_gateway_service#directory"><code>directory</code></a> type to specify the path of your static files relative to <code>GATEWAY_HOME/web</code>, where <em>GATEWAY_HOME</em> is the directory where you installed Kaazing Gateway.</li>
     </ul>
 
     <p>Here’s an example of a simple Gateway configuration file that uses the default (supplied) ports to bind the <code>/base</code> (port 8000) to the Gateway host:</p>
@@ -170,15 +170,15 @@
             </tr>
             <tr>
               <td><a href="../r_configure_gateway_security">Security</a></td>
-              <td>Configure security for the service and specify authentication and authorization for users. To better understand how the security parameters that you specify in KAAZING Gateway configuration work together, see <a href="../../security/u_secure_client_gateway_communication">What’s Involved in Secure Communication</a>.</td>
+              <td>Configure security for the service and specify authentication and authorization for users. To better understand how the security parameters that you specify in Kaazing Gateway configuration work together, see <a href="../../security/u_secure_client_gateway_communication">What’s Involved in Secure Communication</a>.</td>
             </tr>
             <tr>
               <td><a href="../r_configure_gateway_cluster">Cluster</a></td>
-              <td>Use the <code>cluster</code> section to configure one or more Gateway’s to participate in a KAAZING Gateway cluster, and describe the elements and properties you can configure to achieve high availability.</td>
+              <td>Use the <code>cluster</code> section to configure one or more Gateway’s to participate in a Kaazing Gateway cluster, and describe the elements and properties you can configure to achieve high availability.</td>
             </tr>
             <tr>
               <td>Additional Services</td>
-              <td><a href="../p_configure_multicast">Configure the Gateway to Use Multicast</a>, <a href="../../internal-network/p_protocol_binding">Configure the Gateway on an Internal Network</a>, <a href="../../security/p_auth_protocol_injection">Implement Protocol Injection</a>, <a href="../../security/p_auth_user_identity_promotion">Implement User Identity Promotion</a>, and more can be found on the <a href="../..">KAAZING Documentation</a> page.</td>
+              <td><a href="../p_configure_multicast">Configure the Gateway to Use Multicast</a>, <a href="../../internal-network/p_protocol_binding">Configure the Gateway on an Internal Network</a>, <a href="../../security/p_auth_protocol_injection">Implement Protocol Injection</a>, <a href="../../security/p_auth_user_identity_promotion">Implement User Identity Promotion</a>, and more can be found on the <a href="../..">Kaazing Documentation</a> page.</td>
             </tr>
           </tbody>
         </table>
@@ -198,7 +198,7 @@
 
 <h2 id="next-step">Next Step</h2>
 
-<p><a href="../p_configure_gateway_opts">Configure KAAZING Gateway Using the <code>GATEWAY_OPTS</code> Environment Variables</a> is optional. It is an alternative method for configuration the Gateway.</p>
+<p><a href="../p_configure_gateway_opts">Configure Kaazing Gateway Using the <code>GATEWAY_OPTS</code> Environment Variables</a> is optional. It is an alternative method for configuration the Gateway.</p>
 
 <h2 id="notes">Notes</h2>
 
@@ -209,8 +209,8 @@
       <li><a href="../c_configure_gateway_concepts">About Gateway Configuration</a> for more information about the types of configuration files and their contents</li>
     </ul>
   </li>
-  <li>Optionally, you can override one or more Gateway configuration settings by specifying the <code>GATEWAY_OPTS</code> environment variable before you start the Gateway. This is described in <a href="../p_configure_gateway_opts">Configure KAAZING Gateway Using the <code>GATEWAY_OPTS</code> Environment Variable</a>.</li>
-  <li>See <a href="../../troubleshooting/p_troubleshoot_gateway_configuration">Troubleshoot KAAZING Gateway Configuration and Startup</a> for help resolving issues when you set up and configure the Gateway.</li>
+  <li>Optionally, you can override one or more Gateway configuration settings by specifying the <code>GATEWAY_OPTS</code> environment variable before you start the Gateway. This is described in <a href="../p_configure_gateway_opts">Configure Kaazing Gateway Using the <code>GATEWAY_OPTS</code> Environment Variable</a>.</li>
+  <li>See <a href="../../troubleshooting/p_troubleshoot_gateway_configuration">Troubleshoot Kaazing Gateway Configuration and Startup</a> for help resolving issues when you set up and configure the Gateway.</li>
 </ul>
 
 <h2 id="see-also">See Also</h2>
