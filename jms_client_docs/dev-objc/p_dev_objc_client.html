@@ -534,8 +534,6 @@ KMConnection             *conn = nil;
 KMSession                *session = nil;
 KMMessageProducer        *producer = nil;
 KMMessageConsumer        *consumer = nil;
-KMNotifyingSession       *notifyingSession = nil;
-KMMessageConsumer        *notifyingConsumer = nil;
 
 
 - (void) viewDidLoad {
@@ -627,10 +625,6 @@ KMMessageConsumer        *notifyingConsumer = nil;
         [self log:[NSString stringWithFormat:@&quot;EXCEPTION: %@&quot;, [ex reason]]];
         NSLog(@&quot;Exception: %@&quot;, [ex reason]);
 
-        if (notifyingSession != nil) {
-          [notifyingSession close];
-        }
-
         if (session != nil) {
           [session close];
         }
@@ -639,7 +633,6 @@ KMMessageConsumer        *notifyingConsumer = nil;
           [conn close];
         }
 
-        notifyingSession = nil;
         session = nil;
         conn = nil;
         factory = nil;
@@ -648,9 +641,6 @@ KMMessageConsumer        *notifyingConsumer = nil;
       connected = NO;
       [self log:@&quot;CLOSING&quot;];
 
-      if (notifyingSession != nil) {
-        [notifyingSession close];
-      }
       [session close];
       [conn close];
     }
@@ -687,12 +677,7 @@ KMMessageConsumer        *notifyingConsumer = nil;
         [consumer close];
       }
 
-      if (notifyingConsumer != nil) {
-        [notifyingConsumer close];
-      }
-
       consumer = nil;
-      notifyingConsumer = nil;
     }
   });
 }
@@ -785,14 +770,6 @@ KMMessageConsumer        *notifyingConsumer = nil;
     [consumer close];
   }
 
-  if (notifyingConsumer != nil) {
-    [notifyingConsumer close];
-  }
-
-  if (notifyingSession != nil) {
-    [notifyingSession close];
-  }
-
   if (session != nil) {
     [session close];
   }
@@ -802,9 +779,6 @@ KMMessageConsumer        *notifyingConsumer = nil;
   }
 
   producer = nil;
-  consumer = nil;
-  notifyingConsumer = nil;
-  notifyingSession = nil;
   session = nil;
   conn = nil;
   factory = nil;
@@ -897,14 +871,6 @@ KMMessageConsumer        *notifyingConsumer = nil;
         [consumer close];
       }
 
-      if (notifyingConsumer != nil) {
-        [notifyingConsumer close];
-      }
-
-      if (notifyingSession != nil) {
-        [notifyingSession close];
-      }
-
       if (session != nil) {
         [session close];
       }
@@ -914,8 +880,6 @@ KMMessageConsumer        *notifyingConsumer = nil;
       }
 
       consumer = nil;
-      notifyingConsumer = nil;
-      notifyingSession = nil;
       session = nil;
       conn = nil;
     }
