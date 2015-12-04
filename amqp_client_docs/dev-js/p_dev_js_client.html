@@ -8,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Kaazing.org - Kaazing.org Docs</title>
-  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
-  <link rel="icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
 
   <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 
@@ -21,11 +20,7 @@
   <link rel="stylesheet" href="../../css/doc.css">
 
   
-  <!--[if lt IE 9]>
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.js"></script>
-  <![endif]-->
+
 
 </head>
 
@@ -699,7 +694,7 @@ var popupLoginDialog = function(callback) {
 &lt;/service&gt;
 </pre>
                 
-                <p>In this case, the service is configured to accept WebSocket AMQP requests from the browser at <span class="uri">ws://localhost:8001/amqp</span> (using the Property defaults described in <a href="../admin-reference/p_conf_files.html" title="Kaazing Developer Network">Configure Kaazing Gateway</a>) and proxy those requests to a locally installed AMQP broker (localhost) at port 5672.</p>
+                <p>In this case, the service is configured to accept WebSocket AMQP requests from the browser at <span class="uri">ws://localhost:8001/amqp</span> (using the Property defaults described in <a href="../../../admin-reference/p_conf_files.html" title="Kaazing Developer Network">Configure Kaazing Gateway</a>) and proxy those requests to a locally installed AMQP broker (localhost) at port 5672.</p>
                 
                 <p>To configure the Gateway to accept WebSocket requests at another URL or to connect to a different AMQP broker, you can edit <span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>, update the values for the accept elements, change the connect property, and restart the Gateway.</p>
                 
@@ -764,7 +759,7 @@ var popupLoginDialog = function(callback) {
                 </pre>
         </li>
         <li>In index.html, enter the JavaScript AMQP Client API calls from <a href="#javascript_for_demo">JavaScript for index.html</a>.</li>
-        <li>Start the Gateway and AMQP broker as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+        <li>Start the Gateway and AMQP broker as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
         <li>Open index.html in a web browser to test the client.
                 <ol>
                         <li>In <strong>Location</strong>, enter <span class="uri">ws://localhost:8000/amqp</span>.</li>
@@ -1894,8 +1889,7 @@ function setupSSO(webSocketFactory) {
 </footer>
 
 <!-- start:javascript for this page -->
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 
 
 

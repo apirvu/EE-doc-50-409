@@ -8,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Kaazing.org - Kaazing.org Docs</title>
-  <link rel="canonical" href="/documentation/5.0/admin-reference/r_configure_gateway_service/" />
-  <link rel="icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
 
   <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 
@@ -21,11 +20,7 @@
   <link rel="stylesheet" href="../../css/doc.css">
 
   
-  <!--[if lt IE 9]>
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.js"></script>
-  <![endif]-->
+
 
 </head>
 
@@ -108,7 +103,7 @@
               <li><a href="#echo">echo</a></li>
               <li><a href="#managementjmx">management.jmx</a></li>
               <li><a href="#managementsnmp">management.snmp</a></li>
-              <li><a href="#kerberos5proxy">kerberos5.proxy</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
+              <li><a href="#kerberos5proxy">kerberos5.proxy</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
               <li><a href="#proxy-amqpproxy-and-jmsproxy">proxy</a>
                 <ul>
                   <li>maximum.pending.bytes</li>
@@ -124,9 +119,9 @@
                   <li>virtual.host</li>
                 </ul>
               </li>
-              <li><a href="../../brokers/p_integrate_redis">redis</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" />git </li>
-              <li><a href="../r_conf_jms">jms</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
-              <li><a href="../r_conf_jms">jms.proxy</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
+              <li><a href="../../brokers/p_integrate_redis">redis</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" />git </li>
+              <li><a href="../r_conf_jms">jms</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
+              <li><a href="../r_conf_jms">jms.proxy</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
               <li><a href="#httpproxy">http.proxy</a></li>
             </ul>
           </li>
@@ -143,12 +138,12 @@
               <li><a href="#sslprotocols-and-sockssslprotocols">ssl.protocols</a></li>
               <li><a href="#sslencryption">ssl.encryption</a></li>
               <li><a href="#sslverify-client">ssl.verify-client</a></li>
-              <li><a href="#socksmode">socks.mode</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
-              <li><a href="#sockssslciphers">socks.ssl.ciphers</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
-              <li><a href="#sslprotocols-and-sockssslprotocols">socks.ssl.protocols</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
-              <li><a href="#sockssslverify-client">socks.ssl.verify-client</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
-              <li><a href="#socksretrymaximuminterval">socks.retry.maximum.interval</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
-              <li><a href="#tcpmaximumoutboundrate">tcp.maximum.outbound.rate</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
+              <li><a href="#socksmode">socks.mode</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
+              <li><a href="#sockssslciphers">socks.ssl.ciphers</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
+              <li><a href="#sslprotocols-and-sockssslprotocols">socks.ssl.protocols</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
+              <li><a href="#sockssslverify-client">socks.ssl.verify-client</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
+              <li><a href="#socksretrymaximuminterval">socks.retry.maximum.interval</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
+              <li><a href="#tcpmaximumoutboundrate">tcp.maximum.outbound.rate</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
               <li><a href="#wsinactivitytimeout">ws.inactivity.timeout</a></li>
               <li><a href="#httpserverheader">http.server.header</a></li>
             </ul>
@@ -216,7 +211,7 @@
     </tr>
     <tr>
       <td style="text-align: left">type</td>
-      <td style="text-align: left">The type of service. One of the following: <a href="#balancer">balancer</a>, <a href="#broadcast">broadcast</a>, <a href="#directory">directory</a>, <a href="#echo">echo</a>, <a href="#kerberos5proxy">kerberos5.proxy</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" />, <a href="#managementjmx">management.jmx</a>, <a href="#managementsnmp">management.snmp</a>, <a href="#proxy-amqpproxy-and-jmsproxy">proxy</a>, <a href="#proxy-amqpproxy-and-jmsproxy">amqp.proxy</a>, <a href="../../brokers/p_integrate_redis">redis</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" />,  <a href="../r_conf_jms">jms</a>  <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" />, <a href="../r_conf_jms">jms.proxy</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" />, and <a href="#httpproxy">http.proxy</a>.</td>
+      <td style="text-align: left">The type of service. One of the following: <a href="#balancer">balancer</a>, <a href="#broadcast">broadcast</a>, <a href="#directory">directory</a>, <a href="#echo">echo</a>, <a href="#kerberos5proxy">kerberos5.proxy</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" />, <a href="#managementjmx">management.jmx</a>, <a href="#managementsnmp">management.snmp</a>, <a href="#proxy-amqpproxy-and-jmsproxy">proxy</a>, <a href="#proxy-amqpproxy-and-jmsproxy">amqp.proxy</a>, <a href="../../brokers/p_integrate_redis">redis</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" />,  <a href="../r_conf_jms">jms</a>  <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" />, <a href="../r_conf_jms">jms.proxy</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" />, and <a href="#httpproxy">http.proxy</a>.</td>
     </tr>
     <tr>
       <td style="text-align: left">properties</td>
@@ -406,7 +401,7 @@
       <td>Receives a string of characters through a WebSocket and returns the same characters to the sender. The service echoes any input. This service is used primarily for validating the basic Gateway configuration. The echo service runs a separate port to verify cross-origin access.</td>
     </tr>
     <tr>
-      <td><a href="#kerberos5proxy">kerberos5.proxy</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></td>
+      <td><a href="#kerberos5proxy">kerberos5.proxy</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></td>
       <td>Connects the Gateway to the Kerberos Key Distribution Center.</td>
     </tr>
     <tr>
@@ -426,15 +421,15 @@
       <td>Enables a client to make a WebSocket connection to a back-end server or broker that cannot natively accept WebSocket connections.</td>
     </tr>
     <tr>
-      <td><a href="../../brokers/p_integrate_redis">redis</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></td>
+      <td><a href="../../brokers/p_integrate_redis">redis</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></td>
       <td>Integrates Kaazing Gateway and Redis, an open source, BSD licensed, advanced key-value cache and store. Kaazing Gateway includes a Redis service and integrated Redis driver for publishing and subscribing to Redis topics.</td>
     </tr>
     <tr>
-      <td><a href="../r_conf_jms">jms</a>  <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></td>
+      <td><a href="../r_conf_jms">jms</a>  <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></td>
       <td>Uses the <code>jms</code> service, which allows you to configure the Gateway to connect to any back-end JMS-compliant message broker. The <code>jms</code> service offloads connections and topic subscriptions using a single connection between the Gateway and your JMS-compliant message broker.</td>
     </tr>
     <tr>
-      <td><a href="../r_conf_jms">jms.proxy</a>  <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></td>
+      <td><a href="../r_conf_jms">jms.proxy</a>  <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></td>
       <td>Establishes a connection between the Gateway and the next Gateway for each client connection. The benefit of using the <code>jms.proxy</code> service is that you can control security independently per connection, and enable a fail-fast when a user fails to authenticate correctly. In addition, delta messages can be passed through from <code>jms</code> service in the internal Gateway through a DMZ Gateway that is running the <code>jms.proxy</code> service in Enterprise Shield™ configurations.</td>
     </tr>
     <tr>
@@ -652,7 +647,7 @@
   <li>The default <code>echo</code> service is configured to run on a separate port to verify cross-origin access.</li>
 </ul>
 
-<h3 id="kerberos5proxy">kerberos5.proxy<img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h3>
+<h3 id="kerberos5proxy">kerberos5.proxy<img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h3>
 
 <p>Use the <code>kerberos5.proxy</code> service to connect the Gateway to the Kerberos Key Distribution Center.</p>
 
@@ -754,7 +749,7 @@
 
 <p>Use the <code>proxy</code>, <code>amqp.proxy</code>, or <code>jms.proxy</code> service to enable a client to make a WebSocket connection to a back-end service or message broker that cannot natively accept WebSocket connections.</p>
 
-<p>The following descriptions will help you understand when and how to configure properties for the <code>proxy</code> service and  <code>amqp.proxy</code> service. See the <a href="../r_conf_jms">jms.proxy</a> <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /> reference for details about that feature. </p>
+<p>The following descriptions will help you understand when and how to configure properties for the <code>proxy</code> service and  <code>amqp.proxy</code> service. See the <a href="../r_conf_jms">jms.proxy</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /> reference for details about that feature. </p>
 
 <h4 id="section"><a name="maximumpendingbytes"></a><code>maximum.pending.bytes</code></h4>
 
@@ -1076,43 +1071,43 @@ http://websocket.org
       <td>Signals Kaazing Gateway to require a client to provide a digital certificate that the Gateway can use to verify the client’s identity.</td>
     </tr>
     <tr>
-      <td>socks.mode <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - EnterpriseEdition." /></td>
+      <td>socks.mode <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - EnterpriseEdition." /></td>
       <td>yes</td>
       <td>yes</td>
       <td>The mode that you can optionally set to forward or reverse to tell the Gateway how to interpret SOCKS URIs to initiate the connection. See <a href="#socksmode">socks.mode</a>.</td>
     </tr>
     <tr>
-      <td>socks.timeout <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway -Enterprise Edition." /></td>
+      <td>socks.timeout <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway -Enterprise Edition." /></td>
       <td>no</td>
       <td>yes</td>
       <td>Specifies the length of time (in seconds) to wait for SOCKS connectionsto form. If the connection does not succeed within the specified time, then the connection fails and is closed and the client must reconnect. For more information, see <a href="#sockstimeout">socks.timeout</a>.</td>
     </tr>
     <tr>
-      <td>socks.ssl.ciphers <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition." /></td>
+      <td>socks.ssl.ciphers <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition." /></td>
       <td>yes</td>
       <td>yes</td>
       <td>Lists the cipher strings and cipher suite names used by the secure SOCKS connection.</td>
     </tr>
     <tr>
-      <td>socks.ssl.protocols <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition." /></td>
+      <td>socks.ssl.protocols <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition." /></td>
       <td>yes</td>
       <td>yes</td>
       <td>Lists the TLS/SSL protocol names on which the Gateway can accept connections for Enterprise Shield™ configurations that are running the SOCKS protocol over SSL. See <a href="#sslprotocols-and-sockssslprotocols">ssl.protocols and socks.ssl.protocols</a>.</td>
     </tr>
     <tr>
-      <td>socks.ssl.verify-client <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition." /></td>
+      <td>socks.ssl.verify-client <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition." /></td>
       <td>yes</td>
       <td>yes</td>
       <td>A connect mode you can set to required, optional, or none to verify how to secure the SOCKS proxy against unauthorized use by forcing the use of TLS/SSL connections with a particular certificate. When required,the DMZ Gateway expects the internal Gateway to prove its trustworthiness by presenting certificates during the TLS/SSL handshake.</td>
     </tr>
     <tr>
-      <td>socks.retry.maximum.interval <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition." /></td>
+      <td>socks.retry.maximum.interval <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition." /></td>
       <td>yes</td>
       <td>no</td>
       <td>The maximum interval the Gateway waits before retrying if an attempt toconnect to the SOCKS proxy fails. The Gateway initially retries afterwaiting for 500ms; the subsequent wait intervals are as follows: 1s, 2s, 4s, and so on up to the value of socks.retry.maximum.interval. After the maximum interval is reached, the Gateway continues to reconnect to the SOCKS proxy at the maximum interval.</td>
     </tr>
     <tr>
-      <td>tcp.maximum.outbound.rate <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway- Enterprise Edition." /></td>
+      <td>tcp.maximum.outbound.rate <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway- Enterprise Edition." /></td>
       <td>yes</td>
       <td>no</td>
       <td>Specifies the maximum bandwidth rate at which bytes can be written from the Gateway (outbound) to each client session. This option controls the rate of outbound traffic being sent per client connection for clients connecting to a service (see <a href="#tcpmaximumoutboundrate">tcp.maximum.outbound.rate</a>).</td>
@@ -1474,7 +1469,7 @@ http://websocket.org
 &lt;/service&gt;
 </code></pre>
 
-<h5 id="example-enterprise-shield-configuration-using-sockssslprotocols-to-accept-reverse-connections-on-tlsv12-">Example: Enterprise Shield™ Configuration Using socks.ssl.protocols to Accept Reverse Connections on TLSv1.2 <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h5>
+<h5 id="example-enterprise-shield-configuration-using-sockssslprotocols-to-accept-reverse-connections-on-tlsv12-">Example: Enterprise Shield™ Configuration Using socks.ssl.protocols to Accept Reverse Connections on TLSv1.2 <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h5>
 
 <p>This example shows a <code>proxy</code> service in the DMZ configured for Enterprise Shield™, for which the <connect> behavior is reversed. Instead of connecting to another host, the Gateway accepts connections instead. Thus, the setting is configured as `connect-options` in this example. For more information about Enterprise Shield™ and forward and reverse connectivity, see [Configure Enterprise Shield™ for Kaazing Gateway](../../enterprise-shield/o_enterprise_shield_checklist).</connect></p>
 
@@ -1503,7 +1498,7 @@ http://websocket.org
 &lt;/service&gt;
 </code></pre>
 
-<h5 id="example-enterprise-shield-configuration-using-sslprotocols-and-sockssslprotocols-">Example: Enterprise Shield™ Configuration Using ssl.protocols and socks.ssl.protocols <img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h5>
+<h5 id="example-enterprise-shield-configuration-using-sslprotocols-and-sockssslprotocols-">Example: Enterprise Shield™ Configuration Using ssl.protocols and socks.ssl.protocols <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h5>
 
 <p>This example combines the previous two examples to show an Enterprise Shield™ configuration in which <code>ssl.protocols</code> is specified in the accept-options, and <code>socks.ssl.protocols</code> is specified in the connect-options.</p>
 
@@ -1663,7 +1658,7 @@ http://websocket.org
   <li>Two or more services can have TLS/SSL <code>accept</code> elements with the same address and port (for example, one service might accept on <code>wss://example.com:9000/echo</code> and another service might accept on <code>https://example.com:9000/directory</code>). If <code>accept</code> elements listening on the same address and port number are also configured with the <code>ssl.verify-client</code> accept option, the values for <code>ssl.verify-client</code> must be identical.</li>
 </ul>
 
-<h4 id="socksmode">socks.mode<img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h4>
+<h4 id="socksmode">socks.mode<img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h4>
 
 <p><strong>Required?</strong> Optional; <strong>Occurs:</strong> zero or one</p>
 
@@ -1711,7 +1706,7 @@ http://websocket.org
 &lt;/service&gt;
 </code></pre>
 
-<h4 id="sockstimeout">socks.timeout<img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h4>
+<h4 id="sockstimeout">socks.timeout<img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h4>
 
 <p><strong>Required?</strong> Optional; <strong>Occurs:</strong> zero or one</p>
 
@@ -1755,7 +1750,7 @@ http://websocket.org
 &lt;/service&gt;
 </code></pre>
 
-<h4 id="sockssslciphers">socks.ssl.ciphers<img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h4>
+<h4 id="sockssslciphers">socks.ssl.ciphers<img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h4>
 
 <p><strong>Required?</strong> Optional; <strong>Occurs:</strong> zero or one; <strong>Values:</strong> cipher strings and cipher suite names for <a href="http://www.openssl.org/docs/apps/ciphers.html#CIPHERSTRINGS">OPENSSL</a> and <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/SunProviders.html#SunJSSEProvider">Java 7</a>.</p>
 
@@ -1799,7 +1794,7 @@ http://websocket.org
   <li>TLS/SSL is used to verify the Gateway to the client. To use TLS/SSL to verify the client using the connection, use <code>ssl.verify-client</code>.</li>
 </ul>
 
-<h4 id="sockssslverify-client">socks.ssl.verify-client<img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h4>
+<h4 id="sockssslverify-client">socks.ssl.verify-client<img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h4>
 
 <p><strong>Required?</strong> Optional; <strong>Occurs:</strong> zero or one; <strong>Values:</strong> required, optional, none</p>
 
@@ -1866,7 +1861,7 @@ http://websocket.org
   <li>See <a href="../../enterprise-shield/p_enterprise_shield_config">Configure Enterprise Shield™ with the Gateway</a> to learn how to require the internal Gateway to provide TLS/SSL certificates.&lt;/a&gt;</li>
 </ul>
 
-<h4 id="socksretrymaximuminterval">socks.retry.maximum.interval<img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h4>
+<h4 id="socksretrymaximuminterval">socks.retry.maximum.interval<img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h4>
 
 <p><strong>Required?</strong> Optional; <strong>Occurs:</strong> zero or one</p>
 
@@ -1890,7 +1885,7 @@ http://websocket.org
 &lt;/service&gt;
 </code></pre>
 
-<h4 id="tcpmaximumoutboundrate">tcp.maximum.outbound.rate<img src="../../windows/images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h4>
+<h4 id="tcpmaximumoutboundrate">tcp.maximum.outbound.rate<img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h4>
 
 <p><strong>Required?</strong> Optional; <strong>Occurs:</strong> zero or one</p>
 
@@ -2272,8 +2267,7 @@ http://websocket.org
 </footer>
 
 <!-- start:javascript for this page -->
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 
 
 

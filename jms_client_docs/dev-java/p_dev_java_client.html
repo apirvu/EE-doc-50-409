@@ -8,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Kaazing.org - Kaazing.org Docs</title>
-  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
-  <link rel="icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
 
   <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 
@@ -21,11 +20,7 @@
   <link rel="stylesheet" href="../../css/doc.css">
 
   
-  <!--[if lt IE 9]>
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.js"></script>
-  <![endif]-->
+
 
 </head>
 
@@ -70,7 +65,7 @@
 <p>In this procedure, you will learn how to use the Kaazing Gateway Java JMS client library and the supported methods. This topic also includes a simple Java JMS Client example.</p>
 
 
-<p><span class="note"><strong>Note</strong>: For this how-to, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61613. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../integration-jms/o_jms_integrate.html">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
+<p><span class="note"><strong>Note</strong>: For this how-to, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61613. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
 
 
 <h2>Before You Begin</h2>
@@ -93,21 +88,21 @@
     <p>
         <ol type="a">
             <li>Ensure you have a Java IDE, such as Eclipse, which can be downloaded from <a href="http://www.eclipse.org/downloads/" title="Eclipse Downloads">http://www.eclipse.org/downloads/</a>.</li>
-            <li>If you haven't done so already, download and install Kaazing Gateway, as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+            <li>If you haven't done so already, download and install Kaazing Gateway, as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
         </ol></p>
 </li>
 <li><p>Review the Java JMS Client Demo.</p>
     <p>Before you start, take a look at an out of the box demo that was built with the Java JMS Client Library: the Java applet that is part of the Gateway  bundle. To see this Java applet  in action, perform the following steps:</p>
     <p><ol type="a">
-            <li>Start Apache ActiveMQ as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
-              <li>Start the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+            <li>Start Apache ActiveMQ as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
+              <li>Start the Gateway as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
               <li>In a browser, navigate to the out of the box demos at <span class="uri">http://localhost:8001/demo/</span>. </li>
             <li>Click <strong>Java</strong>.</li>
         </ol></p>
       <p>The demo Java applets show  HTML5 standards being used in a Java environment.</p>
 </li>
 <li><p>Using the Java JMS Client Library.</p>
-    <span class="note"><b>Note:</b> This section describes how to use the Kaazing Gateway Java JMS Client Library and the supported methods. To find out more specific information about the supported methods or to learn which methods are not supported, refer to <a href="../about/kaazing-jms-api.html">Kaazing Gateway JMS Client Libraries</a>.</span><br>
+    <span class="note"><b>Note:</b> This section describes how to use the Kaazing Gateway Java JMS Client Library and the supported methods. To find out more specific information about the supported methods or to learn which methods are not supported, refer to <a href="../../../about/kaazing-jms-api">Kaazing Gateway JMS Client Libraries</a>.</span><br>
     <ol type="a">
         <li><p><a name="add_java_lib"></a>Add the Kaazing Gateway Java WebSocket client library and the Kaazing Gateway Java JMS client library.</p>
             <p>To use these Kaazing Gateway client libraries in your Java application, you must include the following JAR files, which are located in the Gateway bundle:</p>
@@ -189,7 +184,7 @@ producer.send(message);</pre>
             <p>At the end, cease the message flow by closing the  connection:<br>
             </p>
             <p><span class="code_inline">connection.close(); </span></p>
-            <p>For more information on the Kaazing Gateway JMS client libraries, see <a href="../about/kaazing-jms-api.html">Kaazing Gateway JMS Client Libraries: Supported APIs</a> and the <a href="../apidoc/client/java/jms/index.html">Kaazing Gateway JMS API</a> documentation.</p>
+            <p>For more information on the Kaazing Gateway JMS client libraries, see <a href="../../../about/kaazing-jms-api">Kaazing Gateway JMS Client Libraries: Supported APIs</a> and the <a href="../apidoc/client/java/jms/index.html">Kaazing Gateway JMS API</a> documentation.</p>
         </li>
     </ol>
 </li>
@@ -289,7 +284,7 @@ private ChallengeHandler createChallengeHandler(String location) {
 
 <a name="durables"></a><h2>Durable Subscribers</h2>
 
-<span class="note"><b>Note:</b> Currently, the Gateway does not support durable subscribers with Apache ActiveMQ. You may use durable subscribers with <a href="../integration-jms/p_jms_integrate_tibco.html">TIBCO EMS</a> or <a href="../integration-jms/p_jms_integrate_informatica.html">Informatica UM</a>. For more information, see <a href="../admin-reference/r_stomp_service.html#durables">Durable Subscribers</a>.</span><br>
+<span class="note"><b>Note:</b> Currently, the Gateway does not support durable subscribers with Apache ActiveMQ. You may use durable subscribers with <a href="../../../integration-jms/p_jms_integrate_tibco">TIBCO EMS</a> or <a href="../../../integration-jms/p_jms_integrate_informatica">Informatica UM</a>. For more information, see <a href="../../../admin-reference/r_conf_jms/index.html#durable-subscribers">Durable Subscribers</a>.</span><br>
 
 
 <p>If your JMS client needs to receive all of the messages published on a topic, including the ones published while the subscriber is inactive because it is not being used or has lost connections (which is common when using mobile devices), create a durable <a href="http://docs.oracle.com/javaee/6/api/javax/jms/TopicSubscriber.html">TopicSubscriber</a> using the <a href="http://docs.oracle.com/javaee/6/api/javax/jms/Session.html#createDurableSubscriber(javax.jms.Topic, java.lang.String)">Session.createDurableSubscriber</a> method.</p> 
@@ -298,7 +293,7 @@ private ChallengeHandler createChallengeHandler(String location) {
 
 <p>The JMS provider retains a separate record of each durable subscription and ensures that all messages from the topic's publishers are retained until they are acknowledged by each durable subscriber or they have expired. Whether messages have been acknowledged is tracked separately for each durable subscriber, and each durable subscriber is identified by the combination of its name and the clientID (if any) set on the Connection. Ensure your application confirms that the clientID (if used) is unique to the user or device, or, if it does not use clientID&#x27;s, ensure that the durable name is unique to the user or device.</p>
 
-<p><span class="note"><b>Note:</b> When clientID is specified in creating a connection, the <code>client.durable.name.format</code> property should be defined for the service in <span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. For more information, see <a href="../admin-reference/r_stomp_service.html#clientdurablenameformat"><code>client.durable.name.format</code></a>.</span></p>
+<p><span class="note"><b>Note:</b> When clientID is specified in creating a connection, the <code>client.durable.name.format</code> property should be defined for the service in <span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. For more information, see <a href="../../../admin-reference/r_conf_jms/index.html#clientdurablenameformat"><code>client.durable.name.format</code></a>.</span></p>
 
 <h3>Example</h3>
 <p>In the following example code, an application enables users to subscribe to a destination by specifying the destination, message selector expression, and durable subscriber name when subscribing.</p>
@@ -344,13 +339,13 @@ if (hasDurableSubscriberName && destination instanceof Topic) {
 
 <span class="note"><b>Notes:</b><br>
 <ul class="arrow-2">
-    <li>Sessions with durable subscribers may be created using a unique client ID or with no client ID specified. For more information, see the <a href="../admin-reference/r_stomp_service.html#stompjms">jms</a> service.</li>
+    <li>Sessions with durable subscribers may be created using a unique client ID or with no client ID specified. For more information, see the <a href="../../../admin-reference/r_conf_jms/index.html#stompjms">jms</a> service.</li>
     <li>A client can change an existing durable subscription by creating a durable TopicSubscriber with the same name and a new topic and/or message selector. Changing a durable subscriber is equivalent to unsubscribing (deleting) the old one and creating a new one.</li>
 </ul>
 </span>
 
 <h2>Simple Java JMS Client Example</h2>
-<p>The following code sample provides a simple example of a Java JMS Client. To understand the API calls in the code, review the <a href="../about/kaazing-jms-api.html">Kaazing Gateway JMS Client Libraries: Supported APIs</a> and the <a href="../apidoc/client/java/jms/index.html">Kaazing Gateway JMS API</a> documentation.</p>
+<p>The following code sample provides a simple example of a Java JMS Client. To understand the API calls in the code, review the <a href="../../../about/kaazing-jms-api">Kaazing Gateway JMS Client Libraries: Supported APIs</a> and the <a href="../apidoc/client/java/jms/index.html">Kaazing Gateway JMS API</a> documentation.</p>
 <pre class="auto-links: false; brush: java; toolbar: false;">
 package com.kaazing.gateway.jms.client.demo;
 
@@ -525,8 +520,7 @@ public class JmsDemo {
 </footer>
 
 <!-- start:javascript for this page -->
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 
 
 

@@ -8,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Kaazing.org - Kaazing.org Docs</title>
-  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
-  <link rel="icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
 
   <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 
@@ -21,11 +20,7 @@
   <link rel="stylesheet" href="../../css/doc.css">
 
   
-  <!--[if lt IE 9]>
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.js"></script>
-  <![endif]-->
+
 
 </head>
 
@@ -70,7 +65,7 @@
 <p>In this procedure, you will learn how to use the Kaazing Gateway Flash JMS client library and the supported methods to build a Flash JMS client.</p>
 
 
-<p><span class="note"><strong>Note</strong>: For this how-to, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61613. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../integration-jms/o_jms_integrate.html">About Integrating Kaazing Gateway and JMS-Compliant Message Broker</a> for more information.</span></p>
+<p><span class="note"><strong>Note</strong>: For this how-to, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61613. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Broker</a> for more information.</span></p>
 
 
 <h2>Before You Begin</h2>
@@ -91,7 +86,7 @@
 <ol>
 <li><p>Set up your development environment.</p>
     <ol type="a">
-              <li>Download and install Kaazing Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+              <li>Download and install Kaazing Gateway as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
               <li>In this how-to, you will use Adobe Flash Builder (formerly known as Adobe Flex Builder) to build a Flash client. You can download Adobe Flash Builder from <a href="http://opensource.adobe.com/wiki/display/flexsdk/Flex+SDK">http://opensource.adobe.com/wiki/display/flexsdk/Flex+SDK</a>.</li>
     </ol>
 </li>
@@ -99,8 +94,8 @@
     <p>Before you start, take a look at the out of the box demo built with the Flash JMS Client API, which is part of the Kaazing Gateway bundle.</p>
     <p>To see this demo in action, perform the following steps:</p>
     <ol type="a">
-        <li>Start the Apache ActiveMQ as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
-    <li>Start the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+        <li>Start the Apache ActiveMQ as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
+    <li>Start the Gateway as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
         <li>In a browser, navigate to the out of the box demos at <span class="uri">http://localhost:8001/demo/</span>. </li>
         <li>Click <strong>Flash &amp; Flex</strong>. To run the out of the box Flash &amp; Flex demos, you must have Flash Player 10 or higher installed in your browser.</li>
     </ol>
@@ -137,7 +132,7 @@
             initialContext = new StompInitialContext(env);</pre>
             <p>Add an <span class="code_inline">initialContextLookup</span> to use the Connection Factory.</p>
             <span class="code_inline">var connectionFactory:ConnectionFactory = initialContext.lookup(&quot;ConnectionFactory&quot;) as ConnectionFactory;<br></span><br>
-            <p>Obtain the username and password to connect the client to the Gateway, then use a Connection Future to pass this connection information. In this example we use a password but the password does not have to be a text password. <span class="code_inline">createConnection()</span> can use a token of any kind. If you use text-based passwords, ensure that you have configured secure networking as described in <a href="../security/o_tls.html">Checklist: Secure Network Traffic with the Gateway</a>.</p>
+            <p>Obtain the username and password to connect the client to the Gateway, then use a Connection Future to pass this connection information. In this example we use a password but the password does not have to be a text password. <span class="code_inline">createConnection()</span> can use a token of any kind. If you use text-based passwords, ensure that you have configured secure networking as described in <a href="../../security/o_tls">Checklist: Secure Network Traffic with the Gateway</a>.</p>
             <p>
             <pre class="brush: as3; toolbar: false;">
             var username0:*= username.text.length ? username.text : null;
@@ -193,7 +188,7 @@ private function subscribeClicked(event:Event):void {
         <li><p>Add client reconnect logic.</p>
             <p>You can use the <span class="code_inline">StompConnectionProperties</span> in the Flash JMS Client APIs to configure how  the client will reconnect to the server, such as how long to wait between attempting to reconnect to a server after it has disconnected. For more information, see the <a href="../apidoc/client/flash/jms/index.html">Kaazing Gateway Flash JMS Client API documentation</a>.</p>
             <p>You can also view a complex example of using the Flash JMS client library by opening the out of the box demo MXML file, called <span class="code_inline">stompjms.mxml</span>, located in <span class="code_inline"><em>GATEWAY_HOME</em>/demo/flash/src/jms/jmsclient</span>.</p>
-            <p>For more information on the <a href="../about/kaazing-jms-api.html">Kaazing Gateway Flash JMS client library</a>, see <a href="../about/kaazing-jms-api.html">Kaazing Gateway JMS Client Libraries: Supported APIs</a>.</p>
+            <p>For more information on the <a href="../../../about/kaazing-jms-api">Kaazing Gateway Flash JMS client library</a>, see <a href="../../../about/kaazing-jms-api">Kaazing Gateway JMS Client Libraries: Supported APIs</a>.</p>
         </li>
     </ol>
     </li>
@@ -202,7 +197,7 @@ private function subscribeClicked(event:Event):void {
 
 <a name="Durable"></a><h2>Durable Subscribers</h2>
 
-<span class="note"><b>Note:</b> Currently, the Gateway does not support durable subscribers with Apache ActiveMQ. You may use durable subscribers with <a href="../integration-jms/p_jms_integrate_tibco.html">TIBCO EMS</a> or <a href="../integration-jms/p_jms_integrate_informatica.html">Informatica UM</a>. For more information, see <a href="../admin-reference/r_stomp_service.html#durables">Durable Subscribers</a>.</span><br>
+<span class="note"><b>Note:</b> Currently, the Gateway does not support durable subscribers with Apache ActiveMQ. You may use durable subscribers with <a href="../../../integration-jms/p_jms_integrate_tibco">TIBCO EMS</a> or <a href="../../../integration-jms/p_jms_integrate_informatica">Informatica UM</a>. For more information, see <a href="../../../admin-reference/r_conf_jms/index.html#durable-subscribers">Durable Subscribers</a>.</span><br>
 
 
 <p>If your JMS client needs to receive all of the messages published on a topic, including the ones published while the subscriber is inactive because it is not being used or has lost connections (which is common when using mobile devices), create a durable <a href="../apidoc/client/flash/jms/com/kaazing/gateway/jms/client/TopicSubscriber.html">TopicSubscriber</a> using the <a href="../apidoc/client/flash/jms/com/kaazing/gateway/jms/client/Session.html#createDurableSubscriber()">Session.createDurableSubscriber()</a> method.</p> 
@@ -273,7 +268,7 @@ private function subscribeClicked(event:Event):void {
 
 <span class="note"><b>Notes:</b><br>
 <ul class="arrow-2">
-    <li>Sessions with durable subscribers may be created using a unique client ID or with no client ID specified. For more information, see the <a href="../admin-reference/r_stomp_service.html#stompjms">jms</a> service.</li>
+    <li>Sessions with durable subscribers may be created using a unique client ID or with no client ID specified. For more information, see the <a href="../../../admin-reference/r_conf_jms/index.html#stompjms">jms</a> service.</li>
     <li>A client can change an existing durable subscription by creating a durable TopicSubscriber with the same name and a new topic and/or message selector. Changing a durable subscriber is equivalent to unsubscribing (deleting) the old one and creating a new one.</li>
 </ul>
 </span>
@@ -284,7 +279,7 @@ private function subscribeClicked(event:Event):void {
 <h2>Note</h2>
 <ul class="arrow-2">
     <li>Clients built using Kaazing Gateway 3.x libraries will work against Kaazing Gateway 4.x. If you wish to upgrade your 3.x client to the 4.x libraries, please note that the 3.x clients used a single Stomp JMS library and 4.x clients include and use separate WebSocket and Stomp JMS libraries. Update your client library file and code references to include both the WebSocket and Stomp JMS libraries, as described in the 4.x documentation.</li>
-    <li>This procedure describes the Kaazing Gateway Flash JMS client library and the supported methods to build a Flash JMS client. To find out more specific information about the supported methods or to learn which methods are not supported, refer to <a href="../about/kaazing-jms-api.html">Kaazing Gateway JMS Client Libraries: Supported APIs</a>.</li>
+    <li>This procedure describes the Kaazing Gateway Flash JMS client library and the supported methods to build a Flash JMS client. To find out more specific information about the supported methods or to learn which methods are not supported, refer to <a href="../../../about/kaazing-jms-api">Kaazing Gateway JMS Client Libraries: Supported APIs</a>.</li>
     <li><span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span> objects are destroyed when the client loses its connection to the Gateway, or when the JMS-compliant message broker loses its connection to the Gateway. To address this, monitor the client's exception listener to handle recovery for your application. Once the connection is re-established, recreate <span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span>. <span class="code_inline">ConnectionDroppedException</span> and <span class="code_inline">ConnectionInterruptedException</span> are delivered to the connection's exception listener via <span class="code_inline">onException</span>, indicating that messages in flight might be lost, depending on message delivery options. <span class="code_inline">ConnectionRestoredException</span> is delivered to indicate that the connection through to the JMS-compliant message broker has been re-established. <span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span> should be recreated at that time to resume operations.</li> 
 </ul>
 
@@ -321,8 +316,7 @@ private function subscribeClicked(event:Event):void {
 </footer>
 
 <!-- start:javascript for this page -->
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 
 
 

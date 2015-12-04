@@ -8,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Kaazing.org - Kaazing.org Docs</title>
-  <link rel="canonical" href="/documentation/5.0/about/about/" />
-  <link rel="icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
 
   <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 
@@ -20,12 +19,8 @@
   <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/doc.css">
 
-  
-  <!--[if lt IE 9]>
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.js"></script>
-  <![endif]-->
+
+
 
 </head>
 
@@ -69,13 +64,15 @@
 
  <h1 id="documentation-conventions">Documentation Conventions</h1>
 
-<p>This topic contains the following sections:<br />
--   <a href="#text-conventions">Text Conventions</a><br />
--   <a href="#about-uri-syntax">About URI Syntax</a><br />
--   <a href="#about-domain-names">About Domain Names</a><br />
--   <a href="#about-ports">About Ports</a><br />
--   <a href="#about-kaazinghome">About Kaazing_HOME</a><br />
--   <a href="#about-gatewayhome">About GATEWAY_HOME</a></p>
+<p>This topic contains the following sections:</p>
+<ul>
+  <li><a href="#text-conventions">Text Conventions</a></li>
+  <li><a href="#about-uri-syntax">About URI Syntax</a></li>
+  <li><a href="#about-domain-names">About Domain Names</a></li>
+  <li><a href="#about-ports">About Ports</a></li>
+  <li><a href="#about-kaazinghome">About Kaazing_HOME</a></li>
+  <li><a href="#about-gatewayhome">About GATEWAY_HOME</a></li>
+</ul>
 
 <h2 id="text-conventions">Text Conventions</h2>
 
@@ -116,8 +113,9 @@
 
 <p>The Gateway documentation uses a generic URI scheme that has the following components:</p>
 
-<p><code>scheme://host:port/path</code><br />
-For example, the following URI schemes are used in the documentation:</p>
+<p><code>scheme://host:port/path</code></p>
+
+<p>For example, the following URI schemes are used in the documentation:</p>
 
 <p><code>tcp://${gateway.hostname}:${gateway.extras.port}</code></p>
 
@@ -139,7 +137,7 @@ For example, the following URI schemes are used in the documentation:</p>
 <p><strong>Note:</strong> In the example URLs, the <code>${gateway.hostname}</code> syntax allows you to define property values once and then the values are propagated throughout the configuration when the Gateway starts. You can replace any value in the configuration file that uses the dollar-sign and curly brace format (such as <code>${gateway.hostname}</code>) with a property. In the Gateway configuration, you can configure property defaults such as <code>gateway.hostname</code>, <code>gateway.base.port</code>, <code>gateway.extras.port</code>.</p>
 
 <h2 id="about-domain-names">About Domain Names</h2>
-<p>Many examples in the documentation use the <code>.net domain</code> (such as <code>tcp://gateway.example.net:8080</code>) to indicate internal, nonpublic URLs, and use the <code>.com</code> domain to indicate public URLs. All domains and URLs are for example purposes only. Simply replace any instances of “example.com” in the configuration with your domain or hostname.</p>
+<p>Many examples in the documentation use the <code>.net</code> domain (such as <code>tcp://gateway.example.net:8080</code>) to indicate internal, nonpublic URLs, and use the <code>.com</code> domain to indicate public URLs. All domains and URLs are for example purposes only. Simply replace any instances of “example.com” in the configuration with your domain or hostname.</p>
 
 <h3 id="see-also">See Also</h3>
 
@@ -278,8 +276,7 @@ For example, the following URI schemes are used in the documentation:</p>
 </footer>
 
 <!-- start:javascript for this page -->
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 
 
 

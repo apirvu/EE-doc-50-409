@@ -8,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Kaazing.org - Kaazing.org Docs</title>
-  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
-  <link rel="icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
 
   <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 
@@ -21,11 +20,7 @@
   <link rel="stylesheet" href="../../css/doc.css">
 
   
-  <!--[if lt IE 9]>
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.js"></script>
-  <![endif]-->
+
 
 </head>
 
@@ -73,8 +68,8 @@
 
 <span class="note"><b>Notes:</b><br>
  <ul>
-         <li>Before you add security to your clients, follow the steps in <a href="../security/o_aaa_config_authentication.html">Checklist: Configure Authentication and Authorization</a> to set up security on Kaazing Gateway for your client. The authentication and authorization methods configured on the Gateway influence your client security implementation. The examples is this topic provide the most common client implementations.</li>
-         <li>For information on secure network connections between clients and the Gateway, see <a href="../security/o_tls.html">Checklist: Secure Network Traffic with the Gateway</a>.</li> 
+         <li>Before you add security to your clients, follow the steps in <a href="../../../security/o_aaa_config_authentication">Checklist: Configure Authentication and Authorization</a> to set up security on Kaazing Gateway for your client. The authentication and authorization methods configured on the Gateway influence your client security implementation. The examples is this topic provide the most common client implementations.</li>
+         <li>For information on secure network connections between clients and the Gateway, see <a href="../../security/o_tls">Checklist: Secure Network Traffic with the Gateway</a>.</li> 
  </ul>
 </span>
 
@@ -83,7 +78,7 @@
 <h2>Creating a Basic Challenge Handler</h2>
 <p>A challenge handler is a constructor used in a client to respond to authentication challenges from the Gateway when the client attempts to access a protected resource. Each of the resources protected by the Gateway can be configured with a different authentication scheme (for example, Basic, Application Basic, Negotiate, Application Negotiate, or Application Token), and your client requires a challenge handler for each of the schemes that it will encounter or a single challenge handler that will respond to all challenges.</p>
 
-<p>For information about each authentication scheme type, see <a href="../security/p_aaa_config_authscheme.html">Configure the HTTP Challenge Scheme</a>.</p>
+<p>For information about each authentication scheme type, see <a href="../../../security/p_aaa_config_authscheme">Configure the HTTP Challenge Scheme</a>.</p>
 
 <p>Clients with a single challenge handling strategy for all 401 challenges can simply set a specific challenge handler as the default using <code>KGBasicChallengeHandler</code>. The following is an example of how to implement a single challenge handler for all challenges:</p>
 
@@ -408,8 +403,7 @@ _websocket.didClose = ^(KGWebSocket* websocket, NSInteger code, NSString* reason
 </footer>
 
 <!-- start:javascript for this page -->
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 
 
 

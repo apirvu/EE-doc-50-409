@@ -8,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Kaazing.org - Kaazing.org Docs</title>
-  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
-  <link rel="icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
 
   <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 
@@ -21,11 +20,7 @@
   <link rel="stylesheet" href="../../css/doc.css">
 
   
-  <!--[if lt IE 9]>
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.js"></script>
-  <![endif]-->
+
 
 </head>
 
@@ -68,7 +63,7 @@
 <div class="container page-content text-left">
 <h1>Secure Your Flash Client</h1>
 
-<p>Before you add security to your clients, follow the steps in <a href="../security/o_aaa_config_authentication.html">Checklist: Configure Authentication and Authorization</a> to set up security on Kaazing Gateway for your client. The authentication and authorization methods configured on the Gateway influence your client's security implementation. For information on secure network connections between clients and the Gateway, see <a href="../security/o_tls.html">Checklist: Secure Network Traffic with the Gateway</a>.</p>
+<p>Before you add security to your clients, follow the steps in <a href="../../../security/o_aaa_config_authentication">Checklist: Configure Authentication and Authorization</a> to set up security on Kaazing Gateway for your client. The authentication and authorization methods configured on the Gateway influence your client's security implementation. For information on secure network connections between clients and the Gateway, see <a href="../../security/o_tls">Checklist: Secure Network Traffic with the Gateway</a>.</p>
 
 <h2>Before You Begin</h2><p>This procedure is part of <a href="o_dev_flash.html">Checklist: Build Flash Clients Using Kaazing Gateway</a>:</p><ol><li><a href="p_dev_flash_setup.html">Set Up Your Development Environment</a></li><li><a href="p_dev_flash_websocket.html">Interact with Kaazing Gateway Using the WebSocket API</a></li><li><a href="p_dev_flash_eventsource.html">Interact with Kaazing Gateway Using the EventSource API</a></li><li><b>Secure Your Flash Client</b></li><li><a href="p_clientlogging_flash.html">Display Logs for the Flash Client</a></li><li><a href="p_dev_flash_tshoot.html">Troubleshoot Your Flash Client</a></li></ol>
 
@@ -95,7 +90,7 @@
                 <h3><a name="basicchalengehandler"></a>Creating a Basic Challenge Handler</h3>
                 <p>A challenge handler is a constructor used in an application to respond to authentication challenges from the Gateway when the application attempts to access a protected resource. Each of the resources protected by the Gateway is configured with a different authentication scheme (for example, Basic, Application Basic, Application Negotiate, or Application Token), and your application requires a challenge handler for each of the schemes that it will encounter or a single challenge handler that will respond to all challenges. Also, you can add a dispatch challenge handler to route challenges to specific challenge handlers according to the URI of the requested resource.</p>
 
-                <p>For information about each authentication scheme type, see <a href="../security/p_aaa_config_authscheme.html">Configure the HTTP Challenge Scheme</a>.</p>
+                <p>For information about each authentication scheme type, see <a href="../../../security/p_aaa_config_authscheme">Configure the HTTP Challenge Scheme</a>.</p>
 
                 <p>Clients with a single challenge handling strategy for all 401 challenges can simply set a specific challenge handler as the default using <span class="uri">ChallengeHandlers.setDefault()</span>. The following is an example of how to implement the authentication challenge in your client taken from the out of the box Flash &amp; Flex demo at <span class="uri">http://localhost:8001/demo/</span>:</p>
                 <pre class="auto-links: false; brush: js; toolbar: false;"> 
@@ -326,8 +321,7 @@ if ( attempts &gt; LIMIT ) {
 </footer>
 
 <!-- start:javascript for this page -->
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 
 
 

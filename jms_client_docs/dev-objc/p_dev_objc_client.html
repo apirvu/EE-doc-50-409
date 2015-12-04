@@ -8,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Kaazing.org - Kaazing.org Docs</title>
-  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
-  <link rel="icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
 
   <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 
@@ -21,11 +20,7 @@
   <link rel="stylesheet" href="../../css/doc.css">
 
 
-  <!--[if lt IE 9]>
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.js"></script>
-  <![endif]-->
+
 
 </head>
 
@@ -72,7 +67,7 @@
 <p>For information about deploying your Objective-C (iOS) client on devices with the arm64 architecture, see <a href="#arm64">Convert Your Objective-C (iOS) Client to a 64-Bit Runtime Environment</a>.</p>
 
 
-<p><span class="note"><strong>Note</strong>: For this how-to, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61613. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../integration-jms/o_jms_integrate.html">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
+<p><span class="note"><strong>Note</strong>: For this how-to, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61613. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
 
 
 <p>In this procedure you will do the following:</p>
@@ -122,7 +117,7 @@
 <ol>
     <li>Set up your development environment using the following:
         <ul class="arrow-2">
-            <li>Download and install Kaazing Gateway, as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+            <li>Download and install Kaazing Gateway, as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
             <li>Download and install Apple <a href="https://developer.apple.com/xcode/">Xcode 4.4</a> or later (requires Mac OS X 10.7.4 or later). The Xcode bundle includes the iOS SDK.</li>
         </ul>
     </li>
@@ -229,7 +224,7 @@ In this file, user interface objects and outlet connections (connections between
                 </table>
                 <p>When you are finished, the scene should look like the following:</p>
                     <figure>
-                        <img src="../images/dev-ios-client-view.jpg">
+                        <img src="../../images/dev-ios-client-view.jpg">
                     <figcaption><strong>Figure: Completed View Controller Scene</strong></figcaption>
                     </figure>
             </li>
@@ -277,7 +272,7 @@ automatically */
         <p>When you Control-drag the UI controls in the <span class="code_inline">JMSViewController</span>, the popover control appears:</p>
 
           <figure>
-            <img src="../images/dev-ios-popover-control.png">
+            <img src="../../images/dev-ios-popover-control.png">
           <figcaption><strong>Figure: The Xcode popover control</strong></figcaption>
           </figure>
 
@@ -1016,7 +1011,7 @@ KGBasicChallengeHandler *challengeHandler = [KGChallengeHandlers load:@"KGBasicC
 
 <a name="durable"></a><h2>Durable Subscribers</h2>
 
-<span class="note"><b>Note:</b> Currently, the Gateway does not support durable subscribers with Apache ActiveMQ. You may use durable subscribers with <a href="../integration-jms/p_jms_integrate_tibco.html">TIBCO EMS</a> or <a href="../integration-jms/p_jms_integrate_informatica.html">Informatica UM</a>. For more information, see <a href="../admin-reference/r_stomp_service.html#durables">Durable Subscribers</a>.</span>
+<span class="note"><b>Note:</b> Currently, the Gateway does not support durable subscribers with Apache ActiveMQ. You may use durable subscribers with <a href="../../../integration-jms/p_jms_integrate_tibco">TIBCO EMS</a> or <a href="../../../integration-jms/p_jms_integrate_informatica">Informatica UM</a>. For more information, see <a href="../../../admin-reference/r_conf_jms/index.html#durable-subscribers">Durable Subscribers</a>.</span>
 
 
 <p>If your JMS client needs to receive all of the messages published on a topic, including the ones published while the subscriber is inactive because it is not being used or has lost connections (which is common when using mobile devices), create a durable <code>KMTopicSubscriber</code> using the <span class="code_inline">createDurableSubscriber</span> method on the <code>KMSession</code> object.</p>

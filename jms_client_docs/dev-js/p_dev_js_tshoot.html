@@ -8,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Kaazing.org - Kaazing.org Docs</title>
-  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
-  <link rel="icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
 
   <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 
@@ -21,11 +20,7 @@
   <link rel="stylesheet" href="../../css/doc.css">
 
   
-  <!--[if lt IE 9]>
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.js"></script>
-  <![endif]-->
+
 
 </head>
 
@@ -98,7 +93,7 @@
 <p><strong>Solution:</strong> To prevent this error, use <span class="code_inline">session.createTextMessage</span> instead. See the <a href="../apidoc/client/javascript/jms/index.html">JavaScript JMS Client API</a> documentation for more information.</p>
 
 <h2><a name="max-pend-ack"></a>Expected Messages Are Not Being Received for a Queue or Durable Subscriber</h2>
-<p><strong>Cause:</strong> If expected messages are not being received for a queue or durable subscriber, then it could be because the application has received messages without acknowledging them. The Gateway will send a maximum of <a href="../admin-reference/r_stomp_service.html#maxpendingack">maximum.pending.acknowledgments</a> messages until the client acknowledges. The <a href="../admin-reference/r_stomp_service.html#maxpendingack">maximum.pending.acknowledgments</a> property is set to 1 for JMS providers that do not support individual message acknowledgement.</p>
+<p><strong>Cause:</strong> If expected messages are not being received for a queue or durable subscriber, then it could be because the application has received messages without acknowledging them. The Gateway will send a maximum of <a href="../../../admin-reference/r_conf_jms/index.html#maxpendingack">maximum.pending.acknowledgments</a> messages until the client acknowledges. The <a href="../../../admin-reference/r_conf_jms/index.html#maxpendingack">maximum.pending.acknowledgments</a> property is set to 1 for JMS providers that do not support individual message acknowledgement.</p>
     <p><strong>Solution:</strong> If you are using a JMS provider other than Apache ActiveMQ or TIBCO Enterprise Message Service (TIBCO EMS), you must ensure your client applications acknowledge each message received from a queue or durable subscriber. </p>
 <h2>Next Step</h2>
 <p><a href="p_clientlogging_js.html">Display Logs for the JavaScript JMS Client</a></p>
@@ -135,8 +130,7 @@
 </footer>
 
 <!-- start:javascript for this page -->
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 
 
 

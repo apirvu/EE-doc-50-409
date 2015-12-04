@@ -8,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Kaazing.org - Kaazing.org Docs</title>
-  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
-  <link rel="icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
 
   <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 
@@ -21,11 +20,7 @@
   <link rel="stylesheet" href="../../css/doc.css">
 
   
-  <!--[if lt IE 9]>
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.js"></script>
-  <![endif]-->
+
 
 </head>
 
@@ -97,13 +92,13 @@
 <p>This walkthrough uses the out of the box JavaScript JMS demo that is included with the Gateway as the example app, but the steps outlined in this walkthrough are the same for other JavaScript JMS client applications built with the Gateway.</p>
 
 
-<p><span class="note"><strong>Note</strong>: For this walkthrough, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61613. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../integration-jms/o_jms_integrate.html">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
+<p><span class="note"><strong>Note</strong>: For this walkthrough, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61613. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
 
 
 <h2><a name="begin"></a>Before You Begin</h2>
 <p>Before starting this walkthrough you need the following:</p>
 <ul class="arrow-2">
-    <li>Kaazing Gateway. See <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+    <li>Kaazing Gateway. See <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
     <li><a href="https://developer.apple.com/xcode/">Apple Xcode 4</a> (requires Mac OS X 10.7.4 or later)</li>
     <li><a href="http://phonegap.com/download">PhoneGap 2.0</a> (PhoneGap is a distribution of Apache Cordova)</li>
 </ul>
@@ -116,7 +111,7 @@
 <p>The following steps take you through the installation of the software required for deploying a hybrid iOS app. If you already have this software installed, you can simply note the locations of the installed software for later use with the shell script.</p>
 
 <ol>
-    <li>Install the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+    <li>Install the Gateway as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
     <li><p>Install Xcode 4 from <a href="https://developer.apple.com/xcode/">https://developer.apple.com/xcode/</a>. Once Xcode is installed, install the iOS 5.0 Simulator and Xcode Command Line Tools.</p>
         <ol type="a">
             <li>In <strong>Xcode</strong>, click <strong>Xcode</strong>, and then click <strong>Preferences</strong>.</li>
@@ -317,7 +312,7 @@
 <p>For errors that occur when trying to use your hybrid iOS app on an iOS device, see <a href="http://developer.apple.com/library/ios/#documentation/Xcode/Conceptual/ios_development_workflow/40-iOS_Development_Troubleshooting_Guide/ios_development_troubleshooting.html">iOS Development: Troubleshooting</a> in the iOS Developer Library and the <a href="https://groups.google.com/forum/?fromgroups#!forum/phonegap">PhoneGap Forum</a>.</p>
 
 <h2><a name="summary"></a>Summary</h2>
-<p>As you have seen in this walkthrough, building a hybrid iOS app using the JavaScript JMS demo is easy to accomplish. Building your own custom JavaScript JMS hybrid iOS app simply requires that you substitute your web app in the <strong>www</strong> folder in the Xcode project and then link the JavaScript JMS and Cordova JavaScript libraries in the <strong>index.html</strong> correctly. For information about building a hybrid Android app, see the <a href="../index.html">documentation</a>.</p>
+<p>As you have seen in this walkthrough, building a hybrid iOS app using the JavaScript JMS demo is easy to accomplish. Building your own custom JavaScript JMS hybrid iOS app simply requires that you substitute your web app in the <strong>www</strong> folder in the Xcode project and then link the JavaScript JMS and Cordova JavaScript libraries in the <strong>index.html</strong> correctly. For information about building a hybrid Android app, see the <a href="../../../index.html">documentation</a>.</p>
 
 <h2>Notes</h2>
 <p>Clients built using Kaazing Gateway 3.x libraries will work against Kaazing Gateway 4.x. If you wish to upgrade your 3.x client to the 4.x libraries, please note that the 3.x clients used a single JMS library and 4.x clients include and use separate WebSocket and JMS libraries. Update your client library file and code references to include both the WebSocket and JMS libraries, as described in the 4.x documentation. For more migration information, see <a href="p_dev_js_client.html#migrate">Migrate JavaScript Applications to Kaazing Gateway 4.x.</a></p>
@@ -354,8 +349,7 @@
 </footer>
 
 <!-- start:javascript for this page -->
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 
 
 

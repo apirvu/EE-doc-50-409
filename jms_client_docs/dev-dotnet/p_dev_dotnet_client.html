@@ -8,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Kaazing.org - Kaazing.org Docs</title>
-  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
-  <link rel="icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
 
   <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 
@@ -21,11 +20,7 @@
   <link rel="stylesheet" href="../../css/doc.css">
 
   
-  <!--[if lt IE 9]>
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.js"></script>
-  <![endif]-->
+
 
 </head>
 
@@ -70,7 +65,7 @@
 <p>In this procedure, you will learn how to use the signed Kaazing Gateway JMS client libraries for .NET and Silverlight and the supported methods.</p>
 
 
-<p><span class="note"><strong>Note</strong>: For this how-to, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61616. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../integration-jms/o_jms_integrate.html">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
+<p><span class="note"><strong>Note</strong>: For this how-to, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61616. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
 
 
 <h2>Before You Begin</h2>
@@ -121,8 +116,8 @@
 <li><p>Review the out of the box demos that use the Kaazing Gateway Client Libraries for .NET and Silverlight.</p>
     <p>Before you start development, review a demonstration that was built with the  Kaazing Gateway client libraries for .NET and Silverlight. To see this application in action, perform the following steps:</p>
     <ol type="a">
-        <li>Start Apache ActiveMQ as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
-        <li>Start the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+        <li>Start Apache ActiveMQ as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
+        <li>Start the Gateway as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
         <li>In a browser, navigate to the out of the box demos at <span class="uri">http://localhost:8001/demo/</span>. </li>
         <li>Click<strong> Silverlight</strong> or <strong>.NET Framework</strong> and follow the instructions on the demo page.</li>
     </ol>
@@ -202,7 +197,7 @@ class TextMessageHandler : IMessageListener
 
 <a name="Durable"></a><h2>Durable Subscribers</h2>
 
-<span class="note"><b>Note:</b> Currently, the Gateway does not support durable subscribers with Apache ActiveMQ. You may use durable subscribers with <a href="../integration-jms/p_jms_integrate_tibco.html">TIBCO EMS</a> or <a href="../integration-jms/p_jms_integrate_informatica.html">Informatica UM</a>. For more information, see <a href="../admin-reference/r_stomp_service.html#durables">Durable Subscribers</a>.</span><br>
+<span class="note"><b>Note:</b> Currently, the Gateway does not support durable subscribers with Apache ActiveMQ. You may use durable subscribers with <a href="../../../integration-jms/p_jms_integrate_tibco">TIBCO EMS</a> or <a href="../../../integration-jms/p_jms_integrate_informatica">Informatica UM</a>. For more information, see <a href="../../../admin-reference/r_conf_jms/index.html#durable-subscribers">Durable Subscribers</a>.</span><br>
 
 
 <p>If your JMS client needs to receive all of the messages published on a topic, including the ones published while the subscriber is inactive because it is not being used or has lost connections (which is common when using mobile devices), create a durable ITopicSubscriber using the <a href="../apidoc/client/dotnet/jms/html/M_Kaazing_JMS_ISession_CreateDurableSubscriber_2_40abdaf4.htm">iSession.createDurableSubscriber()</a> method.</p>
@@ -274,7 +269,7 @@ connection.Close();</pre>
 <ul class="arrow-2">
   <li>The Microsoft .NET 4.0 Framework has a maximum connection limit of two per domain, similar to the browser limitation. For any Microsoft .NET application that uses more than one WebSocket connection at a time, you must either ensure that any WebSocket connection is closed by using <code>WebSocket.Close()</code> before opening another WebSocket connection, or increase the connection limit on the application by updating the <code>maxconnection</code> attribute in the <code>app.config</code> file. For more information, see <strong>(KG-1851) Two Connection Limit in Kaazing Gateway JMS Clients for Microsoft .NET</strong> in <a href="release-notes.html">Release Notes</a>.</li>
     <li>Clients built using Kaazing Gateway 3.x libraries will work against Kaazing Gateway 4.x. If you wish to upgrade your 3.x client to the 4.x libraries, please note that the 3.x clients used a single Stomp JMS library and 4.x clients include and use separate WebSocket and Stomp JMS libraries. Update your client library file and code references to include both the WebSocket and Stomp JMS libraries, as described in the 4.x documentation.</li>
-    <li>For more information on the Kaazing Gateway JMS client libraries for .NET and Silverlight, see <a href="../about/kaazing-jms-api.html">Kaazing Gateway JMS Client Libraries: Supported APIs</a> and the .NET and Silverlight Client API (<a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS.htm">Kaazing.JMS</a>, <a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS_Stomp.htm">Kaazing.JMS.Stomp</a>, and <a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS_Util.htm">Kaazing.JMS.Util</a>) documentation.</li> 
+    <li>For more information on the Kaazing Gateway JMS client libraries for .NET and Silverlight, see <a href="../../../about/kaazing-jms-api">Kaazing Gateway JMS Client Libraries: Supported APIs</a> and the .NET and Silverlight Client API (<a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS.htm">Kaazing.JMS</a>, <a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS_Stomp.htm">Kaazing.JMS.Stomp</a>, and <a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS_Util.htm">Kaazing.JMS.Util</a>) documentation.</li> 
     <li><span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span> objects are destroyed when the client loses its connection to the Gateway, or when the JMS-compliant message broker loses its connection to the Gateway. To address this, monitor the client's exception listener to handle recovery for your application. Once the connection is re-established, recreate <span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span>. <span class="code_inline">ConnectionDroppedException</span> and <span class="code_inline">ConnectionInterruptedException</span> are delivered to the connection's exception listener via <span class="code_inline">onException</span>, indicating that messages in flight might be lost, depending on message delivery options. <span class="code_inline">ConnectionRestoredException</span> is delivered to indicate that the connection through to the JMS-compliant message broker has been re-established. <span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span> should be recreated at that time to resume operations.</li> 
    <li>You can verify that Kaazing Gateway has signed the relevant .NET DLL by selecting the DLL in the File Browser, then right-clicking and opening the <strong>Properties</strong> dialog. On the Digital Signatures tab, you can view the Name of Signer value and a timestamp of when the DLL was signed. The email address is "Not available." For more information, see <a href="http://msdn.microsoft.com/en-us/library/aa382384%28VS.85%29.aspx"> an example C program</a> that shows how to use the Microsoft mechanism to verify a signature (a DLL is one example of a Portable Executable, or PE, file). You can also learn more about <a href="http://support.microsoft.com/kb/2389418">preventing DLL pre-loading attacks</a>.</li>
 </ul>
@@ -309,8 +304,7 @@ connection.Close();</pre>
 </footer>
 
 <!-- start:javascript for this page -->
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 
 
 

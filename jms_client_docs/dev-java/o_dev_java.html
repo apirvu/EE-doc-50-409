@@ -8,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Kaazing.org - Kaazing.org Docs</title>
-  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
-  <link rel="icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
 
   <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 
@@ -21,11 +20,7 @@
   <link rel="stylesheet" href="../../css/doc.css">
 
   
-  <!--[if lt IE 9]>
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.js"></script>
-  <![endif]-->
+
 
 </head>
 
@@ -118,12 +113,12 @@
         <p><figure><img src="../images/f-stomp-jms-java-client2-web.jpg" width="724" height="207" alt="Java JMS Client">
             <figcaption><strong>Figure: Enables communication between your application and the JMS-compliant message broker</strong></figcaption>
             </figure></p>
-        <p>Refer to <a href="../about/kaazing-websocket-jms.html">About Kaazing Gateway</a> for more information about  Kaazing Gateway.</p>
+        <p>Refer to <a href="../../../about/kaazing-websocket-jms">About Kaazing Gateway</a> for more information about  Kaazing Gateway.</p>
         <h3><a name="aboutjmsapi"></a>About the Kaazing Gateway Java JMS Client Library</h3>
         <p>Kaazing Gateway includes a Java JMS Client Library that enables you to use Java to create JMS-based clients specifically for your Java applications. As a Java developer, you can use this API to publish and subscribe to JMS-based messages between your application and your message broker.</p>
         <p>The Java JMS Client Library exposes capabilities similar to the Java Message Service (JMS) API in Java, including the JMS concepts of connection, session, destination, message consumer, and message producer. Refer to the JMS API documentation, located at <span class="code_inline"><a href="http://www.oracle.com/technetwork/java/docs-136352.html">http://www.oracle.com/technetwork/java/docs-136352.html</a></span>, for specific information about how to use each of the interfaces.
 
-        <p>For a description of the methods currently supported by the Kaazing Gateway Java JMS Client Library, see <a href="../about/kaazing-jms-api.html">Kaazing Gateway JMS Client Libraries</a>.
+        <p>For a description of the methods currently supported by the Kaazing Gateway Java JMS Client Library, see <a href="../../../about/kaazing-jms-api">Kaazing Gateway JMS Client Libraries</a>.
         <h3><a name="overview" id="overview"></a>About Java, Java Applets, and Java Naming and Directory Interface</h3>
         <p>Java applications are platform independent, because they are compiled to bytecode, which can then run on a Java virtual machine (JVM) on any certified operating system. A Java applet is a Java program that can be included in an HTML page. Java applets run in the browser's JVM. For more information about Java and Java applets, visit <a href="http://java.com" class="code_inline">http://java.com</a>.</p>
 <p>Java Naming and Directory Interface (JNDI) is a Java API for a directory service. This API allows your Java applets to discover and look up data and objects using a reference. With Kaazing Gateway, you use JNDI in two ways: </p>
@@ -131,10 +126,10 @@
   <li>To set up the initial context and call the Gateway's Java JMS client library from your Java JMS client (a Java applet).</li>
   <li>To connect from the Gateway to your JMS-compliant message broker.</li>
 </ul>
-<p>The two contexts are distinct in the Gateway. As a Java JMS client developer, you will work primarily with the JNDI in your Java JMS Client (or Java applet). For information about configuring the Gateway server to a JMS-compliant message broker, refer to <a href="../admin-reference/r_stomp_service.html#stompjms">jms</a>.</p>
+<p>The two contexts are distinct in the Gateway. As a Java JMS client developer, you will work primarily with the JNDI in your Java JMS Client (or Java applet). For information about configuring the Gateway server to a JMS-compliant message broker, refer to <a href="../../../admin-reference/r_conf_jms/index.html#stompjms">jms</a>.</p>
         <p>For more general information about getting started with JNDI, refer to The JNDI Tutorial, located at <span class="code_inline"><a href="http://java.sun.com/products/jndi/tutorial/getStarted/index.html">http://java.sun.com/products/jndi/tutorial/getStarted/index.html</a></span>.</p>
 
-<h3><a name="messagebroker" id="messagebroker"></a>Overview of Apache ActiveMQ</h3><p>Apache ActiveMQ is an open source message broker and JMS provider developed, distributed, and licensed by the Apache Foundation. Apache ActiveMQ provides a publish-subscribe model based on the Java Message Service (JMS) specification. It is  a  highly viable, light-weight solution  for both queue-based peer-to-peer messaging and topic-based  publish-subscribe communication. Refer to <a href="http://activemq.apache.org/" class="uri">http://activemq.apache.org/</a> for more information about Apache ActiveMQ.</p><p><span class="note"><strong>Note</strong>: For this how-to, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on port 61616. You can configure the connect URL in the file <span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../integration-jms/o_jms_integrate.html">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
+<h3><a name="messagebroker" id="messagebroker"></a>Overview of Apache ActiveMQ</h3><p>Apache ActiveMQ is an open source message broker and JMS provider developed, distributed, and licensed by the Apache Foundation. Apache ActiveMQ provides a publish-subscribe model based on the Java Message Service (JMS) specification. It is  a  highly viable, light-weight solution  for both queue-based peer-to-peer messaging and topic-based  publish-subscribe communication. Refer to <a href="http://activemq.apache.org/" class="uri">http://activemq.apache.org/</a> for more information about Apache ActiveMQ.</p><p><span class="note"><strong>Note</strong>: For this how-to, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on port 61616. You can configure the connect URL in the file <span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
 
 
                   </section>
@@ -168,8 +163,7 @@
 </footer>
 
 <!-- start:javascript for this page -->
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 
 
 

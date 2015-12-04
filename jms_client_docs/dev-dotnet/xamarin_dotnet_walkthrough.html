@@ -8,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Kaazing.org - Kaazing.org Docs</title>
-  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
-  <link rel="icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
 
   <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 
@@ -21,11 +20,7 @@
   <link rel="stylesheet" href="../../css/doc.css">
 
   
-  <!--[if lt IE 9]>
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.js"></script>
-  <![endif]-->
+
 
 </head>
 
@@ -99,7 +94,7 @@
 
 <p>Before starting this walkthrough you need the following:</p>
 <ul>
-<li>Kaazing Gateway. See <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+<li>Kaazing Gateway. See <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
 <li>Xamarin Platform 3.</li>
 <li>An Xamarin account. To create an Xamarin account, see <a href="https://store.xamarin.com/Login?from=%2faccount%2f">https://store.xamarin.com/Login?from=%2faccount%2f</a>.</li>
 <li>iOS SDK. The iOS SDK is required in order to use the iOS Simulator.</li>
@@ -112,7 +107,7 @@
 <p>The following steps link to resources to take you through the installation of the software required for deploying Xamarin apps. If you already have this software installed, you can simply note the locations of the installed software for later use.</p>
 
 <ol>
-<li>Install the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+<li>Install the Gateway as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
 <li>Download and install Xamarin 3 from <a href="http://xamarin.com/platform" title="Mobile Application Development to Build Apps in C# - Xamarin">http://xamarin.com/platform</a>.</li>
 </ol>
 
@@ -164,8 +159,8 @@
 <p>The following steps start the Apache ActiveMQ service that is included with the Gateway and then run the Gateway.</p>
 
 <ol>
-	<li>Start Apache ActiveMQ. For steps on starting Apache ActiveMQ, see the <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>. </li>
-	<li><p>Open the <span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span> file in a text editor. Review the <a href="../admin-reference/r_stomp_service.html#stompjms">jms</a> service to see the configuration of the connection to the Apache ActiveMQ. For example.</p>
+	<li>Start Apache ActiveMQ. For steps on starting Apache ActiveMQ, see the <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>. </li>
+	<li><p>Open the <span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span> file in a text editor. Review the <a href="../../../admin-reference/r_conf_jms/index.html#stompjms">jms</a> service to see the configuration of the connection to the Apache ActiveMQ. For example.</p>
 <pre class="auto-links: false; brush: xml; toolbar: false;">
 &lt;service&gt;
 	&lt;accept&gt;ws://build-macmini3.kaazing.test:${gateway.extras.port}/jms&lt;/accept&gt;
@@ -194,7 +189,7 @@
 
 <span class="note"><b>Note:</b> The Android Emulator or device will not allow the use of <span class="uri">localhost</span>. For the Android, change the value of the <span class="uri">accept</span> tag to the local IP address of the Gateway.</span>
 	</li>
-	<li>Start the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>. Invoke the <code>gateway.start</code> command by navigating to the <span class="uri"><em>GATEWAY_HOME</em>/bin</span> directory where you installed the Gateway, and then enter the following to run the <code>gateway.start</code> script:<br>
+	<li>Start the Gateway as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>. Invoke the <code>gateway.start</code> command by navigating to the <span class="uri"><em>GATEWAY_HOME</em>/bin</span> directory where you installed the Gateway, and then enter the following to run the <code>gateway.start</code> script:<br>
 <code>./gateway.start</code></li>
 </ol>
 
@@ -292,8 +287,7 @@
 </footer>
 
 <!-- start:javascript for this page -->
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 
 
 

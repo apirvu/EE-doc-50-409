@@ -8,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Kaazing.org - Kaazing.org Docs</title>
-  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
-  <link rel="icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
 
   <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 
@@ -21,11 +20,7 @@
   <link rel="stylesheet" href="../../css/doc.css">
 
   
-  <!--[if lt IE 9]>
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.js"></script>
-  <![endif]-->
+
 
 </head>
 
@@ -71,9 +66,9 @@
     
                 <p>A challenge handler is a constructor used in an application to respond to authentication challenges from the Gateway when the application attempts to access a protected resource. Each of the resources protected by the Gateway is configured with a different authentication scheme (for example, Basic, Application Basic, Application Negotiate, or Application Token), and your application requires a challenge handler for each of the schemes that it will encounter or a single challenge handler that will respond to all challenges. Also, you can add a dispatch challenge handler to route challenges to specific challenge handlers according to the URI of the requested resource.</p>
 
-                <p>For information about each authentication scheme type, see <a href="../security/p_aaa_config_authscheme.html">Configure the HTTP Challenge Scheme</a>.</p>
+                <p>For information about each authentication scheme type, see <a href="../../../security/p_aaa_config_authscheme">Configure the HTTP Challenge Scheme</a>.</p>
                 
-                <p>Before you add security to your clients, follow the steps in <a href="../security/o_tls.html">Checklist: Secure Network Traffic with the Gateway</a> and <a href="../security/o_aaa_config_authentication.html">Checklist: Configure Authentication and Authorization</a> to set up security on Kaazing Gateway for your client. The authentication and authorization methods configured on the Gateway influence your client security implementation. In this procedure, we provide an example of the most common implementation.</p>
+                <p>Before you add security to your clients, follow the steps in <a href="../../security/o_tls">Checklist: Secure Network Traffic with the Gateway</a> and <a href="../../../security/o_aaa_config_authentication">Checklist: Configure Authentication and Authorization</a> to set up security on Kaazing Gateway for your client. The authentication and authorization methods configured on the Gateway influence your client security implementation. In this procedure, we provide an example of the most common implementation.</p>
 
 <h2>Before You Begin</h2><p>This procedure is part of <a href="o_dev_java.html">Checklist: Build Java Clients Using Kaazing Gateway</a>:</p><ol><li><a href="p_dev_java_setup.html">Set Up Your Development Environment</a></li><li><a href="p_dev_java_websocket.html">Interact with Kaazing Gateway Using the WebSocket API</a></li><li><a href="p_dev_java_eventsource.html">Interact with Kaazing Gateway Using the EventSource API</a></li><li><a href="p_dev_java_migrate.html">Migrate WebSocket and ByteSocket Applications to Kaazing Gateway 4.x</a></li><li><b>Secure Your Java and Android Clients</b></li><li><a href="p_dev_java_logging.html">Display Logs for the Java Client</a></li><li><a href="p_dev_java_tshoot.html">Troubleshoot Your Java Client</a></li></ol>
 
@@ -195,7 +190,7 @@ wsFactory.setDefaultChallengeHandler(
         <li><code>handle(ChallengeRequest challengeRequest)</code> handles the authentication challenge by returning a challenge response. Typically, the challenge response invokes a login handler to collect user credentials and transforms that information into a ChallengeResponse object. The ChallengeResponse sends the credentials to the Gateway in an Authorization header and notifies the Gateway on what challenge handler to use for future requests. If <code>handle()</code> cannot create a challenge response, it returns <code>null</code>.</li>
 </ul>
 
-<p>For information about each authentication scheme type, see <a href="../security/p_aaa_config_authscheme.html">Configure the HTTP Challenge Scheme</a>.</p>
+<p>For information about each authentication scheme type, see <a href="../../../security/p_aaa_config_authscheme">Configure the HTTP Challenge Scheme</a>.</p>
 
 
 <h3><a name="override_challenge"></a>Overriding Default Challenge Handler Implementations</h3>
@@ -424,8 +419,7 @@ wsFactory.setDefaultChallengeHandler(WebSocketDemoChallengeHandler.create()
 </footer>
 
 <!-- start:javascript for this page -->
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 
 
 

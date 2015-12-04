@@ -8,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Kaazing.org - Kaazing.org Docs</title>
-  <link rel="canonical" href="/documentation/5.0/windows/o_dev_dotnet/" />
-  <link rel="icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
 
   <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 
@@ -21,11 +20,7 @@
   <link rel="stylesheet" href="../../css/doc.css">
 
   
-  <!--[if lt IE 9]>
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.js"></script>
-  <![endif]-->
+
 
 </head>
 
@@ -94,13 +89,13 @@
 <p>This walkthrough uses the out of the box JavaScript JMS demo that ships with the Gateway as the example app, but the steps outlined in this walkthrough are the same for other JavaScript JMS client applications built with the Gateway.</p>
 
 
-<p><span class="note"><strong>Note</strong>: For this walkthrough, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61613. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../integration-jms/o_jms_integrate.html">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
+<p><span class="note"><strong>Note</strong>: For this walkthrough, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61613. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
 
 
 <h2><a name="Before"></a>Before You Begin</h2>
 <p>Before starting this walkthrough you need the following:</p>
 <ul class="arrow-2">
-<li>Kaazing Gateway. See <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>
+<li>Kaazing Gateway. See <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
 <li><a href="http://www.eclipse.org/downloads/">Eclipse Classic</a></li>
 <li><a href="http://developer.android.com/sdk/index.html">Android SDK</a></li>
 <li><a href="http://developer.android.com/sdk/installing/installing-adt.html">ADT Plugin for Eclipse</a></li>
@@ -114,7 +109,7 @@
 <h2><a name="Install"></a>Install the Gateway, Android SDK, ADT Plugin and APIs for Eclipse, and PhoneGap 2.0</h2>
 <p>The following steps take you through the installation of the software required for deploying a hybrid Android app. If you have already have this software installed, you can simply note the locations of the installed software for later use with the shell script.</p>
 <ol>
-<li>Install the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing Gateway</a>.</li>    
+<li>Install the Gateway as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>    
 <li>Install <a href="http://www.eclipse.org/downloads/">Eclipse Classic</a>. See the Eclipse installation instructions for details.</li>    
 <li><p>Download and install the Android SDK from <a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a>.</p>
     <p><strong>Tip:</strong> For steps on installing the Android SDK on your platform, see <a href="http://developer.android.com/sdk/installing/index.html">Installing the SDK from Android Develop</a>.</p>
@@ -382,7 +377,7 @@ public class JMSdemoActivity extends DroidGap {
 </ol>
 
 <h2><a name="summary"></a>Summary</h2>
-<p>In this walkthrough, you learned how to turn one of the out of the box Kaazing Gateway JavaScript JMS demos into a hybrid Android app. To learn how to build your own Kaazing Gateway JMS apps, refer to the <a href="../index.html">documentation</a>.</p>
+<p>In this walkthrough, you learned how to turn one of the out of the box Kaazing Gateway JavaScript JMS demos into a hybrid Android app. To learn how to build your own Kaazing Gateway JMS apps, refer to the <a href="../../../index.html">documentation</a>.</p>
 
 <h2>Notes</h2>
 <p>Clients built using Kaazing Gateway 3.x libraries will work against Kaazing Gateway 4.x. If you wish to upgrade your 3.x client to the 4.x libraries, please note that the 3.x clients used a single JMS library and 4.x clients include and use separate WebSocket and JMS libraries. Update your client library file and code references to include both the WebSocket and JMS libraries, as described in the 4.x documentation. For more migration information, see <a href="p_dev_js_client.html#migrate">Migrate JavaScript Applications to Kaazing Gateway 4.x.</a></p>
@@ -419,8 +414,7 @@ public class JMSdemoActivity extends DroidGap {
 </footer>
 
 <!-- start:javascript for this page -->
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 
 
 

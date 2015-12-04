@@ -1,0 +1,1685 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../../print.css" type="text/css" media="print">
+<meta content="AmqpChannel,com.kaazing.gateway.amqp.client.AmqpChannel,ackBasic,bindQueue,cancelBasic,closeChannel,closeOkChannel,commitTx,consumeBasic,declareExchange,declareQueue,deleteExchange,deleteQueue,flowChannel,flowOkChannel,getBasic,openChannel,publishBasic,purgeQueue,qosBasic,recoverBasic,rejectBasic,rollbackTx,selectTx,unbindQueue" name="keywords">
+<title>com.kaazing.gateway.amqp.client.AmqpChannel</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'AmqpChannel - API Documentation';
+				var baseRef = '../../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">API Documentation</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../../all-classes.html')" href="../../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../../all-classes.html')" href="../../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../../index-list.html')" href="../../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../../index.html?com/kaazing/gateway/amqp/client/AmqpChannel.html&amp;com/kaazing/gateway/amqp/client/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;AmqpChannel</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class AmqpChannel"); titleBar_setSubNav(false,false,false,false,true,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.kaazing.gateway.amqp.client</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class AmqpChannel</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">AmqpChannel <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../../images/inherit-arrow.gif"> flash.events.EventDispatcher</td>
+</tr>
+</table>
+<p></p>
+  AmqpChannel represents the channel created on the AMQP connection to the server.
+  Declaring of exchanges, queues, binding queues to exchanges, sending and receiving
+  messages and transactions are handled using methods on this class.
+  <p></p>
+<br>
+<hr>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#AmqpChannel()">AmqpChannel</a>(id:int, connection:Object, cb:Function = null)</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#ackBasic()">ackBasic</a>(deliveryTag:Number, multiple:Boolean):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         This method acknowledges one or more messages delivered via the Deliver or Get-Ok
+         methods.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#bindQueue()">bindQueue</a>(queue:String, exchange:String, routingKey:String, noWait:Boolean, arguments:<a href="AmqpArguments.html">AmqpArguments</a> = null, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         
+         This method binds a queue to an exchange.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#cancelBasic()">cancelBasic</a>(consumerTag:String, noWait:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         This method cancels a consumer.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#closeChannel()">closeChannel</a>(replyCode:Number, replyText:String, classId:Number, methodId:Number, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         This method indicates that the sender wants to close the channel.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#closeOkChannel()">closeOkChannel</a>(callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         Confirms to the peer that a flow command was received and processed.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#commitTx()">commitTx</a>(callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         This method commits all message publications and acknowledgments performed in
+         the current transaction.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#consumeBasic()">consumeBasic</a>(queue:String, consumerTag:String, noLocal:Boolean, noAck:Boolean, exclusive:Boolean, noWait:Boolean, arguments:<a href="AmqpArguments.html">AmqpArguments</a> = null, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         This method asks the server to start a "consumer", which is a transient request for
+         messages from a specific queue.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#declareExchange()">declareExchange</a>(exchange:String, type:String, passive:Boolean, durable:Boolean, noWait:Boolean, arguments:<a href="AmqpArguments.html">AmqpArguments</a> = null, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         This method creates an exchange if it does not already exist, and if the exchange
+         exists, verifies that it is of the correct and expected class.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#declareQueue()">declareQueue</a>(queue:String, passive:Boolean, durable:Boolean, exclusive:Boolean, autoDelete:Boolean, noWait:Boolean, arguments:<a href="AmqpArguments.html">AmqpArguments</a> = null, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         This method creates or checks a queue.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#deleteExchange()">deleteExchange</a>(exchange:String, ifUnused:Boolean, noWait:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         This method deletes an exchange.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#deleteQueue()">deleteQueue</a>(queue:String, ifUnused:Boolean, ifEmpty:Boolean, noWait:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         This method deletes a queue.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#flowChannel()">flowChannel</a>(active:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">        
+         This method asks the peer to pause or restart the flow of content data sent by
+         a consumer.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#flowOkChannel()">flowOkChannel</a>(active:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         Confirms to the peer that a flow command was received and processed.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getBasic()">getBasic</a>(queue:String, noAck:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         This method provides a direct access to the messages in a queue using a synchronous
+         dialogue that is designed for specific types of application where synchronous
+         functionality is more important than performance.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#openChannel()">openChannel</a>(callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#publishBasic()">publishBasic</a>(body:ByteBuffer, amqpProperties:<a href="AmqpProperties.html">AmqpProperties</a>, exchange:String, routingKey:String, mandatory:Boolean, immediate:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+                  <p>This method publishes a message to a specific exchange.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#purgeQueue()">purgeQueue</a>(queue:String, noWait:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+          This method removes all messages from a queue which are not awaiting
+         acknowledgment.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#qosBasic()">qosBasic</a>(prefetchSize:Number, prefetchCount:Number, global:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         This method requests a specific quality of service.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#recoverBasic()">recoverBasic</a>(requeue:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         This method asks the server to redeliver all unacknowledged messages on a
+         specified channel.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#rejectBasic()">rejectBasic</a>(deliveryTag:Number, requeue:Boolean):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         
+         This method allows a client to reject a message.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#rollbackTx()">rollbackTx</a>(callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         This method abandons all message publications and acknowledgments performed in
+         the current transaction.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#selectTx()">selectTx</a>(callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         This method sets the channel to use standard transactions.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#unbindQueue()">unbindQueue</a>(queue:String, exchange:String, routingKey:String, arguments:<a href="AmqpArguments.html">AmqpArguments</a> = null, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a>
+</div>
+<div class="summaryTableDescription">
+         
+         This method unbinds a queue from an exchange.</div>
+</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+</table>
+</div>
+<a name="eventSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Events</div>
+<table id="summaryTableEvent" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Event</th><th>Summary</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:bindqueue">bindqueue</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:cancel">cancel</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:close">close</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:committransaction">committransaction</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:consume">consume</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:declareexchange">declareexchange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:declarequeue">declarequeue</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:deleteexchange">deleteexchange</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:deletequeue">deletequeue</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:error">error</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:flow">flow</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:get">get</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:message">message</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:open">open</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:purgequeue">purgequeue</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:queueDeleted">queueDeleted</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:recover">recover</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:reject">reject</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:rollbacktransaction">rollbacktransaction</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:selecttransaction">selecttransaction</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#event:unbindqueue">unbindqueue</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">&nbsp;</td><td class="summaryTableOwnerCol">AmqpChannel</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="AmqpChannel()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AmqpChannel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function AmqpChannel(id:int, connection:Object, cb:Function = null)</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:int</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">connection</span>:Object</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">cb</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="ackBasic()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ackBasic</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function ackBasic(deliveryTag:Number, multiple:Boolean):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         This method acknowledges one or more messages delivered via the Deliver or Get-Ok
+         methods. The client can ask to confirm a single message or a set of messages up to
+         and including a specific message.
+         
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">deliveryTag</span>:Number</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">multiple</span>:Boolean</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="bindQueue()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">bindQueue</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function bindQueue(queue:String, exchange:String, routingKey:String, noWait:Boolean, arguments:<a href="AmqpArguments.html">AmqpArguments</a> = null, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         
+         This method binds a queue to an exchange. Until a queue is bound it will not
+         receive any messages. In a classic messaging model, store-and-forward queues
+         are bound to a direct exchange and subscription queues are bound to a topic
+         exchange.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">queue</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">exchange</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">routingKey</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">noWait</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">arguments</span>:<a href="AmqpArguments.html">AmqpArguments</a></code> (default = <code>null</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="cancelBasic()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">cancelBasic</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function cancelBasic(consumerTag:String, noWait:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         This method cancels a consumer. This does not affect already delivered
+         messages, but it does mean the server will not send any more messages for
+         that consumer. The client may receive an arbitrary number of messages in
+         between sending the cancel method and receiving the cancel-ok reply.
+         
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">consumerTag</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">noWait</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="closeChannel()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">closeChannel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function closeChannel(replyCode:Number, replyText:String, classId:Number, methodId:Number, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         This method indicates that the sender wants to close the channel. This may be due to
+         internal conditions (e.g. a forced shut-down) or due to an error handling a specific
+         method, i.e. an exception. When a close is due to an exception, the sender provides
+         the class and method id of the method which caused the exception.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">replyCode</span>:Number</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">replyText</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">classId</span>:Number</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">methodId</span>:Number</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="closeOkChannel()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">closeOkChannel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function closeOkChannel(callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         Confirms to the peer that a flow command was received and processed.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="commitTx()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">commitTx</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function commitTx(callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         This method commits all message publications and acknowledgments performed in
+         the current transaction.  A new transaction starts immediately after a commit.
+         
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="consumeBasic()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">consumeBasic</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function consumeBasic(queue:String, consumerTag:String, noLocal:Boolean, noAck:Boolean, exclusive:Boolean, noWait:Boolean, arguments:<a href="AmqpArguments.html">AmqpArguments</a> = null, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         This method asks the server to start a "consumer", which is a transient request for
+         messages from a specific queue. Consumers last as long as the channel they were
+         declared on, or until the client cancels them.
+         
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">queue</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">consumerTag</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">noLocal</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">noAck</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">exclusive</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">noWait</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">arguments</span>:<a href="AmqpArguments.html">AmqpArguments</a></code> (default = <code>null</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="declareExchange()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">declareExchange</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function declareExchange(exchange:String, type:String, passive:Boolean, durable:Boolean, noWait:Boolean, arguments:<a href="AmqpArguments.html">AmqpArguments</a> = null, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         This method creates an exchange if it does not already exist, and if the exchange
+         exists, verifies that it is of the correct and expected class.
+         
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">exchange</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">type</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">passive</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">durable</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">noWait</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">arguments</span>:<a href="AmqpArguments.html">AmqpArguments</a></code> (default = <code>null</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="declareQueue()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">declareQueue</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function declareQueue(queue:String, passive:Boolean, durable:Boolean, exclusive:Boolean, autoDelete:Boolean, noWait:Boolean, arguments:<a href="AmqpArguments.html">AmqpArguments</a> = null, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         This method creates or checks a queue. When creating a new queue the client can
+         specify various properties that control the durability of the queue and its
+         contents, and the level of sharing for the queue.
+         
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">queue</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">passive</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">durable</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">exclusive</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">autoDelete</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">noWait</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">arguments</span>:<a href="AmqpArguments.html">AmqpArguments</a></code> (default = <code>null</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="deleteExchange()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">deleteExchange</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function deleteExchange(exchange:String, ifUnused:Boolean, noWait:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         This method deletes an exchange. When an exchange is deleted all queue bindings on
+         the exchange are cancelled.
+         
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">exchange</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">ifUnused</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">noWait</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="deleteQueue()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">deleteQueue</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function deleteQueue(queue:String, ifUnused:Boolean, ifEmpty:Boolean, noWait:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         This method deletes a queue. When a queue is deleted any pending messages are sent
+         to a dead-letter queue if this is defined in the server configuration, and all
+         consumers on the queue are cancelled.        
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">queue</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">ifUnused</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">ifEmpty</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">noWait</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="flowChannel()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">flowChannel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function flowChannel(active:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>        
+         This method asks the peer to pause or restart the flow of content data sent by
+         a consumer. This is a simple flow-control mechanism that a peer can use to avoid
+         overflowing its queues or otherwise finding itself receiving more messages than
+         it can process. Note that this method is not intended for window control. It does
+         not affect contents returned by Basic.Get-Ok methods.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">active</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="flowOkChannel()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">flowOkChannel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function flowOkChannel(active:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         Confirms to the peer that a flow command was received and processed.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">active</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="getBasic()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getBasic</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getBasic(queue:String, noAck:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         This method provides a direct access to the messages in a queue using a synchronous
+         dialogue that is designed for specific types of application where synchronous
+         functionality is more important than performance.
+         
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">queue</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">noAck</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="openChannel()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">openChannel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function openChannel(callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="publishBasic()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">publishBasic</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function publishBasic(body:ByteBuffer, amqpProperties:<a href="AmqpProperties.html">AmqpProperties</a>, exchange:String, routingKey:String, mandatory:Boolean, immediate:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+                  </p><p>This method publishes a message to a specific exchange. The message will be routed
+         to queues as defined by the exchange configuration and distributed to any active
+         consumers when the transaction, if any, is committed.
+         </p>
+         
+         <p>
+         Application developers can include properties defined in AMQP 0-9-1 spec as part of the published message. 
+         This can be done by using AmqpProperties object which defines type-safe methods for setting the properties. 
+         AmqpProperties not only allows specifying the pre-defined properties but also allows application developers to 
+         include custom headers using AmqpArguments.
+         </p>
+         
+         <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">body</span>:ByteBuffer</code> &mdash;       AMQP message payload
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">amqpProperties</span>:<a href="AmqpProperties.html">AmqpProperties</a></code> &mdash; AmqpProperties instance                 
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">exchange</span>:String</code> &mdash;   name of the exchange
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">routingKey</span>:String</code> &mdash; Message routing key
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">mandatory</span>:Boolean</code> &mdash;  indicate mandatory routing
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">immediate</span>:Boolean</code> &mdash;  Request immitiate delivery
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code> &mdash;   Function to be called on success
+         
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code> &mdash; 
+                        AmqpChannel
+         
+         
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="purgeQueue()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">purgeQueue</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function purgeQueue(queue:String, noWait:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+          This method removes all messages from a queue which are not awaiting
+         acknowledgment.
+         
+          </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">queue</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">noWait</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="qosBasic()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">qosBasic</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function qosBasic(prefetchSize:Number, prefetchCount:Number, global:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         This method requests a specific quality of service. The QoS can be specified for the
+         current channel or for all channels on the connection. The particular properties and
+         semantics of a qos method always depend on the content class semantics. Though the
+         qos method could in principle apply to both peers, it is currently meaningful only
+         for the server.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">prefetchSize</span>:Number</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">prefetchCount</span>:Number</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">global</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="recoverBasic()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">recoverBasic</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function recoverBasic(requeue:Boolean, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         This method asks the server to redeliver all unacknowledged messages on a
+         specified channel. Zero or more messages may be redelivered.  This method
+         replaces the asynchronous Recover.
+         
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">requeue</span>:Boolean</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="rejectBasic()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">rejectBasic</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function rejectBasic(deliveryTag:Number, requeue:Boolean):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         
+         This method allows a client to reject a message. It can be used to interrupt and
+         cancel large incoming messages, or return untreatable messages to their original
+         queue.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">deliveryTag</span>:Number</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">requeue</span>:Boolean</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="rollbackTx()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">rollbackTx</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function rollbackTx(callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         This method abandons all message publications and acknowledgments performed in
+         the current transaction. A new transaction starts immediately after a rollback.
+         Note that unacked messages will not be automatically redelivered by rollback;
+         if that is required an explicit recover call should be issued. 
+         
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="selectTx()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">selectTx</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function selectTx(callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         This method sets the channel to use standard transactions. The client must use this
+         method at least once on a channel before using the Commit or Rollback methods.
+         
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<a name="unbindQueue()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">unbindQueue</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function unbindQueue(queue:String, exchange:String, routingKey:String, arguments:<a href="AmqpArguments.html">AmqpArguments</a> = null, callback:Function = null):<a href="../client/AmqpChannel.html">AmqpChannel</a></code><p>
+         
+         This method unbinds a queue from an exchange.
+                  </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">queue</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">exchange</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">routingKey</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">arguments</span>:<a href="AmqpArguments.html">AmqpArguments</a></code> (default = <code>null</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../client/AmqpChannel.html">AmqpChannel</a></code></td>
+</tr>
+</table>
+</div>
+<div class="detailSectionHeader">Event detail</div>
+<a name="event:bindqueue"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">bindqueue</td><td class="detailHeaderType">event&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:cancel"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">cancel</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:close"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">close</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:committransaction"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">committransaction</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:consume"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">consume</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:declareexchange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">declareexchange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:declarequeue"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">declarequeue</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:deleteexchange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">deleteexchange</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:deletequeue"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">deletequeue</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:error"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">error</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:flow"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">flow</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:get"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">get</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:message"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">message</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:open"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">open</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:purgequeue"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">purgequeue</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:queueDeleted"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">queueDeleted</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:recover"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">recover</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:reject"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">reject</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:rollbacktransaction"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">rollbacktransaction</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:selecttransaction"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">selecttransaction</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<a name="event:unbindqueue"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">unbindqueue</td><td class="detailHeaderType">event&nbsp;</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<span class="label">Event object type: </span><a href="../client/AmqpEvent.html"><code>com.kaazing.gateway.amqp.client.AmqpEvent</code></a>
+<br>
+<p></p>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->
