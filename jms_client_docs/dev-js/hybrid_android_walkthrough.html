@@ -19,9 +19,34 @@
   <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/doc.css">
 
-  
 
 
+<!-- +++++++++++++++Syntax Highlighter Calls++++++++++++++++ -->
+
+<!-- Include required SyntaxHighlighter JS files -->
+<script type="text/javascript" src="../../resources/xregexp.js"></script>
+<script type="text/javascript" src="../../resources/shCore.js"></script>
+
+
+<!--Include SyntaxHighlighter brushes. To test, using the JS brush -->
+<script type="text/javascript" src="../../resources/shBrushJava.js"></script>
+<script type="text/javascript" src="../../resources/shBrushAS3.js"></script>
+<script type="text/javascript" src="../../resources/shBrushVb.js"></script>
+<script type="text/javascript" src="../../resources/shBrushJScript.js"></script>
+<script type="text/javascript" src="../../resources/shBrushCss.js"></script>
+<script type="text/javascript" src="../../resources/shBrushPython.js"></script>
+<script type="text/javascript" src="../../resources/shBrushXml.js"></script>
+
+<!-- Include SyntaxHighlighter core style and Kaazing theme -->
+<link href="../../resources/shCore.css" rel="stylesheet" type="text/css" />
+<link href="../../resources/shThemeKaazing.css" rel="stylesheet" type="text/css" />
+
+<!-- Finally, call SyntaxHighlighter -->
+<script type="text/javascript">
+   SyntaxHighlighter.all()
+</script>
+
+<!-- +++++++++++++++END OF Syntax Highlighter Calls++++++++++++++++ -->
 </head>
 
 <body>
@@ -109,26 +134,26 @@
 <h2><a name="Install"></a>Install the Gateway, Android SDK, ADT Plugin and APIs for Eclipse, and PhoneGap 2.0</h2>
 <p>The following steps take you through the installation of the software required for deploying a hybrid Android app. If you have already have this software installed, you can simply note the locations of the installed software for later use with the shell script.</p>
 <ol>
-<li>Install the Gateway as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>    
-<li>Install <a href="http://www.eclipse.org/downloads/">Eclipse Classic</a>. See the Eclipse installation instructions for details.</li>    
+<li>Install the Gateway as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
+<li>Install <a href="http://www.eclipse.org/downloads/">Eclipse Classic</a>. See the Eclipse installation instructions for details.</li>
 <li><p>Download and install the Android SDK from <a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a>.</p>
     <p><strong>Tip:</strong> For steps on installing the Android SDK on your platform, see <a href="http://developer.android.com/sdk/installing/index.html">Installing the SDK from Android Develop</a>.</p>
-    </li>    
-<li>In a browser, navigate to <a href="http://developer.android.com/sdk/installing/installing-adt.html">http://developer.android.com/sdk/installing/installing-adt.html</a> and follow the instructions to download and configure the ADT Plugin for Eclipse.</li>    
-<li>Once the ADT Plugin is installed, restart Eclipse.</li>    
+    </li>
+<li>In a browser, navigate to <a href="http://developer.android.com/sdk/installing/installing-adt.html">http://developer.android.com/sdk/installing/installing-adt.html</a> and follow the instructions to download and configure the ADT Plugin for Eclipse.</li>
+<li>Once the ADT Plugin is installed, restart Eclipse.</li>
 <li><p>In Eclipse, install the Android API 2.2 and 4.1.</p>
     <ol type="a">
         <li>Click <strong>Window</strong>, and then click <strong>Android SDK Manager</strong>.</li>
         <li><p>Select the <strong>Android 2.2</strong> and the <strong>Android 4.1</strong> packages and then click <strong>Install packages</strong>.</p>
             <p><strong>Note:</strong> You might be prompted to install these packages automatically after you restarted Eclipse. Once the packages are installed, your Android SDK Manager should look like this:</p>
                 <figure>
-                <img src="../images/android-sdk-installed.jpg">    
-                <figcaption><strong>Figure: Android SDK Manager with the required packages installed</strong></figcaption>    
+                <img src="../images/android-sdk-installed.jpg">
+                <figcaption><strong>Figure: Android SDK Manager with the required packages installed</strong></figcaption>
                 </figure>
             </li>
     </ol>
-    </li>    
-<li>Download PhoneGap 2.0 from <a href="http://phonegap.com/download">http://phonegap.com/download</a> and extract its contents. (PhoneGap 2.0 is also called Apache Cordova.)</li>    
+    </li>
+<li>Download PhoneGap 2.0 from <a href="http://phonegap.com/download">http://phonegap.com/download</a> and extract its contents. (PhoneGap 2.0 is also called Apache Cordova.)</li>
 </ol>
 
 
@@ -151,7 +176,7 @@
 </ol>
 
 <h2><a name="Project"></a>Create a New Project in Eclipse for Android</h2>
-<p>The following steps take you through the process of creating the Eclipse project you will use to build your hybrid Android app.</p>                         
+<p>The following steps take you through the process of creating the Eclipse project you will use to build your hybrid Android app.</p>
 
 <p><strong>Note:</strong> This procedure is also documented in the Apache Cordova Documentation, <a href="http://docs.phonegap.com/en/2.0.0/guide_getting-started_android_index.md.html#Getting%20Started%20with%20Android">Getting Started with Android</a>.</p>
 
@@ -167,7 +192,7 @@
 </ol>
 
 
-<h2><a name="Populate"></a>Create and Populate the Project Directory for the Hybrid Android App</h2>          
+<h2><a name="Populate"></a>Create and Populate the Project Directory for the Hybrid Android App</h2>
 <p>The following steps will create the project directory for the hybrid Android app, and populate the directory with the web app files and JavaScript JMS library files required to communicate with the Gateway. The Gateway includes a shell script to help you perform these steps.</p>
 <p><strong>Note:</strong> This procedure is also documented in the Apache Cordova Documentation, <a href="http://docs.phonegap.com/en/2.0.0/guide_getting-started_android_index.md.html#Getting%20Started%20with%20Android">Getting Started with Android</a>.</p>
 
@@ -185,12 +210,12 @@
 <li><p>Open a shell or command prompt on the location of the <span class="code_inline">android.sh</span> or <span class="code_inline">android.bat</span> file and enter the following command (this is a Mac example):</p>
     <p><span class="code_inline">./android.sh -c <em>CORDOVA_HOME</em>/lib/android -k <em>GATEWAY_HOME</em> -o <em>PROJECT_DIRECTORY</em></span></p>
     <p>For example, on a Mac:</p>
-    <p><span class="code_inline">./android.sh -c /Users/johndoe/Desktop/phonegap-phonegap-2dbbdab/lib/android 
-    -k /Users/johndoe/Desktop/Kaazing Gateway 
+    <p><span class="code_inline">./android.sh -c /Users/johndoe/Desktop/phonegap-phonegap-2dbbdab/lib/android
+    -k /Users/johndoe/Desktop/Kaazing Gateway
     -o /Users/johndoe/Desktop/workspace/JMSdemo</span></p>
     <p>On Windows:</p>
-    <p><span class="code_inline">android.bat -c C:\Users\Administrator\Desktop\phonegap-phonegap-2dbbdab\lib\android 
-        -k C:\Users\Administrator\Desktop\JMS\<em>version</em>\Kaazing Gateway 
+    <p><span class="code_inline">android.bat -c C:\Users\Administrator\Desktop\phonegap-phonegap-2dbbdab\lib\android
+        -k C:\Users\Administrator\Desktop\JMS\<em>version</em>\Kaazing Gateway
         -o C:\Users\Administrator\workspace\JMSdemo</span></p>
     <p>The script copies the PhoneGap (Cordova) Android library, the Kaazing Gateway JavaScript JMS libraries, and the JavaScript JMS demo web files to the Eclipse project’s workspace and adds them to the necessary project subfolders.</p>
     </li>
@@ -225,15 +250,15 @@ public class JMSdemoActivity extends DroidGap {
         return true;
     }
 }
-</pre>    
+</pre>
     </li>
 <li><p>Double-click <strong>AndroidManifest.xml</strong> in the Eclipse project explorer to view the XML contents (in Windows you might have to also click the <strong>AndroidManifest.xml</strong> tab to view the XML contents).</p>
         <figure style="margin-left:0px;">
             <img src="../images/android-manifest.png">
-        <figcaption><strong>Figure: AndroidManifest.xml file's XML Contents</strong></figcaption>    
-        </figure> 
-    <p>You are now going to paste XML into the file to add permissions and support device orientation changes. </p> 
-    <p><strong>Note:</strong> You are adding a list of permissions to your application. You should remove permissions you are not using before submitting your application to Google Play.</p>    
+        <figcaption><strong>Figure: AndroidManifest.xml file's XML Contents</strong></figcaption>
+        </figure><br>
+    <p>You are now going to paste XML into the file to add permissions and support device orientation changes. </p>
+    <p><strong>Note:</strong> You are adding a list of permissions to your application. You should remove permissions you are not using before submitting your application to Google Play.</p>
     </li>
 <li><p>Paste the following highlighted contents of <strong>AndroidManifest.xml</strong> into your <strong>AndroidManifest.xml</strong>:</p>
 <pre class="brush: xml; toolbar: false; highlight:[7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,36];">
@@ -245,11 +270,11 @@ public class JMSdemoActivity extends DroidGap {
     &lt;uses-sdk
         android:minSdkVersion=&quot;8&quot;
         android:targetSdkVersion=&quot;15&quot; /&gt;
-    &lt;supports-screens 
-    android:largeScreens=&quot;true&quot; 
-    android:normalScreens=&quot;true&quot; 
-    android:smallScreens=&quot;true&quot; 
-    android:resizeable=&quot;true&quot; 
+    &lt;supports-screens
+    android:largeScreens=&quot;true&quot;
+    android:normalScreens=&quot;true&quot;
+    android:smallScreens=&quot;true&quot;
+    android:resizeable=&quot;true&quot;
     android:anyDensity=&quot;true&quot; /&gt;
     &lt;uses-permission android:name=&quot;android.permission.VIBRATE&quot; /&gt;
     &lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot; /&gt;
@@ -263,9 +288,9 @@ public class JMSdemoActivity extends DroidGap {
     &lt;uses-permission android:name=&quot;android.permission.READ_CONTACTS&quot; /&gt;
     &lt;uses-permission android:name=&quot;android.permission.WRITE_CONTACTS&quot; /&gt;
     &lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt; 
+    &lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;
     &lt;uses-permission android:name=&quot;android.permission.GET_ACCOUNTS&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.BROADCAST_STICKY&quot; /&gt;    
+    &lt;uses-permission android:name=&quot;android.permission.BROADCAST_STICKY&quot; /&gt;
     &lt;application
         android:icon=&quot;@drawable/ic_launcher&quot;
         android:label=&quot;@string/app_name&quot;
@@ -338,7 +363,7 @@ public class JMSdemoActivity extends DroidGap {
       &lt;allow-origin&gt;*&lt;/allow-origin&gt;
     &lt;/cross-site-constraint&gt;
 &lt;/service&gt;
-</pre>    
+</pre>
     </li>
 <li>Save the <span class="code_inline">gateway-config.xml</span> file.</li>
 <li><p>Invoke the <span class="code_inline">gateway.start</span> command by navigating to the <span class="code_inline"><em>GATEWAY_HOME</em>/bin</span> directory where you installed the Gateway and then enter the following to run the <span class="code_inline">gateway.start</span> script:</p>
@@ -362,11 +387,11 @@ public class JMSdemoActivity extends DroidGap {
     <p>The Android emulator launches.</p></li>
 <li><p>Unlock Android.</p>
     <p>The hybrid Android app is displayed.</p></li>
-<li><p>Click in the <strong>Location</strong> field, and enter the jms service URI (<span class="code_inline">ws://10.0.2.2:8001/jms</span>), and click <strong>Connect</strong>.</p> 
+<li><p>Click in the <strong>Location</strong> field, and enter the jms service URI (<span class="code_inline">ws://10.0.2.2:8001/jms</span>), and click <strong>Connect</strong>.</p>
     <p>The <strong>Log messages</strong> field reports a successful connection.</p>
         <figure>
-        <img src="../images/android-connected.png">    
-        <figcaption><strong>Figure: Hybrid Android app Connecting To Apache ActiveMQ via the Gateway</strong></figcaption>    
+        <img src="../images/android-connected.png">
+        <figcaption><strong>Figure: Hybrid Android app Connecting To Apache ActiveMQ via the Gateway</strong></figcaption>
         </figure>
 </li>
 <li>To test the hybrid Android app on an Android device, ensure USB debugging is enabled on your Android device (<strong>Settings</strong> > <strong>Applications</strong> > <strong>Development</strong>), and plug the device into your system.</li>

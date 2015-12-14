@@ -22,6 +22,32 @@
   
 
 
+<!-- +++++++++++++++Syntax Highlighter Calls++++++++++++++++ -->
+
+<!-- Include required SyntaxHighlighter JS files -->
+<script type="text/javascript" src="../../resources/xregexp.js"></script>
+<script type="text/javascript" src="../../resources/shCore.js"></script>
+
+
+<!--Include SyntaxHighlighter brushes. To test, using the JS brush -->
+<script type="text/javascript" src="../../resources/shBrushJava.js"></script>
+<script type="text/javascript" src="../../resources/shBrushAS3.js"></script>
+<script type="text/javascript" src="../../resources/shBrushVb.js"></script>
+<script type="text/javascript" src="../../resources/shBrushJScript.js"></script>
+<script type="text/javascript" src="../../resources/shBrushCss.js"></script>
+<script type="text/javascript" src="../../resources/shBrushPython.js"></script>
+<script type="text/javascript" src="../../resources/shBrushXml.js"></script>
+
+<!-- Include SyntaxHighlighter core style and Kaazing theme -->
+<link href="../../resources/shCore.css" rel="stylesheet" type="text/css" />
+<link href="../../resources/shThemeKaazing.css" rel="stylesheet" type="text/css" />
+
+<!-- Finally, call SyntaxHighlighter -->
+<script type="text/javascript">
+   SyntaxHighlighter.all()
+</script>
+
+<!-- +++++++++++++++END OF Syntax Highlighter Calls++++++++++++++++ -->
 </head>
 
 <body>
@@ -92,7 +118,7 @@
 <p>This walkthrough uses the out of the box JavaScript JMS demo that is included with the Gateway as the example app, but the steps outlined in this walkthrough are the same for other JavaScript JMS client applications built with the Gateway.</p>
 
 
-<p><span class="note"><strong>Note</strong>: For this walkthrough, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61613. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
+<p><span class="note"><strong>Note</strong>: For this walkthrough, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61613. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
 
 
 <h2><a name="begin"></a>Before You Begin</h2>
