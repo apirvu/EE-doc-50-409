@@ -157,7 +157,7 @@
 
 <p>The following example shows <code>ssl.encryption</code> disabled, sample network protocol bindings, <code>ws.maximum.message.size</code> set to <code>256k</code>, and <code>http.keepalive.timeout</code> set to <code>90</code> seconds, just above the default <code>mime-mapping</code> entries. Note that wss and https can both be bound to the same port (8055) because they are compatible protocols. However, if you try to bind incompatible protocols to the same port, you will receive a port conflict error when the Gateway starts up. For instance, you cannot bind ws and https to the same port.</p>
 
-<pre><code class="language-xml">&lt;service-defaults&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service-defaults&gt;
   &lt;accept-options&gt;
     &lt;ssl.encryption&gt;disabled&lt;/ssl.encryption&gt;
     &lt;ws.bind&gt;8050&lt;/ws.bind&gt;
@@ -182,7 +182,7 @@
 
 <p>The following example shows two entries for the same file extension; in this case, when the Gateway receives a request for a file with an <code>HTML</code> extension, the Gateway will respond with a Content-Type header value of <code>text/html</code> (not <code>image/png</code>). This example indicates that for files with names ending in ‘.png’, the header ‘Content-Type: image/png’ should be returned by the Gateway, and ‘Content-Type: text/html’ should be returned for .html files. You can specify mappings in the both the <code>service-defaults</code> block and in any <code>service</code> blocks.  If a mapping for a given extension is specified in both the <code>service-defaults</code> block and a <code>service</code> block, the <code>service</code>-level mapping will be used when providing files from that service.</p>
 
-<pre><code class="language-xml">  &lt;mime-mapping&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">  &lt;mime-mapping&gt;
     &lt;extension&gt;html&lt;/extension&gt;
     &lt;mime-type&gt;image/png&lt;/mime-type&gt;
   &lt;/mime-mapping&gt;
@@ -209,7 +209,7 @@
 
     <p>The default Gateway <code>mime-mapping</code> entries are:</p>
 
-    <pre><code class="language-xml">&lt;service-defaults&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service-defaults&gt;
   &lt;mime-mapping&gt;
     &lt;extension&gt;html&lt;/extension&gt;
     &lt;mime-type&gt;text/html&lt;/mime-type&gt;

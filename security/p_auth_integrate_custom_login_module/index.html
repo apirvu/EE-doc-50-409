@@ -120,7 +120,7 @@
   <li>
     <p>In the Gateway configuration (for example, <code>GATEWAY_HOME/conf/gateway-config.xml</code>), add the custom login module and set the <code>type</code> to point to <code>class:the-fully-qualified-class-name</code>. For example, if you are using the sample custom login module provided with the Gateway, the fully qualified class name is <code>org.kaazing.demo.loginmodules.CustomLoginModule</code>. The following is the <code>login-module</code> entry for this sample:</p>
 
-    <pre><code class="language-xml">&lt;login-module&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;login-module&gt;
   &lt;type&gt;class:org.kaazing.demo.loginmodules.CustomLoginModule&lt;/type&gt;
   &lt;success&gt;required&lt;/success&gt;
 &lt;/login-module&gt;
@@ -129,7 +129,7 @@
   <li>
     <p>Enable configuration for the services that are required to use this custom login module to authenticate with the back-end server. You can do this using the <code>authorization-constraint</code> element. The following is an example of the echo service configured to use this custom login module:</p>
 
-    <pre><code class="language-xml">&lt;service&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://localhost:8001/echo&lt;/accept&gt;
   &lt;accept&gt;wss://localhost:9001/echo&lt;/accept&gt;
   &lt;type&gt;echo&lt;/type&gt;

@@ -232,7 +232,7 @@ producer.send(message);</pre>
   </li>
   <li><p>Modify challenge handlers. In Kaazing Gateway 4.x, the <code>ChallengeHandlers</code> class from 3.3-3.5 was replaced with by the <code>ChallengeHandler</code> modifier of the <code>WebSocketFactory</code> class. The <code>ChallengeHandler</code> modifier is used during authentication for connections and subsequent revalidation that occurs at regular intervals.</p>
 
-    <p>Kaazing Gateway 3.3-3.5:</p>
+<p>Kaazing Gateway 3.3-3.5:</p>
 
 <pre class="auto-links: false; brush: java; toolbar: false;">
 import com.kaazing.gateway.client.security.BasicChallengeHandler;
@@ -240,31 +240,31 @@ import com.kaazing.gateway.client.security.ChallengeHandlers;
 import com.kaazing.gateway.client.security.LoginHandler;
 ...
 private void initLoginHandler(String location) {
-        final LoginHandler loginHandler = new LoginHandler() {
-            private String username;
-            private char[] password;
-            @Override
-            public PasswordAuthentication getCredentials() {
-                try {
-                    LoginDialog dialog = new LoginDialog(Frame.getFrames()[0]);
-                    if (dialog.isCanceled()) {
-                        return null;
-                    }
-                    username = dialog.getUsername();
-                    password = dialog.getPassword();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return new PasswordAuthentication(username, password);
-            }
-        };
-        BasicChallengeHandler challengeHandler = ChallengeHandlers.load(BasicChallengeHandler.class);
-        challengeHandler.setLoginHandler(loginHandler);
-        ChallengeHandlers.setDefault(challengeHandler);
+  final LoginHandler loginHandler = new LoginHandler() {
+    private String username;
+    private char[] password;
+    @Override
+    public PasswordAuthentication getCredentials() {
+      try {
+        LoginDialog dialog = new LoginDialog(Frame.getFrames()[0]);
+        if (dialog.isCanceled()) {
+          return null;
+        }
+        username = dialog.getUsername();
+        password = dialog.getPassword();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      return new PasswordAuthentication(username, password);
     }
+  };
+  BasicChallengeHandler challengeHandler = ChallengeHandlers.load(BasicChallengeHandler.class);
+  challengeHandler.setLoginHandler(loginHandler);
+  ChallengeHandlers.setDefault(challengeHandler);
+}
 </pre>
 
-    <p>Kaazing Gateway 4.x:</p>
+<p>Kaazing Gateway 4.x:</p>
 
 <pre class="auto-links: false; brush: java; toolbar: false;">
 import com.kaazing.net.auth.BasicChallengeHandler;
@@ -272,36 +272,36 @@ import com.kaazing.net.auth.ChallengeHandler;
 import com.kaazing.net.auth.LoginHandler;
 ...
 private ChallengeHandler createChallengeHandler(String location) {
-        final LoginHandler loginHandler = new LoginHandler() {
-            private String username;
-            private char[] password;
-            @Override
-            public PasswordAuthentication getCredentials() {
-                try {
-                    LoginDialog dialog = new LoginDialog(Frame.getFrames()[0]);
-                    if (dialog.isCanceled()) {
-                        return null;
-                    }
-                    username = dialog.getUsername();
-                    password = dialog.getPassword();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return new PasswordAuthentication(username, password);
-            }
-        };
-        BasicChallengeHandler challengeHandler = BasicChallengeHandler.create();
-        challengeHandler.setLoginHandler(loginHandler);
-        return challengeHandler;
+  final LoginHandler loginHandler = new LoginHandler() {
+    private String username;
+    private char[] password;
+    @Override
+    public PasswordAuthentication getCredentials() {
+      try {
+        LoginDialog dialog = new LoginDialog(Frame.getFrames()[0]);
+        if (dialog.isCanceled()) {
+          return null;
+        }
+        username = dialog.getUsername();
+        password = dialog.getPassword();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      return new PasswordAuthentication(username, password);
     }
-    ...
-    // initialize the login handler for the target location
-    ChallengeHandler challengeHandler = createChallengeHandler(url);
-    stompConnectionFactory.setGatewayLocation(new URI(url));
-    WebSocketFactory webSocketFactory = stompConnectionFactory.getWebSocketFactory();
-    webSocketFactory.setDefaultChallengeHandler(challengeHandler);
-    webSocketFactory.setDefaultRedirectPolicy(HttpRedirectPolicy.SAME_DOMAIN);
-    ...
+  };
+  BasicChallengeHandler challengeHandler = BasicChallengeHandler.create();
+  challengeHandler.setLoginHandler(loginHandler);
+  return challengeHandler;
+}
+...
+// initialize the login handler for the target location
+ChallengeHandler challengeHandler = createChallengeHandler(url);
+stompConnectionFactory.setGatewayLocation(new URI(url));
+WebSocketFactory webSocketFactory = stompConnectionFactory.getWebSocketFactory();
+webSocketFactory.setDefaultChallengeHandler(challengeHandler);
+webSocketFactory.setDefaultRedirectPolicy(HttpRedirectPolicy.SAME_DOMAIN);
+...
 </pre>
   </li>
   <li>Review the <a href="../apidoc/client/java/jms/index.html">Java JMS Client API</a>.</li>
@@ -398,109 +398,109 @@ import com.kaazing.net.ws.WebSocketFactory;
 import com.kaazing.gateway.jms.client.JmsConnectionFactory;
 
 public class JmsDemo {
-    public static void main(String[] args)
-    throws NamingException, URISyntaxException, JMSException {
-        
-        // Add the initial context using the InitialContext constructor.
-        Properties props = new Properties();
-        props.put(InitialContext.INITIAL_CONTEXT_FACTORY,
-        "com.kaazing.gateway.jms.client.JmsInitialContextFactory");
-        InitialContext ctx = new InitialContext(props);
-        
-        // Configure the JMS Client implementation of ConnectionFactory.
-        ConnectionFactory connectionFactory = (ConnectionFactory) ctx.lookup("ConnectionFactory");
-        
-        /* 
-        Use JmsConnectionFactory to create a connection 
-        with a JMS provider via a WebSocket connection.
-        */
-        if ( connectionFactory instanceof JmsConnectionFactory ) {
-            ((JmsConnectionFactory) connectionFactory)
-            .setGatewayLocation(new URI("ws://localhost:8000/jms"));
-        }
-        
-        /*
-        Use the createConnection method to create a JMS Connection via WebSocket.
-        The username and password specified are used as credentials to authenticate
-        with the Gateway.
-        In this example we use a password but the password does not have 
-        to be a text password. JmsConnectionFactory() can use a token of any kind.
-        */
-        final Connection connection = connectionFactory.createConnection(null, null);
-        connection.setExceptionListener(new ExceptionListener() {
-            @Override
-            public void onException(JMSException arg0) { arg0.printStackTrace(); }
-        });
-        
-        /*
-        Use the createSession method to create a session object. 
-        The first parameter ("false") indicates that the session is not transacted.
-        Session.AUTO_ACKNOWLEDGE determines that the session automatically acknowledges
-        a client's receipt of a message.
-        */
-        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        
-        // Use the lookup method of InitialContext to return the name of the topic object.
-        Topic topic = (Topic) ctx.lookup("/topic/destination");
-        
-        // Create a MessageConsumer for the specified destination.
-        MessageConsumer consumer = session.createConsumer(topic);
-        // Set the session's distinguished message listener. 
-        consumer.setMessageListener(new MessageListener() {
-            @Override
-            /*
-            Use the onMessage method of the MessageListener interface
-            to receive asynchronously delivered messages.
-            */
-            public void onMessage(Message message) {
-                try {
-                    String msg = null;
-                    // Check to see if the message contains a stream of uninterpreted bytes. 
-                    if ( message instanceof BytesMessage ) {
-                        BytesMessage bytesMessage = (BytesMessage) message;
-                        /*
-                        Construct a string builder to handle the conversion
-                        from bytes to strings.
-                        */
-                        StringBuilder builder = new StringBuilder();
-                        // Loop through the message and convert datum to a string.
-                        for (int i = 0; i &lt; (int) bytesMessage.getBodyLength(); i++) {
-                            builder.append((char) bytesMessage.readByte());
-                        }
-                        msg = builder.toString().trim();
-                    }
-                    else {
-                        // Get the text of the message.
-                        msg = ((TextMessage) message).getText();
-                    }
-                    // Print out the message content.
-                    System.out.println("The received message: " + msg);
-                }
-                catch (Exception e) { e.printStackTrace();
-                }
-            }
-        });
-        // Start (or restart) a connection's delivery of incoming messages.
-        connection.start();
-        
-        // Wait 2 seconds before sending a message.....
-        try { Thread.sleep(2 * 1000); }
-        catch (InterruptedException e) { e.printStackTrace(); }
-        
-        /*
-        Use a MessageProducer object to send messages to a destination.
-        Use the createProducer method to set the destination for messages.
-        */
-        MessageProducer producer = session.createProducer(topic);
-        
-        /*
-        Create a TextMessage object to send a message containing a String object,
-        and send the message using the send method using the MessageProducer's 
-        default delivery mode, priority, and time to live.
-        */        
-        TextMessage txtMsg = session.createTextMessage("Hello, message");
-        producer.send(txtMsg);
+  public static void main(String[] args)
+  throws NamingException, URISyntaxException, JMSException {
+      
+    // Add the initial context using the InitialContext constructor.
+    Properties props = new Properties();
+    props.put(InitialContext.INITIAL_CONTEXT_FACTORY,
+    "com.kaazing.gateway.jms.client.JmsInitialContextFactory");
+    InitialContext ctx = new InitialContext(props);
+      
+    // Configure the JMS Client implementation of ConnectionFactory.
+    ConnectionFactory connectionFactory = (ConnectionFactory) ctx.lookup("ConnectionFactory");
+      
+    /* 
+    Use JmsConnectionFactory to create a connection 
+    with a JMS provider via a WebSocket connection.
+    */
+    if ( connectionFactory instanceof JmsConnectionFactory ) {
+      ((JmsConnectionFactory) connectionFactory)
+      .setGatewayLocation(new URI("ws://localhost:8000/jms"));
     }
+      
+    /*
+    Use the createConnection method to create a JMS Connection via WebSocket.
+    The username and password specified are used as credentials to authenticate
+    with the Gateway.
+    In this example we use a password but the password does not have 
+    to be a text password. JmsConnectionFactory() can use a token of any kind.
+    */
+    final Connection connection = connectionFactory.createConnection(null, null);
+    connection.setExceptionListener(new ExceptionListener() {
+      @Override
+      public void onException(JMSException arg0) { arg0.printStackTrace(); }
+    });
+      
+    /*
+    Use the createSession method to create a session object. 
+    The first parameter ("false") indicates that the session is not transacted.
+    Session.AUTO_ACKNOWLEDGE determines that the session automatically acknowledges
+    a client's receipt of a message.
+    */
+    Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+      
+    // Use the lookup method of InitialContext to return the name of the topic object.
+    Topic topic = (Topic) ctx.lookup("/topic/destination");
+      
+    // Create a MessageConsumer for the specified destination.
+    MessageConsumer consumer = session.createConsumer(topic);
+    // Set the session's distinguished message listener. 
+    consumer.setMessageListener(new MessageListener() {
+      @Override
+      /*
+      Use the onMessage method of the MessageListener interface
+      to receive asynchronously delivered messages.
+      */
+      public void onMessage(Message message) {
+        try {
+          String msg = null;
+          // Check to see if the message contains a stream of uninterpreted bytes. 
+          if ( message instanceof BytesMessage ) {
+            BytesMessage bytesMessage = (BytesMessage) message;
+            /*
+            Construct a string builder to handle the conversion
+            from bytes to strings.
+            */
+            StringBuilder builder = new StringBuilder();
+            // Loop through the message and convert datum to a string.
+            for (int i = 0; i &lt; (int) bytesMessage.getBodyLength(); i++) {
+              builder.append((char) bytesMessage.readByte());
+            }
+            msg = builder.toString().trim();
+          }
+          else {
+            // Get the text of the message.
+            msg = ((TextMessage) message).getText();
+          }
+          // Print out the message content.
+          System.out.println("The received message: " + msg);
+        }
+        catch (Exception e) { e.printStackTrace();
+        }
+      }
+    });
+    // Start (or restart) a connection's delivery of incoming messages.
+    connection.start();
+      
+    // Wait 2 seconds before sending a message.....
+    try { Thread.sleep(2 * 1000); }
+    catch (InterruptedException e) { e.printStackTrace(); }
+      
+    /*
+    Use a MessageProducer object to send messages to a destination.
+    Use the createProducer method to set the destination for messages.
+    */
+    MessageProducer producer = session.createProducer(topic);
+      
+    /*
+    Create a TextMessage object to send a message containing a String object,
+    and send the message using the send method using the MessageProducer's 
+    default delivery mode, priority, and time to live.
+    */        
+    TextMessage txtMsg = session.createTextMessage("Hello, message");
+    producer.send(txtMsg);
+  }
 }
 </pre>
 

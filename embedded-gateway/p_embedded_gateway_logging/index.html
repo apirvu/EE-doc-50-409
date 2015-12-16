@@ -141,18 +141,19 @@
 
 <p>Log4j settings are configured using an XML file named log4j-config.xml and stored by default in the directory <code>GATEWAY_HOME/conf/</code>. You can configure the embedded Gateway to use a different directory and file by modifying the fully qualified path to a log4J configuration file. To configure a different log4j file for the embedded Gateway, use the LOG4J_CONFIG_PROPERTY property as follows:</p>
 
-<pre><code class="language-java">Properties props = new Properties();
+<pre class="auto-links: false; brush: java; toolbar: false;">
+Properties props = new Properties();
 
 props.setProperty("LOG4J_CONFIG_PROPERTY", "/home/kaazing/log4j.xml");
 
 /* Windows Example
- * props.setProperty("LOG4J_CONFIG_PROPERTY", "C:\kaazing\conf\log4j.xml");
- */
+* props.setProperty("LOG4J_CONFIG_PROPERTY", "C:\kaazing\conf\log4j.xml");
+*/
 
 Gateway gateway = GatewayFactory.createGateway();
 
 gateway.setProperties(props);
-</code></pre>
+</pre>
 
 <p><strong>Note:</strong> See <a href="http://logging.apache.org/log4j/">Apache log4j™</a> for more information about configuring log4j.</p>
 
@@ -166,14 +167,15 @@ gateway.setProperties(props);
   <li>
     <p>Set the OVERRIDE_LOGGING property to true. For example:</p>
 
-    <pre><code class="language-java">Properties props = new Properties();
+<pre class="auto-links: false; brush: java; toolbar: false;">
+Properties props = new Properties();
 
 props.setProperty("OVERRIDE_LOGGING", "true");
 
 Gateway gateway = GatewayFactory.createGateway();
 
 gateway.setProperties(props);
-</code></pre>
+</pre>
   </li>
   <li>
     <p>Replace the log4j SLF4J bindings on your classpath with the new SLF4J framework. For example, to switch from log4j to java.util.logging, replace slf4j-log4j12-1.5.2.jar (located in <code>GATEWAY_HOME/lib/</code>) with slf4j-jdk14-1.6.4.jar.</p>

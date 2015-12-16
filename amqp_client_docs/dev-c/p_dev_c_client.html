@@ -108,14 +108,14 @@
 <h2>Components and Tools</h2>
 <p>Before you get started, review the components and tools used to build the AMQP C client in this procedure. The AMQP broker used in this procedure can be switched with another broker that supports AMQP 0-9-1.</p>
 
-<table border="0">
+<table>
   <tr>
-    <th scope="col">Component or Tool</th>
+    <th scope="col" width="200px">Component or Tool</th>
     <th scope="col">Description</th>
     <th scope="col">Location</th>
   </tr>
   <tr>
-    <td>Kaazing Gateway  - AMQP Edition</td>
+    <td>Kaazing Gateway - AMQP Edition</td>
     <td>For a detailed description of the Kaazing Gateway  - AMQP Edition, see <a href="http://kaazing.com/products/editions/kaazing-websocket-gateway-amqp">http://kaazing.com/products/editions/kaazing-websocket-gateway-amqp</a>.</td>
     <td><a href="http://developer.kaazing.com/downloads/amqp-edition-download/">http://developer.kaazing.com/downloads/amqp-edition-download/</a></td>
   </tr>
@@ -667,41 +667,41 @@ int main(int argc, char const *const *argv)
 #include &quot;utils.h&quot;
 
 void* consume_messages(void* amqp_connection) {
-        amqp_connection_state_t conn = (amqp_connection_state_t)amqp_connection;
-        while (1) {
-                amqp_rpc_reply_t res;
-                amqp_envelope_t envelope;
+  amqp_connection_state_t conn = (amqp_connection_state_t)amqp_connection;
+  while (1) {
+    amqp_rpc_reply_t res;
+    amqp_envelope_t envelope;
 
-                amqp_maybe_release_buffers(conn);
+    amqp_maybe_release_buffers(conn);
 
-                /* Wait for and consume a message
-                 * The function waits for a basic.deliver method on any channel, upon receipt of
-                 * basic.deliver it reads that message, and returns.
-                 */
-                res = amqp_consume_message(conn, &amp;envelope, NULL, 0);
+    /* Wait for and consume a message
+    * The function waits for a basic.deliver method on any channel, upon receipt of
+    * basic.deliver it reads that message, and returns.
+    */
+    res = amqp_consume_message(conn, &amp;envelope, NULL, 0);
 
-                if (AMQP_RESPONSE_NORMAL != res.reply_type) {
-                        break;
-                }
+    if (AMQP_RESPONSE_NORMAL != res.reply_type) {
+      break;
+    }
 
-                printf(&quot;Delivery %u, exchange %.*s routingkey %.*s\n&quot;,
-                                (unsigned) envelope.delivery_tag, (int) envelope.exchange.len,
-                                (char *) envelope.exchange.bytes,
-                                (int) envelope.routing_key.len,
-                                (char *) envelope.routing_key.bytes);
+    printf(&quot;Delivery %u, exchange %.*s routingkey %.*s\n&quot;,
+    (unsigned) envelope.delivery_tag, (int) envelope.exchange.len,
+    (char *) envelope.exchange.bytes,
+    (int) envelope.routing_key.len,
+    (char *) envelope.routing_key.bytes);
 
-                if (envelope.message.properties._flags &amp; AMQP_BASIC_CONTENT_TYPE_FLAG) {
-                        printf(&quot;Content-type: %.*s\n&quot;,
-                                        (int) envelope.message.properties.content_type.len,
-                                        (char *) envelope.message.properties.content_type.bytes);
-                }
+    if (envelope.message.properties._flags &amp; AMQP_BASIC_CONTENT_TYPE_FLAG) {
+      printf(&quot;Content-type: %.*s\n&quot;,
+      (int) envelope.message.properties.content_type.len,
+      (char *) envelope.message.properties.content_type.bytes);
+    }
 
-                printf(&quot;Message: %.*s\n&quot;, (int) envelope.message.body.len, (char *) envelope.message.body.bytes);
+    printf(&quot;Message: %.*s\n&quot;, (int) envelope.message.body.len, (char *) envelope.message.body.bytes);
 
-                amqp_destroy_envelope(&amp;envelope);
-        }
+    amqp_destroy_envelope(&amp;envelope);
+  }
 
-        return 0;
+  return 0;
 }
 
 

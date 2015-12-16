@@ -231,7 +231,7 @@
       <li>
         <p>Add the following entries to the hosts file:</p>
 
-        <pre><code class="language-xml">172.19.19.4   example.com
+        <pre class="auto-links: false; brush: xml; toolbar: false;">172.19.19.4   example.com
 172.19.19.5   example.com
 
 172.19.19.4   member1.example.com
@@ -261,14 +261,14 @@
 
         <p>Your <code>ifconfig -a</code> output should now contain entries for each new subinterface:</p>
 
-        <p><code>
-eth0 Link encap:Ethernet HWaddr 5c:26:0a:14:ef:49
- ...
- eth0:1 Link encap:Ethernet HWaddr 5c:26:0a:14:ef:49
- inet addr:172.19.19.4 Bcast:172.19.255.255 Mask:255.255.0.0
- ...
- eth0:2 Link encap:Ethernet HWaddr 5c:26:0a:14:ef:49
- inet addr:172.19.19.5 Bcast:172.19.255.255 Mask:255.255.0.0
+<p><code>
+eth0 Link encap:Ethernet HWaddr 5c:26:0a:14:ef:49<br>
+ ...<br>
+ eth0:1 Link encap:Ethernet HWaddr 5c:26:0a:14:ef:49<br>
+ inet addr:172.19.19.4 Bcast:172.19.255.255 Mask:255.255.0.0<br>
+ ...<br>
+ eth0:2 Link encap:Ethernet HWaddr 5c:26:0a:14:ef:49<br>
+ inet addr:172.19.19.5 Bcast:172.19.255.255 Mask:255.255.0.0<br>
  ...
 </code></p>
 
@@ -297,14 +297,14 @@ eth0 Link encap:Ethernet HWaddr 5c:26:0a:14:ef:49
 
         <p>Your <code>ifconfig -a</code> output should now contain entries for each new subinterface:</p>
 
-        <p><code>
-en1: flags=8863&lt;up,broadcast,smart,running,simplex,multicast&gt; mtu 1500
- ether 68:a8:6d:1f:27:94
- inet6 fe80::6aa8:6dff:fe1f:2794%en1 prefixlen 64 scopeid 0x6
- inet 192.168.0.102 netmask 0xffffff00 broadcast 192.168.0.255
- inet 172.19.19.4 netmask 0xffff0000 broadcast 172.19.255.255
- inet 172.19.19.5 netmask 0xffff0000 broadcast 172.19.255.255
- media: autoselect
+<p><code>
+en1: flags=8863&lt;up,broadcast,smart,running,simplex,multicast&gt; mtu 1500<br>
+ ether 68:a8:6d:1f:27:94<br>
+ inet6 fe80::6aa8:6dff:fe1f:2794%en1 prefixlen 64 scopeid 0x6<br>
+ inet 192.168.0.102 netmask 0xffffff00 broadcast 192.168.0.255<br>
+ inet 172.19.19.4 netmask 0xffff0000 broadcast 172.19.255.255<br>
+ inet 172.19.19.5 netmask 0xffff0000 broadcast 172.19.255.255<br>
+ media: autoselect<br>
  status: active
 </code></p>
       </li>
@@ -317,24 +317,24 @@ en1: flags=8863&lt;up,broadcast,smart,running,simplex,multicast&gt; mtu 1500
 
         <p>Your <code>ipconfig /all</code> output should now contain entries for each new subinterface:</p>
 
-        <p><code>
-Ethernet adapter Local Area Connection:
- Connection-specific DNS Suffix . :
- Description . . . . . . . . . . . : Intel(R) PRO/1000 MT Network Connection
- Physical Address. . . . . . . . . : 00-0C-29-5F-27-49
- DHCP Enabled. . . . . . . . . . . : No
- Autoconfiguration Enabled . . . . : Yes
- Link-local IPv6 Address . . . . . : fe80::a848:ad83:8d6e:a393%11(Preferred)
- IPv4 Address. . . . . . . . . . . : 172.16.120.128(Preferred)
- Subnet Mask . . . . . . . . . . . : 255.255.0.0
- IPv4 Address. . . . . . . . . . . : 172.19.19.4(Preferred)
- Subnet Mask . . . . . . . . . . . : 255.255.0.0
- IPv4 Address. . . . . . . . . . . : 172.19.19.5(Preferred)
- Subnet Mask . . . . . . . . . . . : 255.255.0.0
- Default Gateway . . . . . . . . . : 172.16.120.2
- DHCPv6 IAID . . . . . . . . . . . : 234884137
- DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-17-B1-FC-61-00-0C-29-5F-27-49
- DNS Servers . . . . . . . . . . . : 172.16.120.2
+<p><code>
+Ethernet adapter Local Area Connection:<br>
+ Connection-specific DNS Suffix . :<br>
+ Description . . . . . . . . . . . : Intel(R) PRO/1000 MT Network Connection<br>
+ Physical Address. . . . . . . . . : 00-0C-29-5F-27-49<br>
+ DHCP Enabled. . . . . . . . . . . : No<br>
+ Autoconfiguration Enabled . . . . : Yes<br>
+ Link-local IPv6 Address . . . . . : fe80::a848:ad83:8d6e:a393%11(Preferred)<br>
+ IPv4 Address. . . . . . . . . . . : 172.16.120.128(Preferred)<br>
+ Subnet Mask . . . . . . . . . . . : 255.255.0.0<br>
+ IPv4 Address. . . . . . . . . . . : 172.19.19.4(Preferred)<br>
+ Subnet Mask . . . . . . . . . . . : 255.255.0.0<br>
+ IPv4 Address. . . . . . . . . . . : 172.19.19.5(Preferred)<br>
+ Subnet Mask . . . . . . . . . . . : 255.255.0.0<br>
+ Default Gateway . . . . . . . . . : 172.16.120.2<br>
+ DHCPv6 IAID . . . . . . . . . . . : 234884137<br>
+ DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-17-B1-FC-61-00-0C-29-5F-27-49<br>
+ DNS Servers . . . . . . . . . . . : 172.16.120.2<br>
  NetBIOS over Tcpip. . . . . . . . : Enabled
 </code></p>
 

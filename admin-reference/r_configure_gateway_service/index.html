@@ -145,7 +145,7 @@
                   <li>virtual.host</li>
                 </ul>
               </li>
-              <li><a href="../../brokers/p_integrate_redis">redis</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" />git </li>
+              <li><a href="../../brokers/p_integrate_redis">redis</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /> </li>
               <li><a href="../r_conf_jms">jms</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
               <li><a href="../r_conf_jms">jms.proxy</a> <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></li>
               <li><a href="#httpproxy">http.proxy</a></li>
@@ -292,7 +292,7 @@
 
 <h4 id="example">Example</h4>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://balancer.example.com:8081/echo&lt;/accept&gt;
   .
   .
@@ -328,7 +328,7 @@
 
 <h4 id="example-1">Example</h4>
 
-<pre><code class="language-xml">&lt;connect&gt;tcp://192.0.2.11:5943&lt;/connect&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;connect&gt;tcp://192.0.2.11:5943&lt;/connect&gt;
 </code></pre>
 
 <h4 id="notes-1">Notes</h4>
@@ -363,7 +363,7 @@
 
 <p><strong>Balancer Service</strong></p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://balancer.example.com:8081/echo&lt;/accept&gt;
 
   &lt;type&gt;balancer&lt;/type&gt;
@@ -377,7 +377,7 @@
 
 <p><strong>Gateway Service Participating in Load Balancing</strong></p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://node1.example.com:8081/echo&lt;/accept&gt;
   &lt;balance&gt;ws://balancer.example.com:8081/echo&lt;/balance&gt;
 
@@ -475,7 +475,7 @@
 
 <p><strong>Balancer Service</strong></p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://balancer.example.com:8081/echo&lt;/accept&gt;
 
   &lt;type&gt;balancer&lt;/type&gt;
@@ -492,7 +492,7 @@
 
 <p><strong>Gateway Service Participating in Load Balancing</strong></p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://node1.example.com:8081/echo&lt;/accept&gt;
   &lt;balance&gt;ws://balancer.example.com:8081/echo&lt;/balance&gt;
 
@@ -537,7 +537,7 @@
   <li>The following example configures the <code>broadcast</code> service with the <code>accept</code> element coded inside the <code>properties</code> element. This configures the Gateway to accept connections initiated by the back-end service or message broker and broadcast messages that are sent along that connection to clients.</li>
 </ul>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;sse://localhost:8000/sse&lt;/accept&gt;
   &lt;accept&gt;sse+ssl://localhost:9000/sse&lt;/accept&gt;
 
@@ -561,7 +561,7 @@
   <li>The following example configures the <code>broadcast</code> service with a <code>connect</code> element that contains the URL of the back-end service or message broker (<code>news.example.com:50505</code>) to which the Gateway connects. If you configure the Gateway in this way, then the Gateway initiates the connection to the back-end service or message broker. When the service receives information, it broadcasts it to all the SSE channels accepted from clients on <code>www.example.com</code>.</li>
 </ul>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;sse://www.example.com:8000/sse&lt;/accept&gt;
   &lt;accept&gt;sse+ssl://www.example.com:9000/sse&lt;/accept&gt;
   &lt;connect&gt;tcp://news.example.com:50505/&lt;/connect&gt;
@@ -623,7 +623,7 @@
   <li>The following is an example of a <code>service</code> element of type <code>directory</code> that accepts connections on localhost by default:</li>
 </ul>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;http://localhost:8000/&lt;/accept&gt;
   &lt;accept&gt;https://localhost:9000/&lt;/accept&gt;
 
@@ -650,7 +650,7 @@
 
 <h4 id="example-4">Example</h4>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://localhost:8001/echo&lt;/accept&gt;
   &lt;accept&gt;wss://localhost:9001/echo&lt;/accept&gt;
 
@@ -679,7 +679,7 @@
 
 <h4 id="example-5">Example</h4>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://localhost:8000/kerberos5&lt;/accept&gt;
   &lt;connect&gt;tcp://kdc.example.com:88&lt;/connect&gt;
 
@@ -705,7 +705,7 @@
 
 <p>The following example is a snippet from the default Gateway configuration file showing the JMX Management section:</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;name&gt;JMX Management&lt;/name&gt;
   &lt;description&gt;JMX Management Service&lt;/description&gt;
 
@@ -742,7 +742,7 @@
 
 <p>The following example is a snippet from the default Gateway configuration file showing the SNMP Management section:</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;name&gt;SNMP Management&lt;/name&gt;
   &lt;description&gt;SNMP Management Service&lt;/description&gt;
   &lt;accept&gt;ws://${gateway.hostname}:${gateway.base.port}/snmp&lt;/accept&gt;
@@ -782,9 +782,11 @@
 <p><strong>Required?</strong> Optional</p>
 
 <p>The size of data the service buffers for one client connection before slowing incoming data. The value must be a positive integer with either no specified unit or appended with <em>kB</em> or <em>MB</em> (the unit is case insensitive) to indicate kilobytes or megabytes. If no unit is specified, the default unit is bytes. If you do not specify this property, its default value is <em>64kB</em>. For example:<br />
-- A value of <em>2048</em> sets the buffer to <strong>2048 bytes</strong>.<br />
-- A value of <em>128kB</em> sets the buffer to <strong>128 kilobytes</strong>.<br />
-- No instance of the <em>maximum.pending.bytes</em> property in the <em>gateway-config.xml</em> sets the buffer to <strong>64 kilobytes</strong>.</p>
+<ul>
+<li>A value of <em>2048</em> sets the buffer to <strong>2048 bytes</strong>.<br /></li>
+<li>A value of <em>128kB</em> sets the buffer to <strong>128 kilobytes</strong>.<br /></li>
+<li>No instance of the <em>maximum.pending.bytes</em> property in the <em>gateway-config.xml</em> sets the buffer to <strong>64 kilobytes</strong>.</li>
+</ul>
 
 <p>The Gateway uses this buffer when the speed of the data coming into the service is faster than the speed of the data being consumed by the receiving end, which is either the client or the back-end service or message broker. The buffer stores the data up to the limit you specify in this property per client connection, then slows the incoming data, until either the client or the back-end service or message broker (whichever is consuming the data) has consumed more than 50% of the outgoing data flow.</p>
 
@@ -794,9 +796,11 @@
 
 <p><strong>Required?</strong> Optional</p>
 
-<p>The maximum interval (in seconds) between attempts of the service to establish a connection to the back-end service or message broker specified by the <a href="#connect"><code>connect</code></a> element.<br />
-- If specified, the value must be a non-negative integer. You must enable this property to ensure the client can reconnect to another service that has a good connection to an available back-end service or message broker.<br />
-    - If unspecified or if the value is set to <code>0</code>, then the property is disabled but the Gateway will start and run successfully. However, when the property is not enabled, the load balancer does not detect when a service is disconnected from the back-end service or message broker or when the broker is unavailable.</p>
+<p>The maximum interval (in seconds) between attempts of the service to establish a connection to the back-end service or message broker specified by the <a href="#connect"><code>connect</code></a> element.</p>
+<ul>
+<li>If specified, the value must be a non-negative integer. You must enable this property to ensure the client can reconnect to another service that has a good connection to an available back-end service or message broker.<br /></li>
+<li>If unspecified or if the value is set to <code>0</code>, then the property is disabled but the Gateway will start and run successfully. However, when the property is not enabled, the load balancer does not detect when a service is disconnected from the back-end service or message broker or when the broker is unavailable.</li>
+</ul>
 
 <p>If the back-end service or message broker becomes unavailable or the Gateway cannot establish a connection to it, the Gateway triggers a recovery. The Gateway attempts to reestablish a connection to the back-end service or message broker. Initially, the interval between attempts is short, but grows until it reaches the specified value. From that point on, the Gateway attempts to reestablish a connection only at the interval specified.</p>
 
@@ -806,9 +810,11 @@
 
 <p><strong>Required?</strong> Optional</p>
 
-<p>Set this property in either of the following use cases:<br />
-- Set this property when configuring your proxy service, which is the most common use case for <code>prepared.connection.count</code>. In this case, setting <code>prepared.connection.count</code> sets the number of connections the Gateway creates (or <em>prepares</em>) to the back-end service or message broker specified by the <a href="#connect"><code>connect</code></a> element in addition to the client connections. When the Gateway starts, it creates the specified number of connections to the back-end service or message broker, thus creating a <em>prepared connection</em>. When an incoming client connection uses a prepared connection, the Gateway creates another connection to the back-end service or message broker, thus maintaining the specified number of prepared connections to the back-end service or message broker.<br />
-- Set this property when configuring Enterprise Shield™. See <a href="../../enterprise-shield/p_enterprise_shield_config">Configure Enterprise Shield™</a> for detailed configuration information. If you do not set this property, then the Gateway does not prepare connections to the back-end service or message broker.</p>
+<p>Set this property in either of the following use cases:</p>
+<ul>
+<li>Set this property when configuring your proxy service, which is the most common use case for <code>prepared.connection.count</code>. In this case, setting <code>prepared.connection.count</code> sets the number of connections the Gateway creates (or <em>prepares</em>) to the back-end service or message broker specified by the <a href="#connect"><code>connect</code></a> element in addition to the client connections. When the Gateway starts, it creates the specified number of connections to the back-end service or message broker, thus creating a <em>prepared connection</em>. When an incoming client connection uses a prepared connection, the Gateway creates another connection to the back-end service or message broker, thus maintaining the specified number of prepared connections to the back-end service or message broker.<br /></li>
+<li>Set this property when configuring Enterprise Shield™. See <a href="../../enterprise-shield/p_enterprise_shield_config">Configure Enterprise Shield™</a> for detailed configuration information. If you do not set this property, then the Gateway does not prepare connections to the back-end service or message broker.</li>
+</ul>
 
 <h4 id="section-3"><a name="virtualhost"></a><code>virtual.host</code></h4>
 
@@ -818,10 +824,13 @@
 
 <p>After the Gateway authenticates the client, the virtual host is injected into the AMQP protocol and messages can be exchanged. This ensures the target virtual host comes from a validated and trusted source such as the Gateway, rather than relying on what is set by the client, which can be manipulated.</p>
 
-<p>You may choose to configure a virtual host when you want to:<br />
-- Isolate exchanges, queues, and topics created under one virtual-host from those in the other virtual hosts residing in the same AMQP broker instance.<br />
-- Ensure each client can only see their data and not the data of other clients.<br />
-- Handle a configuration in which your AMQP broker is part of a multitenant application and you do not want clients from one tenant sharing data and exchanges with clients from another tenant.</p>
+<p>You may choose to configure a virtual host when you want to:</p>
+
+<ul>
+<li>Isolate exchanges, queues, and topics created under one virtual-host from those in the other virtual hosts residing in the same AMQP broker instance.</li>
+<li>Ensure each client can only see their data and not the data of other clients.</li>
+<li>Handle a configuration in which your AMQP broker is part of a multitenant application and you do not want clients from one tenant sharing data and exchanges with clients from another tenant.</li>
+</ul>
 
 <p>See the “Examples” section below this table for a code snippet using this property.</p>
 
@@ -835,7 +844,7 @@
   <li><code>prepared.connection.count</code> property, which tells the Gateway to prepare 10 connections to the back-end service or message broker specified by the <code>connect</code> element, then maintain 10 connections as clients consume each connection.</li>
 </ul>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://${gateway.hostname}:${gateway.base.port}/remoteService&lt;/accept&gt;
   &lt;accept&gt;wss://${gateway.hostname}:${gateway.base.port}/remoteService&lt;/accept&gt;
   &lt;connect&gt;tcp://internal.example.com:port-number&lt;/connect&gt;
@@ -861,7 +870,7 @@
   <li>The following example shows a service configuration section that is used to accept connections for the <code>proxy</code> service at the URL <code>ws://www.example.com</code> on port <code>80</code>. (The port is included for the sake of example. You can omit the default ports 80 or 443.).</li>
 </ul>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://www.example.com:80/service&lt;/accept&gt;
   &lt;connect&gt;tcp://internal.example.com:port-number&lt;/connect&gt;
 
@@ -874,7 +883,7 @@
   <li>The following example configures two <code>amqp.proxy</code> services, <code>app1</code> and <code>app2</code>, and each service connects to a virtual host, <code>vhost1</code> and <code>vhost2</code>. Clients connecting via the <code>app1</code> service can access only <code>vhost1</code>, and clients on the <code>app2</code> service can access only <code>vhost2</code>.</li>
 </ul>
 
-<pre><code class="language-xml">&lt;!-- This service connects only to the AMQP virtual host vhost1. --&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;!-- This service connects only to the AMQP virtual host vhost1. --&gt;
 &lt;service&gt;  
   &lt;accept&gt;ws://${gateway.hostname}:${gateway.port}/app1&lt;/accept&gt;
   &lt;connect&gt;pipe://vhost1&lt;/connect&gt;
@@ -959,7 +968,7 @@ http://websocket.org
 
 <p>The configuration example that follows requires DNS to resolve <a href="http://www.websocket.org">www.websocket.org</a> and <a href="http://www.websocket.org">websocket.org</a> to the IP address of the Gateway. Inbound requests are then proxied to a Web server (such as the Apache or Tomcat). Notice also that the connect URI proxies to the private IP address of the back-end server. The following example specifies one connection is kept alive until it is reused or timed out.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;name&gt;http-proxy&lt;/name&gt;
   &lt;description&gt;Http Proxy to websocket.org&lt;/description&gt;
   
@@ -984,7 +993,7 @@ http://websocket.org
 
 <h4 id="example-8">Example</h4>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;http://${gateway.hostname}:${gateway.extras.port}/&lt;/accept&gt;
 
   &lt;type&gt;directory&lt;/type&gt;
@@ -1184,7 +1193,7 @@ http://websocket.org
 
 <p>The following example shows external addresses (that users will see) for the WebSocket (<code>ws</code>) and WebSocket Secure (<code>wss</code>) protocols on <code>localhost:8000</code> and <code>localhost:9000</code>. Internally, however, these addresses are bound to ports 8001 and 9001 respectively.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;name&gt;Echo Config&lt;/name&gt;
   &lt;accept&gt;ws://localhost:8000/echo&lt;/accept&gt;
   &lt;accept&gt;wss://localhost:9000/echo&lt;/accept&gt;
@@ -1202,7 +1211,7 @@ http://websocket.org
 
 <p>In the following example, the <code>ws.bind</code> and <code>wss.bind</code>elements in accept-options are used to bind the public URI in the <code>accept</code> elements to the local IP address of the cluster member. This allows the accept URIs in the balancer service to be identical on every cluster member. Only the <code>ws.bind</code> element needs to be unique in each cluster member (contain the local IP address of that cluster member).</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://balancer.example.com:8081/echo&lt;/accept&gt;
   &lt;accept&gt;wss://balancer.example.com:9091/echo&lt;/accept&gt;
 
@@ -1235,7 +1244,7 @@ http://websocket.org
 
 <p>In the following example, the HTTP transport is replaced with a new (<code>socks+ssl</code>) transport that is capable of doing a reverse connection using the SOCKS protocol over TLS/SSL.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
    &lt;accept&gt;wss://gateway.example.com:443/path&lt;/accept&gt;
  &lt;connect&gt;tcp://internal.example.com:1080&lt;/connect&gt;
     .
@@ -1253,7 +1262,7 @@ http://websocket.org
 
 <p>In the following example, the <code>socks+ssl</code> transport performs a reverse connection using the SOCKS protocol over TLS/SSL.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;wss://gateway.example.com:443/path&lt;/accept&gt;
   &lt;connect&gt;wss://gateway.example.com:443/path&lt;/connect&gt;
      .
@@ -1296,7 +1305,7 @@ http://websocket.org
 
 <p>The following example sets a maximum incoming message limit of 64 kilobytes:</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://localhost:8000/echo&lt;/accept&gt;
   &lt;accept&gt;wss://localhost:9000/echo&lt;/accept&gt;
   &lt;accept-options&gt;
@@ -1316,7 +1325,7 @@ http://websocket.org
 
 <h5 id="example-10">Example</h5>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
    . . .
   &lt;accept&gt;http://example.com:8000/&lt;/accept&gt;
   &lt;connect&gt;http://internal.example.com:7233/&lt;/connect&gt;
@@ -1340,7 +1349,7 @@ http://websocket.org
 
 <h5 id="example-11">Example</h5>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
    . . .
   &lt;accept&gt;http://example.com:8000/&lt;/accept&gt;
   &lt;connect&gt;http://internal.example.com:7233/&lt;/connect&gt;
@@ -1366,7 +1375,7 @@ http://websocket.org
 
 <p>The following example shows a <code>service</code> element with an HTTP or HTTPS connection time limit of <code>120</code> seconds:</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://localhost:8000/echo&lt;/accept&gt;
   &lt;accept&gt;wss://localhost:9000/echo&lt;/accept&gt;
   . . . 
@@ -1388,7 +1397,7 @@ http://websocket.org
   <li>
     <p>The following example shows a <code>proxy</code> service accepting a secure connection over WSS and connecting to the back-end service or message broker over TCP with the ciphers used by the encryption algorithm specified in <code>ssl.ciphers</code>. The example uses the <code>proxy</code> service, which is common, but not required. See the <a href="#type">type</a> element for a list of service types.</p>
 
-    <pre><code class="language-xml">&lt;service&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;wss://www.example.com:443/remoteService&lt;/accept&gt;
   &lt;connect&gt;tcp://localhost:6163&lt;/connect&gt;
 
@@ -1406,7 +1415,7 @@ http://websocket.org
 
     <p>By default (or if you do not specify <code>ssl.ciphers</code> on a secure connection), the Gateway uses the equivalent of the following ciphers:</p>
 
-    <pre><code class="language-xml">&lt;ssl.ciphers&gt;HIGH,MEDIUM,!ADH,!KRB5&lt;/ssl.ciphers&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;ssl.ciphers&gt;HIGH,MEDIUM,!ADH,!KRB5&lt;/ssl.ciphers&gt;
 </code></pre>
 
     <ul>
@@ -1424,7 +1433,7 @@ http://websocket.org
 
     <p>Use the <code>NULL</code> cipher suite when you want the Gateway to accept connections from known authenticated TLS clients but you do not want those connections to be encrypted:</p>
 
-    <pre><code class="language-xml">&lt;ssl.ciphers&gt;NULL&lt;/ssl.ciphers&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;ssl.ciphers&gt;NULL&lt;/ssl.ciphers&gt;
 </code></pre>
 
     <p>This is analogous to configuring an HTTP service for authentication using <code>authorization-constraint</code>, only now you are doing it for a TLS/SSL service.</p>
@@ -1434,12 +1443,12 @@ http://websocket.org
 
     <p>Use the <code>ALL</code> cipher suite to enable all of the cipher suites (such as for testing purposes):</p>
 
-    <pre><code class="language-xml">&lt;ssl.ciphers&gt;ALL&lt;/ssl.ciphers&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;ssl.ciphers&gt;ALL&lt;/ssl.ciphers&gt;
 </code></pre>
 
     <p>Note that because NULL encryption cipher suites are so insecure they are not enabled even by using the <code>ALL</code> cipher suite. You must explicitly include NULL ciphers by configuring them, as follows:</p>
 
-    <pre><code class="language-xml">&lt;ssl.ciphers&gt;HIGH,MEDIUM,LOW,EXPORT,NULL&lt;/ssl.ciphers&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;ssl.ciphers&gt;HIGH,MEDIUM,LOW,EXPORT,NULL&lt;/ssl.ciphers&gt;
 </code></pre>
   </li>
 </ul>
@@ -1477,7 +1486,7 @@ http://websocket.org
 
 <p>The following example shows a <code>proxy</code> service. Because the <code>accept</code> URL the <code>wss://</code> scheme, we know that this is a secure connection. The <code>ssl.protocols</code> element in the following example indicates that we want the Gateway to accept only TLSv1, TLSv1.2, and TLSv1.1 protocols, say, from clients over this secure connection.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;name&gt;DMZ Gateway&lt;/name&gt;
   &lt;accept&gt;wss://example.com:443/myapp&lt;/accept&gt;
     ...
@@ -1503,7 +1512,7 @@ http://websocket.org
 
 <p>The prefix for this example is <code>socks.ssl</code>, rather than just <code>ssl</code> to explicitly reference the SSL layer that is transporting the SOCKS protocol.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;name&gt;DMZ Gateway&lt;/name&gt;
   &lt;accept&gt;wss://example.com:443/myapp&lt;/accept&gt;
   &lt;connect&gt;wss://example.com:443/myapp&lt;/connect&gt;
@@ -1530,7 +1539,7 @@ http://websocket.org
 
 <p>On the frontplane, the Gateway accepts connections from clients only using the TLSv1, TLSv1.2, and TLSv1.1 protocols. On the backplane, the Gateway only accepts (reverse) connections using the protocol TLSv1.2 (from another Gateway).</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;name&gt;DMZ Gateway&lt;/name&gt;
   &lt;accept&gt;wss://example.com:443/myapp&lt;/accept&gt;
   &lt;connect&gt;wss://example.com:443/myapp&lt;/connect&gt;
@@ -1573,7 +1582,7 @@ http://websocket.org
 
 <p>The following example shows a <code>service</code> element containing the <code>accept-options</code> and <code>ssl.encryption</code> elements, which signal the Gateway to listen on address <code>www.example.com</code>, with encryption disabled. The example uses the <code>proxy</code> service, which is common, but not required. See the <a href="#type">type</a> element for a list of service types.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;wss://www.example.com/remoteService&lt;/accept&gt;
   &lt;connect&gt;tcp://localhost:6163&lt;/connect&gt;
 
@@ -1594,7 +1603,7 @@ http://websocket.org
 
 <p>The following example for an Enterprise Shield™ topology shows a <code>service</code> element containing several <code>connect-options</code> including an <code>ssl.encryption</code> option that disables encryption.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;wss://dmz.example.com:443/remoteService&lt;/accept&gt;
   &lt;connect&gt;tcp://internal.example.com:8010&lt;/connect&gt;
 
@@ -1661,7 +1670,7 @@ http://websocket.org
 
 <p>In the following example, the Gateway accepts on a secure URI (<code>wss://</code>) and requires that all clients connecting to the Gateway on that URI provide a digital certificate verifying their identity.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;wss://example.com:443&lt;/accept&gt;
   &lt;connect&gt;tcp://server1.corp.example.com:5050&lt;/connect&gt;
 
@@ -1701,7 +1710,7 @@ http://websocket.org
 
 <p>The following example shows a <code>service</code> element with the <code>socks.mode</code> set to <code>reverse</code>. This configuration causes the Gateway to interpret the SOCKS URI as a connect URI:</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;pipe://pipe-1&lt;/accept&gt;
   &lt;connect&gt;tcp://broker.example.com:8010/&lt;/connect&gt;
 
@@ -1719,7 +1728,7 @@ http://websocket.org
 
 <p>The following example shows a <code>connect-options</code> element with the <code>socks.mode</code> set to <code>reverse</code>.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;tcp://dmz.example.com:8000/&lt;/accept&gt;
   &lt;connect&gt;pipe://pipe-1&lt;/connect&gt;
 
@@ -1757,7 +1766,7 @@ http://websocket.org
 
 <p>The following example shows a <code>socks.timeout</code> that is set to 10 seconds. If the forward connection is not formed within 10 seconds, then the connection is closed and the client must initiate another connection.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;wss://www.example.com:443/remoteService&lt;/accept&gt;
   &lt;connect&gt;tcp://localhost:6163&lt;/connect&gt;
 
@@ -1786,7 +1795,7 @@ http://websocket.org
 
 <p>The following example shows a <code>proxy</code> service for the DMZ Gateway in an Enterprise Shield™ topology. The Gateway receives secure client connections (<code>wss://</code>) and specifies the ciphers used on the accept URI (<code>DEFAULT</code>), but does not require mutual verification from the clients (<code>ssl.verify-client</code>). In addition, the internal Gateway connects over SOCKS and TLS/SSL (<code>socks+ssl://</code>) to the DMZ Gateway, specifies the ciphers used (<code>NULL</code>), and requires mutual verification (<code>socks.ssl.verify-client</code>). For more information about forward and reverse connectivity, see <a href="../../enterprise-shield/o_enterprise_shield_checklist">Configure Enterprise Shield™ with the Gateway</a>.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;wss://dmz.example.com:443/remoteService&lt;/accept&gt;
   &lt;connect&gt;tcp://internal.example.com:8000&lt;/connect&gt;
 
@@ -1855,7 +1864,7 @@ http://websocket.org
 
 <p>In the following example, the DMZ Gateway accepts on a WebSocket URI and connects over a named pipe. The DMZ Gateway also listens for connections on port 1443 as <code>pipe.transport</code> URI over SOCKS and TLS/SSL (<code>socks+ssl://</code>). To increase security, the <code>socks.ssl.verify-client</code> is set to <code>required</code>, which specifies that the internal Gateway URI must provide a digital certificate to the DMZ Gateway.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;wss://dmz.example.com:443/remoteService&lt;/accept&gt;
   &lt;connect&gt;pipe://pipe-1&lt;/connect&gt;
 
@@ -1897,7 +1906,7 @@ http://websocket.org
 
 <p>The following example shows a <code>service</code> element containing a SOCKS proxy connection retry interval time limit of 60 seconds:</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;pipe://pipe-1&lt;/accept&gt;
   &lt;connect&gt;tcp://broker.example.com:8010/&lt;/connect&gt;
 
@@ -1968,7 +1977,7 @@ http://websocket.org
 
 <p>The following example shows a portion of a Gateway configuration file containing three services, each with a different bandwidth constraint: VIP, premium, and freemium. The VIP service has the best bandwidth at 1 megabyte per second (line 5). The premium service is slower at 1 kibibyte per second (line 13), and the free service is the slowest at only 512 bytes per second (line 21). The example shows these variations configured for the <code>[proxy]()</code> service, which is common, but not required. See the <a href="#type">type</a> element for a list of service types.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://service.example.com/vip&lt;/accept&gt;
   &lt;type&gt;proxy&lt;/type&gt;
   &lt;accept-options&gt;
@@ -2019,7 +2028,7 @@ http://websocket.org
 
 <p>In the following example, the <code>ws.inactivity.timeout</code> property specifies that if the Gateway cannot communicate with a client over the past five-seconds, then the connection to that client will be dropped.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://gateway.example.com/echo&lt;/accept&gt;
   &lt;connect&gt;ws://internal.example.com/echo&lt;/connect&gt;
 
@@ -2053,7 +2062,7 @@ http://websocket.org
 
 <h5 id="example-21">Example</h5>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   ...
   &lt;accept-options&gt;
     &lt;http.server.header&gt;disabled&lt;/http.server.header&gt;
@@ -2074,7 +2083,7 @@ http://websocket.org
 
 <p>The following example shows addresses for the WebSocket (<code>ws</code>) and WebSocket Secure (<code>wss</code>) protocols and uses WebSocket version <code>draft-75</code> to connect to a service running on release 3.2 of the Gateway. The example uses the <code>[proxy]()</code> service, which is common, but not required. See the <a href="#type">type</a> element for a list of service types.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://${gateway.hostname}:8000/proxy&lt;/accept&gt;
     &lt;connect&gt;wss://${gateway.hostname}:5566/data&lt;/connect&gt;
   &lt;connect-options&gt;
@@ -2089,7 +2098,8 @@ http://websocket.org
 
 <h4 id="example-23">Example</h4>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">
+&lt;service&gt;
   &lt;accept&gt;wss://localhost:9000/kerberos5&lt;/accept&gt;
   &lt;connect&gt;tcp://kerberos.example.com:88&lt;/connect&gt;
   &lt;type&gt;kerberos5.proxy&lt;/type&gt;
@@ -2139,7 +2149,7 @@ http://websocket.org
 
 <p>The following example of a <code>proxy</code> service element is configured with an <code>authorization-constraint</code>. The example uses the <code>[proxy]()</code> service, which is common, but not required. See the <a href="#type">type</a> element for a list of service types.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://localhost:8000/remoteService&lt;/accept&gt;
   &lt;connect&gt;tcp://localhost:6163&lt;/connect&gt;
 
@@ -2161,7 +2171,7 @@ http://websocket.org
 
 <p>The following example shows a <code>directory</code> service that includes two mime-mapping elements for files with the <code>PNG</code> and and <code>HTML</code> extensions. The Gateway sets the content or MIME type for files with the <code>PNG</code> extension as a PNG image and files with the <code>HTML</code> extension as an HTML text file:</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://localhost:8000&lt;/accept&gt;
   &lt;accept&gt;wss://localhost:9000&lt;/accept&gt;
 
@@ -2236,7 +2246,7 @@ http://websocket.org
 
 <p>The following example of a <code>proxy</code> service element includes a cross-site-constraint, allowing access to the back-end service or message broker by the site <code>http://localhost:8000</code> (note the different port number).</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://localhost:8001/remoteService&lt;/accept&gt;
   &lt;connect&gt;tcp://localhost:6163&lt;/connect&gt;
 

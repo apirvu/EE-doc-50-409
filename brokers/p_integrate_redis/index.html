@@ -119,7 +119,7 @@ For more information, see <a href="http://redis.io/topics/quickstart" title="Red
       <li>In the Gateway configuration file, add a Redis service.</li>
     </ol>
 
-    <pre><code class="language-xml">&lt;service&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
     &lt;name&gt;Redis Service&lt;/name&gt;
     &lt;description&gt;Redis Service&lt;/description&gt;
     &lt;accept&gt;ws://${gateway.hostname}:${gateway.extras.port}/redis&lt;/accept&gt;
@@ -182,7 +182,7 @@ Destination: /topic/destination [#3]
 
 <p>In this use case, the Redis server is serving a small number of topics and used infrequently. The Redis service is configured to simply connect clients with the Redis service.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
 	&lt;name&gt;Redis Service&lt;/name&gt;
         &lt;description&gt;Redis Service&lt;/description&gt;
         &lt;accept&gt;ws://${gateway.hostname}:${gateway.extras.port}/redis&lt;/accept&gt;
@@ -200,7 +200,7 @@ Destination: /topic/destination [#3]
 
 <p>In this use case, the Redis server is serving a very large number of topics used frequently. The Redis service is configured with a <code>topic</code> property and a wildcard value for the topic <code>name</code>. No messages are cached.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
 	&lt;name&gt;Redis Service&lt;/name&gt;
         &lt;description&gt;Redis Service&lt;/description&gt;
         &lt;accept&gt;ws://${gateway.hostname}:${gateway.extras.port}/redis&lt;/accept&gt;
@@ -224,7 +224,7 @@ Destination: /topic/destination [#3]
 
 <p>In this use case, the Redis server is serving a very large number of topics used frequently and last value cache (LVC) is enabled. The Redis service is configured with a <code>topic</code> property and a wildcard value for the topic <code>name</code>. The inclusion of <code>cache.size</code> with the value <code>1</code> enabled LVC. The last message to the topic is cached as described in <a href="#using-last-value-cache-lvc-with-the-redis-service">Using Last Value Cache (LVC) with the Redis Service</a>.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
         &lt;name&gt;Redis Service&lt;/name&gt;
         &lt;description&gt;Redis Service&lt;/description&gt;
         &lt;accept&gt;ws://${gateway.hostname}:${gateway.extras.port}/redis&lt;/accept&gt;

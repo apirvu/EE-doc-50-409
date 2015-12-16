@@ -137,7 +137,7 @@
 
 <p><strong>Solution:</strong> Correct the <code>balance</code> or <code>accept</code> URIs by using the same port number and path. In the following example, the <code>balance</code> and <code>accept</code> URIs have different hostnames but the same port number (<code>8081</code>) and path (<code>echo</code>):</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://node1.example.com:8081/echo&lt;/accept&gt;
   &lt;balance&gt;ws://balancer.example.com:8081/echo&lt;/balance&gt;
 
@@ -155,7 +155,7 @@
 
 <p><strong>Solution:</strong> Ensure that the <code>balance</code> URI in a <code>service</code> matches at least one <code>accept</code> URI in a <code>balancer</code> service. In the following example, the <code>accept</code> URI in the <code>balancer</code> service matches the <code>balance</code> URI in the Echo <code>service</code>:</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://balancer.example.com:8081/echo&lt;/accept&gt;
 
   &lt;type&gt;balancer&lt;/type&gt;

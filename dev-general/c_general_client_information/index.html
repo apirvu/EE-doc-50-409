@@ -179,15 +179,16 @@
       <td>The connection has been closed or could not be opened.</td>
     </tr>
   </tbody>
-</table>
+</table><br>
 
 <p>Here is a simple example of how to read the readyState in JavaScript.</p>
 
-<pre><code class="language-js">w = new WebSocket("ws://localhost:8001/echo");
+<pre class="auto-links: false; brush: js; toolbar: false;">
+w = new WebSocket("ws://localhost:8001/echo");
 w.onopen = function() {
    alert(w.readyState);
 }
-</code></pre>
+</pre>
 
 <p>In the Objective-C WebSocket API, readyState is read using <code>(KGReadyState)readyState</code>.</p>
 

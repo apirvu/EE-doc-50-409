@@ -150,7 +150,8 @@
 
 <p>Here is an example of how to create a registry, an MBean server, and a connector and then pass the MBean server to the embedded Gateway:</p>
 
-<pre><code class="language-java">import javax.management.*;
+<pre class="auto-links: false; brush: java; toolbar: false;">
+import javax.management.*;
 import java.lang.management.*;
 import javax.management.remote.*;
 
@@ -158,46 +159,46 @@ import org.kaazing.gateway.server.GatewayFactory;
 import org.kaazing.gateway.server.Gateway;
 
 public class SimpleAgent {
-private MBeanServer mbs = null;
+  private MBeanServer mbs = null;
 
-    public init() {
-      try {
-         // Create the RMI Registry
-         LocateRegistry.createRegistry(9999);
+  public init() {
+    try {
+      // Create the RMI Registry
+      LocateRegistry.createRegistry(9999);
 
-         // Get the platform MBeanServer
-         mbs = ManagementFactory.getPlatformMBeanServer();
+      // Get the platform MBeanServer
+      mbs = ManagementFactory.getPlatformMBeanServer();
 
-         // Create an RMI connector and start it
-         JMXServiceURL url =
-             new JMXServiceURL("service:jmx:rmi:///jndi/rmi://localhost:9999/server");
-         JMXConnectorServer cs = JMXConnectorServerFactory.newJMXConnectorServer(url, null, mbs);
-         cs.start();
+      // Create an RMI connector and start it
+      JMXServiceURL url =
+      new JMXServiceURL("service:jmx:rmi:///jndi/rmi://localhost:9999/server");
+      JMXConnectorServer cs = JMXConnectorServerFactory.newJMXConnectorServer(url, null, mbs);
+      cs.start();
 
-         // Unique identification of MBeans
-         Hello helloBean = new Hello();
-         ObjectName helloName = null;
+      // Unique identification of MBeans
+      Hello helloBean = new Hello();
+      ObjectName helloName = null;
 
-         // Uniquely identify the MBeans and register them with the MBeanServer
-         helloName = new ObjectName("SimpleAgent:name=hellothere");
-         mbs.registerMBean(helloBean, helloName);
+      // Uniquely identify the MBeans and register them with the MBeanServer
+      helloName = new ObjectName("SimpleAgent:name=hellothere");
+      mbs.registerMBean(helloBean, helloName);
 
-         // Create the Gateway, set the MBeanServer, and launch the Gateway
-         Gateway gw = GatewayFactory.createGateway();
-         gw.setMBeanServer(mbs);
-         gw.launch();
-      } catch(Exception e) {
-         e.printStackTrace();
-      }
+      // Create the Gateway, set the MBeanServer, and launch the Gateway
+      Gateway gw = GatewayFactory.createGateway();
+      gw.setMBeanServer(mbs);
+      gw.launch();
+    } catch(Exception e) {
+      e.printStackTrace();
     }
+  }
 
-    public static void main(String argv[]) {
-      SimpleAgent agent = new SimpleAgent();
-      agent.init();
-      System.out.println("SimpleAgent is running...");
-    }
+  public static void main(String argv[]) {
+    SimpleAgent agent = new SimpleAgent();
+    agent.init();
+    System.out.println("SimpleAgent is running...");
+  }
 }
-</code></pre>
+</pre>
 
 <h2 id="next-steps">Next Steps</h2>
 

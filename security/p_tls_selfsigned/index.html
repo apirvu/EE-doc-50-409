@@ -126,7 +126,7 @@
       <li>
         <p>To configure the Gateway to use the custom keystore and password file, open the <code>GATEWAY_HOME/conf/gateway-config.xml</code> file in a text editor and update the <code>keystore</code> element (contained in the <code>security</code> element) to use the new keystore and the password file you created, as shown in the following example:</p>
 
-        <pre><code class="language-xml">         &lt;keystore&gt;
+        <pre class="auto-links: false; brush: xml; toolbar: false;">         &lt;keystore&gt;
               &lt;type&gt;JCEKS&lt;/type&gt;
               &lt;file&gt;mykeystore.db&lt;/file&gt;
               &lt;password-file&gt;mykeystore.pw&lt;/password-file&gt;
@@ -171,7 +171,7 @@ L=Mountain View, ST=California, C=US"
 
     <p>For example, create a new <code>service</code> element and specify the secure URL (HTTPS) in the accept parameter for the directory service, as shown in the following example:</p>
 
-    <pre><code class="language-xml"> &lt;service&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;"> &lt;service&gt;
       &lt;accept&gt;https://www.example.com:9000/&lt;/accept&gt;
       &lt;type&gt;directory&lt;/type&gt;
       &lt;properties&gt;
@@ -213,7 +213,7 @@ L=Mountain View, ST=California, C=US"
   <li>
     <p>Open <code>gateway-config.xml</code> again and add a new <code>service</code> element, as shown in the following example:</p>
 
-    <pre><code class="language-xml">     &lt;service&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">     &lt;service&gt;
           &lt;accept&gt;wss://www.example.com:9001/&lt;/accept&gt;
           &lt;connect&gt;ssl://offline.example.com:61617&lt;/connect&gt;
           &lt;type&gt;proxy&lt;/type&gt;

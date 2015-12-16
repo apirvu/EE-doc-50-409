@@ -179,7 +179,7 @@
       <li>
         <p>Enable the <code>session.revalidate</code> logger at the <code>info</code> warning level, as shown in the following example:</p>
 
-        <pre><code class="language-xml">      &lt;logger name="session.revalidate"&gt;
+        <pre class="auto-links: false; brush: xml; toolbar: false;">      &lt;logger name="session.revalidate"&gt;
           &lt;level value="info"/&gt;
       &lt;/logger&gt;
 
@@ -194,16 +194,14 @@
 
         <p>The following message indicates the revalidate system for WebSocket is enabled.</p>
 
-        <pre><code class="language-bash">2012-02-29 10:03:56,305 INFO   session.revalidate - 
-                   [wsx#8] REVALIDATE COMMAND ENABLED [period=2s; timeout=2s]
-</code></pre>
+        <code class="language-bash">2012-02-29 10:03:56,305 INFO   session.revalidate - [wsx#8] REVALIDATE COMMAND ENABLED [period=2s; timeout=2s]
+</code>
 
         <p>The following message indicates the Gateway sent a revalidate message to the client.</p>
 
-        <pre><code class="language-bash">2012-02-29 10:03:58,309 INFO   session.revalidate - 
-                   [wsx#8] REVALIDATE COMMAND SENT: VALI 
+        <code class="language-bash">2012-02-29 10:03:58,309 INFO   session.revalidate - [wsx#8] REVALIDATE COMMAND SENT: VALI 
 /echoAuth/;a/f0tCswwNoLNfaKb4cOERYuTT56Ai6UAN?.kl=Y
-</code></pre>
+</code>
       </li>
     </ol>
   </li>
@@ -213,14 +211,14 @@
 
 <p><strong>Cause:</strong> When the same host and port is configured as secure in one service and not secure in another service the following error may occur:</p>
 
-<pre><code>example.com IP:443 is configured as a secure port in a service already and cannot be bound as an unsecure port in service wss://example.com:443/echo
-</code></pre>
+<code>example.com IP:443 is configured as a secure port in a service already and cannot be bound as an unsecure port in service wss://example.com:443/echo
+</code>
 
 <p>For example, the error could occur at runtime for the following configuration because there is more than one service in use and one or more of the services is behind an SSL offloader:</p>
 
 <p>Service 1 (where <code>wss:example.com:443</code> is configured as secure):</p>
 
-<pre><code class="language-xml">        &lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">        &lt;service&gt;
             &lt;accept&gt;wss:example.com:443/service1&lt;/accept&gt;
         ...
         &lt;/service&gt;
@@ -228,7 +226,7 @@
 
 <p>Service 2 (where <code>wss:example.com:443</code> is configured as not secure by disabling <code>ssl.encryption</code>):</p>
 
-<pre><code class="language-xml">      &lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">      &lt;service&gt;
           &lt;accept&gt;wss:example.com:443/service2&lt;/accept&gt;
           &lt;accept-options&gt;
               &lt;ssl.encryption&gt;disabled&lt;/ssl.encryption&gt;
@@ -284,7 +282,7 @@
 
 <p><strong>Solution:</strong> For all exceptions, confirm that the Gateway configuration has the correct name and location for the keystore, password, and truststore files. The keystore database file is located in <code>GATEWAY_HOME/conf</code> and referenced in the <code>keystore</code> element in <code>gateway-config.xml</code>, for example:</p>
 
-<pre><code class="language-xml">        &lt;keystore&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">        &lt;keystore&gt;
             &lt;type&gt;JCEKS&lt;/type&gt;
             &lt;file&gt;keystore.db&lt;/file&gt;
             &lt;password-file&gt;keystore.pw&lt;/password-file&gt;
@@ -301,7 +299,7 @@
 
 <p><strong>Solution:</strong> Use the correct format for the <code>keystore</code> or <code>truststore</code> elements, as follows:</p>
 
-<pre><code class="language-xml">      &lt;keystore&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">      &lt;keystore&gt;
           &lt;type&gt;JCEKS&lt;/type&gt;
           &lt;file&gt;keystore.db&lt;/file&gt;
           &lt;password-file&gt;keystore.pw&lt;/password-file&gt;

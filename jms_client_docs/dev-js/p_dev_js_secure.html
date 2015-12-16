@@ -105,71 +105,74 @@
 
 <p>Authenticating your client involves implementing a challenge handler to respond to authentication challenges from the Gateway. If your challenge handler is responsible for obtaining user credentials, then you will also need to implement a login handler. </p>                                       
 
-                                <h3><a name="creating_basic"></a>Creating a Basic Challenge Handler</h3>
-                        <p>A challenge handler is a constructor used in an application to respond to authentication challenges from the Gateway when the application attempts to access a protected resource. Each of the resources protected by the Gateway is configured with a different authentication scheme (for example, Basic, Application Basic, Application Negotiate, or Application Token), and your application requires a challenge handler for each of the schemes that it will encounter or a single challenge handler that will respond to all challenges. Also, you can add a dispatch challenge handler to route challenges to specific challenge handlers according to the URI of the requested resource.</p>
+<h3><a name="creating_basic"></a>Creating a Basic Challenge Handler</h3>
 
-                <p>For information about each authentication scheme type, see <a href="../../../security/p_aaa_config_authscheme">Configure the HTTP Challenge Scheme</a>.</p>
+<p>A challenge handler is a constructor used in an application to respond to authentication challenges from the Gateway when the application attempts to access a protected resource. Each of the resources protected by the Gateway is configured with a different authentication scheme (for example, Basic, Application Basic, Application Negotiate, or Application Token), and your application requires a challenge handler for each of the schemes that it will encounter or a single challenge handler that will respond to all challenges. Also, you can add a dispatch challenge handler to route challenges to specific challenge handlers according to the URI of the requested resource.</p>
 
-                                <p>Clients with a single challenge handling strategy for all 401 challenges can simply set a specific challenge handler as the default using <code>webSocketFactory.setChallengeHandler()</code>. The following is an example of how to implement a single challenge handler for all challenges:</p>
+<p>For information about each authentication scheme type, see <a href="../../../security/p_aaa_config_authscheme">Configure the HTTP Challenge Scheme</a>.</p>
+
+<p>Clients with a single challenge handling strategy for all 401 challenges can simply set a specific challenge handler as the default using <code>webSocketFactory.setChallengeHandler()</code>. The following is an example of how to implement a single challenge handler for all challenges:</p>
 
 <pre class="auto-links: false; brush: js; toolbar: false;">
 function setup(webSocketFactory) {
-        // Configure a Basic Challenge Handler
-        var basicHandler = new BasicChallengeHandler();
+  // Configure a Basic Challenge Handler
+  var basicHandler = new BasicChallengeHandler();
 
-        basicHandler.loginHandler = function(callback) { 
-                // Create static credentials for test
-                var credentials = new PasswordAuthentication("joe", "welcome");
-                callback(credentials); 
-        }
+  basicHandler.loginHandler = function(callback) { 
+    // Create static credentials for test
+    var credentials = new PasswordAuthentication("joe", "welcome");
+    callback(credentials); 
+  }
 
-        webSocketFactory.setChallengeHandler(basicHandler);
-}</pre>
+  webSocketFactory.setChallengeHandler(basicHandler);
+}
+</pre>
 
-                <p>The preceding example uses static credentials, but you will want to create a login handler to obtain individual user credentials.  Here is an example using a popup login dialog to respond to login challenges and obtain user credentials:</p>
+<p>The preceding example uses static credentials, but you will want to create a login handler to obtain individual user credentials.  Here is an example using a popup login dialog to respond to login challenges and obtain user credentials:</p>
 
 <pre class="auto-links: false; brush: js; toolbar: false;">
 function setupSSO(webSocketFactory) {
-        /* Respond to authentication challenges with popup login dialog */
-        var basicHandler = new BasicChallengeHandler();
-        basicHandler.loginHandler = function(callback) {
-                popupLoginDialog(callback);
-        }
-        webSocketFactory.setChallengeHandler(basicHandler);
+  /* Respond to authentication challenges with popup login dialog */
+  var basicHandler = new BasicChallengeHandler();
+  basicHandler.loginHandler = function(callback) {
+    popupLoginDialog(callback);
+  }
+  webSocketFactory.setChallengeHandler(basicHandler);
 }
 
 function popupLoginDialog(callback) {
-    //popup dialog to obtain credentials
-    var popup = document.getElementById("logindiv");
-    popup.style.display = "block";
-    var login = document.getElementById("login");
-    var cancel = document.getElementById("cancel");
+  //popup dialog to obtain credentials
+  var popup = document.getElementById("logindiv");
+  popup.style.display = "block";
+  var login = document.getElementById("login");
+  var cancel = document.getElementById("cancel");
 
-    //"OK" button was clicked, invoke callback function with credentials for login
-    login.onclick = function() {
-        var username = document.getElementById("username");
-        var password = document.getElementById("password");
-        var credentials = new PasswordAuthentication(username.value, password.value);
-        //clear user input
-        username.value = "";
-        password.value = "";
-        //hide popup
-        popup.style.display = "none";
-        callback(credentials);
-    }
+  //"OK" button was clicked, invoke callback function with credentials for login
+  login.onclick = function() {
+    var username = document.getElementById("username");
+    var password = document.getElementById("password");
+    var credentials = new PasswordAuthentication(username.value, password.value);
+    //clear user input
+    username.value = "";
+    password.value = "";
+    //hide popup
+    popup.style.display = "none";
+    callback(credentials);
+  }
 
-    //"Cancel" button has been clicked, invoke callback function with null argument to cancel login
-    cancel.onclick = function() {
-        var username = document.getElementById("username");
-        var password = document.getElementById("password");
-        //clear user input
-        username.value = "";
-        password.value = "";
-        //hide popup
-        popup.style.display = "none";
-        callback(null);
-    }
-}</pre>
+  //"Cancel" button has been clicked, invoke callback function with null argument to cancel login
+  cancel.onclick = function() {
+    var username = document.getElementById("username");
+    var password = document.getElementById("password");
+    //clear user input
+    username.value = "";
+    password.value = "";
+    //hide popup
+    popup.style.display = "none";
+    callback(null);
+  }
+}
+</pre>
                         <p>This example is taken from the out of the box JavaScript WebSocket Demo at <span class="uri">http://localhost:8001/demo/</span>. The code for the demo can be viewed in <span class="uri"><i>GATEWAY_HOME</i>/demo/javascript/</span>. For more information on challenge handlers and how to configure location-specific challenge handling strategies, see the <a href="../apidoc/client/javascript/gateway/index.html">JavaScript Client API</a>.</p>
 
 <p>To have the out of the box JavaScript WebSocket demo prompt you for authentication, open the Gateway configuration file (<span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>), remove the HTML comments surrounding the <code>&lt;authorization-constraint&gt;</code> child of the <code>&lt;echo&gt;</code> service, restart the Gateway, and then try the demo. You will be prompted for user credentials.</p>

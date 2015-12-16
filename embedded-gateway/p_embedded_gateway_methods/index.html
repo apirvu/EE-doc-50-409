@@ -176,7 +176,8 @@
 
 <p>Here is an example of how to create, configure, and launch the embedded Gateway:</p>
 
-<pre><code class="language-java">Properties props = new Properties();
+<pre class="auto-links: false; brush: java; toolbar: false;">
+Properties props = new Properties();
 // specify configuration properties
 props.setProperty(Gateway.GATEWAY_HOME_PROPERTY, "/kaazing/");
 props.setProperty(Gateway.GATEWAY_CONFIG_PROPERTY, "/kaazing/config/");
@@ -193,7 +194,7 @@ gateway.setProperties(props);
 
 // launch the Gateway
 gateway.launch();
-</code></pre>
+</pre>
 
 <p><strong>Important:</strong> You must restart the Gateway to apply configuration changes. A good practice is to configure the Gateway settings using the setProperties() method before using the launch() method to run the Gateway.</p>
 
@@ -214,7 +215,8 @@ gateway.launch();
 
 <p>Here is an example of how to configure the GATEWAY_HOME and GATEWAY_CONFIG properties before running the Gateway:</p>
 
-<pre><code class="language-java">Properties props = new Properties();
+<pre class="auto-links: false; brush: java; toolbar: false;">
+Properties props = new Properties();
 
 props.setProperty("GATEWAY_HOME_PROPERTY", "/kaazing/");
 props.setProperty("GATEWAY_CONFIG_PROPERTY", "/kaazing/configs/3.3");
@@ -222,7 +224,7 @@ props.setProperty("GATEWAY_CONFIG_PROPERTY", "/kaazing/configs/3.3");
 Gateway gateway = GatewayFactory.createGateway();
 
 gateway.setProperties(props);
-</code></pre>
+</pre>
 
 <h2 id="getproperties-method">getProperties() Method</h2>
 
@@ -234,11 +236,12 @@ gateway.setProperties(props);
 
 <p>The following example code writes out the Gateway configuration properties:</p>
 
-<pre><code class="language-java">Properties props = new Properties();
+<pre class="auto-links: false; brush: java; toolbar: false;">
+Properties props = new Properties();
 
 props = gateway.getProperties();
 System.out.println(props);
-</code></pre>
+</pre>
 
 <h2 id="launch-method">launch() Method</h2>
 
@@ -252,9 +255,10 @@ System.out.println(props);
 
 <p>Here is an example of how to launch the embedded Gateway:</p>
 
-<pre><code class="language-java">Gateway gateway = GatewayFactory.createGateway();
+<pre class="auto-links: false; brush: java; toolbar: false;">
+Gateway gateway = GatewayFactory.createGateway();
 gateway.launch();
-</code></pre>
+</pre>
 
 <h2 id="destroy-method">destroy() Method</h2>
 
@@ -268,10 +272,11 @@ gateway.launch();
 
 <p>Here is an example of how to stop the embedded Gateway:</p>
 
-<pre><code class="language-java">Gateway gateway = GatewayFactory.createGateway();
+<pre class="auto-links: false; brush: java; toolbar: false;">
+Gateway gateway = GatewayFactory.createGateway();
 gateway.launch();
 gateway.destroy();
-</code></pre>
+</pre>
 
 <h2 id="next-steps">Next Steps</h2>
 

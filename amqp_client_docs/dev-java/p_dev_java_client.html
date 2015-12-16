@@ -241,186 +241,192 @@ import com.kaazing.net.ws.amqp.AmqpClientFactory;
                                 <p>The highlighted classes (lines 15-21) are the relevant Java AMQP client library classes. The other classes are used to capture and respond to action events. In fact, the entire program is defined within the <strong>java.awt.event.ActionListener</strong> interface. See <a href="http://docs.oracle.com/javase/tutorial/uiswing/events/index.html">Lesson: Writing Event Listeners</a> for more information.</p>
         </li>
 
-        <li><a name="variables"></a><p>Declare the variables.</p>
-                        <p>In your application, first declare the variables you will use, as shown in the following example from the Java AMQP demo:</p>
-                        <pre class="auto-links: false; brush: java; toolbar: false;">
-                                private AmqpClientFactory amqpClientFactory;
-                                private AmqpClient  amqpClient;
-                                private AmqpChannel publishChannel = null;
-                                private AmqpChannel txnPublishChannel = null;
-                                private AmqpChannel txnConsumeChannel = null;
-                                private AmqpChannel consumeChannel= null;
-                                private String queueName = "queue" + new Random().nextInt();
-                                private String myConsumerTag = "clientkey";
-                                private String routingKey = "broadcastkey";
-                                private String txnQueueName = "txnqueue" + new Random().nextInt();
-                                private String myTxnConsumerTag = "txnClientkey";</pre>
-                                <p>There are more variables declared in the Java AMQP demo for handling text fields and buttons, but the variables listed above are used explicitly for the <a href="../apidoc/client/java/amqp/client/index.html">Java AMQP API</a>.</p>
-        </li>
+<li><a name="variables"></a><p>Declare the variables.</p>
+<p>In your application, first declare the variables you will use, as shown in the following example from the Java AMQP demo:</p>
+<pre class="auto-links: false; brush: java; toolbar: false;">
+private AmqpClientFactory amqpClientFactory;
+private AmqpClient  amqpClient;
+private AmqpChannel publishChannel = null;
+private AmqpChannel txnPublishChannel = null;
+private AmqpChannel txnConsumeChannel = null;
+private AmqpChannel consumeChannel= null;
+private String queueName = "queue" + new Random().nextInt();
+private String myConsumerTag = "clientkey";
+private String routingKey = "broadcastkey";
+private String txnQueueName = "txnqueue" + new Random().nextInt();
+private String myTxnConsumerTag = "txnClientkey";</pre>
+        <p>There are more variables declared in the Java AMQP demo for handling text fields and buttons, but the variables listed above are used explicitly for the <a href="../apidoc/client/java/amqp/client/index.html">Java AMQP API</a>.</p>
+</li>
         
         <li><a name="object"></a><p>Create the AmqpClient Object.</p>
                         <p>In the Java AMQP demo, the AmqpClient object is created in response to a user clicking the <strong>Connect</strong> button in the Java client (<span class="code_inline">connect.addActionListener(this)</span>).</p>
-                        <pre class="auto-links: false; brush: java; toolbar: false;">
-        amqpClientFactory = AmqpClientFactory.createAmqpClientFactory();
-        ...
-        public void actionPerformed(ActionEvent arg0) {
-                if (arg0.getSource() == connect) {
-                    try {
-                        amqpClient = amqpClientFactory.createAmqpClient();
-                                ...</pre>
-        </li>
-        <li><a name="broker"></a><p>Connect to an AMQP broker.</p>
-                        <p>Next, you must connect and log in to an AMQP broker. The client generally manages all of its communication on a single connection to an AMQP broker. You establish a connection to an AMQP broker by passing in the broker address, a username and password, the AMQP version you want to use, and, optionally, a virtual host name (the name of a collection of exchanges and queues hosted on independent server domains). These parameters are passed in when you call the connect method as shown in the following example.</p>
+<pre class="auto-links: false; brush: java; toolbar: false;">
+amqpClientFactory = AmqpClientFactory.createAmqpClientFactory();
+...
+public void actionPerformed(ActionEvent arg0) {
+  if (arg0.getSource() == connect) {
+    try {
+      amqpClient = amqpClientFactory.createAmqpClient();
+      ...
+</pre>
+</li>
+<li><a name="broker"></a><p>Connect to an AMQP broker.</p>
+
+<p>Next, you must connect and log in to an AMQP broker. The client generally manages all of its communication on a single connection to an AMQP broker. You establish a connection to an AMQP broker by passing in the broker address, a username and password, the AMQP version you want to use, and, optionally, a virtual host name (the name of a collection of exchanges and queues hosted on independent server domains). These parameters are passed in when you call the connect method as shown in the following example.</p>
+
 <pre class="auto-links: false; brush: java; toolbar: false;">
 amqpClient.connect(url, virtualHost, jUsernameField1.getText(), 
   new String(jPasswordField1.getPassword()));</pre>
-                        <p>In this example, all of the parameter values are obtained from form fields in the client application.</p>
+
+<p>In this example, all of the parameter values are obtained from form fields in the client application.</p>
 
 <pre class="auto-links: false; brush: java; toolbar: false;">
 public AmqpPanel(String locationUrl)
 {
-    initComponents();
-    
-    amqpClientFactory = AmqpClientFactory.createAmqpClientFactory();
+  initComponents();
+  
+  amqpClientFactory = AmqpClientFactory.createAmqpClientFactory();
 
-    connect.addActionListener(this);
-    disconnect.addActionListener(this);
-    ...
+  connect.addActionListener(this);
+  disconnect.addActionListener(this);
+  ...
 }
 public void actionPerformed(ActionEvent arg0) {
   if (arg0.getSource() == connect) {
-      try {
-          amqpClient = amqpClientFactory.createAmqpClient();
-          ...
-          WebSocketFactory wsFactory = amqpClient.getAmqpClientFactory().getWebSocketFactory();
-          wsFactory.setDefaultChallengeHandler(challengeHandler);
+    try {
+      amqpClient = amqpClientFactory.createAmqpClient();
+      ...
+      WebSocketFactory wsFactory = amqpClient.getAmqpClientFactory().getWebSocketFactory();
+      wsFactory.setDefaultChallengeHandler(challengeHandler);
 
-          attachEventListeners();
+      attachEventListeners();
 
-          status.setText("CONNECTING");
-          logMessage("\n");
-          logMessage("CONNECTING: "+jTextField1.getText()+" "+jUsernameField1.getText());
+      status.setText("CONNECTING");
+      logMessage("\n");
+      logMessage("CONNECTING: "+jTextField1.getText()+" "+jUsernameField1.getText());
 
-          String url=jTextField1.getText();
+      String url=jTextField1.getText();
 
-          String virtualHost = jTextField2.getText();
-          amqpClient.connect(url, virtualHost, jUsernameField1.getText(), new String(jPasswordField1.getPassword()));
-      } catch (Exception e) {
-          logMessage(e.getMessage());
-      }
+      String virtualHost = jTextField2.getText();
+      amqpClient.connect(url, virtualHost, jUsernameField1.getText(), new String(jPasswordField1.getPassword()));
+    } catch (Exception e) {
+      logMessage(e.getMessage());
+    }
   }
   else if (arg0.getSource()==disconnect) {
-      logMessage("DISCONNECT");
-      status.setText("DISCONNECT");
-      amqpClient.disconnect();
+    logMessage("DISCONNECT");
+    status.setText("DISCONNECT");
+    amqpClient.disconnect();
   }
   ...
 </pre>
                                                                 <span class="note"><b>Note:</b> The Gateway supports AMQP version 0-9-1.</span>
         </li>
-        <li><a name="channels"></a><p>Create channels.</p>
-                        <p>Once a connection to an AMQP broker has been established, the client must create a channel to communicate to the broker. A channel is a bi-directional connection between an AMQP client and an AMQP broker. AMQP is multi-channeled, which means that channels are multiplexed over a single network socket connection. Channels are light-weight and consume little resources, and therefore used in AMQP's exception handling mechanism—channels are closed when an exception occurs.</p>
-                        <p>The variables for the two channels (one for publishing to an exchange and one for consuming from a queue) were created in step 5, <a href="#variables">Declare the variables</a>:</p>
-                        <pre class="auto-links: false; brush: java; toolbar: false;">
-                                private AmqpChannel publishChannel = null;
-                                private AmqpChannel consumeChannel = null;</pre>
+<li><a name="channels"></a><p>Create channels.</p>
+  <p>Once a connection to an AMQP broker has been established, the client must create a channel to communicate to the broker. A channel is a bi-directional connection between an AMQP client and an AMQP broker. AMQP is multi-channeled, which means that channels are multiplexed over a single network socket connection. Channels are light-weight and consume little resources, and therefore used in AMQP's exception handling mechanism—channels are closed when an exception occurs.</p>
+  <p>The variables for the two channels (one for publishing to an exchange and one for consuming from a queue) were created in step 5, <a href="#variables">Declare the variables</a>:</p>
+  <pre class="auto-links: false; brush: java; toolbar: false;">
+    private AmqpChannel publishChannel = null;
+    private AmqpChannel consumeChannel = null;</pre>
 
-                        <p>With these variables created, you can create the channels as shown in the following example.</p>
+    <p>With these variables created, you can create the channels as shown in the following example.</p>
 
-                        <pre class="auto-links: false; brush: java; toolbar: false;">
-                                publishChannel = amqpClient.openChannel();
-                                consumeChannel = amqpClient.openChannel();</pre>
-                                
-                                <p>Once you have created the channels, an event handler is added to <span class="code_inline">attachEventListeners()</span> for when the connection opens.</p>
-                                
+    <pre class="auto-links: false; brush: java; toolbar: false;">
+      publishChannel = amqpClient.openChannel();
+      consumeChannel = amqpClient.openChannel();</pre>
+                        
+      <p>Once you have created the channels, an event handler is added to <span class="code_inline">attachEventListeners()</span> for when the connection opens.</p>
+                        
 <pre class="auto-links: false; brush: java; toolbar: false; highlight:[14]">
 public void onConnectionOpen(ConnectionEvent e) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                connect.setEnabled(false);
-                disconnect.setEnabled(true);
-                jButton3.setEnabled(true);
-                jButton4.setEnabled(true);
-                jButton5.setEnabled(true);
-                jButton6.setEnabled(true);
-                clearLog.setEnabled(true);   
-                jTextField5.setEditable(false);
-                jTextField7.setEditable(false);
-                onOpen();
-            }
-        });
-}</pre>
+  EventQueue.invokeLater(new Runnable() {
+    @Override
+    public void run() {
+      connect.setEnabled(false);
+      disconnect.setEnabled(true);
+      jButton3.setEnabled(true);
+      jButton4.setEnabled(true);
+      jButton5.setEnabled(true);
+      jButton6.setEnabled(true);
+      clearLog.setEnabled(true);   
+      jTextField5.setEditable(false);
+      jTextField7.setEditable(false);
+      onOpen();
+    }
+  });
+}
+</pre>
                                                 <p>You can see the <span class="code_inline">onOpen()</span> function called at the end of the event handler. <span class="code_inline">onOpen()</span> then calls <span class="code_inline">createChannel()</span> which contains <span class="code_inline">publishChannel</span> and <span class="code_inline">consumeChannel</span>.</p>
                                                 <p>Most importantly, <span class="code_inline">createChannel()</span> uses <span class="code_inline">ChannelAdapter()</span> as part of an adapter or wrapper design pattern, and allows you to specify only the methods that your client requires, instead of having to specify every method. See <a href="http://en.wikipedia.org/wiki/Adapter_pattern">Adapter pattern</a> for more information on this design pattern.</p>
 <pre class="auto-links: false; brush: java; toolbar: false; highlight:[1,7,12,16, 46];">
 private void onOpen(){
-        EventQueue.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                        logMessage("CONNECTED");
-                        status.setText("CONNECTED");
-                        createChannel();
-                }
-        });
+  EventQueue.invokeLater(new Runnable() {
+    @Override
+    public void run() {
+      logMessage("CONNECTED");
+      status.setText("CONNECTED");
+      createChannel();
+    }
+  });
 }
 
 private void createChannel()
 {
-        logMessage("OPEN: Publish Channel");
-        publishChannel = amqpClient.openChannel();
-        publishChannel.addChannelListener(new ChannelAdapter() {
-                @Override
-                public void onClose(ChannelEvent e) {
-                        EventQueue.invokeLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                        logMessage("CLOSED: Publish Channel");
-                                }
-                        });
-                }
-...
-
+  logMessage("OPEN: Publish Channel");
+  publishChannel = amqpClient.openChannel();
+  publishChannel.addChannelListener(new ChannelAdapter() {
+    @Override
+    public void onClose(ChannelEvent e) {
+      EventQueue.invokeLater(new Runnable() {
         @Override
-        public void onOpen(ChannelEvent e) {
-                EventQueue.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                                logMessage("OPENED: Publish Channel");
-                                publishChannel.declareExchange(jTextField5.getText(), "fanout", false, false, false, null);
-                        }
-                });
+        public void run() {
+          logMessage("CLOSED: Publish Channel");
         }
-});
-...
-logMessage("OPEN: Consume Channel");
-        consumeChannel = amqpClient.openChannel();
-        consumeChannel.addChannelListener(new ChannelAdapter(){
-                @Override
-                public void onBindQueue(ChannelEvent e) {
-                        EventQueue.invokeLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                        logMessage("QUEUE BOUND: "+jTextField5.getText()+" - "+queueName);
-                                }
-                        });
-                }
-...
-        @Override
-        public void onOpen(ChannelEvent e) {
-                EventQueue.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                                logMessage("OPENED: Consume Channel");
+      });
+    }
+    ...
 
-                                consumeChannel.declareQueue(queueName, false, false, false, false, false, null)
-                                        .bindQueue(queueName, jTextField5.getText(), routingKey, false, null)
-                                        .consumeBasic(queueName, myConsumerTag, false, false, false, false, null);
-                                }
-                        });
-                }
-...
-}</pre>
+    @Override
+    public void onOpen(ChannelEvent e) {
+      EventQueue.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+          logMessage("OPENED: Publish Channel");
+          publishChannel.declareExchange(jTextField5.getText(), "fanout", false, false, false, null);
+        }
+      });
+    }
+  });
+  ...
+  logMessage("OPEN: Consume Channel");
+  consumeChannel = amqpClient.openChannel();
+  consumeChannel.addChannelListener(new ChannelAdapter(){
+    @Override
+    public void onBindQueue(ChannelEvent e) {
+      EventQueue.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+          logMessage("QUEUE BOUND: "+jTextField5.getText()+" - "+queueName);
+        }
+      });
+    }
+    ...
+    @Override
+    public void onOpen(ChannelEvent e) {
+      EventQueue.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+          logMessage("OPENED: Consume Channel");
+
+          consumeChannel.declareQueue(queueName, false, false, false, false, false, null)
+          .bindQueue(queueName, jTextField5.getText(), routingKey, false, null)
+          .consumeBasic(queueName, myConsumerTag, false, false, false, false, null);
+        }
+      });
+    }
+    ...
+  }
+</pre>
                 <p>This example shows the event handlers for when a connection is opened. The <span class="code_inline">createChannel()</span> function also contains handlers for all other events, such as <span class="code_inline">onClose()</span> and <span class="code_inline">onError()</span>.</p>
         </li>
         <li><a name="exchange"></a><p>Declare an exchange.</p>
@@ -464,13 +470,14 @@ consumeChannel.declareQueue(queueName, false, false, false, false, false, null)
 event is raised, which calls an event handler registered previously:</p>
 <pre class="auto-links: false; brush: java; toolbar: false;">
 public void onBindQueue(ChannelEvent e) {
-        EventQueue.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                        logMessage("QUEUE BOUND: "+jTextField5.getText()+" - "+queueName);
-                }
-        });
-}</pre>
+  EventQueue.invokeLater(new Runnable() {
+    @Override
+    public void run() {
+      logMessage("QUEUE BOUND: "+jTextField5.getText()+" - "+queueName);
+    }
+  });
+}
+</pre>
         </li>
 
         <li><a name="publish"></a><p>Publish messages.</p>
@@ -487,34 +494,35 @@ public void onBindQueue(ChannelEvent e) {
 .
 .
 else if(arg0.getSource()==jButton3){
-        // Normal Publish.
-        logMessage("MESSAGE PUBLISHED: "+jTextField6.getText());
-        ByteBuffer buffer = ByteBuffer.allocate(512);
-        buffer.put(jTextField6.getText().getBytes(Charset.forName("UTF-8")));
-        buffer.flip();
-            
-        Timestamp ts = new Timestamp(System.currentTimeMillis());
-        AmqpProperties props = new AmqpProperties();
-        props.setMessageId("1");
-        props.setCorrelationId("4");
-        props.setAppId("AMQPDemo");
-        props.setUserId(jUsernameField1.getText());
-        props.setContentType("text/plain");
-        props.setContentEncoding("UTF-8");
-        props.setPriority(6);
-        props.setDeliveryMode(1);
-        props.setTimestamp(ts);
+  // Normal Publish.
+  logMessage("MESSAGE PUBLISHED: "+jTextField6.getText());
+  ByteBuffer buffer = ByteBuffer.allocate(512);
+  buffer.put(jTextField6.getText().getBytes(Charset.forName("UTF-8")));
+  buffer.flip();
+          
+  Timestamp ts = new Timestamp(System.currentTimeMillis());
+  AmqpProperties props = new AmqpProperties();
+  props.setMessageId("1");
+  props.setCorrelationId("4");
+  props.setAppId("AMQPDemo");
+  props.setUserId(jUsernameField1.getText());
+  props.setContentType("text/plain");
+  props.setContentEncoding("UTF-8");
+  props.setPriority(6);
+  props.setDeliveryMode(1);
+  props.setTimestamp(ts);
 
-        AmqpArguments customHeaders = new AmqpArguments();
-        customHeaders.addInteger("headerKey1", 100);
-        customHeaders.addLongString("headerKey2", "Header value");
+  AmqpArguments customHeaders = new AmqpArguments();
+  customHeaders.addInteger("headerKey1", 100);
+  customHeaders.addLongString("headerKey2", "Header value");
 
-        props.setHeaders(customHeaders);
+  props.setHeaders(customHeaders);
 
-        publishChannel.publishBasic(buffer, props, jTextField5.getText(), 
-                routingKey, false, false);
-        
-}</pre>
+  publishChannel.publishBasic(buffer, props, jTextField5.getText(), 
+  routingKey, false, false);
+      
+}
+</pre>
 
 <p>A custom parameter is passed in for the message. The message text entered by the user is stored in a variable and converted to binary (<span class="code_inline">buffer.putString(jTextField6.getText(), Charset.forName("UTF-8"));</span>), and then sent to the exchange specified by the user (<span class="code_inline">jTextField5.getText()</span>). Also note that the last two arguments use boolean values for <span class="code_inline">mandatory</span> and <span class="code_inline">immediate</span>.</p>       
 
@@ -533,31 +541,31 @@ consumeChannel.declareQueue(queueName, false, false, false, false, false, null)
                 <p>After the <span class="code_inline">consumeBasic</span> method is successful, the AMQP broker can then start delivering messages to the client and these messages raise the Message event, which calls the corresponding event handler (<span class="code_inline">onMessage()</span>). The following example shows how the <span class="code_inline">onMessage()</span> function retrieves information from the event object (<span class="code_inline">e</span>):</p>
 <pre class="auto-links: false; brush: java; toolbar: false;">
 public void onMessage(final ChannelEvent e) {
-        ...
-        EventQueue.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                        logMessage("MESSAGE CONSUMED: "+value);
-                        AmqpProperties props = e.getAmqpProperties();
-                        if (props != null) {
-                                AmqpArguments headers = props.getHeaders();
+  ...
+  EventQueue.invokeLater(new Runnable() {
+    @Override
+    public void run() {
+      logMessage("MESSAGE CONSUMED: "+value);
+      AmqpProperties props = e.getAmqpProperties();
+      if (props != null) {
+        AmqpArguments headers = props.getHeaders();
 
-                                if (headers != null) {
-                                        logMessage("Headers: " + headers.toString());
-                                }
-                                logMessage("Properties " + (String) props.toString());
+        if (headers != null) {
+          logMessage("Headers: " + headers.toString());
+        }
+        logMessage("Properties " + (String) props.toString());
 
-                                // Acknowledge the message as we passed in a 'false' for
-                                // noAck in AmqpChannel.consumeBasic() call. If the
-                                // message is not acknowledged, the broker will keep
-                                // holding the message. And, as more and more messages
-                                // are held by the broker, it will eventually result in 
-                                // an OutOfMemoryError.
-                                AmqpChannel channel = e.getChannel();
-                                channel.ackBasic(dt.longValue(), true);
-                        }
-                }
-        });
+        // Acknowledge the message as we passed in a 'false' for
+        // noAck in AmqpChannel.consumeBasic() call. If the
+        // message is not acknowledged, the broker will keep
+        // holding the message. And, as more and more messages
+        // are held by the broker, it will eventually result in 
+        // an OutOfMemoryError.
+        AmqpChannel channel = e.getChannel();
+        channel.ackBasic(dt.longValue(), true);
+      }
+    }
+  });
 }
 </pre>
 
@@ -582,59 +590,60 @@ txnPublishChannel.rollbackTx();</pre>
 <pre class="auto-links: false; brush: java; toolbar: false;">
 txnPublishChannel = amqpClient.openChannel();
 txnPublishChannel.addChannelListener(new ChannelAdapter() {
-        @Override
-        public void onCommit(ChannelEvent e) {
-                EventQueue.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                                jButton6.setEnabled(true);
-                                rollback.setEnabled(false);
-                                publish.setEnabled(false);
-                                jButton9.setEnabled(false);
-                                logMessage("TXN COMMITTED");
-                        }
-                });
-        }
+  @Override
+  public void onCommit(ChannelEvent e) {
+    EventQueue.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+        jButton6.setEnabled(true);
+        rollback.setEnabled(false);
+        publish.setEnabled(false);
+        jButton9.setEnabled(false);
+        logMessage("TXN COMMITTED");
+      }
+    });
+  }
 
-        @Override
-        public void onOpen(ChannelEvent e) {
-        EventQueue.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                        // logMessage("OPENED: Publish Channel for Transaction");
-                        txnPublishChannel.declareExchange(jTextField7.getText(), 
-                                "fanout", false, false, false, null);
-                }
-        });
-        }
+  @Override
+  public void onOpen(ChannelEvent e) {
+    EventQueue.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+        // logMessage("OPENED: Publish Channel for Transaction");
+        txnPublishChannel.declareExchange(jTextField7.getText(), 
+        "fanout", false, false, false, null);
+      }
+    });
+  }
 
-        @Override
-        public void onRollback(ChannelEvent e) {
-                EventQueue.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                                jButton6.setEnabled(true);
-                                rollback.setEnabled(false);
-                                publish.setEnabled(false);
-                                jButton9.setEnabled(false);
-                                logMessage("TXN ROLLEDBACK");
-                        }
-                });
-        }
-        @Override
-        public void onSelect(ChannelEvent e) {
-                EventQueue.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                                jButton6.setEnabled(false);
-                                logMessage("TXN SELECTED/STARTED");
-                        }
-                });
-        }
+  @Override
+  public void onRollback(ChannelEvent e) {
+    EventQueue.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+        jButton6.setEnabled(true);
+        rollback.setEnabled(false);
+        publish.setEnabled(false);
+        jButton9.setEnabled(false);
+        logMessage("TXN ROLLEDBACK");
+      }
+    });
+  }
+  @Override
+  public void onSelect(ChannelEvent e) {
+    EventQueue.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+        jButton6.setEnabled(false);
+        logMessage("TXN SELECTED/STARTED");
+      }
+    });
+  }
 });
 .
 .
-.</pre>
+.
+</pre>
         </li>
         <li><a name="control"></a><p>Control message flow.</p>
                         <p>You can use flow control in AMQP to temporarily&mdash;or permanently&mdash;halt the flow of messages on a channel from a queue to a consumer. If you turn the message flow off, no messages are sent to the consumer. The following example shows how you can turn the flow of messages on a channel off and back on:</p>
@@ -644,44 +653,46 @@ consumeChannel.flowChannel(false);</pre>
                         <p>After the flow on a channel is halted or resumed successfully, a flow event is raised, which calls the event handler registered previously.</p>
 <pre class="auto-links: false; brush: java; toolbar: false;">
 public void onFlow(ChannelEvent e) {
-        try {
-                final boolean isActive = e.isFlowActive();
-                EventQueue.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                                logMessage("FLOW: "+(isActive ? "ON" : "OFF"));
-                        }
-                });
-        }
-        catch (Exception ex) {
-                ex.printStackTrace();
-        }
-}</pre>
+  try {
+    final boolean isActive = e.isFlowActive();
+    EventQueue.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+        logMessage("FLOW: "+(isActive ? "ON" : "OFF"));
+      }
+    });
+  }
+  catch (Exception ex) {
+    ex.printStackTrace();
+  }
+}
+</pre>
         </li>
 
         <li><a name="exceptions"></a><p>Handle exceptions.</p>
                         <p>Channels do not consume large resources, and therefore used in AMQP's exception handling mechanism&mdash;channels are closed when an exception occurs. In the Java AMQP demo, detailed information about the exception is captured using the <span class="code_inline">onConnectionError()</span> method for ConnectionListener and the <span class="code_inline">onError()</span> method for ChannelListener. Together, these methods can be used for all error handling.</p>
 <pre class="auto-links: false; brush: java; toolbar: false;">
-public void onConnectionError(final ConnectionEvent e) {
-        EventQueue.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                        logMessage("ERROR:" + e.getMessage());
-                        status.setText("ERROR");
-                }
-        });
-}
-.
-.
-.
-public void onError(final ChannelEvent e) {
-        EventQueue.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                        logMessage("ERROR: Publish Channel - " + e.getMessage());
-                }
-        });
-}</pre>
+  public void onConnectionError(final ConnectionEvent e) {
+    EventQueue.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+        logMessage("ERROR:" + e.getMessage());
+        status.setText("ERROR");
+      }
+    });
+  }
+  .
+  .
+  .
+  public void onError(final ChannelEvent e) {
+    EventQueue.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+        logMessage("ERROR: Publish Channel - " + e.getMessage());
+      }
+    });
+  }
+</pre>
         </li>
 </ol>
 </p>
@@ -757,29 +768,30 @@ import com.kaazing.gateway.client.security.ChallengeHandlers;
 import com.kaazing.gateway.client.security.LoginHandler;
 ...
 private void initLoginHandler(String location) {
-        final LoginHandler loginHandler = new LoginHandler() {
-            private String username;
-            private char[] password;
-            @Override
-            public PasswordAuthentication getCredentials() {
-                try {
-                    LoginDialog dialog = new LoginDialog(Frame.getFrames()[0]);
-                    if (dialog.isCanceled()) {
-                        return null;
-                    }
-                    username = dialog.getUsername();
-                    password = dialog.getPassword();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return new PasswordAuthentication(username, password);
-            }
-        };
-        BasicChallengeHandler challengeHandler = ChallengeHandlers.load(BasicChallengeHandler.class);
-        challengeHandler.setLoginHandler(loginHandler);
-        ChallengeHandlers.setDefault(challengeHandler);
+  final LoginHandler loginHandler = new LoginHandler() {
+    private String username;
+    private char[] password;
+    @Override
+    public PasswordAuthentication getCredentials() {
+      try {
+        LoginDialog dialog = new LoginDialog(Frame.getFrames()[0]);
+        if (dialog.isCanceled()) {
+          return null;
+        }
+        username = dialog.getUsername();
+        password = dialog.getPassword();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      return new PasswordAuthentication(username, password);
     }
-    ...</pre>
+  };
+  BasicChallengeHandler challengeHandler = ChallengeHandlers.load(BasicChallengeHandler.class);
+  challengeHandler.setLoginHandler(loginHandler);
+  ChallengeHandlers.setDefault(challengeHandler);
+}
+...
+</pre>
 
 <p>Kaazing Gateway 4.x:</p>
 <pre class="auto-links: false; brush: java; toolbar: false;">
@@ -787,43 +799,43 @@ import com.kaazing.net.auth.BasicChallengeHandler;
 import com.kaazing.net.auth.LoginHandler;
 ...
 public AmqpPanel(String locationUrl)
-    {
-                        ...
-        amqpClientFactory = AmqpClientFactory.createAmqpClientFactory();
-                                ...
-        public void actionPerformed(ActionEvent arg0) {
-                if (arg0.getSource() == connect) {
-                    try {
-                        amqpClient = amqpClientFactory.createAmqpClient();
-                        final LoginHandler loginHandler = new LoginHandler() {
-                            private String username;
-                            private char[] password;
+{
+  ...
+  amqpClientFactory = AmqpClientFactory.createAmqpClientFactory();
+  ...
+  public void actionPerformed(ActionEvent arg0) {
+    if (arg0.getSource() == connect) {
+      try {
+        amqpClient = amqpClientFactory.createAmqpClient();
+        final LoginHandler loginHandler = new LoginHandler() {
+          private String username;
+          private char[] password;
 
-                            @Override
-                            public PasswordAuthentication getCredentials() {
-                                try {
-                                    LoginDialog dialog = new LoginDialog(Frame.getFrames()[0]);
-                                    if (dialog.isCanceled()) {
-                                        return null;
-                                    }
-                                    username = dialog.getUsername();
-                                    password = dialog.getPassword();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                                return new PasswordAuthentication(username, password);
-                            }
-                        };
-                        BasicChallengeHandler challengeHandler = BasicChallengeHandler.create();
-                        challengeHandler.setLoginHandler(loginHandler);
-                        WebSocketFactory wsFactory = amqpClient.getAmqpClientFactory().getWebSocketFactory();
-                        wsFactory.setDefaultChallengeHandler(challengeHandler);
-                                                                        ...
-                        amqpClient.connect(url, virtualHost, jUsernameField1.getText(), new String(jPasswordField1.getPassword()));
-                    } catch (Exception e) {
-                        logMessage(e.getMessage());
-                    }
-                                                        ...
+          @Override
+          public PasswordAuthentication getCredentials() {
+            try {
+              LoginDialog dialog = new LoginDialog(Frame.getFrames()[0]);
+              if (dialog.isCanceled()) {
+                return null;
+              }
+              username = dialog.getUsername();
+              password = dialog.getPassword();
+            } catch (Exception e) {
+              e.printStackTrace();
+            }
+            return new PasswordAuthentication(username, password);
+          }
+        };
+        BasicChallengeHandler challengeHandler = BasicChallengeHandler.create();
+        challengeHandler.setLoginHandler(loginHandler);
+        WebSocketFactory wsFactory = amqpClient.getAmqpClientFactory().getWebSocketFactory();
+        wsFactory.setDefaultChallengeHandler(challengeHandler);
+        ...
+        amqpClient.connect(url, virtualHost, jUsernameField1.getText(), new String(jPasswordField1.getPassword()));
+      } catch (Exception e) {
+        logMessage(e.getMessage());
+      }
+      ...
     </pre>
   </li>
   <li>Review the <a href="../apidoc/client/java/amqp/client/index.html">Java AMQP Client API</a>.</li>

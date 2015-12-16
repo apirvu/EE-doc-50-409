@@ -94,7 +94,7 @@
 
 <p>Suppose that a user requests content from the URL <code>wss://example.com:443/</code> (note that specifying port 443 in the URL is optional but it is included here for clarity) and that the echo service for this URL has been configured in the Gateway configuration to have a security constraint on it. For example, lines 5 to 7 in the following service element show that users who want access to the echo service must have the <code>AUTHORIZED</code> role:</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;wss://example.com:443/&lt;/accept&gt;
   &lt;type&gt;echo&lt;/type&gt;
   &lt;realm-name&gt;demo&lt;/realm-name&gt;
@@ -122,7 +122,7 @@
       <li>
         <p>Consults the configuration parameters that were supplied in the Gateway configuration (for example, <code>GATEWAY_HOME/conf/gateway-config.xml</code>) when the Gateway was started, looks for a <code>security</code> element and looks up the HTTP challenge scheme. The HTTP challenge scheme is shown in the following example:</p>
 
-        <pre><code class="language-xml">&lt;security&gt;
+        <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;security&gt;
 ...
 &lt;!-- HTTP authentication configuration --&gt;
 &lt;http-challenge-scheme&gt;Application Token&lt;/http-challenge-scheme&gt;
@@ -143,7 +143,7 @@
       <li>
         <p>Looks at the Gateway configuration <code>realm</code> to look up the authentication information for the request. The <code>realm</code> element is part of the <code>security</code> element in the Gateway configuration, as shown in the following example:</p>
 
-        <pre><code class="language-xml">&lt;security&gt;
+        <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;security&gt;
   &lt;keystore&gt;
     &lt;type&gt;JCEKS&lt;/type&gt;
     &lt;file&gt;keystore.db&lt;/file&gt;

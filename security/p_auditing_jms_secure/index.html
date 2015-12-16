@@ -118,7 +118,7 @@
 
 <p>To configure application Auditing, you must specify the value you would like to be appended to you messages in the <code>application.id</code> property of the service in the file <code>gateway-config.xml</code> as shown in the following example:</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   .
   .
   .
@@ -135,7 +135,7 @@
 
 <p>You can use the Gateway’s pluggable Java API to produce an auditable user identifier for each authenticated client. To do this, you can leverage the <code>JMSUserIdentityResolver</code> class as shown in the following example:</p>
 
-<pre><code class="language-java">package com.kaazing.gateway.jms.server.spi.demo.security;
+<pre class="auto-links: false; brush: java; toolbar: false;">package com.kaazing.gateway.jms.server.spi.demo.security;
 
   import java.util.Set;
   import javax.security.auth.Subject;
@@ -161,7 +161,7 @@
 
 <p>The following is an example of the <code>user.id.resolver</code> property as specified in the service configuration.</p>
 
-<pre><code class="language-xml">  &lt;user.id.resolver&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">  &lt;user.id.resolver&gt;
     com.kaazing.gateway.jms.server.spi.demo.security.KerberosUserIdentityResolver
   &lt;/user.id.resolver&gt;
 </code></pre>

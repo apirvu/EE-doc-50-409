@@ -206,7 +206,7 @@
 <table>
   <thead>
     <tr>
-      <th>If the client application …</th>
+      <th width="200px">If the client application …</th>
       <th>The Durable Name …</th>
       <th>The Gateway …</th>
     </tr>
@@ -223,7 +223,7 @@
       <td>Dynamically creates a corresponding durable subscriber on the JMS-compliant message broker whenever the client application creates a durable subscriber. The back-end durable name is formed from the durable name given by the client application and the client ID set on the client application’s connection in the format specified by the <a href="#clientdurablenameformat"><code>client.durable.name.format</code></a> property on the <code>jms</code> service or the <a href="#clientdurablenameformat"><code>client.durable.name.format</code></a> property on the <code>jms.proxy</code> service.</td>
     </tr>
   </tbody>
-</table>
+</table><br>
 
 <p>The <a href="../..">documentation for developers</a> provides complete information about using the Gateway client libraries to create durable subscribers. Also, see the JMS API documentation for more information about the <a href="http://docs.oracle.com/javaee/6/api/javax/jms/Session.html#createDurableSubscriber(javax.jms.Topic,%20java.lang.String" title="Interface Session">createDurableSubscriber</a> method.</p>
 
@@ -263,7 +263,7 @@
 
 <p>The following example enables last value cache on a specific topic <code>events.calendar</code> and any topics that match a wildcard name of <code>events.football.&gt;</code>. Each topic needs to be in its own <code>topic</code> element. In this example, the Gateway retains the last message for the destinations given. When a new client subscribes to one of those destinations, the last value cache messages are sent to the client before any new live messages from the broker.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://gateway.example.com/jms&lt;/accept&gt;
  
   &lt;type&gt;jms&lt;/type&gt;
@@ -305,7 +305,7 @@
 
     <p>To trigger bootstrapping, specify the <a href="#cachedurablenameformat">cache.durable.name.format</a> and <a href="#cachedurableclientid">cache.durable.client.id</a> topic properties, as shown in the following example.</p>
 
-    <pre><code class="language-xml">&lt;service&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://gateway.example.com/jms&lt;/accept&gt;
       
   &lt;type&gt;jms&lt;/type&gt;
@@ -362,7 +362,7 @@
 
 <p>The following topic configuration example shows how you might configure <a href="#subscriptionsharing"><code>subscription.sharing</code></a> and <a href="#subscriptionlifetime"><code>subscription.lifetime</code></a>:</p>
 
-<pre><code class="language-xml">   
+<pre class="auto-links: false; brush: xml; toolbar: false;">   
     &lt;topic&gt;
       &lt;!-- Broker specific topic wildcard --&gt;
       &lt;name&gt;quotes.*.*&lt;/name&gt;
@@ -405,7 +405,7 @@
 
 <p>When configuring shared wildcard subscriptions (specifying the <a href="#subscriptionsharing"><code>subscription.sharing</code></a> topic property as wildcard), target the subscription as narrowly as possible to reduce unnecessary messages being delivered from the message broker to the Gateway. For example, imagine you have the following configuration:</p>
 
-<pre><code class="language-xml">    &lt;topic&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">    &lt;topic&gt;
       &lt;!-- Broker specific topic wildcard --&gt;
       &lt;name&gt;events.&gt;&lt;/name&gt;
       &lt;cache.size&gt;1 &lt;/cache.size&gt;
@@ -416,7 +416,7 @@
 
 <p>In this case, a more specific subscription is better. If your clients all subscribe to <code>events.football</code>, then use this configuration:</p>
 
-<pre><code class="language-xml">    &lt;topic&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">    &lt;topic&gt;
       &lt;!-- Broker specific topic wildcard --&gt;
       &lt;name&gt;events.football.&gt;&lt;/name&gt;
       &lt;cache.size&gt;1&lt;/cache.size&gt;
@@ -437,7 +437,7 @@
 
 <p>For example, if your Gateway has the following configuration, then it defaults to <code>exact</code> because <code>subscription.sharing</code> is unspecified:</p>
 
-<pre><code class="language-xml">    &lt;topic&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">    &lt;topic&gt;
       &lt;!-- Broker specific topic wildcard --&gt;
       &lt;name&gt;events.&gt;&lt;/name&gt;
       &lt;cache.size&gt;1&lt;/cache.size&gt;
@@ -448,7 +448,7 @@
 
 <p>Now, let’s change the configuration wildcard to the following:</p>
 
-<pre><code class="language-xml">    &lt;topic&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">    &lt;topic&gt;
       &lt;!-- Broker specific topic wildcard --&gt;
       &lt;name&gt;events.&gt;&lt;/name&gt;
       &lt;cache.size&gt;1&lt;/cache.size&gt;
@@ -470,7 +470,7 @@
 
 <p>By default, the <code>cache.size</code> property is set to <code>0</code>, which means that last value cache is disabled. In general, you should set the <a href="#cachesize"><code>cache.size</code></a> property to 1 to handle most use cases.</p>
 
-<pre><code class="language-xml">    &lt;topic&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">    &lt;topic&gt;
       &lt;!-- Broker specific topic wildcard --&gt;
       &lt;name&gt;events.&gt;&lt;/name&gt;
       &lt;cache.size&gt;1&lt;/cache.size&gt;
@@ -1053,7 +1053,7 @@
 
 <p>The following example of a <code>service</code> element of type <code>jms</code> connects to the Apache ActiveMQ broker that ships in the bundle.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://localhost:8000/jms&lt;/accept&gt;
   &lt;accept&gt;wss://localhost:9000/jms&lt;/accept&gt;
 
@@ -1085,7 +1085,7 @@
 
 <p>The following example uses ports <code>80</code> and <code>443</code> to connect to the back-end JMS service, such as when a desktop Java application uses the Gateway to connect to a JMS-compliant message broker over WebSocket (you can omit the default ports <code>80</code> or <code>443</code>).</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://example.com:80/jms&lt;/accept&gt;
   &lt;accept&gt;wss://example.com:443/jms&lt;/accept&gt;
  
@@ -1120,7 +1120,7 @@
   <li>If a client subscribes to <code>events.basketball</code> then no topic name matches in the configuration shown above and delta messages are not enabled. Full messages are sent over the wire.</li>
 </ul>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://gateway.example.com/jms&lt;/accept&gt;
 
   &lt;type&gt;jms&lt;/type&gt;
@@ -1241,7 +1241,7 @@
 
 <p>The <code>service</code> element in the configuration file for the outer DMZ Gateway accepting data from clients and connecting to the inner Gateway.</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://hostname1:4503/path&lt;/accept&gt;
   &lt;connect&gt;tcp://hostname2:4502&lt;/connect&gt;
   
@@ -1255,7 +1255,7 @@
 
 <p>The <code>service</code> element in the configuration file for the inner Gateway receiving data from the DMZ Gateway and communicating with the JMS-compliant message broker:</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;tcp://hostname2:4502/&lt;/accept&gt;
     
   &lt;type&gt;jms&lt;/type&gt;
@@ -1288,7 +1288,7 @@
   <li><code>prepared.connection.count</code> property, which tells the DMZ Gateway to prepare 10 connections to the service on the internal Gateway specified by the <code>connect</code> element, then maintain 10 connections as clients consume each connection.</li>
 </ul>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://hostname1:4503/path&lt;/accept&gt;
   &lt;connect&gt;tcp://hostname2:4502&lt;/connect&gt;
   

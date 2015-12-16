@@ -110,7 +110,7 @@
 
     <p><strong>Internal Gateway</strong></p>
 
-    <pre><code class="language-xml">&lt;properties&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;properties&gt;
 
   &lt;!-- The Gateway in the DMZ to connect to. --&gt;
   &lt;property&gt;
@@ -123,7 +123,7 @@
 
     <p><strong>DMZ Gateway</strong></p>
 
-    <pre><code class="language-xml">&lt;properties&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;properties&gt;
   &lt;!-- The IP address of this cluster member. --&gt;
   &lt;property&gt;
     &lt;name&gt;gateway.ip.address&lt;/name&gt;
@@ -154,7 +154,7 @@
   <li>
     <p>On the DMZ Gateway, add the cluster element:</p>
 
-    <pre><code class="language-xml">&lt;cluster&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;cluster&gt;
   &lt;name&gt;dmzCluster&lt;/name&gt;
   &lt;accept&gt;tcp://${gateway.ip.address}:${cluster.port}&lt;/accept&gt;
   &lt;connect&gt;udp://224.2.2.44:44444&lt;/connect&gt;
@@ -166,7 +166,7 @@
   <li>
     <p>On the DMZ Gateway, add a balancer service for each service. The following example shows the balancer service for DMZ App1:</p>
 
-    <pre><code class="language-xml">&lt;service&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
 
   &lt;name&gt;Balancer for DMZ App1&lt;/name&gt;
   &lt;accept&gt;wss://gateway.example.com:443/app1&lt;/accept&gt;
@@ -193,12 +193,12 @@
 
     <p><strong>For App1, add:</strong></p>
 
-    <pre><code class="language-xml">&lt;balance&gt;wss://gateway.example.com:443/app1&lt;/balance&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;balance&gt;wss://gateway.example.com:443/app1&lt;/balance&gt;
 </code></pre>
 
     <p><strong>For App2, add:</strong></p>
 
-    <pre><code class="language-xml">&lt;balance&gt;wss://gateway.example.com:443/app2&lt;/balance&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;balance&gt;wss://gateway.example.com:443/app2&lt;/balance&gt;
 </code></pre>
   </li>
   <li>Start each Gateway and verify the cluster is running.</li>

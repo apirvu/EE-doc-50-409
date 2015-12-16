@@ -183,28 +183,28 @@ ws.setChallengeHandler(challengeHandler);
 
 <pre class="auto-links: false; brush: java; toolbar: false;">
 final LoginHandler loginHandler = new LoginHandler() {
-        private String username;
-        private char[] password;
+  private String username;
+  private char[] password;
 
-        @Override
-        public PasswordAuthentication getCredentials() {
-                try {
-            LoginDialog dialog = new LoginDialog(parentFrame);
-            if (dialog.isCanceled()) {
-                return null;
-            }
-            username = dialog.getUsername();
-            password = dialog.getPassword();
-                } catch (Exception e) {
-                        e.printStackTrace();
-                }
-                return new PasswordAuthentication(username, password);
-        }
+  @Override
+  public PasswordAuthentication getCredentials() {
+    try {
+      LoginDialog dialog = new LoginDialog(parentFrame);
+      if (dialog.isCanceled()) {
+        return null;
+      }
+      username = dialog.getUsername();
+      password = dialog.getPassword();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return new PasswordAuthentication(username, password);
+  }
 };
-   
+ 
 wsFactory = WebSocketFactory.createWebSocketFactory();
 wsFactory.setDefaultChallengeHandler(
-        BasicChallengeHandler.create().setLoginHandler(loginHandler);
+BasicChallengeHandler.create().setLoginHandler(loginHandler);
 </pre>
 
 <p><span class="note"><b>Note:</b> This example is taken from the out of the box Java Demo at <span class="uri">http://localhost:8001/demo/</span> and uses an extension of JDialog (javax.swing.JDialog). The source code for the out of the box demo is available in your installation of the Gateway: <span class="uri"><em>GATEWAY_HOME</em>/demo/java/.</span></span></p>
@@ -342,13 +342,12 @@ public class JmsPanel extends javax.swing.JPanel implements ActionListener, Mess
 
 <pre class="auto-links: false; brush: java; toolbar: false;">
 LoginHandler someServerLoginHandler = ...
-NegotiateChallengeHandler  nch = NegotiateChallengeHandler.create();
-NegotiableChallengeHandler nblch = NegotiableChallengeHandler.create();
-DispatchChallengeHandler   dch = DispatchChallengeHandler.create();
+NegotiateChallengeHandler   nch = NegotiateChallengeHandler.create();
+NegotiableChallengeHandler  nblch = NegotiableChallengeHandler.create();
+DispatchChallengeHandler    dch = DispatchChallengeHandler.create();
 
-WebSocketFactory                wsFactory = WebSocketFactory.createWebSocketFactory();
-wsFactory.setDefaultChallengeHandler(dch.register("ws://host.example.com",
-        nch.register(nblch).setLoginHandler(someServerLoginHandler)
+WebSocketFactory            wsFactory = WebSocketFactory.createWebSocketFactory();
+wsFactory.setDefaultChallengeHandler(dch.register("ws://host.example.com", nch.register(nblch).setLoginHandler(someServerLoginHandler)
 );
  // register more alternatives to negotiate here.
 )
@@ -392,19 +391,19 @@ import com.kaazing.net.auth.NegotiateChallengeHandler;
 LoginHandler someServerLoginHandler = ...; // perhaps this pops a dialog
 
 KerberosChallengeHandler kerberosChallengeHandler =
-        KerberosChallengeHandler.create()
-                .setDefaultLocation(URI.create("ws://kb.hostname.com/kerberos5"))
-                .setRealmLocation("ATHENA.MIT.EDU", URI.create("ws://athena.hostname.com/kerberos5"))
-                .setServiceName("HTTP/servergw.hostname.com")
-                        .setLoginHandler(someServerLoginHandler)
+  KerberosChallengeHandler.create()
+    .setDefaultLocation(URI.create("ws://kb.hostname.com/kerberos5"))
+    .setRealmLocation("ATHENA.MIT.EDU", URI.create("ws://athena.hostname.com/kerberos5"))
+    .setServiceName("HTTP/servergw.hostname.com")
+    .setLoginHandler(someServerLoginHandler)
 
 NegotiateChallengeHandler negotiateChallengeHandler = NegotiateChallengeHandler.create()
-        .register(kerberosChallengeHandler);
+  .register(kerberosChallengeHandler);
 
 WebSocketFactory wsFactory = WebSocketFactory.createWebSocketFactory();
 wsFactory.setDefaultChallengeHandler(WebSocketDemoChallengeHandler.create()
-        .register("ws://gateway.kaazing.wan:8001/echo", negotiateChallengeHandler)
-        .register("ws://gateway.kaazing.wan:8001/echo/*", negotiateChallengeHandler));
+  .register("ws://gateway.kaazing.wan:8001/echo", negotiateChallengeHandler)
+  .register("ws://gateway.kaazing.wan:8001/echo/*", negotiateChallengeHandler));
 </pre>
 
 <p>At this point, any user attempting to access <span class="uri">servergw.hostname.com:8000/echo</span> will be challenged using a <code>KerberosChallengeHandler</code> instance. If the user enters credentials with the ATHENA.MIT.EDU realm the realm-specific <span class="uri">athena.hostname.com</span> KDC will be used to ask for Kerberos credentials for the challenge response. If the user enters credentials with any other realm the <span class="uri">kb.hostname.com</span> KDC will be used to ask for Kerberos credentials. All requests to either KDC will be for the service name <span class="uri">HTTP/servergw.hostname.com</span> (indicating access to that HTTP server is the service for which Kerberos credentials are being requested).</p>

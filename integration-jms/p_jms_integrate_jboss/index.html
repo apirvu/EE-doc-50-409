@@ -123,14 +123,14 @@
   </li>
 </ol>
 
-<p><strong>Note:</strong> Instead of copying the required JBoss jar files to <code>GATEWAY_HOME</code>/lib<code>, you can also modify the </code>gateway.start<code> or </code>gateway.start.bat<code> startup file to add these </code>.JAR<code> files (in their original *</code>JBOSS_HOME<code>* and *</code>JBOSS_MESSAGING_INSTALL_DIR<code>* locations) to the </code>CLASSPATH` when the Gateway starts. </p>
+<p><strong>Note:</strong> Instead of copying the required JBoss jar files to <code>GATEWAY_HOME/lib</code>, you can also modify the <code>gateway.start</code> or <code>gateway.start.bat</code> startup file to add these <code>.JAR</code> files (in their original *<code>JBOSS_HOME</code>* and *<code>JBOSS_MESSAGING_INSTALL_DIR</code>* locations) to the CLASSPATH when the Gateway starts. </p>
 
 <ol>
   <li>Open the file <code>GATEWAY_HOME/conf/gateway-config.xml</code> in a text editor and locate the <code>jms</code> service element (search for “jms”).</li>
   <li>
-    <p>Modify the <a href="../../admin-reference/r_conf_jms#jms-service-environment-properties"><code>jms service environment properties</code></a> with the following:</p>
+    <p>Modify the <a href="../../admin-reference/r_conf_jms#jms-service-environment-properties"><code>jms</code></a> service environment properties with the following:</p>
 
-    <pre><code class="language-xml">  &lt;properties&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">  &lt;properties&gt;
     &lt;connection.factory.name&gt;ConnectionFactory&lt;/connection.factory.name&gt;
     &lt;context.lookup.topic.format&gt;topic/%s&lt;/context.lookup.topic.format&gt;
     &lt;context.lookup.queue.format&gt;queue/%s&lt;/context.lookup.queue.format&gt;
@@ -198,7 +198,7 @@
 
     <p>Change the constructor line of the <code>AttachmentStore</code> definition in <code>JBOSS_HOME/server/default/conf/bootstrap/profile.xml</code> (the original version of the file does not have the <code>class="java.io.File"</code> attribute):</p>
 
-    <pre><code class="language-xml">&lt;bean name="AttachmentStore"
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;bean name="AttachmentStore"
     class="org.jboss.system.server.profileservice.repository.AbstractAttachmentStore"&gt;
 &lt;constructor&gt;
     &lt;parameter class="java.io.File"&gt;
@@ -211,7 +211,7 @@
   <li>
     <p>Modify the <a href="../../admin-reference/r_conf_jms#jms-service-environment-properties"><code>jms service environment properties</code></a> with the following:</p>
 
-    <pre><code class="language-xml">  &lt;properties&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">  &lt;properties&gt;
     &lt;connection.factory.name&gt;ConnectionFactory&lt;/connection.factory.name&gt;
     &lt;context.lookup.topic.format&gt;topic/%s&lt;/context.lookup.topic.format&gt;
     &lt;context.lookup.queue.format&gt;queue/%s&lt;/context.lookup.queue.format&gt;
@@ -263,7 +263,7 @@
   <li>
     <p>With JBoss Application Server 5.1.x, all topics and queues have to be configured beforehand, and the default JBoss configuration file does not define any topics and queues. Therefore, you must explicitly create topics and queues, including the topic used in the out of the box demo (<code>testTopic</code> in <code>JBOSS_HOME/server/default/conf/jboss-service.xml</code>):</p>
 
-    <pre><code class="language-xml">&lt;mbean code="org.jboss.jms.server.destination.TopicService"
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;mbean code="org.jboss.jms.server.destination.TopicService"
     name="jboss.messaging.destination:service=Topic,name=testTopic"
     xmbean-dd="xmdesc/Topic-xmbean.xml"&gt;
     &lt;depends optional-attribute-name="ServerPeer"&gt;jboss.messaging:service=ServerPeer&lt;/depends&gt;

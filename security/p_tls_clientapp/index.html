@@ -105,8 +105,8 @@
 </ul>
 
 <p><strong>Note:</strong> Using self-signed certificates with clients involves importing and exporting certificates from the truststore and keystore storage locations. For more information, see the <a href="../../admin-reference/r_configure_gateway_security#truststore">truststore</a> and <a href="../../admin-reference/r_configure_gateway_security#keystore">keystore</a> elements in the <a href="../../admin-reference/r_configure_gateway_security">Security Reference</a> documentation.<br />
-Before You Begin<br />
-—————-</p>
+
+<h2>Before You Begin</h2>
 
 <p>This procedure is part of <a href="../o_tls">Secure Network Traffic with the Gateway</a>:</p>
 
@@ -258,7 +258,7 @@ hostname.cer
 
     <p>If you are running the client on the same computer as the Gateway, you can use the following code in your Java client to set the location of the truststore and certificate:</p>
 
-    <pre><code class="language-java">    final String trustStore = new File(new File(GatewayLauncher.getGatewayHomeDir(), "conf/"),
+    <pre class="auto-links: false; brush: java; toolbar: false;">    final String trustStore = new File(new File(GatewayLauncher.getGatewayHomeDir(), "conf/"),
         "truststore.db").getAbsoluteFile().toString();
 
     System.setProperty("javax.net.ssl.trustStore", trustStore);

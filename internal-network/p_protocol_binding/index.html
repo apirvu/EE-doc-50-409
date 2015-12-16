@@ -112,7 +112,8 @@
 
     <p>The following example shows <code>ssl.encryption</code> disabled, <code>ws.maximum.message.size</code> set to <code>256k</code>, and several network protocol bindings (<code>ws.bind</code>, <code>wss.bind</code>, <code>http.bind</code>, and <code>https.bind</code>):</p>
 
-    <pre><code class="language-xml">&lt;service-defaults&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">
+&lt;service-defaults&gt;
     &lt;accept-options&gt;
         &lt;ssl.encryption&gt;disabled&lt;/ssl.encryption&gt;
         &lt;ws.bind&gt;8050&lt;/ws.bind&gt;
@@ -128,7 +129,7 @@
 &lt;/mime-mapping&gt;
 ...
 &lt;/service-defaults&gt;
-</code></pre>
+</pre>
 
     <p>For more information, see the <a href="../../admin-reference/r_configure_gateway_service_defaults">Service Defaults Reference</a> documentation.</p>
   </li>
@@ -144,20 +145,22 @@
 
     <p>The following example shows a configuration where only the port number is specified, so that the Gateway listens to all interfaces using that port. Here, the Gateway binds to the wildcard address (<code>0.0.0.0</code>) as the host in the <code>&lt;wss.bind&gt;</code> element.</p>
 
-    <pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">
+&lt;service&gt;
     &lt;accept&gt;wss://www.example.com:443&lt;/accept&gt;
     &lt;type&gt;echo&lt;/type&gt;
     &lt;accept-options&gt;  
         &lt;wss.bind&gt;8001&lt;/wss.bind&gt;
     &lt;/accept-options&gt;
 &lt;/service&gt;
-</code></pre>
+</pre>
 
     <p>You can only bind compatible protocols to the same host and port combination (unencrypted protocol traffic versus protocol traffic encrypted with Transport Layer Security (TLS, also known as SSL)).</p>
 
     <p>For example, you cannot bind HTTP and HTTPS to the same address because these protocols are not compatible. You can bind HTTP and WebSocket (<code>ws</code>) together, or HTTPS and WebSocket Secure (<code>wss</code>). The following example shows compatible protocols bound to the same address. In this example, switching <code>&lt;http.bind&gt;</code> to <code>&lt;wss.bind&gt;</code> would result in a port conflict error at startup.</p>
 
-    <pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">
+&lt;service&gt;
     &lt;accept&gt;http://www.example.com:80&lt;/accept&gt;
     &lt;accept&gt;ws://www.example.com:80&lt;/accept&gt;
     &lt;type&gt;echo&lt;/type&gt;
@@ -166,7 +169,7 @@
         &lt;ws.bind&gt;gateway.dmz.net:8000&lt;/ws.bind&gt;
     &lt;/accept-options&gt;
 &lt;/service&gt;
-</code></pre>
+</pre>
   </li>
   <li>
     <p>Start the Gateway with the new configuration.</p>
@@ -175,32 +178,33 @@
 
     <p>For example, if you’ve configured the Gateway with the following:</p>
 
-    <pre><code class="language-xml">&lt;service&gt;
-    &lt;accept&gt;http://www.example.com:80/echo&lt;/accept&gt;
-    &lt;accept&gt;ws://www.example.com:80/echo2&lt;/accept&gt;
-    &lt;type&gt;echo&lt;/type&gt;
-    &lt;accept-options&gt;
-        &lt;http.bind&gt;gateway.dmz.net:8000&lt;/http.bind&gt;
-        &lt;ws.bind&gt;8000&lt;/ws.bind&gt;
-    &lt;/accept-options&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">
+&lt;service&gt;
+  &lt;accept&gt;http://www.example.com:80/echo&lt;/accept&gt;
+  &lt;accept&gt;ws://www.example.com:80/echo2&lt;/accept&gt;
+  &lt;type&gt;echo&lt;/type&gt;
+  &lt;accept-options&gt;
+      &lt;http.bind&gt;gateway.dmz.net:8000&lt;/http.bind&gt;
+      &lt;ws.bind&gt;8000&lt;/ws.bind&gt;
+  &lt;/accept-options&gt;
 &lt;/service&gt;
-</code></pre>
+</pre>
 
     <p>Then, on startup, the network address protocol bindings you’ve set display in the log, as shown in the following example:</p>
 
-    <p><code>
-  INFO Starting server
-  INFO Starting services
-  INFO http://localhost:8000/
-  INFO https://localhost:9000/
-  INFO http://www.example.com:80/echo @ gateway.dmz.net:8000
-  INFO ws://www.example.com:80/echo2 @ 0.0.0.0:8000
-  INFO Started services
-  INFO Starting management
-  INFO jmx://localhost:2020/
-  INFO Started management
+<p><code>
+  INFO Starting server<br>
+  INFO Starting services<br>
+  INFO http://localhost:8000/<br>
+  INFO https://localhost:9000/<br>
+  INFO http://www.example.com:80/echo @ gateway.dmz.net:8000<br>
+  INFO ws://www.example.com:80/echo2 @ 0.0.0.0:8000<br>
+  INFO Started services<br>
+  INFO Starting management<br>
+  INFO jmx://localhost:2020/<br>
+  INFO Started management<br>
   INFO Started server successfully in 0.345 secs at 2044-06-06 11:32:58
-  </code></p>
+</code></p>
   </li>
 </ol>
 

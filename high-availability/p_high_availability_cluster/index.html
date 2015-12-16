@@ -113,7 +113,7 @@
   <li>
     <p>On the first Gateway (<code>192.168.2.10</code>), add the following <code>cluster</code> configuration element in the Gateway configuration file (<code>GATEWAY_HOME/conf/gateway-config.xml</code>).</p>
 
-    <pre><code class="language-xml">      &lt;cluster&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">      &lt;cluster&gt;
         &lt;name&gt;MyCluster&lt;/name&gt;
         &lt;accept&gt;tcp://192.168.2.10:5942&lt;/accept&gt;
         &lt;connect&gt;udp://224.2.2.44:54327&lt;/connect&gt;
@@ -137,7 +137,7 @@
   <li>
     <p>On the second Gateway (<code>192.168.2.11</code>), add the following <code>cluster</code> service element (note that its <code>name</code> and <code>connect</code> elements are identical to those in the <code>cluster</code> service on the first Gateway).</p>
 
-    <pre><code class="language-xml">          &lt;cluster&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">          &lt;cluster&gt;
             &lt;name&gt;MyCluster&lt;/name&gt;
             &lt;accept&gt;tcp://192.168.2.11:5942&lt;/accept&gt;
             &lt;connect&gt;udp://224.2.2.44:54327&lt;/connect&gt;

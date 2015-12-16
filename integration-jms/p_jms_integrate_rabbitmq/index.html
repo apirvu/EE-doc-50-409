@@ -155,68 +155,68 @@
       <li>
         <p>Create a JNDI .bindings file for the connection to the RabbitMQ broker. Here is an example of a .bindings file:</p>
 
-        <pre><code>ConnectionFactory/ClassName=com.rabbitmq.jms.admin.RMQConnectionFactory
-ConnectionFactory/FactoryName=com.rabbitmq.jms.admin.RMQObjectFactory
-
-ConnectionFactory/RefAddr/0/Content=jms/ConnectionFactory
-ConnectionFactory/RefAddr/0/Type=name
-ConnectionFactory/RefAddr/0/Encoding=String
-
-ConnectionFactory/RefAddr/1/Content=javax.jms.ConnectionFactory
-ConnectionFactory/RefAddr/1/Type=type
-ConnectionFactory/RefAddr/1/Encoding=String
-
-ConnectionFactory/RefAddr/2/Content=com.rabbitmq.jms.admin.RMQObjectFactory
-ConnectionFactory/RefAddr/2/Type=factory
-ConnectionFactory/RefAddr/2/Encoding=String
-
-# Change this line accordingly if the broker is not at localhost
-ConnectionFactory/RefAddr/3/Content=localhost
-ConnectionFactory/RefAddr/3/Type=host
+        <p><code>ConnectionFactory/ClassName=com.rabbitmq.jms.admin.RMQConnectionFactory<br>
+ConnectionFactory/FactoryName=com.rabbitmq.jms.admin.RMQObjectFactory<br>
+<br>
+ConnectionFactory/RefAddr/0/Content=jms/ConnectionFactory<br>
+ConnectionFactory/RefAddr/0/Type=name<br>
+ConnectionFactory/RefAddr/0/Encoding=String<br>
+<br>
+ConnectionFactory/RefAddr/1/Content=javax.jms.ConnectionFactory<br>
+ConnectionFactory/RefAddr/1/Type=type<br>
+ConnectionFactory/RefAddr/1/Encoding=String<br>
+<br>
+ConnectionFactory/RefAddr/2/Content=com.rabbitmq.jms.admin.RMQObjectFactory<br>
+ConnectionFactory/RefAddr/2/Type=factory<br>
+ConnectionFactory/RefAddr/2/Encoding=String<br>
+<br>
+# Change this line accordingly if the broker is not at localhost<br>
+ConnectionFactory/RefAddr/3/Content=localhost<br>
+ConnectionFactory/RefAddr/3/Type=host<br>
 ConnectionFactory/RefAddr/3/Encoding=String
-</code></pre>
+</code></p>
 
         <p>For static destinations, you need to add an additional set of entries for each static destination. The snippet below shows how to add a static topic named “MyTopic”, and a queue named “MyQueue” in JNDI:</p>
 
-        <pre><code>MyTopic/ClassName=com.rabbitmq.jms.admin.RMQDestination
-MyTopic/FactoryName=com.rabbitmq.jms.admin.RMQObjectFactory
-
-MyTopic/RefAddr/0/Content=jms/Topic
-MyTopic/RefAddr/0/Type=name
-MyTopic/RefAddr/0/Encoding=String
-
-MyTopic/RefAddr/1/Content=javax.jms.Topic
-MyTopic/RefAddr/1/Type=type
-MyTopic/RefAddr/1/Encoding=String
-
-MyTopic/RefAddr/2/Content=com.rabbitmq.jms.admin.RMQObjectFactory
-MyTopic/RefAddr/2/Type=factory
-MyTopic/RefAddr/2/Encoding=String
-
-MyTopic/RefAddr/3/Content=MyTopic
-MyTopic/RefAddr/3/Type=destinationName
-MyTopic/RefAddr/3/Encoding=String
-
-
-MyQueue/ClassName=com.rabbitmq.jms.admin.RMQDestination
-MyQueue/FactoryName=com.rabbitmq.jms.admin.RMQObjectFactory
-
-MyQueue/RefAddr/0/Content=jms/Queue
-MyQueue/RefAddr/0/Type=name
-MyQueue/RefAddr/0/Encoding=String
-
-MyQueue/RefAddr/1/Content=javax.jms.Queue
-MyQueue/RefAddr/1/Type=type
-MyQueue/RefAddr/1/Encoding=String
-
-MyQueue/RefAddr/2/Content=com.rabbitmq.jms.admin.RMQObjectFactory
-MyQueue/RefAddr/2/Type=factory
-MyQueue/RefAddr/2/Encoding=String
-
-MyQueue/RefAddr/3/Content=MyQueue
-MyQueue/RefAddr/3/Type=destinationName
+<p><code>
+MyTopic/ClassName=com.rabbitmq.jms.admin.RMQDestination<br>
+MyTopic/FactoryName=com.rabbitmq.jms.admin.RMQObjectFactory<br>
+<br>
+MyTopic/RefAddr/0/Content=jms/Topic<br>
+MyTopic/RefAddr/0/Type=name<br>
+MyTopic/RefAddr/0/Encoding=String<br>
+<br>
+MyTopic/RefAddr/1/Content=javax.jms.Topic<br>
+MyTopic/RefAddr/1/Type=type<br>
+MyTopic/RefAddr/1/Encoding=String<br>
+<br>
+MyTopic/RefAddr/2/Content=com.rabbitmq.jms.admin.RMQObjectFactory<br>
+MyTopic/RefAddr/2/Type=factory<br>
+MyTopic/RefAddr/2/Encoding=String<br>
+<br>
+MyTopic/RefAddr/3/Content=MyTopic<br>
+MyTopic/RefAddr/3/Type=destinationName<br>
+MyTopic/RefAddr/3/Encoding=String<br>
+<br>
+MyQueue/ClassName=com.rabbitmq.jms.admin.RMQDestination<br>
+MyQueue/FactoryName=com.rabbitmq.jms.admin.RMQObjectFactory<br>
+<br>
+MyQueue/RefAddr/0/Content=jms/Queue<br>
+MyQueue/RefAddr/0/Type=name<br>
+MyQueue/RefAddr/0/Encoding=String<br>
+<br>
+MyQueue/RefAddr/1/Content=javax.jms.Queue<br>
+MyQueue/RefAddr/1/Type=type<br>
+MyQueue/RefAddr/1/Encoding=String<br>
+<br>
+MyQueue/RefAddr/2/Content=com.rabbitmq.jms.admin.RMQObjectFactory<br>
+MyQueue/RefAddr/2/Type=factory<br>
+MyQueue/RefAddr/2/Encoding=String<br>
+<br>
+MyQueue/RefAddr/3/Content=MyQueue<br>
+MyQueue/RefAddr/3/Type=destinationName<br>
 MyQueue/RefAddr/3/Encoding=String
-</code></pre>
+</code></p>
 
         <p><strong>Notes:</strong></p>
 
@@ -230,7 +230,7 @@ MyQueue/RefAddr/3/Encoding=String
       <li>
         <p>Modify the <code>properties</code> element of the <a href="../../admin-reference/r_conf_jms#jms">jms</a> service with the following:</p>
 
-        <pre><code class="language-xml">&lt;service&gt;
+        <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://example.com:8000/jms&lt;/accept&gt;
 
   &lt;type&gt;jms&lt;/type&gt;
@@ -266,10 +266,11 @@ MyQueue/RefAddr/3/Encoding=String
 
         <p>When the Gateway detects the connection to RabbitMQ, the Gateway dynamically sets the following wildcard properties that are required by RabbitMQ:</p>
 
-        <pre><code>wildcard.any.descendent=#
-wildcard.separator=/
+<p><code>
+wildcard.any.descendent=#<br>
+wildcard.separator=/<br>
 wildcard.any.child=+
-</code></pre>
+</code></p>
 
         <p>See <a href="../../admin-reference/r_conf_jms#using-wildcards-with-last-value-cache-or-delta-messaging">Using Wildcards with Last Value Cache or Delta Messaging</a> for more information about using wildcards in the Gateway configuration.</p>
       </li>
@@ -289,11 +290,11 @@ The status message <code>SUBSCRIBE: /topic/destination</code> appears.</li>
   <li>
     <p>Click <strong>Send</strong>. The sent message appears in <strong>Log messages</strong> along with the received message from the subscription. For example:</p>
 
-    <pre><code>SEND TextMessage: Hello, message
-Destination: /topic/destination
-RECEIVED TextMessage: Hello, message
+<p><code>SEND TextMessage: Hello, message<br>
+Destination: /topic/destination<br>
+RECEIVED TextMessage: Hello, message<br>
 Destination: /topic/destination [#3]
-</code></pre>
+</code></p>
 
     <p><strong>Note:</strong> Transactions are not supported.</p>
   </li>

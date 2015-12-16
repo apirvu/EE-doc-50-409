@@ -149,7 +149,8 @@
 
 <p>For example, the following is an example of a minimally configured Gateway configuration file:</p>
 
-<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+<pre class="auto-links: false; brush: xml;">
+&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
 
 &lt;gateway-config
     xmlns="http://xmlns.kaazing.com/2014/09/gateway"&gt;
@@ -179,7 +180,7 @@
     &lt;/service&gt;
     ...
 &lt;/gateway-config&gt;
-</code></pre>
+</pre>
 
 <p>To customize your configuration, see the <a href="../p_configure_gateway_files">Configure Kaazing Gateway</a> topic for a step-by-step procedure to configure the Gateway. Also, you can find a complete list of elements in the <a href="../r_configure_gateway_element_index">Configuration Element Index.</a></p>
 
@@ -191,19 +192,21 @@
 
 <p>The namespace for <code>gateway-config.xml</code> is shown in line 1:</p>
 
-<pre><code class="language-xml">&lt;gateway-config xmlns="http://xmlns.kaazing.com/2014/09/gateway"&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">
+&lt;gateway-config xmlns="http://xmlns.kaazing.com/2014/09/gateway"&gt;
   ...
 &lt;/gateway-config&gt;
-</code></pre>
+</pre>
 
 <h4 id="example-jaas-configxml-file">Example: jaas-config.xml file</h4>
 
 <p>The namespace for <code>jaas-config.xml</code> is shown in line 1:</p>
 
-<pre><code class="language-xml">&lt;jaas-config xmlns="http://xmlns.kaazing.com/jaas-config/centurion"&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">
+&lt;jaas-config xmlns="http://xmlns.kaazing.com/jaas-config/centurion"&gt;
   ...
 &lt;/jaas-config&gt;
-</code></pre>
+</pre>
 
 <p>When the Gateway starts, it uses the namespace declaration (which corresponds to a particular XML schema definition) to determine how to parse the XML file. Thus, when you start the Gateway:</p>
 

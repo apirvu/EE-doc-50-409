@@ -262,7 +262,7 @@ Property: company=Apple
 
 <table>
   <tr>
-    <th scope="col">Message Element</th>
+    <th scope="col" width="150px">Message Element</th>
     <th scope="col">Description</th>
     <th scope="col">Example Value</th>
   </tr>
@@ -292,7 +292,7 @@ Property: company=Apple
     <td><span class="uri">Apple</span></td>
   </tr>
 </table>
-
+<br>
 <p>Now let's look at the Excel RTD formula syntax to see what arguments are available to the JMS message:</p>
 
 <pre class="auto-links: false; brush: vbnet; toolbar: false;">
@@ -303,7 +303,7 @@ RTD(ProgID, server, topic1, [topic2], ...)
 
 <table>
   <tr>
-    <th scope="col">RTD Formula Argument</th>
+    <th scope="col" width="175px">RTD Formula Argument</th>
     <th scope="col">Argument Description</th>
   </tr>
   <tr>
@@ -327,7 +327,7 @@ RTD(ProgID, server, topic1, [topic2], ...)
     <td>Subsequent topics are optional.</td>
   </tr>
 </table>
-
+<br>
 <p>For a full description of the formula, see <a href="http://office.microsoft.com/en-us/excel-help/rtd-function-HP010342864.aspx" title="RTD function - Excel - Office.com">RTD function</a> from Microsoft.</p>
 
 <p>Here is how the JMS message properties (see above) are used in the Kaazing Gateway version of the RTD formula syntax:</p>
@@ -399,55 +399,55 @@ Dim isConnected As Boolean
 
 ' Function called by cells that want to receive stock prices
 Function TICK(Security, Property)
+  
+  ' Only show data if we're connected.
+  If isConnected Then
+  
+    ' The URL of the gateway that the RTD server will connect to.
+    ' Example: ws://localhost:80/jms
+    Dim url As String
+    url = Range("url")
     
-    ' Only show data if we're connected.
-    If isConnected Then
+    ' The topic or queue that the RTD server will subscribe to.
+    ' Example: /topic/ticker.KZNG
+    Dim destination As String
+    destination = Range("destinationBase") & UCase(Security)
     
-        ' The URL of the gateway that the RTD server will connect to.
-        ' Example: ws://localhost:80/jms
-        Dim url As String
-        url = Range("url")
-        
-        ' The topic or queue that the RTD server will subscribe to.
-        ' Example: /topic/ticker.KZNG
-        Dim destination As String
-        destination = Range("destinationBase") & UCase(Security)
-        
-        ' The query to bind the destination to this cell.
-        ' Example: symbol=KZNG
-        Dim predicate As String
-        predicate = Range("discriminatorPropertyName") & "=" & UCase(Security)
+    ' The query to bind the destination to this cell.
+    ' Example: symbol=KZNG
+    Dim predicate As String
+    predicate = Range("discriminatorPropertyName") & "=" & UCase(Security)
+
+    Dim tickUpdate As String
+    tickUpdate = Excel.Application.WorksheetFunction.RTD("KaazingStockTickerExcelDemo.RtdServer", "", url, destination, predicate, Property)
     
-        Dim tickUpdate As String
-        tickUpdate = Excel.Application.WorksheetFunction.RTD("KaazingStockTickerExcelDemo.RtdServer", "", url, destination, predicate, Property)
-        
-        If tickUpdate = "#N/A Requesting ..." Then
-            ' The RTD server returns this when there is no data yet.
-            ' Show 0 until we have data.
-            tickUpdate = "0"
-        End If
-    
-        TICK = tickUpdate
-    Else
-        TICK = "0"
+    If tickUpdate = "#N/A Requesting ..." Then
+        ' The RTD server returns this when there is no data yet.
+        ' Show 0 until we have data.
+        tickUpdate = "0"
     End If
-    
+
+    TICK = tickUpdate
+  Else
+    TICK = "0"
+  End If
+  
 End Function
 
 ' Called when the connect/disconnect button is clicked.
 Sub doConnectButton()
-    Dim connectBut As Button
-    Set connectBut = ActiveSheet.Buttons("connectBut")
-    
-    isConnected = Not isConnected
-    
-    If isConnected Then
-        connectBut.Caption = "Disconnect"
-        ' Trigger the spreadsheet formulae to start updating again.
-        Application.CalculateFull
-    Else
-        connectBut.Caption = "Connect"
-    End If
+  Dim connectBut As Button
+  Set connectBut = ActiveSheet.Buttons("connectBut")
+  
+  isConnected = Not isConnected
+  
+  If isConnected Then
+    connectBut.Caption = "Disconnect"
+    ' Trigger the spreadsheet formulae to start updating again.
+    Application.CalculateFull
+  Else
+    connectBut.Caption = "Connect"
+  End If
 End Sub
 </pre>
 

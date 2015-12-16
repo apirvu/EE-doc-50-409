@@ -108,7 +108,7 @@
   <li>
     <p>Define a service (preferably using the WebSocket Secure scheme, <code>wss://</code>) that provides access to the Kerberos server at the authentication connection location as shown in the <code>accept</code> and <code>type</code> elements in following example. <strong>Note:</strong> The default port for Kerberos traffic is 88.</p>
 
-    <pre><code class="language-xml">&lt;service&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;wss://gateway.example.com:9002/kerberos5&lt;/accept&gt;
   &lt;connect&gt;tcp://kdc.example.com:88&lt;/connect&gt;
   &lt;type&gt;kerberos5.proxy&lt;/type&gt;

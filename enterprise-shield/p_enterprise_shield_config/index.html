@@ -138,7 +138,7 @@
 
 <p>The following snippet shows the App1 Service configuration in the <code>gateway-config.xml</code> file.</p>
 
-<pre><code class="language-xml">&lt;properties&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;properties&gt;
   &lt;name&gt;dmz.backplane.hostname&lt;/name&gt;
   &lt;value&gt;gateway.example.dmz.net&lt;/value&gt;
 &lt;/properties&gt;
@@ -198,7 +198,7 @@
   <li>
     <p>Add the <a href="../../admin-reference/r_configure_gateway_service#accept-options-and-connect-options">accept-options</a> element:</p>
 
-    <pre><code class="language-xml">&lt;accept-options&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;accept-options&gt;
   &lt;http.transport&gt;socks://${dmz.backplane.hostname}:1080&lt;/http.transport&gt;
   &lt;socks.mode&gt;reverse&lt;/socks.mode&gt;
   &lt;socks.retry.maximum.interval&gt;1 second&lt;/socks.retry.maximum.interval&gt;
@@ -261,7 +261,7 @@
 
 <p>The service configuration for the App2 service is exactly the same as for App1, except you need to provide a unique name for this service in the <code>name</code> and <code>accept</code> elements. The following example shows a complete service configuration for App2:</p>
 
-<pre><code class="language-xml">&lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
 
   &lt;name&gt;Enterprise App2&lt;/name&gt;
   &lt;accept&gt;wss://gateway.example.com:8443/app2&lt;/accept&gt;
@@ -298,7 +298,7 @@
 
 <p>The following snippet shows the App1 service configuration in the gateway-config.xml file for the DMZ Gateway. This configuration is very similar to the App1 service configuration for the internal Gateway.</p>
 
-<pre><code class="language-xml">&lt;properties&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;properties&gt;
   &lt;name&gt;dmz.backplane.hostname&lt;/name&gt;
   &lt;value&gt;gateway.example.dmz.net&lt;/value&gt;
 &lt;/properties&gt;
@@ -354,7 +354,7 @@ Use `wss://` scheme for secure connections (and `ws://` scheme for nonsecure con
   <li>
     <p>Add the <a href="../../admin-reference/r_configure_gateway_service#accept-options-and-connect-options">connect-options</a> element:</p>
 
-    <pre><code class="language-xml">&lt;connect-options&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;connect-options&gt;
   &lt;http.transport&gt;socks://${dmz.backplane.hostname}:1080&lt;/http.transport&gt;
   &lt;socks.mode&gt;reverse&lt;/socks.mode&gt;
   &lt;socks.timeout&gt;2 seconds&lt;/socks.timeout&gt;
@@ -414,7 +414,7 @@ See [socks.transport](../../admin-reference/r_configure_gateway_service#protocol
       <li>
         <p>Set <a href="../../admin-reference/r_configure_gateway_service#sslverify-client">ssl.verify-client</a> to require that the internal Gateway provide a digital certificate to establish an authorized connection.</p>
 
-        <pre><code class="language-xml">&lt;ssl.verify-client&gt;required&lt;/ssl.verify-client&gt;
+        <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;ssl.verify-client&gt;required&lt;/ssl.verify-client&gt;
 </code></pre>
 
         <p>For added security, you can use the <code>socks.ssl.verify-client</code> connect option to require the internal Gateway to provide a client digital certificate to establish a secure connection. This configuration establishes mutual authentication by ensuring that both the DMZ Gateway and internal Gateway are verified via TLS/SSL before transmitting data.</p>
@@ -435,7 +435,7 @@ See [socks.transport](../../admin-reference/r_configure_gateway_service#protocol
 
 <p>The service configuration for the App2 service is exactly the same as for App1, except you need to provide a unique name for this service in the <code>name</code>, <code>accept</code>, and <code>connect</code> elements. The following example shows a complete service configuration for App2.</p>
 
-<pre><code class="language-xml">  &lt;service&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">  &lt;service&gt;
 
     &lt;name&gt;DMZ App2&lt;/name&gt;
     &lt;accept&gt;wss://gateway.example.com:8443/app2&lt;/accept&gt;
@@ -467,7 +467,7 @@ See [socks.transport](../../admin-reference/r_configure_gateway_service#protocol
 
 <p>Each Gateway maintains two stores for SSL connections: a keystore that stores SSL certificates to present to a client, and a truststore that stores keys from trusted sources. The following example shows the security block in the Gateway configuration file:</p>
 
-<pre><code class="language-xml">  &lt;security&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">  &lt;security&gt;
 
     &lt;keystore&gt;
       &lt;type&gt;JCEKS&lt;/type&gt;

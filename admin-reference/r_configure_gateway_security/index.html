@@ -219,7 +219,7 @@
 
 <h4 id="example">Example</h4>
 
-<pre><code class="language-xml">&lt;keystore&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;keystore&gt;
   &lt;type&gt;JCEKS&lt;/type&gt;
   &lt;file&gt;keystore.db&lt;/file&gt;
   &lt;password-file&gt;keystore.pw&lt;/password-file&gt;
@@ -265,7 +265,7 @@
 
 <h4 id="example-1">Example</h4>
 
-<pre><code class="language-xml">&lt;keystore&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;keystore&gt;
   &lt;type&gt;JCEKS&lt;/type&gt;
   &lt;file&gt;keystore.db&lt;/file&gt;
   &lt;password-file&gt;keystore.pw&lt;/password-file&gt;
@@ -317,7 +317,7 @@
 
 <h4 id="example-2">Example</h4>
 
-<pre><code class="language-xml">&lt;security&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;security&gt;
   ...
   &lt;realm&gt;
     &lt;name&gt;demo&lt;/name&gt;
@@ -427,7 +427,7 @@
 
     <p>The Gateway always obtains the authentication values from the authorization header (if any) and the Gateway also obtains any declared values from one or more authorization headers, query parameters, or cookies that are explicitly specified in the <code>http-header</code>, <code>http-query-parameter</code>, and <code>http-cookie</code> elements, respectively. For example:</p>
 
-    <pre><code class="language-xml">&lt;http-header&gt;X-Acme-Authorization&lt;/http-header&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;http-header&gt;X-Acme-Authorization&lt;/http-header&gt;
 &lt;http-query-parameter&gt;auth&lt;/http-query-parameter&gt;
 &lt;http-cookie&gt;Acme&lt;/http-cookie&gt;
 </code></pre>
@@ -437,7 +437,7 @@
 
     <p>To declare explicit values in the login modules (configured as a chain within the <a href="#realm">realm</a> element), use the <code>AuthenticationToken</code> object made available to the login modules through an <code>AuthenticationTokenCallback</code>, as follows:</p>
 
-    <pre><code class="language-xml">AuthenticationToken token = getTokenFromCallback();
+    <pre class="auto-links: false; brush: xml; toolbar: false;">AuthenticationToken token = getTokenFromCallback();
 String headerPart = token.get(“X-Acme-Authorization”);
 String parameterPart = token.get(“auth”);
 String cookiePart = token.get(“Acme”);
@@ -510,7 +510,7 @@ String cookiePart = token.get(“Acme”);
 
 <p>The following example shows a <code>file</code>-based <code>login-module</code> element that uses the flat XML file,<code> jaas-config.xml</code>:</p>
 
-<pre><code class="language-xml">&lt;login-module&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;login-module&gt;
   &lt;type&gt;file&lt;/type&gt;
   &lt;success&gt;required&lt;/success&gt;
   &lt;options&gt;
@@ -527,7 +527,7 @@ String cookiePart = token.get(“Acme”);
 
 <p>The following example shows an LDAP-based <code>login-module</code> element:</p>
 
-<pre><code class="language-xml">&lt;login-module&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;login-module&gt;
   &lt;type&gt;ldap&lt;/type&gt;
   &lt;success&gt;required&lt;/success&gt;
   &lt;options&gt;
@@ -547,7 +547,7 @@ String cookiePart = token.get(“Acme”);
 
 <p>The following example shows a <code>kerberos5</code>-based <code>login-module</code> element. You must use the <code>kerberos5</code> and <a href="#gss-login-module"><code>gss</code></a> elements together, and in that sequence. Both of these login modules are required when using the <code>Negotiate</code> or <code>Application Negotiate</code> <a href="#authentication">schemes</a>:</p>
 
-<pre><code class="language-xml">&lt;login-module&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;login-module&gt;
   &lt;type&gt;kerberos5&lt;/type&gt;
   &lt;success&gt;required&lt;/success&gt;
   &lt;options&gt;
@@ -567,7 +567,7 @@ String cookiePart = token.get(“Acme”);
 
 <p>The following example shows a <code>gss</code>-based <code>login-module</code> element that you define after the Kerberos login module in the chain to enable the Kerberos tokens to travel over the Web. Both of these login modules are required when using the <code>Negotiate</code> or <code>Application Negotiate</code> <a href="#authentication">schemes</a>:</p>
 
-<pre><code class="language-xml">&lt;login-module&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;login-module&gt;
   &lt;type&gt;gss&lt;/type&gt;
   &lt;success&gt;required&lt;/success&gt;
 &lt;/login-module&gt;
@@ -579,7 +579,7 @@ String cookiePart = token.get(“Acme”);
 
 <p>The following example shows a jndi-based <code>login-module</code> element. It translates the examples for the login module in the <a href="http://docs.oracle.com/javase/7/docs/jre/api/security/jaas/spec/com/sun/security/auth/module/JndiLoginModule.html">JndiLoginModule</a> javadoc into the XML you would use in the <code>security.realm</code> section of the Gateway configuration:</p>
 
-<pre><code class="language-xml">&lt;login-module&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;login-module&gt;
   &lt;type&gt;jndi&lt;/type&gt;
   &lt;success&gt;required&lt;/success&gt;
   &lt;options&gt;
@@ -597,7 +597,7 @@ String cookiePart = token.get(“Acme”);
 
 <p>The following example shows a keystore-based <code>login-module</code> element. It translates the examples in the <a href="http://docs.oracle.com/javase/7/docs/jre/api/security/jaas/spec/com/sun/security/auth/module/KeyStoreLoginModule.html">KeyStoreLoginModule</a> javadoc into the XML you would use in the <code>security.realm</code> section of the Gateway configuration:</p>
 
-<pre><code class="language-xml">&lt;login-module&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;login-module&gt;
   &lt;type&gt;keystore&lt;/type&gt;
   &lt;success&gt;required&lt;/success&gt;
   &lt;options&gt;
@@ -627,7 +627,7 @@ String cookiePart = token.get(“Acme”);
 
 <p>The following is an example of a complete <code>security</code> element that includes a chain of two login modules:</p>
 
-<pre><code class="language-xml">&lt;security&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;security&gt;
   &lt;keystore&gt;
    &lt;type&gt;JCEKS&lt;/type&gt;
    &lt;file&gt;keystore.db&lt;/file&gt;

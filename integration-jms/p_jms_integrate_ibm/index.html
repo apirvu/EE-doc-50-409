@@ -96,7 +96,8 @@
 
 <ol>
   <li>Download and install IBM WebSphere MQ following the instructions in the WebSphere MQ documentation. The directory that contains the WebSphere MQ installation (for example,<code> C:\Program Files\IBM\WebSphere MQ</code> on Windows) is referred to as <code>WEBSPHEREMQ_HOME</code>.</li>
-  <li>Copy the following JAR files from <code>WEBSPHEREMQ_HOME/java/lib</code> to <code>GATEWAY_HOME/lib</code>.
+  <li><p>Copy the following JAR files from <code>WEBSPHEREMQ_HOME/java/lib</code> to <code>GATEWAY_HOME/lib</code>.</p>
+<p>
     <ul>
       <li><code>com.ibm.mq.jar</code></li>
       <li><code>com.ibm.mq.jmqi.jar</code></li>
@@ -110,13 +111,14 @@
       <li><code>jta.jar</code></li>
       <li><code>providerutil.jar</code></li>
     </ul>
+</p>
   </li>
   <li>Open the file <code>GATEWAY_HOME/conf/gateway-config.xml</code> in a text editor and locate the <code>jms</code> service element (search for “jms”).</li>
   <li>Ensure that you have the <code>.bindings</code> file, which contains the queue manager, initial context, topic name, and queue name. You will need the location of this <code>.bindings</code> file for the next step.</li>
   <li>
     <p>Modify the <code>properties</code> element of the <a href="../../admin-reference/r_conf_jms#jms">jms</a> service with the following:</p>
 
-    <pre><code class="language-xml">  &lt;properties&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">  &lt;properties&gt;
     &lt;connection.factory.name&gt;ConnectionFactory&lt;/connection.factory.name&gt;
     &lt;context.lookup.topic.format&gt;%s&lt;/context.lookup.topic.format&gt;
     &lt;context.lookup.queue.format&gt;%s&lt;/context.lookup.queue.format&gt;
@@ -142,10 +144,10 @@
       <li>
         <p>When the Gateway detects this is a connection to IBM WebSphere MQ, the Gateway dynamically sets the following wildcard properties that are required by WebSphere:</p>
 
-        <pre><code>wildcard.any.descendent=#
-wildcard.separator=/
+<p><code>wildcard.any.descendent=#<br>
+wildcard.separator=/<br>
 wildcard.any.child=+
-</code></pre>
+</code></p>
 
         <p>See <a href="../../admin-reference/r_conf_jms#using-wildcards-with-last-value-cache-or-delta-messaging">Using Wildcards with Last Value Cache or Delta Messaging</a> for more information about using wildcards in the Gateway configuration.</p>
       </li>

@@ -181,20 +181,20 @@
 
                         <pre class="auto-links: false; brush: xml; toolbar: false;">
                         &lt;service&gt;
-                                &lt;accept&gt;ws://localhost:8001/amqp&lt;/accept&gt;
-                                &lt;connect&gt;tcp://localhost:5672&lt;/connect&gt;
+                          &lt;accept&gt;ws://localhost:8001/amqp&lt;/accept&gt;
+                          &lt;connect&gt;tcp://localhost:5672&lt;/connect&gt;
 
-                                &lt;type&gt;amqp.proxy&lt;/type&gt;
+                          &lt;type&gt;amqp.proxy&lt;/type&gt;
 
-                                &lt;!--
-                                &lt;authorization-constraint&gt;
-                                        &lt;require-role&gt;AUTHORIZED&lt;/require-role&gt;
-                                &lt;/authorization-constraint&gt;
-                                --&gt;
+                          &lt;!--
+                          &lt;authorization-constraint&gt;
+                                  &lt;require-role&gt;AUTHORIZED&lt;/require-role&gt;
+                          &lt;/authorization-constraint&gt;
+                          --&gt;
 
-                                &lt;cross-site-constraint&gt;
-                                        &lt;allow-origin&gt;http://localhost:8001&lt;/allow-origin&gt;
-                                &lt;/cross-site-constraint&gt;
+                          &lt;cross-site-constraint&gt;
+                                  &lt;allow-origin&gt;http://localhost:8001&lt;/allow-origin&gt;
+                          &lt;/cross-site-constraint&gt;
                         &lt;/service&gt;</pre>
 
                         <p>In this case, the service is configured to accept WebSocket AMQP requests from the browser at <span class="code_inline">ws://localhost:8001/amqp</span> and proxy those requests to a locally installed AMQP broker (<span class="code_inline">localhost</span>) at port <span class="code_inline">5672</span>.</p>
@@ -203,10 +203,10 @@
 
                         <pre class="auto-links: false; brush: xml; toolbar: false;">
                         &lt;service&gt;
-                                &lt;accept&gt;ws://www.example.com:80/amqp&lt;/accept&gt;
-                                &lt;connect&gt;tcp://amqp.example.com:5672&lt;/connect&gt;
-  
-                                &lt;type&gt;amqp.proxy&lt;/type&gt;
+                          &lt;accept&gt;ws://www.example.com:80/amqp&lt;/accept&gt;
+                          &lt;connect&gt;tcp://amqp.example.com:5672&lt;/connect&gt;
+
+                          &lt;type&gt;amqp.proxy&lt;/type&gt;
                         &lt;/service&gt;</pre>
         </li>
 
@@ -307,10 +307,10 @@ consumeChannel.MessageEvent += new AmqpEventHandler(MessageHandler);</pre>
 
 <pre class="brush: js; toolbar: false;">
 private void PublishOpenHandler(object sender, AmqpEventArgs e){
-        this.Dispatcher.BeginInvoke(() =&gt;
-        {
-                Log(&quot;OPENED: Publish Channel&quot;);
-        });
+  this.Dispatcher.BeginInvoke(() =&gt;
+  {
+          Log(&quot;OPENED: Publish Channel&quot;);
+  });
 }</pre>
 </li>
 
@@ -334,7 +334,7 @@ private void PublishOpenHandler(object sender, AmqpEventArgs e){
 <pre class="brush: js; toolbar: false;">
 private void DeclareExchange()
 {
-        publishChannel.DeclareExchange(exchangeName, &quot;fanout&quot;, passive, durable, noWait, null);
+  publishChannel.DeclareExchange(exchangeName, &quot;fanout&quot;, passive, durable, noWait, null);
 }</pre>
 
 <p>
@@ -375,30 +375,28 @@ private void DeclareExchange()
         
         <p>Additionally, messages can be marked <em>mandatory</em> to send a notification to the publisher in case a message cannot be delivered to a queue. You can also mark a message <em>immediate</em> so that it is returned to the sender if the message cannot be routed to a queue consumer immediately. The following example shows how the content body of a message is added to a buffer (AMQP uses a binary message format) and published to an exchange using the publish channel:</p>
 
-<pre class="brush: js; toolbar: false;highlight:[6,14,18,19];">
-private void PublishBasic(string text)
-        {
-                ByteBuffer buffer = new ByteBuffer();
-                buffer.PutString(text, System.Text.Encoding.UTF8);
-                buffer.Flip();
-                AmqpProperties amqpProperties = new AmqpProperties();
-                amqpProperties.MessageId = "abcdxyz1234pqr";
-                amqpProperties.CorrelationId = "23456";
-                amqpProperties.UserId = "guest";
-                amqpProperties.ContentType = AmqpProperties.TEXT_PLAIN;
-                amqpProperties.DeliveryMode = 1;
-                amqpProperties.Priority = 6;
-                amqpProperties.Timestamp = DateTime.Now.ToLocalTime();
-                AmqpArguments customHeaders = new AmqpArguments();
-                customHeaders.AddInteger("KZNG_AMQP_KEY1", 100);
-                customHeaders.AddLongString("KZNG_AMQP_KEY2", "Custom Header Value");
-                amqpProperties.Headers = customHeaders;
-                publishChannel.PublishBasic(buffer, amqpProperties, exchangeName, 
-                        routingKey, false, false);
-                Log(amqpProperties.ToString());
-                Log("Published Message Properties:");
-                Log("MESSAGE PUBLISHED: " + text);
-        }</pre>
+<pre class="brush: js;">
+private void PublishBasic(string text){
+  ByteBuffer buffer = new ByteBuffer();
+  buffer.PutString(text, System.Text.Encoding.UTF8);
+  buffer.Flip();
+  AmqpProperties amqpProperties = new AmqpProperties();
+  amqpProperties.MessageId = "abcdxyz1234pqr";
+  amqpProperties.CorrelationId = "23456";
+  amqpProperties.UserId = "guest";
+  amqpProperties.ContentType = AmqpProperties.TEXT_PLAIN;
+  amqpProperties.DeliveryMode = 1;
+  amqpProperties.Priority = 6;
+  amqpProperties.Timestamp = DateTime.Now.ToLocalTime();
+  AmqpArguments customHeaders = new AmqpArguments();
+  customHeaders.AddInteger("KZNG_AMQP_KEY1", 100);
+  customHeaders.AddLongString("KZNG_AMQP_KEY2", "Custom Header Value");
+  amqpProperties.Headers = customHeaders;
+  publishChannel.PublishBasic(buffer, amqpProperties, exchangeName, routingKey, false, false);
+  Log(amqpProperties.ToString());
+  Log("Published Message Properties:");
+  Log("MESSAGE PUBLISHED: " + text);
+}</pre>
 
 <p>The <span class="code_inline">AmqpProperties</span> class defines pre-defined properties as per AMQP 0-9-1 spec and provides type-safe getters and setters for those pre-defined properties. The value of AMQP 0-9-1's standard "headers" property is of type <a href="../apidoc/client/dotnet/html/T_Kaazing_AMQP_AmqpArguments.htm">AmqpArguments</a>. The Kaazing Gateway AMQP implementation uses AmqpArguments to encode the table. Similarly, the Kaazing Gateway AMQP implementation decodes the table and constructs an instance of AmqpArguments.</p>
 
@@ -425,20 +423,20 @@ consumeChannel.DeclareQueue(queueName, false, false, false, false, false, null)
 <pre class="brush: js; toolbar: false;">
 private void MessageHandler(object sender, AmqpEventArgs e)
 {
-        this.BeginInvoke((InvokeDelegate)(() =>
-        {
-                ByteBuffer buf = e.Body;
-                string message = buf.GetString(System.Text.Encoding.UTF8);
-                Log(e.AmqpProperties.ToString());
-                Log("Consumed Message Properties:");
-                Log("MESSAGE CONSUMED: " + message);
+  this.BeginInvoke((InvokeDelegate)(() =>
+  {
+    ByteBuffer buf = e.Body;
+    string message = buf.GetString(System.Text.Encoding.UTF8);
+    Log(e.AmqpProperties.ToString());
+    Log("Consumed Message Properties:");
+    Log("MESSAGE CONSUMED: " + message);
 
-                // Explicitly acknowledge the message as we are passing
-                // 'false' as the value of the 'noAck' parameter in
-                // the consumeChannel.ConsumeBasic() call.
-                long dt = Convert.ToInt64(e.Arguments["deliveryTag"]);
-                ((AmqpChannel)sender).AckBasic(dt, true);
-        }));
+    // Explicitly acknowledge the message as we are passing
+    // 'false' as the value of the 'noAck' parameter in
+    // the consumeChannel.ConsumeBasic() call.
+    long dt = Convert.ToInt64(e.Arguments["deliveryTag"]);
+    ((AmqpChannel)sender).AckBasic(dt, true);
+  }));
 }
 </pre>
         
@@ -490,13 +488,13 @@ consumeChannel.FlowChannel(true);</pre>
 <pre class="brush: js; toolbar: false;">
 private void PublishCloseChannelHandler(object sender, AmqpEventArgs args e)
 {
-        this.Dispatcher.BeginInvoke(() =&gt;
-        {
-                ByteBuffer buf = e.Body;
-                string message = buf.GetString(System.Text.Encoding.UTF8);
-                Log(&quot;MESSAGE: &quot; + message);
-                Log(&quot;Publish Channel Closed: &quot; + message);
-        });
+  this.Dispatcher.BeginInvoke(() =&gt;
+  {
+    ByteBuffer buf = e.Body;
+    string message = buf.GetString(System.Text.Encoding.UTF8);
+    Log(&quot;MESSAGE: &quot; + message);
+    Log(&quot;Publish Channel Closed: &quot; + message);
+  });
 }</pre></li>
 
 <li><a name="add_tag" id="add_tag"></a><p>Add the Silverlight object tag.</p>

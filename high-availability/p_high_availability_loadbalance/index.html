@@ -113,7 +113,7 @@
   <li>
     <p>Configure a <code>balancer</code> service in each Gateway that will participate in load balancing (each cluster member). The <code>balancer</code> service has an <code>accept</code> for each URI that will be balanced across participating Gateways. These are the public URIs that clients will use when connecting to the cluster for the first time.</p>
 
-    <pre><code class="language-xml">&lt;service&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;name&gt;Echo balancer&lt;/name&gt;
   &lt;accept&gt;ws://balancer.example.com:8081/echo&lt;/accept&gt;
   &lt;accept&gt;wss://balancer.example.com:9091/echo&lt;/accept&gt;
@@ -138,7 +138,7 @@
   <li>
     <p>Configure the services of each cluster member (for example, the <code>echo</code> service) with a <code>balance</code> element for each URI accepted by the <code>balancer</code> service. Clients will use these URIs to connect to the service.</p>
 
-    <pre><code class="language-xml">&lt;service&gt;
+    <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;name&gt;Echo&lt;/name&gt;
   &lt;accept&gt;ws://node1.example.com:8081/echo&lt;/accept&gt;
   &lt;accept&gt;wss://node1.example.com:9091/echo&lt;/accept&gt;
@@ -174,7 +174,7 @@
 
 <p>Here is an example of a Gateway configured as a cluster member and load balanced for both secure and unsecured Echo services:</p>
 
-<pre><code class="language-xml">&lt;!-- Cluster service --&gt;
+<pre class="auto-links: false; brush: xml; toolbar: false;">&lt;!-- Cluster service --&gt;
 &lt;cluster&gt;
   &lt;name&gt;MyCluster&lt;/name&gt;
   &lt;accept&gt;tcp://192.168.2.10:5942&lt;/accept&gt;

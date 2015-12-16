@@ -122,43 +122,43 @@ ChallengeHandlers.Default = basicHandler;
 <p>The following example shows how to implement a login handler in your Silverlight client:</p>
 <pre class="auto-links: false; brush: js; toolbar: false;">
 public class LoginHandlerDemo : LoginHandler {
-        private MainPage parent;
+  private MainPage parent;
 
-    public LoginHandlerDemo(MainPage mainPage) {
-        parent = mainPage;
-    }
+  public LoginHandlerDemo(MainPage mainPage) {
+    parent = mainPage;
+  }
 
-    //handle Challenge request from server
-    public PasswordAuthentication GetCredentials() {
-        parent.Dispatcher.BeginInvoke(parent.PopupLoginPage);
+  //handle Challenge request from server
+  public PasswordAuthentication GetCredentials() {
+    parent.Dispatcher.BeginInvoke(parent.PopupLoginPage);
 
-        //wait for user to click OK or Cancel button
-        parent.userInputCompleted.WaitOne();
-        return parent.Credentials;
-        }    
+    //wait for user to click OK or Cancel button
+    parent.userInputCompleted.WaitOne();
+    return parent.Credentials;
+  }    
 }
 </pre>
 
 <p>The following example shows how to implement a login handler in your .NET client:</p>
 <pre class="auto-links: false; brush: js; toolbar: false;"> 
 public class LoginHandlerDemo : LoginHandler {
-        private CoreDemoForm parent;
-        /// &lt;summary&gt;
-        /// constructor
-        /// &lt;para&gt;pass in main form for callback&lt;/para&gt;
-        /// &lt;/summary&gt;
-        /// &lt;param name=&quot;form&quot;&gt;&lt;/param&gt;
-        public LoginHandlerDemo(CoreDemoForm form) {
-                this.parent = form;
-        }
+  private CoreDemoForm parent;
+  /// &lt;summary&gt;
+  /// constructor
+  /// &lt;para&gt;pass in main form for callback&lt;/para&gt;
+  /// &lt;/summary&gt;
+  /// &lt;param name=&quot;form&quot;&gt;&lt;/param&gt;
+  public LoginHandlerDemo(CoreDemoForm form) {
+    this.parent = form;
+  }
 
-        #region LoginHandler Members
+  #region LoginHandler Members
 
-        PasswordAuthentication LoginHandler.GetCredentials() {
-            return parent.AuthenticationHandler();
-        }
+  PasswordAuthentication LoginHandler.GetCredentials() {
+    return parent.AuthenticationHandler();
+  }
 
-        #endregion
+  #endregion
 }
 </pre>
 
