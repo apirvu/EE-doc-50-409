@@ -1,0 +1,331 @@
+
+<!--
+
+    Copyright (c) 2007-2014, Kaazing Corporation. All rights reserved.
+
+-->
+
+<!DOCTYPE html>
+
+   <!--[if IE 7 ]>    <html lang="en-US" class="isie ie7 oldie no-js"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en-US" class="isie ie8 oldie no-js"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en-US" class="isie ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en-US" class="no-js"> <!--<![endif]-->
+<!-- Testing GIT -->
+<head>
+ 	<title>KAAZING.org - Documentation</title>
+    <meta charset="UTF-8" />
+
+    <link rel="shortcut icon" href="../../resources/images/favicon.ico">    
+    <link rel="stylesheet" href="../../resources/css/normalize.css">
+
+    <link rel='stylesheet' id='bbp-default-bbpress-css'  href='../../resources/css/external/bbpress.css' type='text/css' media='screen' />
+    <link rel='stylesheet' id='contact-form-7-css'  href='../../resources/css/external/styles.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='contribution-form-css'  href='../../resources/css/external/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='rs-settings-css'  href='../../resources/css/external/settings.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='rs-captions-css'  href='../../resources/css/external/captions.css' type='text/css' media='all' />
+
+<!--    <link rel='stylesheet' id='zn-bootstrapcss-css'  href='../../resources/css/external/bootstrap.css' type='text/css' media='all' />
+-->
+
+    <link rel='stylesheet' id='zn-superfish-css'  href='../../resources/css/external/superfish.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='zn-templtecss-css'  href='../../resources/css/external/template.css' type='text/css' media='all' />
+
+<!--    <link rel='stylesheet' id='zn-bootstrap-responsivecss-css'  href='../../resources/css/external/bootstrap-responsive.css' type='text/css' media='all' />
+-->
+	<link rel='stylesheet' id='pretty_photo-css'  href='../../resources/css/external/prettyPhoto.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='Open+Sans_default-css'  href='../../resources/css/external/Sans_default.css' type='text/css' media='screen' />
+    <link rel='stylesheet' id='zn_all_g_fonts-css'  href='../../resources/css/external/zn_all_g_fonts.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='options-css'  href='../../resources/css/external/options.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='wppb_stylesheet-css'  href='../../resources/css/external/front.end.css' type='text/css' media='all' />
+
+    <script>window.jQuery || document.write('<script src="../../resources/js/jquery-1.9.1.min.js"><\/script>')</script>
+    <script src="../../resources/js/bootstrap.min.js"></script>
+
+		<script type="text/javascript">
+			/* <![CDATA[ */
+			
+						jQuery(document).ready( function() {
+
+				/* Use backticks instead of <code> for the Code button in the editor */
+				if ( typeof( edButtons ) !== 'undefined' ) {
+					edButtons[110] = new QTags.TagButton( 'code', 'code', '`', '`', 'c' );
+					QTags._buttonsInit();
+				}
+
+				/* Tab from topic title */
+				jQuery( '#bbp_topic_title' ).bind( 'keydown.editor-focus', function(e) {
+					if ( e.which !== 9 )
+						return;
+
+					if ( !e.ctrlKey && !e.altKey && !e.shiftKey ) {
+						if ( typeof( tinymce ) !== 'undefined' ) {
+							if ( ! tinymce.activeEditor.isHidden() ) {
+								var editor = tinymce.activeEditor.editorContainer;
+								jQuery( '#' + editor + ' td.mceToolbar > a' ).focus();
+							} else {
+								jQuery( 'textarea.bbp-the-content' ).focus();
+							}
+						} else {
+							jQuery( 'textarea.bbp-the-content' ).focus();
+						}
+
+						e.preventDefault();
+					}
+				});
+
+				/* Shift + tab from topic tags */
+				jQuery( '#bbp_topic_tags' ).bind( 'keydown.editor-focus', function(e) {
+					if ( e.which !== 9 )
+						return;
+
+					if ( e.shiftKey && !e.ctrlKey && !e.altKey ) {
+						if ( typeof( tinymce ) !== 'undefined' ) {
+							if ( ! tinymce.activeEditor.isHidden() ) {
+								var editor = tinymce.activeEditor.editorContainer;
+								jQuery( '#' + editor + ' td.mceToolbar > a' ).focus();
+							} else {
+								jQuery( 'textarea.bbp-the-content' ).focus();
+							}
+						} else {
+							jQuery( 'textarea.bbp-the-content' ).focus();
+						}
+
+						e.preventDefault();
+					}
+				});
+			});
+						/* ]]> */
+		</script>
+
+	<!--[if lte IE 9]>
+				<link rel="stylesheet" type="text/css" href="../../resources/css/external/fixes.css" />
+			<![endif]-->
+
+			
+			<!--[if lte IE 8]>
+				<script src="../../resources/css/external/js/respond.js"></script>
+			<![endif]-->
+								
+			<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+			<!--[if lt IE 9]>
+				<script src="../../resources/css/external/js/html5.js"></script>
+			<![endif]-->
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />	
+
+        <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../resources/css/screen.css">
+        <link rel="stylesheet" href="../../resources/css/dev.css">
+        <link rel="stylesheet" href="../../resources/css/doc.css">
+        <script src="../../resources/js/modernizr.js"></script>
+        
+        	  <!-- +++++++++++++++Syntax Highlighter Calls++++++++++++++++ -->
+
+        	  <!-- Include required SyntaxHighlighter JS files -->
+        	  <script type="text/javascript" src="../../resources/js/xregexp.js"></script>
+        	  <script type="text/javascript" src="../../resources/js/shCore.js"></script>
+
+
+        	  <!--Include SyntaxHighlighter brushes. To test, using the JS brush -->
+        	  <script type="text/javascript" src="../../resources/js/shBrushJava.js"></script>
+        	  <script type="text/javascript" src="../../resources/js/shBrushAS3.js"></script>
+        	  <script type="text/javascript" src="../../resources/js/shBrushVb.js"></script>
+        	  <script type="text/javascript" src="../../resources/js/shBrushJScript.js"></script>
+        	  <script type="text/javascript" src="../../resources/js/shBrushCss.js"></script>
+        	  <script type="text/javascript" src="../../resources/js/shBrushPython.js"></script>
+        	  <script type="text/javascript" src="../../resources/js/shBrushXml.js"></script>
+
+        	  <!-- Include SyntaxHighlighter core style and Kaazing theme -->
+        	  <link href="../../resources/css/shCore.css" rel="stylesheet" type="text/css" />
+        	  <link href="../../resources/css/shThemeKaazing.css" rel="stylesheet" type="text/css" />
+
+        	  <!-- Finally, call SyntaxHighlighter -->
+        	  <script type="text/javascript">
+        	     SyntaxHighlighter.all()
+        	  </script>
+
+        	  <!-- +++++++++++++++END OF Syntax Highlighter Calls++++++++++++++++ -->
+
+</head>
+<body  class="home page page-id-1386 page-template-default res1170 slider_after_header">
+
+	<!-- AFTER BODY ACTION -->
+			
+		
+ <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://kaazing.org"><img id="kaazing-logo-header" src="../../resources/images/KAAZING.png"></img></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://github.com/kaazing" target="_blank">GitHub</a></li>
+                <li><a href="http://developer.kaazing.com/documentation/5.0/index.html">Documentation</a></li>
+                <li><a href="http://kaazing.org/download">Download</a></li>
+                <li><a href="http://kaazing.org/demos">Demos</a></li>
+                <li><a href="http://kaazing.org/demos/quick-start">Quick Start</a></li>
+                <li><a href="http://kaazing.org/blog">Blog</a></li>
+                <li class="hidden-sm"><a href="http://kaazing.org/developer-subscription">Developer Subscription</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div id="diagnostic">
+</div>
+
+		<div id="responsive_header" ></div>
+<!-- search -->
+    <style type="text/css">
+
+          ul.nav li {
+            margin-top: 0;
+            margin-left: 0;
+            padding-left: 0;
+          }
+
+          #responsive_header {
+            height: 0;
+          }
+
+          .expand {
+            top: 60px;
+          }
+
+  </style>
+
+        <div class="main-container">
+            <div class="main wrapper clearfix">
+            
+                <div class="powered-wrapper">
+                    <div class="powered-header"></div>
+                </div>
+                
+                <ul class="breadcrumbs clearfix">
+                   <li><a href="../../index.html">Home</a></li>
+                   <li><a href="../index.html">Documentation</a></li>
+           <!-- Use li to add more breadcrumbs -->
+                   <li>Security with KAAZING Gateway</li>
+                </ul>
+
+                <article>
+                  <section>
+
+          <!-- CONTENT GOES HERE -->
+<h1><a name="inject"></a>Promote User Identity into the AMQP Protocol <img src="../../resources/images/enterprise-feature.png" alt="This feature is available in KAAZING Gateway - Enterprise Edition."></h1>
+<p>In this procedure, you will learn how to promote a user's credentials into the AMQP protocol. </p>
+<h2>Before You Begin</h2>
+<p>Learn how to enable the Gateway to securely propagate (promote) the user identity associated with a WebSocket connection or session from the client to the back-end server or broker in <a href="c_aaa_userid_promo.html">About User Identity Promotion</a>. 
+        <p class="note-para"><span class="note">Note: The steps in this topic assume that you already have a login module (either one supplied from the Gateway or one that you have created) that establishes the identity associated with this connection and authenticates it.</span></p>
+     
+<h2>To Promote User Identity into the AMQP Protocol</h2>
+<ol>
+  <li>In your login module, instantiate a new object of type <span class="code_inline">com.kaazing.gateway.server.spi.AmqpPrincipal</span> and add it to the Subject. This is typically done in the <span class="code_inline">commit()</span> method. For example:
+<pre class="auto-links: false; brush: xml; toolbar: false;">
+private Subject subject;
+
+@Override
+public void initialize(Subject         subject,
+                                       CallbackHandler callbackHandler, 
+                                       Map&lt;String, ?&gt;  sharedState,
+                                       Map&lt;String, ?&gt;  options) {
+    this.subject = subject;
+}
+
+@Override
+public boolean commit() throws LoginException {
+  // username, password, and subject are member variables
+  // that must be set earlier in other parts of the 
+  // LoginModule implementation. In this method, we use 
+  // the username and password are used to create AmqpPrincipal  
+  // and add it to the Subject. The username and password will 
+  // then be automatically injected into the AMQP protocol.
+
+  AmqpPrincipal principal = new AmqpPrincipal(username, password);
+  subject.getPrincipals().add(principal)
+  return true;
+}</pre>
+   <ul class="arrow-2">
+        <li>You should add only one <span class="code_inline">AmqpPrincipal</span>.</li>
+    <li>If you add more than one <span class="code_inline">AmqpPrincipal</span> principal, then the Gateway uses the first one that the Java iterator happens to return to the Gateway.</li>
+   </ul>
+        <p>See the <span class="code_inline">AmqpPrincipal</span> method in the <a href="../apidoc/server/amqp/server/spi/index.html">SPI (Service Provider Interface)</a> documentation for more information.</p>
+</li>
+        <li>Compile your LoginModule and include it in a JAR file that you put into the <span class="code_inline">GATEWAY_HOME/lib</span> directory.
+        <p class="note-para"><span class="note">Note: These instructions assume the jar <span class="code_inline">com.kaazing.gateway.amqp.server.spi.jar</span> is added to the compile-time classpath of the login module.</span></p>
+        </li>
+  <li><p>Start (or restart) the Gateway, then connect a new client.</p>
+          <p>After authentication succeeds, the Gateway establishes a connection to the back-end server or broker. At this point, if <span class="code_inline">AmqpPrincipal</span> is available in the Subject, then the Gateway automatically injects the AMQP credentials specified <span class="code_inline">AmqpPrincipal</span> into the AMQP protocol. </p>
+  </li>
+</ol>
+<h2>Notes</h2>
+<ul class="arrow-2">
+        <li>AMQP credential injection uses AMQP 0-9-1 and KAAZING Gateway.</li>
+        <li>For more information about the <span class="code_inline">AmqpPrincipal</span> method, see the <a href="../apidoc/server/amqp/server/spi/index.html">SPI (Service Provider Interface)</a> documentation.</li>
+</ul>
+
+<h2>Next Step</h2>
+<p>You have completed implementation for AMQP credential injection with the Gateway.</p>
+
+<h2><a name="seealso"></a>See Also</h2>
+<ul>
+    <li><a href="../guide-amqp.html">Real-Time Interactive Guide to AMQP</a></li>
+    <li><a href="../admin-reference/o_conf_checklist.html">Configure the Gateway</a></li>
+    <li><a href="o_aaa.html">About Authentication and Authorization</a></li>
+    <li><a href="u_aaa_gw_client_interactions.html">What Happens During Authentication</a></li>
+    <li><a href="u_aaa_implement.html">How Authentication and Authorization Work with the Gateway</a></li>
+</ul>
+
+                  </section>
+                </article>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+ 	<footer>
+    <div class="container">
+
+        <div class="row text-center social-media">
+            <a href="https://github.com/kaazing"><i class="fa fa-github" data-toggle="tooltip" data-placement="top" title="Github"></i></a>
+            <a href="https://www.facebook.com/kaazing"><i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i></a>&nbsp;
+            <a href="https://twitter.com/kaazing"><i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i></a>&nbsp;
+            <a href="https://plus.google.com/+KaazingHome"><i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"></i></a>&nbsp;
+            <a href="https://www.youtube.com/user/KaazingTV"><i class="fa fa-youtube" data-toggle="tooltip" data-placement="top" title="Youtube"></i></a>&nbsp;
+            <a href="https://www.linkedin.com/company/kaazing-corporation"><i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin"></i></a>&nbsp;
+        </div>
+
+        <div class="row copyright">
+            <div class="col-sm-3 text-left">
+                Copyright &copy; 2007-2015 Kaazing Corporation
+            </div>
+            <div class="col-sm-9 text-right">
+                This website is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA</a>
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+		<script type="text/javascript">
+		    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+
+		<script type="text/javascript">
+		    try {
+		    var pageTracker = _gat._getTracker("UA-1771436-5");
+		    pageTracker._trackPageview();
+		    } catch(err) {}
+		</script>
+                        
+                        </body>
+
+
+</html>
