@@ -1065,6 +1065,9 @@ http://websocket.org
 &lt;/service&gt;
 </pre>
 
+<span class="note"><b>Note:</b> Any paths entered after the <code>pipe://</code> scheme and hostname are ignored. The URI <code>&lt;accept&gt;pipe://customera/app1&lt;/accept&gt;</code> is interpreted as <code>&lt;accept&gt;pipe://customera&lt;/accept&gt;</code>. If a path is used, the Gateway will issue an error message.</span>
+
+
 <h3 id="properties">properties</h3>
 
 <p>The service’s type-specific properties.</p>
