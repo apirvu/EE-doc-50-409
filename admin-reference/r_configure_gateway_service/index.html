@@ -151,11 +151,12 @@
               <li><a href="#httpproxy">http.proxy</a></li>
             </ul>
           </li>
+          <li><a href="#pipe">Pipe scheme</a></li>
           <li><a href="#properties">properties</a></li>
           <li><a href="#accept-options-and-connect-options">accept-options and connect-options</a>
             <ul>
               <li><a href="#protocolbind"><em>protocol</em>.bind</a>, where <em>protocol</em> can be ws, wss, http, https, socks, ssl, tcp, or udp</li>
-              <li><a href="#protocoltransport"><em>protocol</em>.transport</a>, where <em>protocol</em> can be pipe, tcp, ssl, or http</li>
+              <li><a href="#protocoltransport"><em>protocol</em>.transport</a>, where <em>protocol</em> can be <a href="#pipe">pipe</a>, tcp, ssl, or http</li>
               <li><a href="#wsmaximummessagesize">ws.maximum.message.size</a></li>
               <li><a href="#httpkeepalive">http.keepalive</a></li>
               <li><a href="#httpkeepaliveconnections">http.keepalive.connections</a></li>
@@ -929,7 +930,7 @@
   </li>
   <li>The WebSocket protocol used by the client connection is converteded into a protocol that you specify (for example, TCP) to connect to the back-end service or message broker. Upon client connection, the Gateway establishes a full-duplex connection between itself and the client, and between itself and the back-end service or message broker. The result is a full-duplex connection between the client and the back-end service or message broker.</li>
   <li>The Gateway services are configured to accept connections on <code>localhost</code> by default. The cross-origin sites allowed to access those services are also configured for localhost by default. If you want to connect to host names other than <code>localhost</code>, then you must update your server configuration and use the fully qualified host name of the host machine, as shown in the example.</li>
-  <li>When there are multiple <code>amqp.proxy</code> services in the Gateway configuration that are connecting to the same AMQP broker instance, all AMQP proxy services should pipe their <code>connect</code> elements to a common service as shown in the previous configuration example. This is recommended due to a current restriction with JMX monitoring.</li>
+  <li>When there are multiple <code>amqp.proxy</code> services in the Gateway configuration that are connecting to the same AMQP broker instance, all AMQP proxy services should <a href="#pipe">pipe</a> their <code>connect</code> elements to a common service as shown in the previous configuration example. This is recommended due to a current restriction with JMX monitoring.</li>
   <li>See the <a href="../../security/p_auth_user_identity_promotion">Promote User Identity into the AMQP Protocol</a> topic for more information about injecting AMQP credentials into the protocol in a trusted manner.</li>
 </ul>
 
@@ -986,6 +987,83 @@ http://websocket.org
   
 &lt;/service&gt;
 </code></pre>
+
+<h3 id="pipe">Pipe scheme</h3>
+
+<p>The <code>pipe://</code> scheme is a URI scheme internal to the Gateway and used to connect one service to another service running in the same Gateway instance. Essentially, the pipe scheme is a named, logical channel between two services on the local Gateway. </p>
+
+<p>The <code>pipe://</code> scheme is available to the <code>accept</code> and <code>connect</code> elements. It is often used with <a href="../../enterprise-shield/o_enterprise_shield_checklist/index.html">Enterprise Shield</a> and the <a href="../../admin-reference/r_configure_gateway_service/index.html#virtualhost">virtual.host</a> (to segregate applications using the same AMQP broker) and <a href="../../admin-reference/r_configure_gateway_service/index.html#protocoltransport">protocol.transport</a> (as pipe.transport).</p>
+
+<p>Let’s look at an example using tiered connection speeds.</p>
+
+<p>You could offer different connection speeds by defining a separate <a href="../../admin-reference/r_configure_gateway_service/index.html#proxy-amqpproxy-and-jmsproxy">jms.proxy</a> service for each tier and then pipe the client connections into a single <code>jms</code> service. Here’s an example of the configuration for the <code>jms.proxy</code> service for the bottom tier:</p>
+
+<pre class="auto-links: false; brush: xml; toolbar: false;">
+&lt;service&gt;
+  &lt;name&gt;JMS Minimum Level&lt;/name&gt; &lt;!-- the name of the service --&gt;
+  &lt;accept&gt;ws://example.com:8001/jms-slow&lt;/accept&gt; &lt;!-- clients in the bottom tier connect using this URI --&gt;
+  &lt;connect&gt;pipe://jms-minimum&lt;/connect&gt; &lt;!-- connections are piped to the JMS service with the accept  pipe://jms-minimum --&gt;
+           
+  &lt;type&gt;jms.proxy&lt;/type&gt; &lt;!-- this jms.proxy service is used for the bottom tier only --&gt;
+       
+  &lt;accept-options&gt;
+    &lt;tcp.maximum.outbound.rate&gt;1kB/s&lt;/tcp.maximum.outbound.rate&gt; &lt;!-- this element sets the outbound speed for the bottom tier --&gt;
+  &lt;/accept-options&gt;
+
+  &lt;cross-site-constraint&gt;
+    &lt;allow-origin&gt;*&lt;/allow-origin&gt;
+  &lt;/cross-site-constraint&gt;
+&lt;/service&gt;
+</pre>
+
+<p>Here’s an example of the configuration for the <code>jms.proxy</code> service for the middle tier:</p>
+
+<pre class="auto-links: false; brush: xml; toolbar: false;">
+&lt;service&gt;
+  &lt;name&gt;JMS Medium Level&lt;/name&gt; &lt;!-- the name of the service --&gt;
+  &lt;accept&gt;ws://example.com:8001/jms-medium&lt;/accept&gt; &lt;!-- clients in the middle tier connect using this URI --&gt;
+  &lt;connect&gt;pipe://jms-medium&lt;/connect&gt; &lt;!-- connections are piped to the JMS service with the accept  pipe://jms-medium --&gt;
+           
+  &lt;type&gt;jms.proxy&lt;/type&gt; &lt;!-- this jms.proxy service is used for the middle tier only --&gt;
+       
+  &lt;accept-options&gt;
+    &lt;tcp.maximum.outbound.rate&gt;20MB/s&lt;/tcp.maximum.outbound.rate&gt; &lt;!-- this element sets the outbound speed for the middle tier --&gt;
+  &lt;/accept-options&gt;
+
+  &lt;cross-site-constraint&gt;
+    &lt;allow-origin&gt;*&lt;/allow-origin&gt;
+  &lt;/cross-site-constraint&gt;
+&lt;/service&gt;
+</pre>
+
+<p>To accept the pipes from the JMS Minimum and Medium Level <code>jms.proxy</code> services, the JMS service has <code>&lt;accept&gt;pipe://jms-minimum&lt;/accept&gt;</code> and <code>&lt;accept&gt;pipe://jms-medium&lt;/accept&gt;</code> in its configuration:</p>
+
+<pre class="auto-links: false; brush: xml; toolbar: false;">
+&lt;service&gt;
+  &lt;accept&gt;pipe://jms-minimum&lt;/accept&gt; &lt;!-- matches the pipe URI in the connect element of the jms.proxy service for the bottom tier --&gt;
+  &lt;accept&gt;pipe://jms-medium&lt;/accept&gt; &lt;!-- matches the pipe URI in the connect element of the jms.proxy service for the middle tier --&gt;
+  &lt;accept&gt;ws://example.com:8001/jms&lt;/accept&gt; &lt;!-- normal, non-tiered connections will connect here --&gt;
+  
+  &lt;type&gt;jms&lt;/type&gt;
+  
+  &lt;properties&gt;
+    &lt;connection.factory.name&gt;ConnectionFactory&lt;/connection.factory.name&gt;
+    &lt;context.lookup.topic.formatdynamicTopics/%s&lt;/context.lookup.topic.format&gt;
+    &lt;context.lookup.queue.format&gt;dynamicQueues/%s&lt;/context.lookup.queue.format&gt;
+  
+    &lt;env.java.naming.factory.initial&gt;
+      org.apache.activemq.jndi.ActiveMQInitialContextFactory
+    &lt;/env.java.naming.factory.initial&gt;
+    &lt;env.java.naming.provider.url&gt;
+      tcp://localhost:61616
+    &lt;/env.java.naming.provider.url&gt;
+  &lt;/properties&gt;
+  
+  &lt;cross-site-constraint&gt;
+    &lt;allow-origin&gt;*&lt;/allow-origin&gt;
+  &lt;/cross-site-constraint&gt;
+&lt;/service&gt;
+</pre>
 
 <h3 id="properties">properties</h3>
 
@@ -1226,9 +1304,9 @@ http://websocket.org
 
 <h4 id="protocoltransport"><em>protocol</em>.transport</h4>
 
-<p><strong>Required?</strong> Optional; <strong>Occurs:</strong> zero or more; <strong>Where</strong> <code>protocol</code> can be http, ssl, tcp, pipe, and socks.</p>
+<p><strong>Required?</strong> Optional; <strong>Occurs:</strong> zero or more; <strong>Where</strong> <code>protocol</code> can be http, ssl, tcp, <a href="#pipe">pipe</a>, and socks.</p>
 
-<p>Use the <code>protocol.transport</code> accept-option or connect-option to replace the default transport with a new transport. This allows you to change the behavior of the connection without affecting the protocol stack above the transport. For example, a TCP transport normally connects to a remote IP address and port number. However, you could replace that, for instance, with an in-memory (pipe) transport that communicates with another service in the same Gateway.</p>
+<p>Use the <code>protocol.transport</code> accept-option or connect-option to replace the default transport with a new transport. This allows you to change the behavior of the connection without affecting the protocol stack above the transport. For example, a TCP transport normally connects to a remote IP address and port number. However, you could replace that, for instance, with an in-memory (<a href="#pipe">pipe</a>) transport that communicates with another service in the same Gateway.</p>
 
 <p>Specify any of the following transports:</p>
 
@@ -1236,7 +1314,7 @@ http://websocket.org
   <li><code>http.transport</code>: Specifies a URI for use as a transport layer under the HTTP transport or WebSocket transport (because  WebSocket is always over HTTP). This is the most frequently used transport option.</li>
   <li><code>ssl.transport</code>: Specifies a URI for use as a transport layer under the TLS/SSL transport.</li>
   <li><code>tcp.transport</code>: Specifies a URI for use as a transport layer under the TCP/IP (tcp) transport.</li>
-  <li><code>pipe.transport</code>: Specifies a URI for use as a transport layer under the pipe transport.</li>
+  <li><code>pipe.transport</code>: Specifies a URI for use as a transport layer under the <a href="#pipe">pipe</a> transport.</li>
   <li><code>socks.transport</code>: Specifies a URI for use as a transport layer under the SOCKS transport.</li>
 </ul>
 
@@ -1862,7 +1940,7 @@ http://websocket.org
 
 <h5 id="example-17">Example</h5>
 
-<p>In the following example, the DMZ Gateway accepts on a WebSocket URI and connects over a named pipe. The DMZ Gateway also listens for connections on port 1443 as <code>pipe.transport</code> URI over SOCKS and TLS/SSL (<code>socks+ssl://</code>). To increase security, the <code>socks.ssl.verify-client</code> is set to <code>required</code>, which specifies that the internal Gateway URI must provide a digital certificate to the DMZ Gateway.</p>
+<p>In the following example, the DMZ Gateway accepts on a WebSocket URI and connects over a named <a href="#pipe">pipe</a>. The DMZ Gateway also listens for connections on port 1443 as <code>pipe.transport</code> URI over SOCKS and TLS/SSL (<code>socks+ssl://</code>). To increase security, the <code>socks.ssl.verify-client</code> is set to <code>required</code>, which specifies that the internal Gateway URI must provide a digital certificate to the DMZ Gateway.</p>
 
 <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;wss://dmz.example.com:443/remoteService&lt;/accept&gt;
