@@ -643,6 +643,7 @@
   <li>The path you specify for the <code>directory</code> service must be relative to the directory <code>GATEWAY_HOME\web</code> (where <code>GATEWAY_HOME</code> is the directory in which Kaazing Gateway is installed). For example, <code>C:\gateway\GATEWAY_HOME\web</code>. An absolute path cannot be specified.</li>
   <li>Kaazing Gateway services are configured to accept connections on <code>localhost</code> by default. The cross-origin sites allowed to access those services are also configured for localhost-only by default. If you want to connect to host names other than localhost you must update your server configuration, and use the fully qualified host name of the host machine.</li>
   <li>If you use the optional <code>error-pages-directory</code> property, you can test it by adding the property, saving the <code>gateway-config.xml</code> file, then starting the Gateway. Once the Gateway is running, point your browser to a page that does not exist, such as <code>http://localhost:8000/nonexistentpage.html</code>.</li>
+  <li>The directory service is <a href="https://tools.ietf.org/html/rfc7232">RFC 7232</a> compliant.</li>
 </ul>
 
 <h3 id="echo">echo</h3>
