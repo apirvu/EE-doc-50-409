@@ -992,7 +992,7 @@ http://websocket.org
 
 <p>The <code>pipe://</code> scheme is a URI scheme internal to the Gateway and used to connect one service to another service running in the same Gateway instance. Essentially, the pipe scheme is a named, logical channel between two services on the local Gateway. </p>
 
-<p>The format of the <code>pipe://</code> scheme is <code>pipe://hostname</code> or <code>pipe://IP address</code>, such as <code>pipe://jms-common</code>. Any paths entered after the <code>pipe://</code> scheme and hostname/IP address are invalid. The URI <code>&lt;accept&gt;pipe://customera/app1&lt;/accept&gt;</code> is invalid. If a path is used, the Gateway will fail and issue an error message.</p>
+<p>The format of the <code>pipe://</code> scheme is <code>pipe://</code><em>string</em>, such as <code>pipe://jms-common</code>. The URI must conform to the standard URI syntax. Any values entered after the <code>pipe://</code> scheme and <em>string</em>, such as a path, are invalid. The URI <code>&lt;accept&gt;pipe://customera/app1&lt;/accept&gt;</code> is invalid. If a path is used, the Gateway will respond with an error message.</p>
 
 <p>The <code>pipe://</code> scheme is available to the <code>accept</code> and <code>connect</code> elements. It is often used with <a href="../../enterprise-shield/o_enterprise_shield_checklist/index.html">Enterprise Shield</a> and the <a href="../../admin-reference/r_configure_gateway_service/index.html#virtualhost">virtual.host</a> (to segregate applications using the same AMQP broker) and <a href="../../admin-reference/r_configure_gateway_service/index.html#protocoltransport">protocol.transport</a> (as pipe.transport).</p>
 
