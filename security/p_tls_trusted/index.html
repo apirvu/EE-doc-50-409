@@ -113,7 +113,7 @@
 </ul>
 
 <h2 id="to-secure-gateway-connections-using-trusted-certificates">To Secure Gateway Connections Using Trusted Certificates</h2>
-
+<h3><a name="client-to-gateway"></a>Secure Client-to-Gateway Connections</h3>
 <ol>
   <li>
     <p>Identify the host name of the server running the Gateway. Clients must be able to resolve the host name to the IP address of the server running the Gateway in order to establish a secure session with the Gateway.</p>
@@ -206,6 +206,7 @@
 
     <p>At this point, you have a trusted certificate on the Gateway and have configured secure networking between the Gateway and clients for a directory service.</p>
 
+    <h3><a name="gateway-to-server"></a>Secure Gateway-to-Server Connections</h3>
     <p>Now you can configure the Gateway to connect securely with the back-end server by importing a Certificate Authority-issued certificate for the host name of the back-end server into the <strong>truststore</strong> on the Gateway. The truststore contains the CA-issued certificates for use between the Gateway and back-end servers.</p>
   </li>
   <li>
