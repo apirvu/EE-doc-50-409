@@ -207,6 +207,9 @@
     <p>At this point, you have a trusted certificate on the Gateway and have configured secure networking between the Gateway and clients for a directory service.</p>
 
     <h3><a name="gateway-to-server"></a>Secure Gateway-to-Server Connections</h3>
+    
+    <p>**Note:** For secure connections from the Gateway to a JMS broker, see the <a href="#jms-tls">note below</a>.</p>
+    
     <p>Now you can configure the Gateway to connect securely with the back-end server by importing a Certificate Authority-issued certificate for the host name of the back-end server into the <strong>truststore</strong> on the Gateway. The truststore contains the CA-issued certificates for use between the Gateway and back-end servers.</p>
   </li>
   <li>
@@ -244,6 +247,48 @@
 <h2 id="notes">Notes</h2>
 
 <ul>
+      <li><a name="jms-tls"></a>
+      <p>Depending on the JMS broker the Gateway is connecting to, you might need to configure a <code>jms</code> service on the Gateway and configure specific TLS/SSL elements in its <code>properties</code>. For example, the following <code>jms</code> service <code>properties</code> are for a secure connection to a TIBCO Enterprise Message Service (EMS) server:</p>
+      
+<pre class="auto-links: false; brush: xml; toolbar: false;">
+&lt;properties&gt;
+    &lt;connection.factory.name&gt;mySecureFactory&lt;/connection.factory.name&gt;
+    
+    &lt;context.lookup.topic.format&gt;%s&lt;/context.lookup.topic.format&gt;
+    
+    &lt;context.lookup.queue.format&gt;%s&lt;/context.lookup.queue.format&gt;
+
+    &lt;env.java.naming.factory.initial&gt;com.tibco.tibjms.naming.TibjmsInitialContextFactory&lt;/env.java.naming.factory.initial&gt;
+    
+    &lt;env.java.naming.provider.url&gt;ssl://ems8.example.com:7223&lt;/env.java.naming.provider.url&gt;
+    
+    &lt;env.com.tibco.tibjms.naming.security_protocol&gt;ssl&lt;/env.com.tibco.tibjms.naming.security_protocol&gt;
+    
+    &lt;env.com.tibco.tibjms.naming.ssl_trusted_certs&gt;C:\certs\cert.pem&lt;/env.com.tibco.tibjms.naming.ssl_trusted_certs&gt; 
+    
+    &lt;env.com.tibco.tibjms.naming.ssl_trace&gt;true&lt;/env.com.tibco.tibjms.naming.ssl_trace&gt;
+    
+    &lt;env.com.tibco.tibjms.naming.ssl_enable_verify_hostname&gt;true&lt;/env.com.tibco.tibjms.naming.ssl_enable_verify_hostname&gt;
+    
+    &lt;env.com.tibco.tibjms.naming.ssl_enable_verify_host&gt;true&lt;/env.com.tibco.tibjms.naming.ssl_enable_verify_host&gt;
+    
+    &lt;env.com.tibco.tibjms.naming.ssl_expected_hostname&gt;*.example.com&lt;/env.com.tibco.tibjms.naming.ssl_expected_hostname&gt;
+...
+</pre>
+      <p>This example specifies the location of the trusted certificate file, enables the verification of the host and hostname, and uses a wildcard hostname for the certificate. The <code>ssl_expected_hostname</code> setting is needed in order for the JNDI lookup and SSL connection to succeed because the wildcard hostname is not an exact match for the EMS server.</p>
+      
+      <p>In addition, the <strong>factories.conf</strong> file on the EMS server must have the <code>ssl_verify_hostname</code>, <code>ssl_verify_host</code>, and <code>ssl_expected_hostname</code> configured to match the values configured on the Gateway:</p>
+      
+<pre class="auto-links: false; brush: xml; toolbar: false;">
+[mySecureFactory]
+  type                     = generic
+  url                      = ssl://ems8.example.com:7223
+  ssl_trusted              = /home/ubuntu/keys/cert.pem
+  ssl_verify_hostname      = true
+  ssl_verify_host          = true
+  ssl_expected_hostname    = *.example.com
+</pre>
+    </li>
   <li>The <code>service</code> element configures a directory service on the Gateway for the secure URL you specified (for example, <code>https://www.example.com:9000/</code>).</li>
   <li>Adding an <code>accept</code> for HTTPS is useful for testing secure connections because it allows you to navigate to a secure web page on the Gateway from a web browser client and ensure that the trusted certificate is accepted by web browsers.</li>
   <li>When a web browser loads a web page via HTTP that contains a WSS call the browser does not prompt the user to accept the trusted certificate or notify the user that a trusted certificate is being used. The web browser validates the certificate in the background and if the certificate is valid the connection proceeds without notifying the user. The web browser does provide an indicator that a trusted certificate is used, such as a green lock icon.</li>
