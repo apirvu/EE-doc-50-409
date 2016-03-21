@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/doc.css">
 
-  
+
 
 
 <!-- +++++++++++++++Syntax Highlighter Calls++++++++++++++++ -->
@@ -86,443 +86,629 @@
 
   <link rel="stylesheet" href="/css/doc.css">
 
-<h1>Walkthrough: Deploy a JavaScript JMS App as a Hybrid iOS App</h1>
-<p>In this walkthrough, you will learn how to deploy an existing JavaScript JMS web app as a hybrid iOS app for iOS. This topic walks you through the following subjects:</p>
+  <h1>Walkthrough: Deploy a JavaScript JMS App as a Hybrid iOS App</h1>
+  <p>In this walkthrough, you will learn how to deploy an existing JavaScript JMS web app as a hybrid iOS app for iOS. This topic walks you through the following subjects:</p>
 
-<ol>
-<li><a href="#accomplish">What You Will Accomplish</a></li>
-<li><a href="#begin">Before You Begin</a></li>
-<li><a href="#install">Install the Gateway, Xcode 6.2, and Cordova 6.0</a></li>
-<li><a href="#build">Build the Hybrid Mobile App Using Cordova</a></li>
-<li><a href="#gateway">Run the Gateway and Apache ActiveMQ</a></li>
-<li><a href="#run">Run and Test the Hybrid Mobile App in iOS Simulator</a></li>
-<li><a href="#test">Test the Hybrid iOS app on an iOS device</a></li>
-<li><a href="#tshoot">Troubleshooting</a></li>
-<li><a href="#summary">Summary</a></li>
-</ol><br>
+  <ol>
+  <li><a href="#accomplish">What You Will Accomplish</a></li>
+  <li><a href="#begin">Before You Begin</a></li>
+  <li><a href="#install">Install the Gateway, Xcode 6.2, and Cordova 6.0</a></li>
+  <li><a href="#build">Build the Hybrid Mobile App Using Cordova</a></li>
+  <li><a href="#gateway">Run the Gateway and Apache ActiveMQ</a></li>
+  <li><a href="#run">Run and Test the Hybrid Mobile App in iOS Simulator</a></li>
+  <li><a href="#test">Test the Hybrid iOS app on an iOS device</a></li>
+  <li><a href="#tshoot">Troubleshooting</a></li>
+  <li><a href="#summary">Summary</a></li>
+  </ol><br>
 
-<span class="note"><b>Notes:</b><br>
-<ul class="arrow-2">
-    <li>This walkthrough only covers development on the Mac OS X operating system using <strong>Xcode 6.2 and Cordova 6.0</strong>. You can attempt to perform this walkthrough using a later version of Xcode, but the walkthrough has been tested with Xcode 6.2. You can find different versions of Xcode here: <a href="https://developer.apple.com/downloads/">https://developer.apple.com/downloads/</a> (requires Apple ID to log in).</li>
-    <li>A hybrid iOS app is a hybrid of a web-based app and a native iOS app. A native iOS app is built using Objective C and the iOS SDK. A hybrid iOS app is built using HTML, CSS, and JavaScript like a typical browser-based web app, and then packaged in a framework that allows it to be converted into an app that runs on iOS devices. Hybrid iOS apps enable web developers to leverage their experience to create apps for iOS and other mobile platforms. For information on native iOS development, see the <a href="http://developer.apple.com/library/ios/navigation/">iOS Developer Library</a>.</li>
-    <li>A hybrid iOS app is also different from a browser-based web app that is intended for viewing in the Safari browser on iOS. If you have an existing Kaazing WebSocket Gateway JavaScript JMS browser-based web app, you can choose to create a hybrid iOS app or to modify the web content to make it compatible with Safari on iOS. For more information, see the <a href="http://developer.apple.com/library/safari/#documentation/AppleApplications/Reference/SafariWebContent/Introduction/Introduction.html">Safari Web Content Guide</a>.</li>
-</ul>
-</span>  
+  <span class="note"><b>Notes:</b><br>
+  <ul class="arrow-2">
+      <li>This walkthrough only covers development on the Mac OS X operating system using <strong>Xcode 6.2 and Cordova 6.0</strong>. You can attempt to perform this walkthrough using a later version of Xcode, but the walkthrough has been tested with Xcode 6.2. You can find different versions of Xcode here: <a href="https://developer.apple.com/downloads/">https://developer.apple.com/downloads/</a> (requires Apple ID to log in).</li>
+      <li>A hybrid iOS app is a hybrid of a web-based app and a native iOS app. A native iOS app is built using Objective C and the iOS SDK. A hybrid iOS app is built using HTML, CSS, and JavaScript like a typical browser-based web app, and then packaged in a framework that allows it to be converted into an app that runs on iOS devices. Hybrid iOS apps enable web developers to leverage their experience to create apps for iOS and other mobile platforms. For information on native iOS development, see the <a href="http://developer.apple.com/library/ios/navigation/">iOS Developer Library</a>.</li>
+      <li>A hybrid iOS app is also different from a browser-based web app that is intended for viewing in the Safari browser on iOS. If you have an existing Kaazing WebSocket Gateway JavaScript JMS browser-based web app, you can choose to create a hybrid iOS app or to modify the web content to make it compatible with Safari on iOS. For more information, see the <a href="http://developer.apple.com/library/safari/#documentation/AppleApplications/Reference/SafariWebContent/Introduction/Introduction.html">Safari Web Content Guide</a>.</li>
+  </ul>
+  </span>
 
-<h2><a name="accomplish"></a>What You Will Accomplish</h2>
-<p>At the end of this walkthrough, a JavaScript JMS demo created using the Kaazing WebSocket Gateway JavaScript JMS libraries runs as a hybrid iOS app on iOS, connects to the Apache ActiveMQ broker via the Gateway, and sends and receives JMS messages using a native or emulated WebSocket connection. Users can run the hybrid iOS app on any iOS device and connect via the Gateway to the Apache ActiveMQ broker.</p>
+  <h2><a name="accomplish"></a>What You Will Accomplish</h2>
+  <p>At the end of this walkthrough, a JavaScript JMS demo created using the Kaazing WebSocket Gateway JavaScript JMS libraries runs as a hybrid iOS app on iOS, connects to the Apache ActiveMQ broker via the Gateway, and sends and receives JMS messages using a native or emulated WebSocket connection. Users can run the hybrid iOS app on any iOS device and connect via the Gateway to the Apache ActiveMQ broker.</p>
 
-<p>This walkthrough uses the out of the box JavaScript JMS demo that is included with the Gateway as the example app, but the steps outlined in this walkthrough are the same for other JavaScript JMS client applications built with the Gateway.</p>
-
-
-<p><span class="note"><strong>Note</strong>: For this walkthrough, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on <code>tcp://localhost:61613</code>. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../integration-jms/o_jms_integrate.html">About Integrating Kaazing WebSocket Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
+  <p>This walkthrough uses the out of the box JavaScript JMS demo that is included with the Gateway as the example app, but the steps outlined in this walkthrough are the same for other JavaScript JMS client applications built with the Gateway.</p>
 
 
-<h2><a name="begin"></a>Before You Begin</h2>
-<p>Before starting this walkthrough you need the following:</p>
-<ul class="arrow-2">
-    <li>Kaazing WebSocket Gateway  - JMS Edition. See <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
-    <li><a href="https://developer.apple.com/downloads/">Apple Xcode 6.2</a> (requires Mac OS X 10.7.4 or later)</li>
-    <li><a href="https://cordova.apache.org/docs/en/latest/guide/cli/index.html#installing-the-cordova-cli">Apache Cordova 6.0 Command-Line Interface (CLI)</a></li>
-</ul>
-
-<p>Learn about supported browsers, operating systems, and platform versions in <a href="../release-notes.html">Release Notes</a>.</p>
-
-<p><strong>Note:</strong> Steps for installing and configuring Xcode 6.2 and Cordova 6.0 are included in this walkthrough.</p>
-
-<h2><a name="install"></a>Install the Gateway, Xcode 6.2, and Cordova 6.0</h2>
-<p>The following steps take you through the installation of the software required for deploying a hybrid iOS app. If you already have this software installed, you can simply note the locations of the installed software for later use with the shell script.</p>
-
-<ol>
-    <li>Install the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
-    <li><p>Install Xcode 6.2 from <a href="http://developer.apple.com/devcenter/download.action?path=/Developer_Tools/Xcode_6.2/Xcode_6.2.dmg">http://developer.apple.com/devcenter/download.action?path=/Developer_Tools/Xcode_6.2/Xcode_6.2.dmg</a> (requires Apple ID to log in). You can also install Xcode 6.2 from <a href="https://developer.apple.com/downloads/">https://developer.apple.com/downloads/</a> by searching for Xcode 6.2. Once Xcode is installed, install the iOS Simulator.</p>
-        <ol type="a">
-            <li>In <strong>Xcode</strong>, click <strong>Xcode</strong>, and then click <strong>Preferences</strong>.</li>
-            <li>Click <strong>Downloads</strong>, and then click <strong>Components</strong>.</li>
-            <li>Click the download link next to <strong>iOS 8.2 Simulator</strong>. You can choose to use different simulators, but <strong>iPad 2 / iOS 8.2 Simulator</strong> is used for this walkthrough.</li>
-        </ol>
-    </li>
-    <li>Quit Xcode. Xcode should not be running when you are installing Cordova.</li>
-    <li>Download Cordova 6.0 by following the step in <a href="https://cordova.apache.org/docs/en/latest/guide/cli/index.html#installing-the-cordova-cli">Installing the Cordova CLI</a>.</li>
-</ol>
+  <p><span class="note"><strong>Note</strong>: For this walkthrough, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on <code>tcp://localhost:61613</code>. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../integration-jms/o_jms_integrate.html">About Integrating Kaazing WebSocket Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
 
 
-<h2><a name="build"></a>Build the Hybrid Mobile App Using Cordova</h2>
-<p>The following steps build the hybrid iOS app using the Xcode project you created.</p>
-<ol>
-    <li>Open a Terminal at the folder where you want to store your app.</li>
-    <li>In Terminal, enter the following command: <code>cordova create myApp com.example.myapp myApp --template <em>GATEWAY_HOME</em>/demo/cordova/www</code>.
-    <p>For details on the command parameters, see <a href="https://cordova.apache.org/docs/en/latest/guide/cli/index.html#create-the-app">Create the App</a> from Cordova.</p>
-    </li>
-    <li>Press <strong>Enter</strong>. Cordova will create the <strong>MyApp</strong> app.</li>
-    <li>In the <strong>myApp</strong> folder created by Cordova, open the HTML file that Cordova will use for the GUI of your app. It located here: <code>myApp/www/index.html</code>.</li>
-    <li><p>Replace the contents of index.html with the following:</p>
-<pre class="auto-links: false; brush: xml; toolbar: false;">
-&lt;!DOCTYPE html&gt;
-&lt;html class=&quot;no-js&quot;&gt;
-&lt;head&gt;
+  <h2><a name="begin"></a>Before You Begin</h2>
+  <p>Before starting this walkthrough you need the following:</p>
+  <ul class="arrow-2">
+      <li>Kaazing WebSocket Gateway  - JMS Edition. See <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+      <li><a href="https://developer.apple.com/downloads/">Apple Xcode 6.2</a> (requires Mac OS X 10.7.4 or later)</li>
+      <li><a href="https://cordova.apache.org/docs/en/latest/guide/cli/index.html#installing-the-cordova-cli">Apache Cordova 6.0 Command-Line Interface (CLI)</a></li>
+  </ul>
 
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;resources/css/normalize.css&quot;&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;resources/css/dev.css&quot;&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;resources/css/demo.css&quot;&gt;
+  <p>Learn about supported browsers, operating systems, and platform versions in <a href="../release-notes.html">Release Notes</a>.</p>
 
-  &lt;script src=&quot;resources/js/jquery-1.9.1.min.js&quot;&gt;&lt;/script&gt;
-  &lt;script src=&quot;resources/js/modernizr.js&quot;&gt;&lt;/script&gt;
+  <p><strong>Note:</strong> Steps for installing and configuring Xcode 6.2 and Cordova 6.0 are included in this walkthrough.</p>
 
-&lt;/head&gt;
-&lt;body&gt;
+  <h2><a name="install"></a>Install the Gateway, Xcode 6.2, and Cordova 6.0</h2>
+  <p>The following steps take you through the installation of the software required for deploying a hybrid iOS app. If you already have this software installed, you can simply note the locations of the installed software for later use with the shell script.</p>
 
-&lt;!--  Kaazing scripts --&gt;
-&lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot; src=&quot;WebSocket.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot; src=&quot;JmsClient.js&quot;&gt;&lt;/script&gt;
+  <ol>
+      <li>Install the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+      <li><p>Install Xcode 6.2 from <a href="http://developer.apple.com/devcenter/download.action?path=/Developer_Tools/Xcode_6.2/Xcode_6.2.dmg">http://developer.apple.com/devcenter/download.action?path=/Developer_Tools/Xcode_6.2/Xcode_6.2.dmg</a> (requires Apple ID to log in). You can also install Xcode 6.2 from <a href="https://developer.apple.com/downloads/">https://developer.apple.com/downloads/</a> by searching for Xcode 6.2. Once Xcode is installed, install the iOS Simulator.</p>
+          <ol type="a">
+              <li>In <strong>Xcode</strong>, click <strong>Xcode</strong>, and then click <strong>Preferences</strong>.</li>
+              <li>Click <strong>Downloads</strong>, and then click <strong>Components</strong>.</li>
+              <li>Click the download link next to <strong>iOS 8.2 Simulator</strong>. You can choose to use different simulators, but <strong>iPad 2 / iOS 8.2 Simulator</strong> is used for this walkthrough.</li>
+          </ol>
+      </li>
+      <li>Quit Xcode. Xcode should not be running when you are installing Cordova.</li>
+      <li>Download Cordova 6.0 by following the step in <a href="https://cordova.apache.org/docs/en/latest/guide/cli/index.html#installing-the-cordova-cli">Installing the Cordova CLI</a>.</li>
+  </ol>
 
-&lt;script type=&quot;text/javascript&quot;&gt;
 
-var connection;
-var session;
+  <h2><a name="build"></a>Build the Hybrid Mobile App Using Cordova</h2>
+  <p>The following steps build the hybrid iOS app using the Xcode project you created.</p>
+  <ol>
+      <li>Open a Terminal at the folder where you want to store your app.</li>
+      <li>In Terminal, enter the following command: <code>cordova create myApp com.example.myapp myApp --template <em>GATEWAY_HOME</em>/demo/cordova/www</code>.
+      <p>For details on the command parameters, see <a href="https://cordova.apache.org/docs/en/latest/guide/cli/index.html#create-the-app">Create the App</a> from Cordova.</p>
+      </li>
+      <li>Press <strong>Enter</strong>. Cordova will create the <strong>MyApp</strong> app.</li>
+      <li>In the <strong>myApp</strong> folder created by Cordova, open the HTML file that Cordova will use for the GUI of your app. It located here: <code>myApp/www/index.html</code>.</li>
+      <li><p>Replace the contents of index.html with the following:</p>
+  <pre class="auto-links: false; brush: xml; toolbar: false; highlight: 596;">
+  &lt;!DOCTYPE html&gt;
+  &lt;html class=&quot;no-js&quot;&gt;
+  &lt;head&gt;
 
-/* UI Elements */
-var logConsole, url, username, password, connect, disconnect;
-var destination, message, messageSelector, subscribe, send;
-var txSend, txDestination, txMessage, commit, rollback, clear, binary, binaryTransaction;
-var receivedMessageCount, receivedMessageCounter = 0;
-var subscriptionsTable;
-var destinationCounter = 1;
-var toggleJmsHeadersCb;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;resources/css/normalize.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;resources/css/dev.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;resources/css/demo.css&quot;&gt;
 
-function clearLog() {
-  while (logConsole.childNodes.length &gt; 0) {
-    logConsole.removeChild(logConsole.lastChild);
-  }
-}
+    &lt;style&gt;
 
-// Log a string message
-function log(message) {
-  var div = document.createElement(&quot;div&quot;);
-  div.className = &quot;logMessage&quot;
-  div.innerHTML = message;
-  logDiv(div);
-}
-
-function logDiv(div) {
-  logConsole.appendChild(div);
-  toggleJmsHeaders(); // Hide the headers if that&#x27;s what the user specified
-  // Make sure the last line is visible.
-  logConsole.scrollTop = logConsole.scrollHeight;
-  while (logConsole.childNodes.length &gt; 20) {
-    // Delete two rows to preserved the alternate background colors.
-    logConsole.removeChild(logConsole.firstChild);
-    logConsole.removeChild(logConsole.firstChild);
-  }
-}
-
-function updateConnectionButtons(connected) {
-  connect.disabled = connected;
-  disconnect.disabled = !connected;
-  subscribe.disabled = !connected;
-  send.disabled = !connected;
-  txSend.disabled = commit.disabled = rollback.disabled = !connected;
-}
-
-function createDestination(name, session) {
-  if (name.indexOf(&quot;/topic/&quot;) == 0) {
-    return session.createTopic(name);
-  }
-  else if (name.indexOf(&quot;/queue/&quot;) == 0) {
-    return session.createQueue(name);
-  }
-  else {
-    throw new Error(&quot;Destination must start with /topic/ or /queue/&quot;);
-  }
-}
-
-function handleConnect() {
-  log(&quot;CONNECT: &quot; + url.value + &quot; &quot; + username.value);
-
-  var jmsConnectionFactory = new JmsConnectionFactory(url.value);
-
-  //setup challenge handler
-  setupSSO(jmsConnectionFactory.getWebSocketFactory());
-  try {
-    var connectionFuture =
-    jmsConnectionFactory.createConnection(username.value, password.value, function () {
-      if (!connectionFuture.exception) {
-        try {
-          connection = connectionFuture.getValue();
-          connection.setExceptionListener(handleException);
-
-          log(&quot;CONNECTED&quot;);
-
-          session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-          transactedSession = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
-
-          connection.start(function () {
-            updateConnectionButtons(true);
-          });
-        }
-        catch (e) {
-          handleException(e);
-        }
+      body {
+        margin: 2px;
+        margin-top: 0;
+        background-color: whitesmoke;
       }
-      else {
-        handleException(connectionFuture.exception);
+
+      h1 {
+        font-size: 24px;
+        margin-top: 0;
       }
-    });
-  }
-  catch (e) {
-    handleException(e);
-  }
-}
 
-function handleException(e) {
-  log(&quot;&lt;span class=&#x27;error&#x27;&gt;EXCEPTION: &quot; + e+&quot;&lt;/span&gt;&quot;);
+      div.setting {
+        margin-top: 5px;
+      }
+      div.setting:first-of-type {
+        margin-top: 0;
+      }
+      div.setting label {
+        width: 80px;
+      }
+      div.setting input {
+        width: 180px;
+        margin-bottom: 0;
+      }
+      div.setting button {
+        width: 85px;
+      }
 
-  if (e.type == &quot;ConnectionDisconnectedException&quot;) {
-    updateConnectionButtons(false);
-  }
-}
+      #console {
+        position: relative;
+        float: left;
+        overflow-y: scroll;
+        width: 100%;
+        height: 200px;
+        border: solid 1px #dddddd;
+        background-color: white; }
 
-function handleDisconnect() {
-  disconnect.disabled = &quot;disabled&quot;;
+      #console pre {
+        font-family: monospace; }
 
-  // Clear any subscriptions.
-  if (document.getElementsByClassName) {
-    var subscriptions = document.getElementsByClassName(&quot;unsubscribeButton&quot;);
-    while (subscriptions[0]) {
-      subscriptions[0].click();
+      #console &gt; div {
+        border-bottom: dashed 1px #dddddd;
+        padding-top: 5px;
+        padding-bottom: 5px; }
+
+      #console div {
+        font-family: monospace;
+        padding-left: 5px;
+        font-size: 15px;
+        line-height: 18px; }
+
+      #console &gt; div:nth-child(even) {
+        background-color: #fafafa; }
+
+      #console div div {
+        line-height: 15px; }
+
+      #console .error {
+        color: red; }
+
+      #console &gt; div &gt; div {
+        display: block;
+        margin-left: 15px;
+        font-size: smaller; }
+
+      #console .sendMessage {
+        color: #336633; }
+
+      #console .sendMessage .destination {
+        color: #577557; }
+
+      #console .sendMessage .properties {
+        color: #45ad45; }
+
+      #console .sendMessage .headers {
+        color: #8aad45; }
+
+      #console.hidden .headers {
+        /*    display: none; */
+        background-color: red; }
+
+      #console .receiveMessage {
+        color: #0000ff; }
+
+      #console .receiveMessage .destination {
+        color: #6666ff; }
+
+      #console .receiveMessage .properties {
+        color: #4791ff; }
+
+      #console .receiveMessage .headers {
+        color: #7193eb; }
+
+      #console .txSendMessage {
+        color: #606; }
+
+      #console .txSendMessage &gt; div {
+        color: #9e4d9e; }
+
+      #subscriptions {
+        border: 0;
+        font-size: smaller;
+        width: 100%;
+        margin: 0;
+      }
+
+      #subscriptions th, #subscriptions td {
+        background-color: whitesmoke;
+        border: 0;
+        text-align: left;
+        padding-left: 5px;
+        padding-right: 5px;
+        line-height: 150%;
+  /*      padding-top: 3px;
+        padding-bottom: 3px;
+  */    }
+
+      #subscriptions th {
+        padding-top: 2px;
+        padding-bottom: 2px;
+        line-height: 15px;
+        font-size: 14px;
+      }
+
+      #subscriptions &gt; thead, #subscriptions &gt; tbody &gt; tr:nth-child(even) {
+        background-color: #fbfbfb; }
+
+      #subscriptions th.destination, #subscriptions td.destination {
+        white-space: nowrap;
+  /*      min-width: 125px; */
+        /*line-height: 15px;*/
+      }
+
+      #subscriptions th.unsubscribe, #subscriptions td.unsubscribe {
+        width: 100%; }
+
+      #subscriptions button {
+        font-size: smaller; }
+
+      #console_div label {
+        width: auto;
+        margin-left: 5px; }
+
+      #middle .subscriptionTag {
+        color: #aaaaaa; }
+
+      div.section-heading {
+        font-weight: bold;
+      }
+
+      div.section-heading-left {
+        float: left;
+      }
+      div.toggle {
+        float: right;
+      }
+
+      input[type=checkbox] {
+        width: 20px;
+      }
+
+      label[for=toggleJmsHeadersCb] {
+        width: 140px;
+        float: none;
+        font-weight: normal;
+      }
+
+      button#clear {
+        float: right;
+      }
+
+      img#logo {
+        width: 166px;
+        margin-left: 3px;
+      }
+
+    &lt;/style&gt;
+
+    &lt;script src=&quot;resources/js/jquery-1.9.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;resources/js/modernizr.js&quot;&gt;&lt;/script&gt;
+
+  &lt;/head&gt;
+  &lt;body&gt;
+
+  &lt;!--  Kaazing scripts --&gt;
+  &lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot; src=&quot;WebSocket.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot; src=&quot;JmsClient.js&quot;&gt;&lt;/script&gt;
+
+  &lt;script type=&quot;text/javascript&quot;&gt;
+
+  var connection;
+  var session;
+
+  /* UI Elements */
+  var logConsole, url, connectBut;
+  var destination, message, subscribe, send;
+  var rollback, clear;
+  var receivedMessageCount, receivedMessageCounter = 0;
+  var subscriptionsTable;
+  var destinationCounter = 1;
+  var toggleJmsHeadersCb;
+  var logoHeight;
+
+  function clearLog() {
+    while (logConsole.childNodes.length &gt; 0) {
+      logConsole.removeChild(logConsole.lastChild);
     }
-  } else {
-    // The IE way.
-    var unsubscribeButtons = subscriptionsTable.getElementsByTagName(&quot;button&quot;);
-    while (unsubscribeButtons.length &gt; 0) {
-      var b = unsubscribeButtons[0];
-      if (b.className == &quot;unsubscribeButton&quot;) {
-        b.click();
-      }
+  }
+
+  // Log a string message
+  function log(message) {
+    var div = document.createElement(&quot;div&quot;);
+    div.className = &quot;logMessage&quot;
+    div.innerHTML = message;
+    logDiv(div);
+  }
+
+  function logDiv(div) {
+    logConsole.appendChild(div);
+    toggleJmsHeaders(); // Hide the headers if that&#x27;s what the user specified
+    // Make sure the last line is visible.
+    logConsole.scrollTop = logConsole.scrollHeight;
+    while (logConsole.childNodes.length &gt; 20) {
+      // Delete two rows to preserved the alternate background colors.
+      logConsole.removeChild(logConsole.firstChild);
+      logConsole.removeChild(logConsole.firstChild);
     }
   }
 
-  log(&quot;CLOSE&quot;);
-  try {
-    connection.close(function () {
-      log(&quot;CONNECTION CLOSED&quot;);
-      updateConnectionButtons(false);
-    });
-  }
-  catch (e) {
-    handleException(e);
-  }
-}
-
-function handleSubscribe() {
-  var name = destination.value;
-
-  var destinationId = destinationCounter++;
-
-  log(&quot;SUBSCRIBE: &quot; + name + &quot; &lt;span class=\&quot;subscriptionTag\&quot;&gt;[#&quot;+destinationId+&quot;]&lt;/span&gt;&quot;);
-
-  var dest = createDestination(name, session);
-
-  var consumer;
-
-  if (messageSelector.value.length &gt; 0) {
-    consumer = session.createConsumer(dest, messageSelector.value);
-  } else {
-    consumer = session.createConsumer(dest);
-  }
-
-  consumer.setMessageListener(function(message) {
-    handleMessage(name, destinationId, message);
-  });
-
-  // Add a row to the subscriptions table.
-  //
-
-  var tBody = subscriptionsTable.tBodies[0];
-
-  var rowCount = tBody.rows.length;
-  var row = tBody.insertRow(rowCount);
-
-  var destinationCell = row.insertCell(0);
-  destinationCell.className = &quot;destination&quot;;
-  destinationCell.appendChild(document.createTextNode(name+&quot; &quot;));
-  var destNode = document.createElement(&quot;span&quot;);
-  destNode.className = &quot;subscriptionTag&quot;;
-  destNode.innerHTML = &quot;[#&quot;+destinationId+&quot;]&quot;;
-  destinationCell.appendChild(destNode);
-
-  var messageSelectorCell = row.insertCell(1);
-  messageSelectorCell.className = &quot;selector&quot;;
-  messageSelectorCell.appendChild(document.createTextNode(messageSelector.value));
-
-  var unsubscribeCell = row.insertCell(2);
-  var unsubscribeButton = document.createElement(&quot;button&quot;);
-  unsubscribeButton.className = &quot;unsubscribeButton&quot;;
-  unsubscribeButton.innerHTML = &quot;Unsubscribe&quot;;
-  unsubscribeButton.addEventListener(&#x27;click&#x27;, function(event) {
-    var targ;
-    if (event.target) {
-      targ = event.target;
+  function updateConnectionButtons(connected) {
+    if (connected) {
+      connectBut.innerHTML = &quot;Disconnect&quot;;
     } else {
-      targ=event.srcElement; // The wonders of IE
+      connectBut.innerHTML = &quot;Connect&quot;;
     }
-    log(&quot;UNSUBSCRIBE: &quot; + name + &quot; &lt;span class=\&quot;subscriptionTag\&quot;&gt;[#&quot;+destinationId+&quot;]&lt;/span&gt;&quot;);
-    if (consumer) {
-      consumer.close(null);
+    subscribe.disabled = !connected;
+    send.disabled = !connected;
+  }
+
+  function createDestination(name, session) {
+    if (name.indexOf(&quot;/topic/&quot;) == 0) {
+      return session.createTopic(name);
     }
-    var rowIndex = targ.parentElement.parentElement.rowIndex
-    subscriptionsTable.deleteRow(rowIndex);
-  }, false);
-  unsubscribeCell.appendChild(unsubscribeButton);
-}
-
-function handleMessage(destination, destinationId, message) {
-  var content = &quot;&quot;;
-
-  if (message instanceof TextMessage) {
-    content = &quot;RECEIVED TextMessage: &quot; + message.getText();
-  }
-  else if (message instanceof BytesMessage) {
-    var body = [];
-    message.readBytes(body);
-    content = &quot;RECEIVED BytesMessage: &quot; + body;
-  }
-  else if (message instanceof MapMessage) {
-    var keys = message.getMapNames();
-    content = &quot;RECEIVED MapMessage: &lt;br/&gt;&quot;;
-
-    for (var i=0; i&lt;keys.length; i++) {
-      var key = keys[i];
-      var value = message.getObject(key);
-      var type;
-      if (value == null) {
-        type = &quot;&quot;;
-      }
-      else if (value instanceof String) {
-        type = &quot;String&quot;;
-      }
-      else if (value instanceof Number) {
-        type = &quot;Number&quot;;
-      }
-      else if (value instanceof Boolean) {
-        type = &quot;Boolean&quot;;
-      }
-      else if (value instanceof Array) {
-        type = &quot;Array&quot;;
-      }
-      content += key + &quot;: &quot; + value;
-      if(type != &quot;&quot;) {
-        content += &quot; (&quot; + type + &quot;)&quot;
-      }
-      content += &quot;&lt;br /&gt;&quot;;
+    else if (name.indexOf(&quot;/queue/&quot;) == 0) {
+      return session.createQueue(name);
+    }
+    else {
+      throw new Error(&quot;Destination must start with /topic/ or /queue/&quot;);
     }
   }
-  else {
-    content = &quot;RECEIVED UNKNOWN MESSAGE&quot;;
-  }
 
-  var div = document.createElement(&quot;div&quot;);
-  div.className = &quot;logMessage receiveMessage&quot;
-  div.innerHTML = content;
-
-  div.appendChild(buildDestinationDiv(&quot;Subscription&quot;, destination));
-
-  div.appendChild(buildPropertiesDiv(message));
-
-  div.appendChild(buildJMSHeadersDiv(message, true));
-
-  logDiv(div);
-
-  receivedMessageCount.innerHTML = ++receivedMessageCounter;
-}
-
-var logMessageSend = function(classname, prefix, destination, messageStr, message) {
-  var div = document.createElement(&quot;div&quot;);
-  div.className = &quot;logMessage &quot;+classname
-  div.innerHTML = prefix + messageStr;
-
-  div.appendChild(buildPropertiesDiv(message));
-
-  div.appendChild(buildJMSHeadersDiv(message, false));
-
-  logDiv(div);
-}
-
-var buildDestinationDiv = function(label, destName, destId) {
-  var destinationDiv = document.createElement(&quot;div&quot;);
-  destinationDiv.className = &quot;destination&quot;;
-  var destIdStr = &quot;&quot;;
-  if (destId != undefined) {
-    destIdStr = &quot; [#&quot;+destId+&quot;]&quot;;
-  }
-  destinationDiv.innerHTML += label + &quot;: &quot; + destName+destIdStr;
-  return destinationDiv;
-}
-
-var buildPropertiesDiv = function(message) {
-  var propsDiv = document.createElement(&quot;div&quot;);
-  propsDiv.className = &quot;properties&quot;;
-  var props = message.getPropertyNames();
-  while (props.hasMoreElements()) {
-    var propName = props.nextElement();
-    var propValue = message.getStringProperty(propName);
-    propsDiv.innerHTML += &quot;Property: &quot;+propName+&quot;=&quot;+propValue+&quot;&lt;br&gt;&quot;;
-  }
-  return propsDiv;
-}
-
-var buildJMSHeadersDiv = function(message, receive) {
-  var headersDiv = document.createElement(&quot;div&quot;);
-  headersDiv.className = &quot;headers&quot;;
-  var deliveryModeStr;
-  switch (message.getJMSDeliveryMode()) {
-  case DeliveryMode.NON_PERSISTENT:
-    deliveryModeStr = &quot;NON_PERSISTENT&quot;;
-    break;
-  case DeliveryMode.PERSISTENT:
-    deliveryModeStr = &quot;PERSISTENT&quot;;
-    break;
-  default:
-    deliveryModeStr = &quot;UNKNOWN&quot;;
-  }
-
-  var jmsDestination = message.getJMSDestination();
-  var destinationName = (jmsDestination instanceof Queue) ? jmsDestination.getQueueName()
-  : jmsDestination.getTopicName();
-  headersDiv.innerHTML += &quot;JMSDestination: &quot; + destinationName +&quot;&lt;br&gt;&quot;;
-
-  if (receive) {
-    headersDiv.innerHTML += &quot;JMSRedelivered: &quot; + message.getJMSRedelivered()+&quot;&lt;br&gt;&quot;;
-  }
-
-  headersDiv.innerHTML += &quot;JMSDeliveryMode: &quot;+message.getJMSDeliveryMode()+&quot; (&quot;+deliveryModeStr+&quot;)&lt;br&gt;&quot;;
-  headersDiv.innerHTML += &quot;JMSPriority: &quot;+message.getJMSPriority()+&quot;&lt;br&gt;&quot;;
-  headersDiv.innerHTML += &quot;JMSMessageID: &quot;+message.getJMSMessageID()+&quot;&lt;br&gt;&quot;;
-  headersDiv.innerHTML += &quot;JMSTimestamp: &quot;+message.getJMSTimestamp()+&quot;&lt;br&gt;&quot;;
-  headersDiv.innerHTML += &quot;JMSCorrelationID: &quot;+message.getJMSCorrelationID()+&quot;&lt;br&gt;&quot;;
-  headersDiv.innerHTML += &quot;JMSType: &quot;+message.getJMSType()+&quot;&lt;br&gt;&quot;;
-  headersDiv.innerHTML += &quot;JMSReplyTo: &quot;+message.getJMSReplyTo()+&quot;&lt;br&gt;&quot;;
-  return headersDiv;
-}
-
-var addProperties = function(message) {
-  var i = 1;
-  var propName;
-  while (propName = document.getElementById(&quot;propName&quot;+i)) {
-    if (propName.value.length &gt; 0) {
-      var propValue = document.getElementById(&quot;propValue&quot;+i);
-      message.setStringProperty(propName.value, propValue.value);
+  function handleConnectBut() {
+    if (connectBut.innerHTML == &quot;Connect&quot;) {
+      doConnect();
+    } else {
+      doDisconnect();
     }
-    i++;
   }
-}
 
-function handleSend() {
-  var name = destination.value;
-  var dest = createDestination(name, session);
-  var producer = session.createProducer(dest);
+  function doConnect() {
+    log(&quot;CONNECT: &quot; + url.value);
 
-  if (!binary.checked) {
+    var jmsConnectionFactory = new JmsConnectionFactory(url.value);
+
+    //setup challenge handler
+    setupSSO(jmsConnectionFactory.getWebSocketFactory());
+    try {
+      var connectionFuture =
+      jmsConnectionFactory.createConnection(null, null, function () {
+        if (!connectionFuture.exception) {
+          try {
+            connection = connectionFuture.getValue();
+            connection.setExceptionListener(handleException);
+
+            log(&quot;CONNECTED&quot;);
+
+            session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            transactedSession = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
+
+            connection.start(function () {
+              updateConnectionButtons(true);
+            });
+          }
+          catch (e) {
+            handleException(e);
+          }
+        }
+        else {
+          handleException(connectionFuture.exception);
+        }
+      });
+    }
+    catch (e) {
+      handleException(e);
+    }
+  }
+
+  function handleException(e) {
+    log(&quot;&lt;span class=&#x27;error&#x27;&gt;EXCEPTION: &quot; + e+&quot;&lt;/span&gt;&quot;);
+
+    if (e.type == &quot;ConnectionDisconnectedException&quot;) {
+      updateConnectionButtons(false);
+    }
+  }
+
+  function doDisconnect() {
+    // Clear any subscriptions.
+    if (document.getElementsByClassName) {
+      var subscriptions = document.getElementsByClassName(&quot;unsubscribeButton&quot;);
+      while (subscriptions[0]) {
+        subscriptions[0].click();
+      }
+    } else {
+      // The IE way.
+      var unsubscribeButtons = subscriptionsTable.getElementsByTagName(&quot;button&quot;);
+      while (unsubscribeButtons.length &gt; 0) {
+        var b = unsubscribeButtons[0];
+        if (b.className == &quot;unsubscribeButton&quot;) {
+          b.click();
+        }
+      }
+    }
+
+    log(&quot;CLOSE&quot;);
+    try {
+      connection.close(function () {
+        log(&quot;CONNECTION CLOSED&quot;);
+        updateConnectionButtons(false);
+      });
+    }
+    catch (e) {
+      handleException(e);
+    }
+  }
+
+  function handleSubscribe() {
+    var name = destination.value;
+
+    var destinationId = destinationCounter++;
+
+    log(&quot;SUBSCRIBE: &quot; + name + &quot; &lt;span class=\&quot;subscriptionTag\&quot;&gt;[#&quot;+destinationId+&quot;]&lt;/span&gt;&quot;);
+
+    var dest = createDestination(name, session);
+
+    var consumer;
+
+    consumer = session.createConsumer(dest);
+
+    consumer.setMessageListener(function(message) {
+      handleMessage(name, destinationId, message);
+    });
+
+    // Add a row to the subscriptions table.
+    //
+
+    var tBody = subscriptionsTable.tBodies[0];
+
+    var rowCount = tBody.rows.length;
+    var row = tBody.insertRow(rowCount);
+
+    var destinationCell = row.insertCell(0);
+    destinationCell.className = &quot;destination&quot;;
+    destinationCell.appendChild(document.createTextNode(name+&quot; &quot;));
+    var destNode = document.createElement(&quot;span&quot;);
+    destNode.className = &quot;subscriptionTag&quot;;
+    destNode.innerHTML = &quot;[#&quot;+destinationId+&quot;]&quot;;
+    destinationCell.appendChild(destNode);
+
+    var unsubscribeCell = row.insertCell(1);
+    unsubscribeCell.className = &quot;unsubscribe&quot;;
+    var unsubscribeButton = document.createElement(&quot;button&quot;);
+    unsubscribeButton.className = &quot;unsubscribeButton&quot;;
+    unsubscribeButton.innerHTML = &quot;Unsubscribe&quot;;
+    unsubscribeButton.addEventListener(&#x27;click&#x27;, function(event) {
+      var targ;
+      if (event.target) {
+        targ = event.target;
+      } else {
+        targ=event.srcElement; // The wonders of IE
+      }
+      log(&quot;UNSUBSCRIBE: &quot; + name + &quot; &lt;span class=\&quot;subscriptionTag\&quot;&gt;[#&quot;+destinationId+&quot;]&lt;/span&gt;&quot;);
+      if (consumer) {
+        consumer.close(null);
+      }
+      var rowIndex = targ.parentElement.parentElement.rowIndex
+      subscriptionsTable.deleteRow(rowIndex);
+        setLogPaneHeight();
+    }, false);
+    unsubscribeCell.appendChild(unsubscribeButton);
+
+    setLogPaneHeight();
+  }
+
+  function handleMessage(destination, destinationId, message) {
+    var content = &quot;&quot;;
+
+    if (message instanceof TextMessage) {
+      content = &quot;RECEIVED TextMessage: &quot; + message.getText();
+    }
+    else if (message instanceof BytesMessage) {
+      var body = [];
+      message.readBytes(body);
+      content = &quot;RECEIVED BytesMessage: &quot; + body;
+    }
+    else if (message instanceof MapMessage) {
+      var keys = message.getMapNames();
+      content = &quot;RECEIVED MapMessage: &lt;br/&gt;&quot;;
+
+      for (var i=0; i&lt;keys.length; i++) {
+        var key = keys[i];
+        var value = message.getObject(key);
+        var type;
+        if (value == null) {
+          type = &quot;&quot;;
+        }
+        else if (value instanceof String) {
+          type = &quot;String&quot;;
+        }
+        else if (value instanceof Number) {
+          type = &quot;Number&quot;;
+        }
+        else if (value instanceof Boolean) {
+          type = &quot;Boolean&quot;;
+        }
+        else if (value instanceof Array) {
+          type = &quot;Array&quot;;
+        }
+        content += key + &quot;: &quot; + value;
+        if(type != &quot;&quot;) {
+          content += &quot; (&quot; + type + &quot;)&quot;
+        }
+        content += &quot;&lt;br /&gt;&quot;;
+      }
+    }
+    else {
+      content = &quot;RECEIVED UNKNOWN MESSAGE&quot;;
+    }
+
+    var div = document.createElement(&quot;div&quot;);
+    div.className = &quot;logMessage receiveMessage&quot;
+    div.innerHTML = content;
+
+    div.appendChild(buildDestinationDiv(&quot;Destination&quot;, destination));
+
+    div.appendChild(buildPropertiesDiv(message));
+
+    div.appendChild(buildJMSHeadersDiv(message, true));
+
+    logDiv(div);
+
+    receivedMessageCount.innerHTML = ++receivedMessageCounter;
+  }
+
+  var logMessageSend = function(classname, prefix, destination, messageStr, message) {
+    var div = document.createElement(&quot;div&quot;);
+    div.className = &quot;logMessage &quot;+classname
+    div.innerHTML = prefix + messageStr;
+
+    div.appendChild(buildPropertiesDiv(message));
+
+    div.appendChild(buildJMSHeadersDiv(message, false));
+
+    div.appendChild(buildDestinationDiv(&quot;Destination&quot;, destination));
+
+    logDiv(div);
+  }
+
+  var buildDestinationDiv = function(label, destName, destId) {
+    var destinationDiv = document.createElement(&quot;div&quot;);
+    destinationDiv.className = &quot;destination&quot;;
+    var destIdStr = &quot;&quot;;
+    if (destId != undefined) {
+      destIdStr = &quot; [#&quot;+destId+&quot;]&quot;;
+    }
+    destinationDiv.innerHTML += label + &quot;: &quot; + destName+destIdStr;
+    return destinationDiv;
+  }
+
+  var buildPropertiesDiv = function(message) {
+    var propsDiv = document.createElement(&quot;div&quot;);
+    propsDiv.className = &quot;properties&quot;;
+    var props = message.getPropertyNames();
+    while (props.hasMoreElements()) {
+      var propName = props.nextElement();
+      var propValue = message.getStringProperty(propName);
+      propsDiv.innerHTML += &quot;Property: &quot;+propName+&quot;=&quot;+propValue+&quot;&lt;br&gt;&quot;;
+    }
+    return propsDiv;
+  }
+
+  var buildJMSHeadersDiv = function(message, receive) {
+    var headersDiv = document.createElement(&quot;div&quot;);
+    headersDiv.className = &quot;headers&quot;;
+    var deliveryModeStr;
+    switch (message.getJMSDeliveryMode()) {
+    case DeliveryMode.NON_PERSISTENT:
+      deliveryModeStr = &quot;NON_PERSISTENT&quot;;
+      break;
+    case DeliveryMode.PERSISTENT:
+      deliveryModeStr = &quot;PERSISTENT&quot;;
+      break;
+    default:
+      deliveryModeStr = &quot;UNKNOWN&quot;;
+    }
+
+    var jmsDestination = message.getJMSDestination();
+    var destinationName = (jmsDestination instanceof Queue) ? jmsDestination.getQueueName()
+    : jmsDestination.getTopicName();
+    headersDiv.innerHTML += &quot;JMSDestination: &quot; + destinationName +&quot;&lt;br&gt;&quot;;
+
+    if (receive) {
+      headersDiv.innerHTML += &quot;JMSRedelivered: &quot; + message.getJMSRedelivered()+&quot;&lt;br&gt;&quot;;
+    }
+
+    headersDiv.innerHTML += &quot;JMSDeliveryMode: &quot;+message.getJMSDeliveryMode()+&quot; (&quot;+deliveryModeStr+&quot;)&lt;br&gt;&quot;;
+    headersDiv.innerHTML += &quot;JMSPriority: &quot;+message.getJMSPriority()+&quot;&lt;br&gt;&quot;;
+    headersDiv.innerHTML += &quot;JMSMessageID: &quot;+message.getJMSMessageID()+&quot;&lt;br&gt;&quot;;
+    headersDiv.innerHTML += &quot;JMSTimestamp: &quot;+message.getJMSTimestamp()+&quot;&lt;br&gt;&quot;;
+    headersDiv.innerHTML += &quot;JMSCorrelationID: &quot;+message.getJMSCorrelationID()+&quot;&lt;br&gt;&quot;;
+    headersDiv.innerHTML += &quot;JMSType: &quot;+message.getJMSType()+&quot;&lt;br&gt;&quot;;
+    headersDiv.innerHTML += &quot;JMSReplyTo: &quot;+message.getJMSReplyTo()+&quot;&lt;br&gt;&quot;;
+    return headersDiv;
+  }
+
+  var addProperties = function(message) {
+    var i = 1;
+    var propName;
+    while (propName = document.getElementById(&quot;propName&quot;+i)) {
+      if (propName.value.length &gt; 0) {
+        var propValue = document.getElementById(&quot;propValue&quot;+i);
+        message.setStringProperty(propName.value, propValue.value);
+      }
+      i++;
+    }
+  }
+
+  function handleSend() {
+    var name = destination.value;
+    var dest = createDestination(name, session);
+    var producer = session.createProducer(dest);
+
     var textMsg = session.createTextMessage(message.value);
 
     addProperties(textMsg);
@@ -538,415 +724,298 @@ function handleSend() {
     }
 
     logMessageSend(&quot;sendMessage&quot;, &quot;SEND TextMessage: &quot;, destination.value, message.value, textMsg);
-  }
-  else {
-    var bytesMsg = session.createBytesMessage();
-    bytesMsg.writeUTF(message.value);
 
-    addProperties(bytesMsg);
-
-    try {
-      var future = producer.send(bytesMsg, function(){
-        if (future.exception) {
-          handleException(future.exception);
-        }
-      });
-    } catch (e) {
-      handleException(e);
-    }
-
-    logMessageSend(&quot;sendMessage&quot;, &quot;SEND BytesMessage: &quot;, destination.value, message.value, bytesMsg);
+    producer.close();
   }
 
-  producer.close();
-}
-
-function handleTxSend() {
-  var name = txDestination.value;
-  var dest = createDestination(name, transactedSession);
-  var producer = transactedSession.createProducer(dest);
-
-  if (!binaryTransaction.checked) {
-    var textMsg = transactedSession.createTextMessage(txMessage.value);
-
-    try {
-      var future = producer.send(textMsg, function(){
-        if (future.exception) {
-          handleException(future.exception);
-        }
-      });
-    } catch (e) {
-      handleException(e);
-    }
-
-    logMessageSend(&quot;txSendMessage&quot;, &quot;SEND TextMessage: &quot;, name, txMessage.value, textMsg);
-  }
-  else {
-    var bytesMsg = transactedSession.createBytesMessage();
-    bytesMsg.writeUTF(txMessage.value);
-
-    try {
-      var future = producer.send(bytesMsg, function(){
-        if (future.exception) {
-          handleException(future.exception);
-        }
-      });
-    } catch (e) {
-      handleException(e);
-    }
-
-    logMessageSend(&quot;txSendMessage&quot;, &quot;SEND BytesMessage: &quot;, name, txMessage.value, bytesMsg);
+  var toggleJmsHeaders = function(event) {
+    $(&#x27;div.headers&#x27;).toggleClass(&#x27;hidden&#x27;, !toggleJmsHeadersCb.checked);
   }
 
-  producer.close();
-}
+  $( document ).ready(function() {
 
-function handleCommit() {
-  log(&quot;COMMIT&quot;);
+    // Initialize UI elements
+    url = document.getElementById(&quot;url&quot;);
 
-  try {
-    var future = transactedSession.commit(function () {
-      if (!future.exception) {
-        log(&quot;TRANSACTION COMMITTED&quot;);
-      }
-      else {
-        handleException(future.exception);
-      }
-    });
-  } catch (e) {
-    handleException(e);
-  }
-}
+    connectBut = document.getElementById(&quot;connectBut&quot;);
 
-function handleRollback() {
-  log(&quot;ROLLBACK&quot;);
-  transactedSession.rollback(function () {
-    log(&quot;TRANSACTION ROLLED BACK&quot;);
+    logConsole = document.getElementById(&quot;console&quot;)
+    receivedMessageCount = document.getElementById(&quot;receivedMessageCount&quot;);
+    toggleJmsHeadersCb = document.getElementById(&quot;toggleJmsHeadersCb&quot;);
+
+    destination = document.getElementById(&quot;destination&quot;);
+    message = document.getElementById(&quot;message&quot;);
+    subscribe = document.getElementById(&quot;subscribe&quot;);
+    send = document.getElementById(&quot;send&quot;);
+
+    clear = document.getElementById(&quot;clear&quot;);
+
+    subscriptionsTable = document.getElementById(&quot;subscriptions&quot;);
+
+    // default the location
+    url.value = &quot;ws://localhost:8001/jms&quot;;
+
+    updateConnectionButtons(false);
+
+    connectBut.onclick = handleConnectBut;
+    subscribe.onclick = handleSubscribe;
+    send.onclick = handleSend;
+
+    clear.onclick = clearLog;
+    toggleJmsHeadersCb.onclick = toggleJmsHeaders;
+
+    // initialize the disabled states
+    connectBut.disabled = null;
+
+    logoHeight = $(&quot;#logo&quot;).height();
+
+    setLogPaneHeight();
+
+
   });
-}
 
-var toggleJmsHeaders = function(event) {
-  $(&#x27;div.headers&#x27;).toggleClass(&#x27;hidden&#x27;, !toggleJmsHeadersCb.checked);
-}
-
-$( document ).ready(function() {
-
-  // Initialize UI elements
-  url = document.getElementById(&quot;url&quot;);
-
-  username = document.getElementById(&quot;username&quot;);
-  password = document.getElementById(&quot;password&quot;);
-  connect = document.getElementById(&quot;connect&quot;);
-  disconnect = document.getElementById(&quot;disconnect&quot;);
-
-  logConsole = document.getElementById(&quot;console&quot;)
-  receivedMessageCount = document.getElementById(&quot;receivedMessageCount&quot;);
-  toggleJmsHeadersCb = document.getElementById(&quot;toggleJmsHeadersCb&quot;);
-
-  destination = document.getElementById(&quot;destination&quot;);
-  messageSelector = document.getElementById(&quot;messageSelector&quot;);
-  message = document.getElementById(&quot;message&quot;);
-  subscribe = document.getElementById(&quot;subscribe&quot;);
-  send = document.getElementById(&quot;send&quot;);
-
-  txSend = document.getElementById(&quot;txSend&quot;);
-  txDestination = document.getElementById(&quot;txDestination&quot;);
-  txMessage = document.getElementById(&quot;txMessage&quot;);
-
-  commit = document.getElementById(&quot;commit&quot;);
-  rollback = document.getElementById(&quot;rollback&quot;);
-
-  clear = document.getElementById(&quot;clear&quot;);
-  binary = document.getElementById(&quot;binary&quot;);
-  binaryTransaction = document.getElementById(&quot;binaryTransaction&quot;);
-
-  subscriptionsTable = document.getElementById(&quot;subscriptions&quot;);
-
-  // construct the WebSocket location
-  var locationURI = new URI(document.URL || location.href);
-
-  // default port if necessary
-  if (locationURI.port == null) {
-    var defaultPorts = { &quot;http&quot;:80, &quot;https&quot;:443 };
-    locationURI.port = defaultPorts[locationURI.scheme];
+    // Grow the log pane to fit to the bottom of the window, if there is
+    // space available.
+  function setLogPaneHeight() {
+    var windowHeight = $(window).height();
+    var console = $(&quot;#console&quot;);
+    if (console.position().top &lt; windowHeight - logoHeight) {
+      console.css(&quot;height&quot;, windowHeight - console.position().top - (console.outerHeight() - console.height()) - logoHeight);
+    }
   }
 
-  locationURI.scheme = locationURI.scheme.replace(&quot;http&quot;, &quot;ws&quot;);
-  locationURI.path = &quot;/jms&quot;;
-  delete locationURI.query;
-  delete locationURI.fragment;
-
-  // default the location
-  url.value = locationURI.toString();
-
-  updateConnectionButtons(false);
-
-  connect.onclick = handleConnect;
-  disconnect.onclick = handleDisconnect;
-  subscribe.onclick = handleSubscribe;
-  send.onclick = handleSend;
-
-  txSend.onclick = handleTxSend;
-  commit.onclick = handleCommit;
-  rollback.onclick = handleRollback;
-
-  clear.onclick = clearLog;
-  toggleJmsHeadersCb.onclick = toggleJmsHeaders;
-
-  // initialize the disabled states
-  connect.disabled = null;
-  disconnect.disabled = &quot;disabled&quot;;
-});
-
-function setupSSO(webSocketFactory) {
-  /* Respond to authentication challenges with popup login dialog */
-  var basicHandler = new BasicChallengeHandler();
-  basicHandler.loginHandler = function(callback) {
-    popupLoginDialog(callback);
+  function setupSSO(webSocketFactory) {
+    /* Respond to authentication challenges with popup login dialog */
+    var basicHandler = new BasicChallengeHandler();
+    basicHandler.loginHandler = function(callback) {
+      popupLoginDialog(callback);
+    }
+    webSocketFactory.setChallengeHandler(basicHandler);
   }
-  webSocketFactory.setChallengeHandler(basicHandler);
-}
 
 
-function popupLoginDialog(callback) {
-  //popup dialog to get credentials
-  var popup = document.getElementById(&quot;sso_logindiv&quot;);
-  popup.style.display = &quot;block&quot;;
-  var login = document.getElementById(&quot;sso_login&quot;);
-  var cancel = document.getElementById(&quot;sso_cancel&quot;);
+  function popupLoginDialog(callback) {
+    //popup dialog to get credentials
+    var popup = document.getElementById(&quot;sso_logindiv&quot;);
+    popup.style.display = &quot;block&quot;;
+    var login = document.getElementById(&quot;sso_login&quot;);
+    var cancel = document.getElementById(&quot;sso_cancel&quot;);
 
-  //&quot;OK&quot; button was clicked, invoke callback function with credential to login
-  login.onclick = function() {
-    var username = document.getElementById(&quot;sso_username&quot;);
-    var password = document.getElementById(&quot;sso_password&quot;);
-    var credentials = new PasswordAuthentication(username.value, password.value);
-    //clear user input
-    username.value = &quot;&quot;;
-    password.value = &quot;&quot;;
-    //hide popup
-    popup.style.display = &quot;none&quot;;
-    callback(credentials);
+    //&quot;OK&quot; button was clicked, invoke callback function with credential to login
+    login.onclick = function() {
+      var username = document.getElementById(&quot;sso_username&quot;);
+      var password = document.getElementById(&quot;sso_password&quot;);
+      var credentials = new PasswordAuthentication(username.value, password.value);
+      //clear user input
+      username.value = &quot;&quot;;
+      password.value = &quot;&quot;;
+      //hide popup
+      popup.style.display = &quot;none&quot;;
+      callback(credentials);
+    }
+    //&quot;Cancel&quot; button has been clicked, invoke callback function with null argument to cancel login
+    cancel.onclick = function() {
+      var username = document.getElementById(&quot;sso_username&quot;);
+      var password = document.getElementById(&quot;sso_password&quot;);
+      //clear user input
+      username.value = &quot;&quot;;
+      password.value = &quot;&quot;;
+      //hide popup
+      popup.style.display = &quot;none&quot;;
+      callback(null);
+    }
   }
-  //&quot;Cancel&quot; button has been clicked, invoke callback function with null argument to cancel login
-  cancel.onclick = function() {
-    var username = document.getElementById(&quot;sso_username&quot;);
-    var password = document.getElementById(&quot;sso_password&quot;);
-    //clear user input
-    username.value = &quot;&quot;;
-    password.value = &quot;&quot;;
-    //hide popup
-    popup.style.display = &quot;none&quot;;
-    callback(null);
-  }
-}
 
-&lt;/script&gt;
+  &lt;/script&gt;
 
-  &lt;h1&gt;JavaScript JMS Messaging Demo&lt;/h1&gt;
-  &lt;br /&gt;
+    &lt;h1&gt;Cordova JMS Messaging Demo&lt;/h1&gt;
 
-  &lt;span class=&quot;info&quot;&gt;User name and password values are optional&lt;/span&gt;
-
-  &lt;label for=&quot;url&quot;&gt;Location&lt;/label&gt;&lt;input id=&quot;url&quot; /&gt;&lt;br/&gt;
-  &lt;label for=&quot;username&quot;&gt;Username&lt;/label&gt;&lt;input id=&quot;username&quot;&gt;&lt;br/&gt;
-  &lt;label for=&quot;password&quot;&gt;Password&lt;/label&gt;&lt;input type=&quot;password&quot; id=&quot;password&quot;&gt;&lt;br/&gt;
-  &lt;label&gt;&lt;/label&gt;
-  &lt;!-- Login dialog for testing authentication --&gt;
-  &lt;div id=&quot;sso_logindiv&quot; style=&quot;margin-left: 2px; position: absolute; border: 1px solid black; border-radius:10px; display: none; height: 190px; width: 318px; background-color:#d0e7fd; z-index: 999;&quot;&gt;
-    &lt;div style=&quot;margin-left: 20px; height: 35px; margin-top: 20px; font-weight: bold;&quot;&gt;Login&lt;/div&gt;
-    &lt;div style=&quot;height: 124px; width: 296px; border: 1px solid black; border-radius:10px; background-color:white; margin-left: 10px;&quot;&gt;
-      &lt;div style=&quot;margin-left:10px; margin-top: 10px;&quot;&gt;
-        &lt;span style=&quot;width: 60px; font-size:11pt;&quot;&gt;Username:&lt;/span&gt;&lt;input id=&quot;sso_username&quot; size=&quot;12&quot; style=&quot;width: 180px&quot; value=&quot;&quot; /&gt;
-      &lt;/div&gt;
-      &lt;div style=&quot;margin-left:10px&quot;&gt;
-        &lt;span style=&quot;width: 60px;  font-size:11pt;&quot;&gt;Password:&lt;/span&gt;&lt;input id=&quot;sso_password&quot; type=&quot;password&quot; size=&quot;12&quot; style=&quot;width: 180px&quot; value=&quot;&quot; /&gt;
-      &lt;/div&gt;
-      &lt;div style=&quot;margin-left:45px&quot;&gt;
-        &lt;button id=&quot;sso_login&quot; style=&quot;margin-left:25px; width: 60px;&quot;&gt;OK&lt;/button&gt;
-        &lt;button id=&quot;sso_cancel&quot;  style=&quot;margin-left:25px; width: 60px;&quot;&gt;Cancel&lt;/button&gt;
+    &lt;div class=&quot;setting&quot;&gt;
+    &lt;label for=&quot;url&quot;&gt;Location&lt;/label&gt;
+    &lt;input id=&quot;url&quot; /&gt;
+    &lt;button id=&quot;connectBut&quot;&gt;Connect&lt;/button&gt;
+    &lt;!-- Login dialog for testing authentication --&gt;
+    &lt;div id=&quot;sso_logindiv&quot; style=&quot;margin-left: 2px; position: absolute; border: 1px solid black; border-radius:10px; display: none; height: 190px; width: 318px; background-color:#d0e7fd; z-index: 999;&quot;&gt;
+      &lt;div style=&quot;margin-left: 20px; height: 35px; margin-top: 20px; font-weight: bold;&quot;&gt;Login&lt;/div&gt;
+      &lt;div style=&quot;height: 124px; width: 296px; border: 1px solid black; border-radius:10px; background-color:white; margin-left: 10px;&quot;&gt;
+        &lt;div style=&quot;margin-left:10px; margin-top: 10px;&quot;&gt;
+          &lt;span style=&quot;width: 60px; font-size:11pt;&quot;&gt;Username:&lt;/span&gt;&lt;input id=&quot;sso_username&quot; size=&quot;12&quot; style=&quot;width: 180px&quot; value=&quot;&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div style=&quot;margin-left:10px&quot;&gt;
+          &lt;span style=&quot;width: 60px;  font-size:11pt;&quot;&gt;Password:&lt;/span&gt;&lt;input id=&quot;sso_password&quot; type=&quot;password&quot; size=&quot;12&quot; style=&quot;width: 180px&quot; value=&quot;&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div style=&quot;margin-left:45px&quot;&gt;
+          &lt;button id=&quot;sso_login&quot; style=&quot;margin-left:25px; width: 60px;&quot;&gt;OK&lt;/button&gt;
+          &lt;button id=&quot;sso_cancel&quot;  style=&quot;margin-left:25px; width: 60px;&quot;&gt;Cancel&lt;/button&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;!-- Login dialog for testing authentication --&gt;
-  &lt;button id=&quot;connect&quot; &gt;Connect&lt;/button&gt;
-  &lt;button id=&quot;disconnect&quot; &gt;Close&lt;/button&gt;
-
-  &lt;span class=&quot;info&quot;&gt;Subscribe, set message selectors, send messages, and add message properties&lt;/span&gt;&lt;br/&gt;
-
-  &lt;label for=&quot;destination&quot;&gt;Destination&lt;/label&gt;&lt;input id=&quot;destination&quot; value=&quot;/topic/destination&quot;&gt;&lt;br/&gt;
-  &lt;label for=&quot;messageSelector&quot;&gt;Message Selector&lt;/label&gt;&lt;input id=&quot;messageSelector&quot; value=&quot;&quot; placeholder=&quot;Example: symbol=&#x27;KZNG&#x27;&quot;&gt;&lt;br /&gt;
-  &lt;label&gt;&lt;/label&gt;&lt;button id=&quot;subscribe&quot; &gt;Subscribe&lt;/button&gt;&lt;br /&gt;&lt;br /&gt;
-
-  &lt;label for=&quot;message&quot;&gt;Message&lt;/label&gt;&lt;input id=&quot;message&quot; value=&quot;Hello, message&quot;&gt;&lt;br/&gt;
-  &lt;label for=&quot;&quot;&gt;Custom Property&lt;/label&gt;&lt;input id=&quot;propName1&quot; value=&quot;&quot; placeholder=&quot;Property name&quot; class=&quot;halfWidth&quot;/&gt;&lt;input id=&quot;propValue1&quot; value=&quot;&quot; placeholder=&quot;Property value&quot;  class=&quot;halfWidth propValue&quot; /&gt;&lt;br&gt;
-  &lt;label for=&quot;&quot;&gt;Custom Property&lt;/label&gt;&lt;input id=&quot;propName2&quot; value=&quot;&quot; placeholder=&quot;Property name&quot; class=&quot;halfWidth&quot;/&gt;&lt;input id=&quot;propValue2&quot; value=&quot;&quot; placeholder=&quot;Property value&quot;  class=&quot;halfWidth propValue&quot; /&gt;&lt;br&gt;
-  &lt;label for=&quot;&quot;&gt;Custom Property&lt;/label&gt;&lt;input id=&quot;propName3&quot; value=&quot;&quot; placeholder=&quot;Property name&quot; class=&quot;halfWidth&quot;/&gt;&lt;input id=&quot;propValue3&quot; value=&quot;&quot; placeholder=&quot;Property value&quot;  class=&quot;halfWidth propValue&quot; /&gt;&lt;br&gt;
-  &lt;label for=&quot;binary&quot;&gt;Binary &lt;/label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;binary&quot; class=&quot;cb&quot;&gt;&lt;br/&gt;
-  &lt;label&gt;&lt;/label&gt;
-  &lt;button id=&quot;send&quot; &gt;Send&lt;/button&gt;
-
-  &lt;span class=&quot;info&quot;&gt;Send messages as a single transaction&lt;/span&gt;&lt;br/&gt;
-
-  &lt;label for=&quot;txDestination&quot;&gt;Destination&lt;/label&gt;&lt;input id=&quot;txDestination&quot; value=&quot;/topic/destination&quot;&gt;&lt;br/&gt;
-  &lt;label for=&quot;txMessage&quot;&gt;Message&lt;/label&gt;&lt;input id=&quot;txMessage&quot; value=&quot;Hello, transaction&quot;&gt;&lt;br/&gt;
-  &lt;label for=&quot;binaryTransaction&quot;&gt;Binary &lt;/label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;binaryTransaction&quot; class=&quot;cb&quot;&gt;&lt;br/&gt;
-
-  &lt;label&gt;&lt;/label&gt;
-  &lt;button id=&quot;txSend&quot;&gt;Send&lt;/button&gt;
-  &lt;button id=&quot;commit&quot;&gt;Commit&lt;/button&gt;
-  &lt;button id=&quot;rollback&quot;&gt;Rollback&lt;/button&gt;
-
-  &lt;span class=&quot;info&quot;&gt;Active subscriptions&lt;/span&gt;
-
-  &lt;table id=&quot;subscriptions&quot;&gt;
-
-    &lt;thead&gt;
-
-      &lt;tr&gt;
-        &lt;th class=&quot;destination&quot;&gt;Destination&lt;/th&gt;
-        &lt;th class=&quot;selector&quot;&gt;Message Selector&lt;/th&gt;
-        &lt;th&gt;&lt;/th&gt;
-      &lt;/tr&gt;
-
-    &lt;/thead&gt;
-
-    &lt;tbody&gt;
-
-    &lt;/tbody&gt;
-
-  &lt;/table&gt;
-
-  &lt;div class=&quot;info&quot;&gt;
-    &lt;div style=&quot;float: left;&quot;&gt;
-      Log messages  
+    &lt;!-- Login dialog for testing authentication --&gt;
     &lt;/div&gt;
-    &lt;div style=&quot;margin-right: 5px;&quot;&gt;&amp;nbsp;-- Messages received : &lt;span id=&quot;receivedMessageCount&quot;&gt;0&lt;/span&gt;
+
+    &lt;div class=&quot;setting&quot;&gt;
+    &lt;label for=&quot;destination&quot;&gt;Destination&lt;/label&gt;
+    &lt;input id=&quot;destination&quot; value=&quot;/topic/destination&quot;&gt;
+    &lt;button id=&quot;subscribe&quot;&gt;Subscribe&lt;/button&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div id=&quot;console&quot;&gt;&lt;/div&gt;
-  &lt;input type=&quot;checkbox&quot; id=&quot;toggleJmsHeadersCb&quot; class=&quot;cb&quot; checked=&quot;checked&quot;&gt;&lt;label for=&quot;toggleJmsHeadersCb&quot;&gt;Show JMS headers&lt;/label&gt;&lt;br&gt;
-  &lt;button id=&quot;clear&quot;&gt;Clear Log&lt;/button&gt;
 
-&lt;/body&gt;
-&lt;/html&gt;
-</pre>
+    &lt;div class=&quot;setting&quot;&gt;
+    &lt;label for=&quot;message&quot;&gt;Message&lt;/label&gt;
+    &lt;input id=&quot;message&quot; value=&quot;Hello, message&quot;&gt;
+    &lt;button id=&quot;send&quot;&gt;Send&lt;/button&gt;
+    &lt;/div&gt;
 
-      <p><strong>Note:</strong> This walkthrough uses the out of the box JavaScript JMS demo as an example app, but when you create your own JavaScript JMS app, you can create it in your favorite IDE and then copy it to this <strong>www</strong> directory. You must name the HTML file for your app <strong>index.html</strong> and you must ensure that links in <strong>index.html</strong> point to the JavaScript WebSocket (by default, <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/javascript</span>) and JMS library (by default, <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/javascript/jms</span>) files are updated to reflect the new location:</p>
+    &lt;hr /&gt;
 
-      <pre class="brush: xml; toolbar: false;">
-      &lt;script src=&quot;WebSocket.js&quot; type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;&lt;/script&gt;    
-      &lt;script src=&quot;JmsClient.js&quot; type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;&lt;/script&gt;    
-      </pre>
-    </li>
-    
-    <li>In Terminal, go to the <strong>myApp</strong> folder created by the Cordova command to see the files created by Cordova (<code>cd myApp</code>).</li>
-    
-    <li>To specify the target platform as iOS, enter the following command: <code>cordova platform add ios</code>. Note: To see a list of the current platforms available, enter: <code>cordova platforms ls</code>.</li>
-    
-    <li>To build the project, enter the following command: <code>cordova build ios</code>. The build process might take some time. When it is finsihed, Cordova generates platform-specific code within the project's <strong>platforms</strong> subdirectory (for example, <strong>myApp/platforms/ios/myApp.xcodeproj</strong>).</li>
-</ol>
+    &lt;div class=&quot;section-heading&quot;&gt;Subscriptions&lt;/div&gt;
+    &lt;table id=&quot;subscriptions&quot;&gt;
+
+      &lt;tbody&gt;
+
+      &lt;/tbody&gt;
+
+    &lt;/table&gt;
+
+    &lt;hr /&gt;
+
+    &lt;div class=&quot;section-heading section-heading-left&quot;&gt;Log&lt;/div&gt;
+    &lt;div class=&quot;toggle&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; id=&quot;toggleJmsHeadersCb&quot; class=&quot;cb&quot;&gt;
+    &lt;label for=&quot;toggleJmsHeadersCb&quot;&gt;Show JMS headers&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div style=&quot;clear: both;&quot;&gt;&lt;/div&gt;
+
+    Messages received : &lt;span id=&quot;receivedMessageCount&quot;&gt;0&lt;/span&gt;
+    &lt;button id=&quot;clear&quot;&gt;Clear Log&lt;/button&gt;
+    &lt;div style=&quot;clear: both;&quot;&gt;&lt;/div&gt;
+
+    &lt;div id=&quot;console&quot;&gt;&lt;/div&gt;
+    &lt;div style=&quot;clear: both;&quot;&gt;&lt;/div&gt;
+
+    &lt;img id=&quot;logo&quot; src=&quot;resources/images/nav-logo-kaazing.png&quot; /&gt;
+
+  &lt;/body&gt;
+  &lt;/html&gt;
+  </pre>
+
+        <p><strong>Note:</strong> This walkthrough uses the out of the box JavaScript JMS demo as an example app, but when you create your own JavaScript JMS app, you can create it in your favorite IDE and then copy it to this <strong>www</strong> directory. You must name the HTML file for your app <strong>index.html</strong> and you must ensure that links in <strong>index.html</strong> point to the JavaScript WebSocket (by default, <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/javascript</span>) and JMS library (by default, <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/javascript/jms</span>) files are updated to reflect the new location:</p>
+
+        <pre class="brush: xml; toolbar: false;">
+        &lt;script src=&quot;WebSocket.js&quot; type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;JmsClient.js&quot; type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;&lt;/script&gt;
+        </pre>
+      </li>
+
+      <li>In Terminal, go to the <strong>myApp</strong> folder created by the Cordova command to see the files created by Cordova (<code>cd myApp</code>).</li>
+
+      <li>To specify the target platform as iOS, enter the following command: <code>cordova platform add ios</code>. Note: To see a list of the current platforms available, enter: <code>cordova platforms ls</code>.</li>
+
+      <li>To build the project, enter the following command: <code>cordova build ios</code>. The build process might take some time. When it is finsihed, Cordova generates platform-specific code within the project's <strong>platforms</strong> subdirectory (for example, <strong>myApp/platforms/ios/myApp.xcodeproj</strong>).</li>
+  </ol>
 
 
-<h2><a name="gateway"></a>Run the Gateway and Apache ActiveMQ</h2>
-<p>The following steps start the Apache ActiveMQ service that is included with the Gateway, configure the cross-site constraint for the jms service on the Gateway, and then run the Gateway.</p>
+  <h2><a name="gateway"></a>Run the Gateway and Apache ActiveMQ</h2>
+  <p>The following steps start the Apache ActiveMQ service that is included with the Gateway, configure the cross-site constraint for the jms service on the Gateway, and then run the Gateway.</p>
 
-<ol>
-    <li>Start Apache ActiveMQ. For steps on starting Apache ActiveMQ, see the setup information for Apache ActiveMQ. Typically, open a Terminal in <strong><em>ACTIVEMQ_HOME</em>/bin</strong> and enter: <code>./activemq start</code>.</li>
-    <li><p>Open the <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span> file in a text editor. Modify the <strong>jms</strong> service <code>cross-site-constraint</code> setting to allow all cross-origin site access to the service. For example:</p>
-<pre class="brush: xml; toolbar: false;highlight:23;">
-&lt;service&gt;
+  <ol>
+      <li>Start Apache ActiveMQ. For steps on starting Apache ActiveMQ, see the setup information for Apache ActiveMQ. Typically, open a Terminal in <strong><em>ACTIVEMQ_HOME</em>/bin</strong> and enter: <code>./activemq start</code>.</li>
+      <li><p>Open the <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span> file in a text editor. Modify the <strong>jms</strong> service <code>cross-site-constraint</code> setting to allow all cross-origin site access to the service. For example:</p>
+  <pre class="brush: xml; toolbar: false;highlight:[24,25,26];">
+  &lt;service&gt;
+    &lt;name&gt;JMS Service&lt;/name&gt;
+    &lt;description&gt;JMS Service&lt;/description&gt;
     &lt;accept&gt;ws://${gateway.hostname}:${gateway.extras.port}/jms&lt;/accept&gt;
+
     &lt;type&gt;jms&lt;/type&gt;
+
     &lt;properties&gt;
-        &lt;connection.factory.name&gt;ConnectionFactory&lt;/connection.factory.name&gt;
-        &lt;context.lookup.topic.format&gt;dynamicTopics/%s&lt;/context.lookup.topic.format&gt;
-        &lt;context.lookup.queue.format&gt;dynamicQueues/%s&lt;/context.lookup.queue.format&gt;
-        &lt;env.java.naming.factory.initial&gt;
-        org.apache.activemq.jndi.ActiveMQInitialContextFactory
-        &lt;/env.java.naming.factory.initial&gt;
-        &lt;env.java.naming.provider.url&gt;
-        tcp://localhost:61613
-        &lt;/env.java.naming.provider.url&gt;
+      &lt;connection.factory.name&gt;ConnectionFactory&lt;/connection.factory.name&gt;
+      &lt;context.lookup.topic.format&gt;dynamicTopics/%s&lt;/context.lookup.topic.format&gt;
+      &lt;context.lookup.queue.format&gt;dynamicQueues/%s&lt;/context.lookup.queue.format&gt;
+      &lt;env.java.naming.factory.initial&gt;org.apache.activemq.jndi.ActiveMQInitialContextFactory&lt;/env.java.naming.factory.initial&gt;
+      &lt;env.java.naming.provider.url&gt;tcp://${gateway.hostname}:61616&lt;/env.java.naming.provider.url&gt;
     &lt;/properties&gt;
 
     &lt;realm-name&gt;demo&lt;/realm-name&gt;
+
     &lt;!--
     &lt;authorization-constraint&gt;
-     &lt;require-role&gt;AUTHORIZED&lt;/require-role&gt;
+      &lt;require-role&gt;AUTHORIZED&lt;/require-role&gt;
     &lt;/authorization-constraint&gt;
     --&gt;
+
     &lt;cross-site-constraint&gt;
-         &lt;allow-origin&gt;*&lt;/allow-origin&gt;
+      &lt;allow-origin&gt;*&lt;/allow-origin&gt;
     &lt;/cross-site-constraint&gt;
-&lt;/service&gt;    
-</pre>
-        <p><strong>Note:</strong> This step is necessary because the hybrid iOS app in the iOS Simulator connects to the Gateway from the local file system.</p>
-    </li>
-    <li><p>Save <span class="code_inline">gateway-config.xml</span>, and then invoke the <span class="code_inline">gateway.start</span> command by navigating to the <span class="code_inline"><em>GATEWAY_HOME</em>/bin</span> directory where you installed the Gateway, and then enter the following to run the <span class="code_inline">gateway.start</span> script: <span class="code_inline">./gateway.start</span></p></li>
-</ol>
-
-
-
-<h2><a name="run"></a>Run and Test the Hybrid Mobile App in iOS Simulator</h2>
-<p>The following steps run the hybrid iOS app and test the connection to the Gateway and Apache ActiveMQ.</p>
-
-<ol>
-  <li>In Terminal, ensure that you are in the root of project directory (for example, <strong>myApp</strong>), and enter the following to see a list of all available Simulator targets: <code>cordova run ios --list</code>. For this walkthrough, we will use <code>iPad-2</code>.</li>
-  <li><p>To run the app in the iOS Simulator, enter the following: <code>cordova run ios --target="iPad-2"</code>. The iOS Simulator opens and displays the hybrid iOS app. It might take several minutes for the iOS Simulator to launch and display the app. The app icon might appear on the iOS Simulator screen for a while before displaying the GUI of the app. You might need to relaunch the app within the iOS Simulator.</p>
-  
-  <span class="note"><b>Note:</b> You can also use Xcode to launch the app in the iOS Simulator:
-    <ol>
-      <li><p>In Xcode, open your project, located in <strong>myApp/platforms/ios/myApp.xcodeproj</strong>.</li>
-      <li>In the scheme selector, select <strong>iPad 2</strong>.</li>
-      <li>Click the name of your project in Xcode and click <strong>Run</strong>. If you are prompted to confirm developer mode, click <strong>OK</strong>.</p>
-      <p>The iOS Simulator opens and displays the hybrid iOS app.</p>
+  &lt;/service&gt;
+  </pre>
+          <p><strong>Note:</strong> This step is necessary because the hybrid iOS app in the iOS Simulator connects to the Gateway from the local file system.</p>
       </li>
-    </ol>
+      <li><p>Save <span class="code_inline">gateway-config.xml</span>, and then invoke the <span class="code_inline">gateway.start</span> command by navigating to the <span class="code_inline"><em>GATEWAY_HOME</em>/bin</span> directory where you installed the Gateway, and then enter the following to run the <span class="code_inline">gateway.start</span> script: <span class="code_inline">./gateway.start</span></p></li>
+  </ol>
+
+
+
+  <h2><a name="run"></a>Run and Test the Hybrid Mobile App in iOS Simulator</h2>
+  <p>The following steps run the hybrid iOS app and test the connection to the Gateway and Apache ActiveMQ.</p>
+
+  <ol>
+    <li>In Terminal, ensure that you are in the root of project directory (for example, <strong>myApp</strong>), and enter the following to see a list of all available Simulator targets: <code>cordova run ios --list</code>. For this walkthrough, we will use <code>iPad-2</code>.</li>
+    <li><p>To run the app in the iOS Simulator, enter the following: <code>cordova run ios --target="iPad-2"</code>. The iOS Simulator opens and displays the hybrid iOS app. It might take several minutes for the iOS Simulator to launch and display the app. The app icon might appear on the iOS Simulator screen for a while before displaying the GUI of the app. You might need to relaunch the app within the iOS Simulator.</p>
+
+    <span class="note"><b>Note:</b> You can also use Xcode to launch the app in the iOS Simulator:
+      <ol>
+        <li><p>In Xcode, open your project, located in <strong>myApp/platforms/ios/myApp.xcodeproj</strong>.</li>
+        <li>In the scheme selector, select <strong>iPad 2</strong>.</li>
+        <li>Click the name of your project in Xcode and click <strong>Run</strong>. If you are prompted to confirm developer mode, click <strong>OK</strong>.</p>
+        <p>The iOS Simulator opens and displays the hybrid iOS app.</p>
+        </li>
+      </ol>
+    </span>
+
+    </li>
+    <li><p>In the hybrid app in the iOS Simulator, click in the <strong>Location</strong> field, and enter the jms service URI (<span class="code_inline">ws://localhost:8001/jms</span>), and click <strong>Connect</strong>.</p>
+      <p>The <strong>Log messages</strong> field reports a successful connection. If the app does not connect, ensure that you have the Gateway and Apache ActiveMQ running.</p>
+    </li>
+    <li>Play with hybrid app to see the full functionality.</li>
+  </ol>
+
+  <span class="note"><b>Notes:</b><br>
+   <ul class="arrow-2">
+     <li>If you make changes to the hybrid iOS app in Xcode, quit the iOS Simulator, clean the Xcode project, and then build the project again. This ensures that the iOS Simulator is using the most recent version of your project and hybrid iOS app.</li>
+     <li>If you are unable to connect to Apache ActiveMQ via the Gateway, confirm that the <code>cross-site-constraint</code> setting on the <code>jms</code> service is configured to allow all cross-origin site access to the service.</li>
+     <li>By default, the <span class="code_inline">authorization-constraint</span> setting on the jms service is commented out in <span class="code_inline">gateway-config.xml</span>. If you uncomment this setting in order to test authentication on the hybrid iOS app, ensure that the <span class="code_inline">http-challenge-scheme</span> for the <span class="code_inline">demo</span> realm is set to <span class="code_inline">Application Basic</span>. The <span class="code_inline">Basic</span> authentication scheme is intended for web browsers and the hybrid iOS app does not use the Safari browser on iOS. If the <span class="code_inline">Basic</span> authentication scheme is used, the hybrid iOS app will not connect to Apache ActiveMQ via the Gateway.</li>
+   </ul>
   </span>
-  
-  </li>
-  <li><p>In the hybrid app in the iOS Simulator, click in the <strong>Location</strong> field, and enter the jms service URI (<span class="code_inline">ws://localhost:8001/jms</span>), and click <strong>Connect</strong>.</p>
-    <p>The <strong>Log messages</strong> field reports a successful connection. If the app does not connect, ensure that you have the Gateway and Apache ActiveMQ running.</p>
-  </li>
-  <li>Play with hybrid app to see the full functionality.</li>
-</ol>
-
-<span class="note"><b>Notes:</b><br>
- <ul class="arrow-2">
-   <li>If you make changes to the hybrid iOS app in Xcode, quit the iOS Simulator, clean the Xcode project, and then build the project again. This ensures that the iOS Simulator is using the most recent version of your project and hybrid iOS app.</li>
-   <li>If you are unable to connect to Apache ActiveMQ via the Gateway, confirm that the <code>cross-site-constraint</code> setting on the <code>jms</code> service is configured to allow all cross-origin site access to the service.</li>
-   <li>By default, the <span class="code_inline">authorization-constraint</span> setting on the jms service is commented out in <span class="code_inline">gateway-config.xml</span>. If you uncomment this setting in order to test authentication on the hybrid iOS app, ensure that the <span class="code_inline">http-challenge-scheme</span> for the <span class="code_inline">demo</span> realm is set to <span class="code_inline">Application Basic</span>. The <span class="code_inline">Basic</span> authentication scheme is intended for web browsers and the hybrid iOS app does not use the Safari browser on iOS. If the <span class="code_inline">Basic</span> authentication scheme is used, the hybrid iOS app will not connect to Apache ActiveMQ via the Gateway.</li>
- </ul>
-</span>
 
 
-<h2><a name="test"></a>Test the Hybrid iOS app on an iOS device</h2>
-<p>The following steps build a hybrid iOS app that you can copy and test on an iOS device (iPhone, iPad, iPod Touch).</p>
-<p><strong>Note:</strong> To build a hybrid iOS app for use on an iOS device you must be a member of the <a href="https://developer.apple.com/programs/ios/">Apple iOS Developer Program</a>, you must <a href="http://developer.apple.com/library/mac/#documentation/ToolsLanguages/Conceptual/OSXWorkflowGuide/CodeSigning/CodeSigning.html">code sign your app</a> using a Mac Submission Certificate, and you must have a <a href="http://developer.apple.com/library/ios/#DOCUMENTATION/NetworkingInternet/Conceptual/RemoteNotificationsPG/ProvisioningDevelopment/ProvisioningDevelopment.html">Provisioned Device</a> to install your app onto. The following steps assume that you have met these requirements.</p>
+  <h2><a name="test"></a>Test the Hybrid iOS app on an iOS device</h2>
+  <p>The following steps build a hybrid iOS app that you can copy and test on an iOS device (iPhone, iPad, iPod Touch).</p>
+  <p><strong>Note:</strong> To build a hybrid iOS app for use on an iOS device you must be a member of the <a href="https://developer.apple.com/programs/ios/">Apple iOS Developer Program</a>, you must <a href="http://developer.apple.com/library/mac/#documentation/ToolsLanguages/Conceptual/OSXWorkflowGuide/CodeSigning/CodeSigning.html">code sign your app</a> using a Mac Submission Certificate, and you must have a <a href="http://developer.apple.com/library/ios/#DOCUMENTATION/NetworkingInternet/Conceptual/RemoteNotificationsPG/ProvisioningDevelopment/ProvisioningDevelopment.html">Provisioned Device</a> to install your app onto. The following steps assume that you have met these requirements.</p>
 
-<ol>
-    <li>In Xcode, click the stop button to stop running your hybrid iOS app in the iOS Simulator.</li>
-    <li>Quit the iOS Simulator.</li>
-    <li>In the Xcode, click <strong>Project</strong>, and then click <strong>Edit Scheme</strong>.</li>
-    <li>In the <strong>Run</strong> scheme, and in the <strong>Build Configuration</strong> menu, select <strong>Release</strong>, and click <strong>OK</strong>.</li>
-    <li>Click <strong>Project</strong>, click <strong>Build For</strong>, and then click <strong>Running</strong>.</li>
-    <li><p>When the build is completed, expand your project folder in the left pane in order to see the <strong>Products</strong> folder. The completed product is listed in this folder.</p>
-        <p><strong>Note:</strong> To see the app file, right-click your product and click <strong>Show in Finder</strong>.</p></li>
-    <li>Connect your iOS device to your development computer.</li>
-    <li><p>In the toolbar, change <strong>iPad 2</strong> to <strong>iOS Device</strong>.</p>
-        <p><strong>Note:</strong> In order to connect the hybrid iOS app on the iOS device to the Gateway and Apache ActiveMQ, the iOS device must be able to resolve the host name of computer running the Gateway on the network. This is the host name that you will use in the <strong>Location</strong> field of the hybrid iOS app. For example, <span class="code_inline">ws://<em>host_name</em>:8001/jms</span>. You can also configure the Gateway to use the IP Address of the computer running the Gateway (for example, <span class="code_inline">ws://192.168.4.86:8001/jms</span>). Using the IP Address is often the easiest method during testing.</p></li>
-    <li><p>Click <strong>Run</strong> to run the hybrid iOS app on your iOS device, enter the jms service URI in the <strong>Location</strong> field, and click <strong>Connect</strong>.</p> 
-        <p>The <strong>Log messages</strong> field reports a successful connection.</p></li>
-</ol>
+  <ol>
+      <li>In Xcode, click the stop button to stop running your hybrid iOS app in the iOS Simulator.</li>
+      <li>Quit the iOS Simulator.</li>
+      <li>In the Xcode, click <strong>Project</strong>, and then click <strong>Edit Scheme</strong>.</li>
+      <li>In the <strong>Run</strong> scheme, and in the <strong>Build Configuration</strong> menu, select <strong>Release</strong>, and click <strong>OK</strong>.</li>
+      <li>Click <strong>Project</strong>, click <strong>Build For</strong>, and then click <strong>Running</strong>.</li>
+      <li><p>When the build is completed, expand your project folder in the left pane in order to see the <strong>Products</strong> folder. The completed product is listed in this folder.</p>
+          <p><strong>Note:</strong> To see the app file, right-click your product and click <strong>Show in Finder</strong>.</p></li>
+      <li>Connect your iOS device to your development computer.</li>
+      <li><p>In the toolbar, change <strong>iPad 2</strong> to <strong>iOS Device</strong>.</p>
+          <p><strong>Note:</strong> In order to connect the hybrid iOS app on the iOS device to the Gateway and Apache ActiveMQ, the iOS device must be able to resolve the host name of computer running the Gateway on the network. This is the host name that you will use in the <strong>Location</strong> field of the hybrid iOS app. For example, <span class="code_inline">ws://<em>host_name</em>:8001/jms</span>. You can also configure the Gateway to use the IP Address of the computer running the Gateway (for example, <span class="code_inline">ws://192.168.4.86:8001/jms</span>). Using the IP Address is often the easiest method during testing.</p></li>
+      <li><p>Click <strong>Run</strong> to run the hybrid iOS app on your iOS device, enter the jms service URI in the <strong>Location</strong> field, and click <strong>Connect</strong>.</p>
+          <p>The <strong>Log messages</strong> field reports a successful connection.</p></li>
+  </ol>
 
-<h2><a name="tshoot"></a>Troubleshooting</h2>
-<p>For errors that occur when trying to use your hybrid iOS app on an iOS device, see <a href="http://developer.apple.com/library/ios/#documentation/Xcode/Conceptual/ios_development_workflow/40-iOS_Development_Troubleshooting_Guide/ios_development_troubleshooting.html">iOS Development: Troubleshooting</a> in the iOS Developer Library and the <a href="http://stackoverflow.com/questions/tagged/cordova">stackoverflow forum</a>.</p>
+  <h2><a name="tshoot"></a>Troubleshooting</h2>
+  <p>For errors that occur when trying to use your hybrid iOS app on an iOS device, see <a href="http://developer.apple.com/library/ios/#documentation/Xcode/Conceptual/ios_development_workflow/40-iOS_Development_Troubleshooting_Guide/ios_development_troubleshooting.html">iOS Development: Troubleshooting</a> in the iOS Developer Library and the <a href="http://stackoverflow.com/questions/tagged/cordova">stackoverflow forum</a>.</p>
 
-<h2><a name="summary"></a>Summary</h2>
-<p>As you have seen in this walkthrough, building a hybrid iOS app using the JavaScript JMS demo is easy to accomplish. Building your own custom JavaScript JMS hybrid iOS app simply requires that you substitute your web app in the <strong>www</strong> folder in the Xcode project and then link the Kaazing WebSocket Gateway WebSocket and JavaScript JMS libraries in the <strong>index.html</strong> file correctly. For information about building a hybrid Android app, see the <a href="../index.html">documentation</a>.</p>
+  <h2><a name="summary"></a>Summary</h2>
+  <p>As you have seen in this walkthrough, building a hybrid iOS app using the JavaScript JMS demo is easy to accomplish. Building your own custom JavaScript JMS hybrid iOS app simply requires that you substitute your web app in the <strong>www</strong> folder in the Xcode project and then link the Kaazing WebSocket Gateway WebSocket and JavaScript JMS libraries in the <strong>index.html</strong> file correctly. For information about building a hybrid Android app, see the <a href="../index.html">documentation</a>.</p>
 
-<h2>Notes</h2>
-<p>Clients built using Kaazing WebSocket Gateway 3.x libraries will work against Kaazing WebSocket Gateway 4.x. If you wish to upgrade your 3.x client to the 4.x libraries, please note that the 3.x clients used a single JMS library and 4.x clients include and use separate WebSocket and JMS libraries. Update your client library file and code references to include both the WebSocket and JMS libraries, as described in the 4.x documentation. For more migration information, see <a href="p_dev_js_client.html#migrate">Migrate JavaScript Applications to Kaazing WebSocket Gateway 4.x.</a></p>
+  <h2>Notes</h2>
+  <p>Clients built using Kaazing WebSocket Gateway 3.x libraries will work against Kaazing WebSocket Gateway 4.x. If you wish to upgrade your 3.x client to the 4.x libraries, please note that the 3.x clients used a single JMS library and 4.x clients include and use separate WebSocket and JMS libraries. Update your client library file and code references to include both the WebSocket and JMS libraries, as described in the 4.x documentation. For more migration information, see <a href="p_dev_js_client.html#migrate">Migrate JavaScript Applications to Kaazing WebSocket Gateway 4.x.</a></p>
 
 
                   </section>
