@@ -86,251 +86,850 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Walkthrough: Deploy a JavaScript JMS App as a Hybrid Android App <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h1>
+  <h1>Walkthrough: Deploy a JavaScript JMS App as a Hybrid Android App</h1>
 
-<p>In this walkthrough, you will learn how to deploy an existing JavaScript JMS web app built with the Kaazing Gateway JavaScript JMS libraries as a hybrid app for Android. This topic walks you through the following subjects:</p>
+  <p>In this walkthrough, you will learn how to deploy an existing JavaScript JMS web app built with the Kaazing WebSocket Gateway JavaScript JMS libraries as a hybrid app for Android. This topic walks you through the following subjects:</p>
 
-<ol>
-<li><a href="#Accomplish">What You Will Accomplish</a></li>
-<li><a href="#Before">Before You Begin</a></li>
-<li><a href="#Install">Install the Gateway, Android SDK, ADT Plugin and APIs for Eclipse, and PhoneGap 2.0</a></li>
-<li><a href="#Device">Create a New Android Virtual Device in Eclipse</a></li>
-<li><a href="#Project">Create a New Project in Eclipse for Android</a></li>
-<li><a href="#Populate">Create and Populate the Project Directory for the Hybrid Android App</a></li>
-<li><a href="#Apache">Configure and Run the Gateway and Apache ActiveMQ</a></li>
-<li><a href="#Build">Build and Test the Hybrid Android App</a></li>
-<li><a href="#summary">Summary</a></li>
-</ol>
+  <ol>
+  <li><a href="#Accomplish">What You Will Accomplish</a></li>
+  <li><a href="#Before">Before You Begin</a></li>
+  <li><a href="#Install">Install the Gateway, Android SDK, and Cordova 6.0</a></li>
+  <li><a href="#Populate">Build the Hybrid Android App Using Cordova</a></li>
+  <li><a href="#Apache">Configure and Run the Gateway and Apache ActiveMQ</a></li>
+  <li><a href="#Build">Test the Hybrid Android App</a></li>
+  <li><a href="#summary">Summary</a></li>
+  </ol>
 
-<span class="note"><b>Notes:</b>
- <ul class="arrow-2">
-   <li>A hybrid Android app is a hybrid of a browser-based application and a native Android app. A native Android app is built using the Android SDK. A hybrid Android app is built using HTML, CSS, and JavaScript like a typical browser-based application, and then packaged in a framework that allows it to be converted into an app that runs on Android devices much like a native app. Hybrid Android apps enable web developers to leverage their web experience to create apps for Android. For information on native Android development, see the <a href="http://developer.android.com/develop/index.html">Android Develop</a>.</li>
-   <li>A hybrid Android app is also different from a browser-based application that is intended for viewing in a browser on Android, but not downloaded through the Android app store. If you have an existing Kaazing Gateway JavaScript JMS browser-based application, you can use it to create a hybrid Android app or you can modify its web content to make it compatible with browsers on Android.</li>
- </ul>
-</span>
+  <span class="note"><b>Notes:</b>
+   <ul class="arrow-2">
+     <li>A hybrid Android app is a hybrid of a browser-based application and a native Android app. A native Android app is built using the Android SDK. A hybrid Android app is built using HTML, CSS, and JavaScript like a typical browser-based application, and then packaged in a framework that allows it to be converted into an app that runs on Android devices much like a native app. Hybrid Android apps enable web developers to leverage their web experience to create apps for Android. For information on native Android development, see <a href="http://developer.android.com/develop/index.html">Android Develop</a>.</li>
+     <li>A hybrid Android app is also different from a browser-based application that is intended for viewing in a browser on Android, but not downloaded through the Android app store. If you have an existing Kaazing WebSocket Gateway JavaScript JMS browser-based application, you can use it to create a hybrid Android app or you can modify its web content to make it compatible with browsers on Android.</li>
+   </ul>
+  </span>
 
-<h2><a name="Accomplish"></a>What You Will Accomplish</h2>
-<p>At the end of this walkthrough, a JavaScript JMS demo created using the Kaazing Gateway JavaScript JMS libraries runs as a hybrid Android app on Android, connects to the Apache ActiveMQ broker via the Gateway, and sends and receives JMS messages using a native or emulated WebSocket connection. Users can run the hybrid Android app on any Android device and connect via the Gateway to the Apache ActiveMQ broker.</p>
-<p>This walkthrough uses the out of the box JavaScript JMS demo that ships with the Gateway as the example app, but the steps outlined in this walkthrough are the same for other JavaScript JMS client applications built with the Gateway.</p>
+  <h2><a name="Accomplish"></a>What You Will Accomplish</h2>
+  <p>At the end of this walkthrough, a JavaScript JMS demo created using the Kaazing WebSocket Gateway JavaScript JMS libraries runs as a hybrid Android app on Android, connects to the Apache ActiveMQ broker via the Gateway, and sends and receives JMS messages using a native or emulated WebSocket connection. Users can run the hybrid Android app on any Android device and connect via the Gateway to the Apache ActiveMQ broker.</p>
+  <p>This walkthrough uses the JavaScript JMS demo that ships with the Gateway as the example app, but the steps outlined in this walkthrough are the same for other JavaScript JMS client applications built with the Gateway.</p>
 
 
-<p><span class="note"><strong>Note</strong>: For this walkthrough, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61613. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
+  <p><span class="note"><strong>Note</strong>: For this walkthrough, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61613. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../integration-jms/o_jms_integrate.html">About Integrating Kaazing WebSocket Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
 
 
-<h2><a name="Before"></a>Before You Begin</h2>
-<p>Before starting this walkthrough you need the following:</p>
-<ul class="arrow-2">
-<li>Kaazing Gateway. See <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
-<li><a href="http://www.eclipse.org/downloads/">Eclipse Classic</a></li>
-<li><a href="http://developer.android.com/sdk/index.html">Android SDK</a></li>
-<li><a href="http://developer.android.com/sdk/installing/installing-adt.html">ADT Plugin for Eclipse</a></li>
-<li><a href="http://phonegap.com/download">PhoneGap 2.0</a> (PhoneGap is a distribution of Apache Cordova)</li>
-</ul>
+  <h2><a name="Before"></a>Before You Begin</h2>
+  <p>Before starting this walkthrough you need the following:</p>
+  <ul class="arrow-2">
+  <li>Kaazing WebSocket Gateway - JMS Edition. See <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+  <li><a href="http://developer.android.com/sdk/index.html">Android Studio and SDK</a></li>
+  <li><a href="https://cordova.apache.org/docs/en/latest/guide/cli/index.html#installing-the-cordova-cli">Apache Cordova 6.0 and its Command-Line Interface (CLI)</a></li>
+  </ul>
 
-<p>Learn about supported browsers, operating systems, and platform versions in <a href="../../release-notes.html">Release Notes</a>.</p>
+  <p>Learn about supported browsers, operating systems, and platform versions in <a href="../release-notes.html">Release Notes</a>.</p>
 
-<p><strong>Note:</strong> Steps for installing and configuring Android SDK, ADT Plugin for Eclipse, and PhoneGap 2.0 are included in this walkthrough.</p>
+  <p><strong>Note:</strong> Steps for installing and configuring Android Studio, Android SDK, and Cordova 6.0 are included in this walkthrough.</p>
 
-<h2><a name="Install"></a>Install the Gateway, Android SDK, ADT Plugin and APIs for Eclipse, and PhoneGap 2.0</h2>
-<p>The following steps take you through the installation of the software required for deploying a hybrid Android app. If you have already have this software installed, you can simply note the locations of the installed software for later use with the shell script.</p>
-<ol>
-<li>Install the Gateway as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
-<li>Install <a href="http://www.eclipse.org/downloads/">Eclipse Classic</a>. See the Eclipse installation instructions for details.</li>
-<li><p>Download and install the Android SDK from <a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a>.</p>
-    <p><strong>Tip:</strong> For steps on installing the Android SDK on your platform, see <a href="http://developer.android.com/sdk/installing/index.html">Installing the SDK from Android Develop</a>.</p>
+  <h2><a name="Install"></a>Install the Gateway, Android Studio, Android SDK, and Cordova 6.0</h2>
+  <p>The following steps take you through the installation of the software required for deploying a hybrid Android app. If you have already have this software installed, you can simply note the locations of the installed software for later use.</p>
+  <ol>
+
+  <li>Install the Gateway as described in <a href="../about/setup-guide.html">Setting Up Kaazing WebSocket Gateway</a>.</li>
+
+  <li>Download and install Android Studio from <a href="http://developer.android.com/sdk/installing/index.html?pkg=studio">http://developer.android.com/sdk/installing/index.html?pkg=studio</a>.</li>
+
+  <li>Launch Android Studio.</li>
+
+  <li>In <strong>Welcome to Android Studio</strong>, click <strong>Configure</strong>, and then click <strong>SDK Manager</strong>.</li>
+
+  <li>Select the <strong>Android 2.2</strong> and the <strong>Android 4.1</strong> packages and then click <strong>Install packages</strong>.</li>
+
+  <li>Download and install Cordova 6.0 as described in <a href="https://cordova.apache.org/docs/en/latest/guide/cli/index.html#installing-the-cordova-cli">Installing the Cordova CLI</a> from Cordova.</li>
+
+  </ol>
+
+  <h2><a name="Populate"></a>Build the Hybrid Android App Using Cordova</h2>
+
+  <p>The following steps will create the project directory for the hybrid Android app, and populate the directory with the web app files and JavaScript JMS library files required to communicate with the Gateway.</p>
+
+  <p><strong>Note:</strong> The general steps for creating an Android app using Cordova are documented in the Apache Cordova Documentation, <a href="https://cordova.apache.org/docs/en/latest/guide/cli/index.html#create-the-app">Create the App</a>.</p>
+
+  <ol>
+    <li>Open a Terminal at the folder where you want to save the app.</li>
+    <li><p>To create the app and populate it with the JavaScript demo, enter the following:</p>
+      <p><code>cordova create myAndroidApp com.example.myapp myAndroidApp --template <em>GATEWAY_HOME</em>/demo/cordova/www</code></p>
+      <p>The <code><em>GATEWAY_HOME</em>/demo/cordova/www</code> points to the JavaScript demo files included with the Gateway.</p>
     </li>
-<li>In a browser, navigate to <a href="http://developer.android.com/sdk/installing/installing-adt.html">http://developer.android.com/sdk/installing/installing-adt.html</a> and follow the instructions to download and configure the ADT Plugin for Eclipse.</li>
-<li>Once the ADT Plugin is installed, restart Eclipse.</li>
-<li><p>In Eclipse, install the Android API 2.2 and 4.1.</p>
-    <ol type="a">
-        <li>Click <strong>Window</strong>, and then click <strong>Android SDK Manager</strong>.</li>
-        <li><p>Select the <strong>Android 2.2</strong> and the <strong>Android 4.1</strong> packages and then click <strong>Install packages</strong>.</p>
-            <p><strong>Note:</strong> You might be prompted to install these packages automatically after you restarted Eclipse. Once the packages are installed, your Android SDK Manager should look like this:</p>
-                <figure>
-                <img src="../images/android-sdk-installed.jpg">
-                <figcaption><strong>Figure: Android SDK Manager with the required packages installed</strong></figcaption>
-                </figure>
-            </li>
-    </ol>
-    </li>
-<li>Download PhoneGap 2.0 from <a href="http://phonegap.com/download">http://phonegap.com/download</a> and extract its contents. (PhoneGap 2.0 is also called Apache Cordova.)</li>
-</ol>
+    <li>In the <strong>myAndroidApp</strong> folder created by Cordova, open the HTML file that contains the HTML GUI and JavaScript code of your app. It is located here: <strong>myAndroidApp/www/index.html</strong>.</li>
+    <li><p>Replace the contents of <strong>index.html</strong> with the following:</p>
+  <pre class="auto-links: false; brush: xml; toolbar: false;">
+  &lt;!DOCTYPE html&gt;
+  &lt;html class=&quot;no-js&quot;&gt;
+  &lt;head&gt;
 
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;resources/css/normalize.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;resources/css/dev.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;resources/css/demo.css&quot;&gt;
 
-<h2><a name="Device"></a>Create a New Android Virtual Device in Eclipse</h2>
-<p>The following steps take you through the creation of a virtual device using the Android ADT plugin. This virtual device is the Android emulator that you will use to test your hybrid Android app.</p>
-<ol>
-    <li>In Eclipse, to create a new virtual device, click <strong>Window</strong>, and then click <strong>AVD Manager</strong>.</li>
-    <li>In AVD Manager, click <strong>New</strong>.</li>
-    <li>Enter a name for your new virtual device in <strong>Name</strong> (for example, myTablet).</li>
-    <li>In <strong>Target</strong>, select <strong>GALAXY Tab Addon</strong>.</li>
-    <li>In <strong>Built-in</strong>, select <strong>GALAXY Tab</strong>.</li>
-    <li>In <strong>Hardware</strong>, click <strong>New</strong>.</li>
-    <li>In <strong>Property</strong>, select <strong>Keyboard support</strong> and click <strong>OK</strong>.</li>
-    <li>In <strong>Hardware</strong>, set the value for the <strong>Keyboard support</strong> property to <strong>yes</strong>. </li>
-    <li>Click <strong>Create AVD</strong>.</li>
-    <li>In AVD Manager, select the new virtual device and click <strong>Start</strong>.</li>
-    <li><p>In <strong>Launch Options</strong>, click <strong>Launch</strong>.</p>
-        <p>The Android emulator launches. You can close the AVD Manager dialogs in Eclipse.</p></li>
-    <li>Close the Android emulator. It will launch automatically once you have built your hybrid Android app and run it from Eclipse.</li>
-</ol>
+    &lt;style&gt;
 
-<h2><a name="Project"></a>Create a New Project in Eclipse for Android</h2>
-<p>The following steps take you through the process of creating the Eclipse project you will use to build your hybrid Android app.</p>
+      body {
+        margin: 2px;
+        margin-top: 0;
+        background-color: whitesmoke;
+      }
 
-<p><strong>Note:</strong> This procedure is also documented in the Apache Cordova Documentation, <a href="http://docs.phonegap.com/en/2.0.0/guide_getting-started_android_index.md.html#Getting%20Started%20with%20Android">Getting Started with Android</a>.</p>
+      h1 {
+        font-size: 24px;
+        margin-top: 0;
+      }
 
-<ol>
-    <li>In Eclipse, select <strong>New</strong> and click <strong>Project</strong>.</li>
-    <li>Expand the <strong>Android</strong> folder, click <strong>Android Application Project</strong>, and click <strong>Next</strong>.</li>
-    <li><p>In <strong>Application Name</strong>, give your new project a name. This is the name that will appear when the app is listed in the Play Store and on the Android device.</p>
-        <p><strong>Important:</strong> Note the location where the project is being created. You will need this location later when you run the shell script to set up PhoneGap.</p></li>
-    <li>Click <strong>Next</strong>.</li>
-    <li>Use the default settings for Launcher icon and click <strong>Next</strong>.</li>
-    <li>In <strong>Create Activity</strong>, select <strong>BlankActivity</strong> and click <strong>Next</strong>.</li>
-    <li>In <strong>New Blank Activity</strong>, in <strong>Activity Name</strong>, enter <strong>JMSdemoActivity</strong> and click <strong>Finish</strong>. If there are dependencies that you need to install, the <strong>Finish</strong> button is not available. Click <strong>Next</strong>, click <strong>Install/Upgrade</strong>, follow the installation wizard, and then click <strong>Finish</strong>.</li>
-</ol>
+      div.setting {
+        margin-top: 5px;
+      }
+      div.setting:first-of-type {
+        margin-top: 0;
+      }
+      div.setting label {
+        width: 80px;
+      }
+      div.setting input {
+        width: 180px;
+        margin-bottom: 0;
+      }
+      div.setting button {
+        width: 85px;
+      }
 
+      #console {
+        position: relative;
+        float: left;
+        overflow-y: scroll;
+        width: 100%;
+        height: 200px;
+        border: solid 1px #dddddd;
+        background-color: white; }
 
-<h2><a name="Populate"></a>Create and Populate the Project Directory for the Hybrid Android App</h2>
-<p>The following steps will create the project directory for the hybrid Android app, and populate the directory with the web app files and JavaScript JMS library files required to communicate with the Gateway. The Gateway includes a shell script to help you perform these steps.</p>
-<p><strong>Note:</strong> This procedure is also documented in the Apache Cordova Documentation, <a href="http://docs.phonegap.com/en/2.0.0/guide_getting-started_android_index.md.html#Getting%20Started%20with%20Android">Getting Started with Android</a>.</p>
+      #console pre {
+        font-family: monospace; }
 
-<ol>
-<li><p>Collect the following file locations for the shell script and define your project name.</p>
-    <ul class="arrow-2">
-        <li><span class="code_inline"><em>CORDOVA_HOME</em>/lib/android</span> - A subfolder in the extracted PhoneGap directory. For example, <span class="code_inline">C:\Users\Administrator\Desktop\phonegap-phonegap-2dbbdab\lib\android</span></li>
-        <li><em><span class="code_inline">GATEWAY_HOME</span></em> - The folder where the Gateway and its components are located.</li>
-        <li><em><span class="code_inline">PROJECT_DIRECTORY</span></em> - The directory where the Eclipse project you created is located.</li>
-    </ul></li>
-<li><p>Locate the shell script named <span class="code_inline">android.sh</span> (Mac and Linux) or <span class="code_inline">android.bat</span> (Windows) in the following location:</p>
-    <p><span class="code_inline"><em>GATEWAY_HOME</em>/demo/cordova/android.sh</span>, or
-    <span class="code_inline"><em>GATEWAY_HOME</em>\demo\cordova\android.bat</span></p>
-    </li>
-<li><p>Open a shell or command prompt on the location of the <span class="code_inline">android.sh</span> or <span class="code_inline">android.bat</span> file and enter the following command (this is a Mac example):</p>
-    <p><span class="code_inline">./android.sh -c <em>CORDOVA_HOME</em>/lib/android -k <em>GATEWAY_HOME</em> -o <em>PROJECT_DIRECTORY</em></span></p>
-    <p>For example, on a Mac:</p>
-    <p><span class="code_inline">./android.sh -c /Users/johndoe/Desktop/phonegap-phonegap-2dbbdab/lib/android
-    -k /Users/johndoe/Desktop/Kaazing Gateway
-    -o /Users/johndoe/Desktop/workspace/JMSdemo</span></p>
-    <p>On Windows:</p>
-    <p><span class="code_inline">android.bat -c C:\Users\Administrator\Desktop\phonegap-phonegap-2dbbdab\lib\android
-        -k C:\Users\Administrator\Desktop\JMS\<em>version</em>\Kaazing Gateway
-        -o C:\Users\Administrator\workspace\JMSdemo</span></p>
-    <p>The script copies the PhoneGap (Cordova) Android library, the Kaazing Gateway JavaScript JMS libraries, and the JavaScript JMS demo web files to the Eclipse project’s workspace and adds them to the necessary project subfolders.</p>
-    </li>
-<li>Right-click your project in Eclipse and click <strong>Refresh</strong>.</li>
-<li>Expand the <strong>assets</strong> subfolder in your Eclipse project and you will see a folder named <strong>www</strong>. This folder contains all of web files for the app (HTML, JavaScript, CSS), including the JavaScript JMS library files, and the PhoneGap (Cordova) Android library.</li>
-<li>Verify that the <strong>cordova-2.0.0.jar</strong> file is located in the <strong>libs</strong> subfolder of your Eclipse project.</li>
-<li>Right click on the <strong>libs</strong> subfolder, select <strong>Build Path</strong>, and then click <strong>Configure Build Path</strong>.</li>
-<li>In the <strong>Java Build Path</strong>, click the <strong>Libraries</strong> tab, and click <strong>Add JARs</strong>.</li>
-<li>In <strong>JAR Selection</strong>, expand the <strong>libs</strong> folder under <strong>JMSDemo</strong>, click <strong>cordova-2.0.0.jar</strong> in the <strong>libs</strong> subfolder of the project and click <strong>OK</strong>. Then click <strong>OK</strong> to close <strong>Java Build Path</strong>.</li>
-<li>Expand the <strong>src</strong> subfolder of your Eclipse project and locate the main Java file for your project: <strong>JMSdemoActivity.java</strong>. Double-click the file to open it.</li>
-<li><p>Replace contents of the file with the following:</p>
-<pre class="brush: java; toolbar: false;">
-package com.example.jmsdemo;
+      #console &gt; div {
+        border-bottom: dashed 1px #dddddd;
+        padding-top: 5px;
+        padding-bottom: 5px; }
 
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
-import org.apache.cordova.*;
+      #console div {
+        font-family: monospace;
+        padding-left: 5px;
+        font-size: 15px;
+        line-height: 18px; }
 
-public class JMSdemoActivity extends DroidGap {
+      #console &gt; div:nth-child(even) {
+        background-color: #fafafa; }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // setContentView(R.layout.activity_jmsdemo);
-        super.loadUrl("file:///android_asset/www/index.html");
+      #console div div {
+        line-height: 15px; }
+
+      #console .error {
+        color: red; }
+
+      #console &gt; div &gt; div {
+        display: block;
+        margin-left: 15px;
+        font-size: smaller; }
+
+      #console .sendMessage {
+        color: #336633; }
+
+      #console .sendMessage .destination {
+        color: #577557; }
+
+      #console .sendMessage .properties {
+        color: #45ad45; }
+
+      #console .sendMessage .headers {
+        color: #8aad45; }
+
+      #console.hidden .headers {
+        /*    display: none; */
+        background-color: red; }
+
+      #console .receiveMessage {
+        color: #0000ff; }
+
+      #console .receiveMessage .destination {
+        color: #6666ff; }
+
+      #console .receiveMessage .properties {
+        color: #4791ff; }
+
+      #console .receiveMessage .headers {
+        color: #7193eb; }
+
+      #console .txSendMessage {
+        color: #606; }
+
+      #console .txSendMessage &gt; div {
+        color: #9e4d9e; }
+
+      #subscriptions {
+        border: 0;
+        font-size: smaller;
+        width: 100%;
+        margin: 0;
+      }
+
+      #subscriptions th, #subscriptions td {
+        background-color: whitesmoke;
+        border: 0;
+        text-align: left;
+        padding-left: 5px;
+        padding-right: 5px;
+        line-height: 150%;
+  /*      padding-top: 3px;
+        padding-bottom: 3px;
+  */    }
+
+      #subscriptions th {
+        padding-top: 2px;
+        padding-bottom: 2px;
+        line-height: 15px;
+        font-size: 14px;
+      }
+
+      #subscriptions &gt; thead, #subscriptions &gt; tbody &gt; tr:nth-child(even) {
+        background-color: #fbfbfb; }
+
+      #subscriptions th.destination, #subscriptions td.destination {
+        white-space: nowrap;
+  /*      min-width: 125px; */
+        /*line-height: 15px;*/
+      }
+
+      #subscriptions th.unsubscribe, #subscriptions td.unsubscribe {
+        width: 100%; }
+
+      #subscriptions button {
+        font-size: smaller; }
+
+      #console_div label {
+        width: auto;
+        margin-left: 5px; }
+
+      #middle .subscriptionTag {
+        color: #aaaaaa; }
+
+      div.section-heading {
+        font-weight: bold;
+      }
+
+      div.section-heading-left {
+        float: left;
+      }
+      div.toggle {
+        float: right;
+      }
+
+      input[type=checkbox] {
+        width: 20px;
+      }
+
+      label[for=toggleJmsHeadersCb] {
+        width: 140px;
+        float: none;
+        font-weight: normal;
+      }
+
+      button#clear {
+        float: right;
+      }
+
+      img#logo {
+        width: 166px;
+        margin-left: 3px;
+      }
+
+    &lt;/style&gt;
+
+    &lt;script src=&quot;resources/js/jquery-1.9.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;resources/js/modernizr.js&quot;&gt;&lt;/script&gt;
+
+  &lt;/head&gt;
+  &lt;body&gt;
+
+  &lt;!--  Kaazing scripts --&gt;
+  &lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot; src=&quot;WebSocket.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot; src=&quot;JmsClient.js&quot;&gt;&lt;/script&gt;
+
+  &lt;script type=&quot;text/javascript&quot;&gt;
+
+  var connection;
+  var session;
+
+  /* UI Elements */
+  var logConsole, url, connectBut;
+  var destination, message, subscribe, send;
+  var rollback, clear;
+  var receivedMessageCount, receivedMessageCounter = 0;
+  var subscriptionsTable;
+  var destinationCounter = 1;
+  var toggleJmsHeadersCb;
+  var logoHeight;
+
+  function clearLog() {
+    while (logConsole.childNodes.length &gt; 0) {
+      logConsole.removeChild(logConsole.lastChild);
+    }
+  }
+
+  // Log a string message
+  function log(message) {
+    var div = document.createElement(&quot;div&quot;);
+    div.className = &quot;logMessage&quot;
+    div.innerHTML = message;
+    logDiv(div);
+  }
+
+  function logDiv(div) {
+    logConsole.appendChild(div);
+    toggleJmsHeaders(); // Hide the headers if that&#x27;s what the user specified
+    // Make sure the last line is visible.
+    logConsole.scrollTop = logConsole.scrollHeight;
+    while (logConsole.childNodes.length &gt; 20) {
+      // Delete two rows to preserved the alternate background colors.
+      logConsole.removeChild(logConsole.firstChild);
+      logConsole.removeChild(logConsole.firstChild);
+    }
+  }
+
+  function updateConnectionButtons(connected) {
+    if (connected) {
+      connectBut.innerHTML = &quot;Disconnect&quot;;
+    } else {
+      connectBut.innerHTML = &quot;Connect&quot;;
+    }
+    subscribe.disabled = !connected;
+    send.disabled = !connected;
+  }
+
+  function createDestination(name, session) {
+    if (name.indexOf(&quot;/topic/&quot;) == 0) {
+      return session.createTopic(name);
+    }
+    else if (name.indexOf(&quot;/queue/&quot;) == 0) {
+      return session.createQueue(name);
+    }
+    else {
+      throw new Error(&quot;Destination must start with /topic/ or /queue/&quot;);
+    }
+  }
+
+  function handleConnectBut() {
+    if (connectBut.innerHTML == &quot;Connect&quot;) {
+      doConnect();
+    } else {
+      doDisconnect();
+    }
+  }
+
+  function doConnect() {
+    log(&quot;CONNECT: &quot; + url.value);
+
+    var jmsConnectionFactory = new JmsConnectionFactory(url.value);
+
+    //setup challenge handler
+    setupSSO(jmsConnectionFactory.getWebSocketFactory());
+    try {
+      var connectionFuture =
+      jmsConnectionFactory.createConnection(null, null, function () {
+        if (!connectionFuture.exception) {
+          try {
+            connection = connectionFuture.getValue();
+            connection.setExceptionListener(handleException);
+
+            log(&quot;CONNECTED&quot;);
+
+            session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            transactedSession = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
+
+            connection.start(function () {
+              updateConnectionButtons(true);
+            });
+          }
+          catch (e) {
+            handleException(e);
+          }
+        }
+        else {
+          handleException(connectionFuture.exception);
+        }
+      });
+    }
+    catch (e) {
+      handleException(e);
+    }
+  }
+
+  function handleException(e) {
+    log(&quot;&lt;span class=&#x27;error&#x27;&gt;EXCEPTION: &quot; + e+&quot;&lt;/span&gt;&quot;);
+
+    if (e.type == &quot;ConnectionDisconnectedException&quot;) {
+      updateConnectionButtons(false);
+    }
+  }
+
+  function doDisconnect() {
+    // Clear any subscriptions.
+    if (document.getElementsByClassName) {
+      var subscriptions = document.getElementsByClassName(&quot;unsubscribeButton&quot;);
+      while (subscriptions[0]) {
+        subscriptions[0].click();
+      }
+    } else {
+      // The IE way.
+      var unsubscribeButtons = subscriptionsTable.getElementsByTagName(&quot;button&quot;);
+      while (unsubscribeButtons.length &gt; 0) {
+        var b = unsubscribeButtons[0];
+        if (b.className == &quot;unsubscribeButton&quot;) {
+          b.click();
+        }
+      }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_jmsdemo, menu);
-        return true;
+    log(&quot;CLOSE&quot;);
+    try {
+      connection.close(function () {
+        log(&quot;CONNECTION CLOSED&quot;);
+        updateConnectionButtons(false);
+      });
     }
-}
-</pre>
+    catch (e) {
+      handleException(e);
+    }
+  }
+
+  function handleSubscribe() {
+    var name = destination.value;
+
+    var destinationId = destinationCounter++;
+
+    log(&quot;SUBSCRIBE: &quot; + name + &quot; &lt;span class=\&quot;subscriptionTag\&quot;&gt;[#&quot;+destinationId+&quot;]&lt;/span&gt;&quot;);
+
+    var dest = createDestination(name, session);
+
+    var consumer;
+
+    consumer = session.createConsumer(dest);
+
+    consumer.setMessageListener(function(message) {
+      handleMessage(name, destinationId, message);
+    });
+
+    // Add a row to the subscriptions table.
+    //
+
+    var tBody = subscriptionsTable.tBodies[0];
+
+    var rowCount = tBody.rows.length;
+    var row = tBody.insertRow(rowCount);
+
+    var destinationCell = row.insertCell(0);
+    destinationCell.className = &quot;destination&quot;;
+    destinationCell.appendChild(document.createTextNode(name+&quot; &quot;));
+    var destNode = document.createElement(&quot;span&quot;);
+    destNode.className = &quot;subscriptionTag&quot;;
+    destNode.innerHTML = &quot;[#&quot;+destinationId+&quot;]&quot;;
+    destinationCell.appendChild(destNode);
+
+    var unsubscribeCell = row.insertCell(1);
+    unsubscribeCell.className = &quot;unsubscribe&quot;;
+    var unsubscribeButton = document.createElement(&quot;button&quot;);
+    unsubscribeButton.className = &quot;unsubscribeButton&quot;;
+    unsubscribeButton.innerHTML = &quot;Unsubscribe&quot;;
+    unsubscribeButton.addEventListener(&#x27;click&#x27;, function(event) {
+      var targ;
+      if (event.target) {
+        targ = event.target;
+      } else {
+        targ=event.srcElement; // The wonders of IE
+      }
+      log(&quot;UNSUBSCRIBE: &quot; + name + &quot; &lt;span class=\&quot;subscriptionTag\&quot;&gt;[#&quot;+destinationId+&quot;]&lt;/span&gt;&quot;);
+      if (consumer) {
+        consumer.close(null);
+      }
+      var rowIndex = targ.parentElement.parentElement.rowIndex
+      subscriptionsTable.deleteRow(rowIndex);
+        setLogPaneHeight();
+    }, false);
+    unsubscribeCell.appendChild(unsubscribeButton);
+
+    setLogPaneHeight();
+  }
+
+  function handleMessage(destination, destinationId, message) {
+    var content = &quot;&quot;;
+
+    if (message instanceof TextMessage) {
+      content = &quot;RECEIVED TextMessage: &quot; + message.getText();
+    }
+    else if (message instanceof BytesMessage) {
+      var body = [];
+      message.readBytes(body);
+      content = &quot;RECEIVED BytesMessage: &quot; + body;
+    }
+    else if (message instanceof MapMessage) {
+      var keys = message.getMapNames();
+      content = &quot;RECEIVED MapMessage: &lt;br/&gt;&quot;;
+
+      for (var i=0; i&lt;keys.length; i++) {
+        var key = keys[i];
+        var value = message.getObject(key);
+        var type;
+        if (value == null) {
+          type = &quot;&quot;;
+        }
+        else if (value instanceof String) {
+          type = &quot;String&quot;;
+        }
+        else if (value instanceof Number) {
+          type = &quot;Number&quot;;
+        }
+        else if (value instanceof Boolean) {
+          type = &quot;Boolean&quot;;
+        }
+        else if (value instanceof Array) {
+          type = &quot;Array&quot;;
+        }
+        content += key + &quot;: &quot; + value;
+        if(type != &quot;&quot;) {
+          content += &quot; (&quot; + type + &quot;)&quot;
+        }
+        content += &quot;&lt;br /&gt;&quot;;
+      }
+    }
+    else {
+      content = &quot;RECEIVED UNKNOWN MESSAGE&quot;;
+    }
+
+    var div = document.createElement(&quot;div&quot;);
+    div.className = &quot;logMessage receiveMessage&quot;
+    div.innerHTML = content;
+
+    div.appendChild(buildDestinationDiv(&quot;Destination&quot;, destination));
+
+    div.appendChild(buildPropertiesDiv(message));
+
+    div.appendChild(buildJMSHeadersDiv(message, true));
+
+    logDiv(div);
+
+    receivedMessageCount.innerHTML = ++receivedMessageCounter;
+  }
+
+  var logMessageSend = function(classname, prefix, destination, messageStr, message) {
+    var div = document.createElement(&quot;div&quot;);
+    div.className = &quot;logMessage &quot;+classname
+    div.innerHTML = prefix + messageStr;
+
+    div.appendChild(buildPropertiesDiv(message));
+
+    div.appendChild(buildJMSHeadersDiv(message, false));
+
+    div.appendChild(buildDestinationDiv(&quot;Destination&quot;, destination));
+
+    logDiv(div);
+  }
+
+  var buildDestinationDiv = function(label, destName, destId) {
+    var destinationDiv = document.createElement(&quot;div&quot;);
+    destinationDiv.className = &quot;destination&quot;;
+    var destIdStr = &quot;&quot;;
+    if (destId != undefined) {
+      destIdStr = &quot; [#&quot;+destId+&quot;]&quot;;
+    }
+    destinationDiv.innerHTML += label + &quot;: &quot; + destName+destIdStr;
+    return destinationDiv;
+  }
+
+  var buildPropertiesDiv = function(message) {
+    var propsDiv = document.createElement(&quot;div&quot;);
+    propsDiv.className = &quot;properties&quot;;
+    var props = message.getPropertyNames();
+    while (props.hasMoreElements()) {
+      var propName = props.nextElement();
+      var propValue = message.getStringProperty(propName);
+      propsDiv.innerHTML += &quot;Property: &quot;+propName+&quot;=&quot;+propValue+&quot;&lt;br&gt;&quot;;
+    }
+    return propsDiv;
+  }
+
+  var buildJMSHeadersDiv = function(message, receive) {
+    var headersDiv = document.createElement(&quot;div&quot;);
+    headersDiv.className = &quot;headers&quot;;
+    var deliveryModeStr;
+    switch (message.getJMSDeliveryMode()) {
+    case DeliveryMode.NON_PERSISTENT:
+      deliveryModeStr = &quot;NON_PERSISTENT&quot;;
+      break;
+    case DeliveryMode.PERSISTENT:
+      deliveryModeStr = &quot;PERSISTENT&quot;;
+      break;
+    default:
+      deliveryModeStr = &quot;UNKNOWN&quot;;
+    }
+
+    var jmsDestination = message.getJMSDestination();
+    var destinationName = (jmsDestination instanceof Queue) ? jmsDestination.getQueueName()
+    : jmsDestination.getTopicName();
+    headersDiv.innerHTML += &quot;JMSDestination: &quot; + destinationName +&quot;&lt;br&gt;&quot;;
+
+    if (receive) {
+      headersDiv.innerHTML += &quot;JMSRedelivered: &quot; + message.getJMSRedelivered()+&quot;&lt;br&gt;&quot;;
+    }
+
+    headersDiv.innerHTML += &quot;JMSDeliveryMode: &quot;+message.getJMSDeliveryMode()+&quot; (&quot;+deliveryModeStr+&quot;)&lt;br&gt;&quot;;
+    headersDiv.innerHTML += &quot;JMSPriority: &quot;+message.getJMSPriority()+&quot;&lt;br&gt;&quot;;
+    headersDiv.innerHTML += &quot;JMSMessageID: &quot;+message.getJMSMessageID()+&quot;&lt;br&gt;&quot;;
+    headersDiv.innerHTML += &quot;JMSTimestamp: &quot;+message.getJMSTimestamp()+&quot;&lt;br&gt;&quot;;
+    headersDiv.innerHTML += &quot;JMSCorrelationID: &quot;+message.getJMSCorrelationID()+&quot;&lt;br&gt;&quot;;
+    headersDiv.innerHTML += &quot;JMSType: &quot;+message.getJMSType()+&quot;&lt;br&gt;&quot;;
+    headersDiv.innerHTML += &quot;JMSReplyTo: &quot;+message.getJMSReplyTo()+&quot;&lt;br&gt;&qquot;;
+    return headersDiv;
+  }
+
+  var addProperties = function(message) {
+    var i = 1;
+    var propName;
+    while (propName = document.getElementById(&quot;propName&quot;+i)) {
+      if (propName.value.length &gt; 0) {
+        var propValue = document.getElementById(&quot;propValue&quot;+i);
+        message.setStringProperty(propName.value, propValue.value);
+      }
+      i++;
+    }
+  }
+
+  function handleSend() {
+    var name = destination.value;
+    var dest = createDestination(name, session);
+    var producer = session.createProducer(dest);
+
+    var textMsg = session.createTextMessage(message.value);
+
+    addProperties(textMsg);
+
+    try {
+      var future = producer.send(textMsg, function(){
+        if (future.exception) {
+          handleException(future.exception);
+        }
+      });
+    } catch (e) {
+      handleException(e);
+    }
+
+    logMessageSend(&quot;sendMessage&quot;, &quot;SEND TextMessage: &quot;, destination.value, message.value, textMsg);
+
+    producer.close();
+  }
+
+  var toggleJmsHeaders = function(event) {
+    $(&#x27;div.headers&#x27;).toggleClass(&#x27;hidden&#x27;, !toggleJmsHeadersCb.checked);
+  }
+
+  $( document ).ready(function() {
+
+    // Initialize UI elements
+    url = document.getElementById(&quot;url&quot;);
+
+    connectBut = document.getElementById(&quot;connectBut&quot;);
+
+    logConsole = document.getElementById(&quot;console&quot;)
+    receivedMessageCount = document.getElementById(&quot;receivedMessageCount&quot;);
+    toggleJmsHeadersCb = document.getElementById(&quot;toggleJmsHeadersCb&quot;);
+
+    destination = document.getElementById(&quot;destination&quot;);
+    message = document.getElementById(&quot;message&quot;);
+    subscribe = document.getElementById(&quot;subscribe&quot;);
+    send = document.getElementById(&quot;send&quot;);
+
+    clear = document.getElementById(&quot;clear&quot;);
+
+    subscriptionsTable = document.getElementById(&quot;subscriptions&quot;);
+
+    // default the location
+    url.value = &quot;ws://10.0.2.2:8888/jms&quot;;
+
+    updateConnectionButtons(false);
+
+    connectBut.onclick = handleConnectBut;
+    subscribe.onclick = handleSubscribe;
+    send.onclick = handleSend;
+
+    clear.onclick = clearLog;
+    toggleJmsHeadersCb.onclick = toggleJmsHeaders;
+
+    // initialize the disabled states
+    connectBut.disabled = null;
+
+    logoHeight = $(&quot;#logo&quot;).height();
+
+    setLogPaneHeight();
+
+
+  });
+
+    // Grow the log pane to fit to the bottom of the window, if there is
+    // space available.
+  function setLogPaneHeight() {
+    var windowHeight = $(window).height();
+    var console = $(&quot;#console&quot;);
+    if (console.position().top &lt; windowHeight - logoHeight) {
+      console.css(&quot;height&quot;, windowHeight - console.position().top - (console.outerHeight() - console.height()) - logoHeight);
+    }
+  }
+
+  function setupSSO(webSocketFactory) {
+    /* Respond to authentication challenges with popup login dialog */
+    var basicHandler = new BasicChallengeHandler();
+    basicHandler.loginHandler = function(callback) {
+      popupLoginDialog(callback);
+    }
+    webSocketFactory.setChallengeHandler(basicHandler);
+  }
+
+
+  function popupLoginDialog(callback) {
+    //popup dialog to get credentials
+    var popup = document.getElementById(&quot;sso_logindiv&quot;);
+    popup.style.display = &quot;block&quot;;
+    var login = document.getElementById(&quot;sso_login&quot;);
+    var cancel = document.getElementById(&quot;sso_cancel&quot;);
+
+    //&quot;OK&quot; button was clicked, invoke callback function with credential to login
+    login.onclick = function() {
+      var username = document.getElementById(&quot;sso_username&quot;);
+      var password = document.getElementById(&quot;sso_password&quot;);
+      var credentials = new PasswordAuthentication(username.value, password.value);
+      //clear user input
+      username.value = &quot;&quot;;
+      password.value = &quot;&quot;;
+      //hide popup
+      popup.style.display = &quot;none&quot;;
+      callback(credentials);
+    }
+    //&quot;Cancel&quot; button has been clicked, invoke callback function with null argument to cancel login
+    cancel.onclick = function() {
+      var username = document.getElementById(&quot;sso_username&quot;);
+      var password = document.getElementById(&quot;sso_password&quot;);
+      //clear user input
+      username.value = &quot;&quot;;
+      password.value = &quot;&quot;;
+      //hide popup
+      popup.style.display = &quot;none&quot;;
+      callback(null);
+    }
+  }
+
+  &lt;/script&gt;
+
+    &lt;h1&gt;Cordova JMS Messaging Demo&lt;/h1&gt;
+
+    &lt;div class=&quot;setting&quot;&gt;
+    &lt;label for=&quot;url&quot;&gt;Location&lt;/label&gt;
+    &lt;input id=&quot;url&quot; /&gt;
+    &lt;button id=&quot;connectBut&quot;&gt;Connect&lt;/button&gt;
+    &lt;!-- Login dialog for testing authentication --&gt;
+    &lt;div id=&quot;sso_logindiv&quot; style=&quot;margin-left: 2px; position: absolute; border: 1px solid black; border-radius:10px; display: none; height: 190px; width: 318px; background-color:#d0e7fd; z-index: 999;&quot;&gt;
+      &lt;div style=&quot;margin-left: 20px; height: 35px; margin-top: 20px; font-weight: bold;&quot;&gt;Login&lt;/div&gt;
+      &lt;div style=&quot;height: 124px; width: 296px; border: 1px solid black; border-radius:10px; background-color:white; margin-left: 10px;&quot;&gt;
+        &lt;div style=&quot;margin-left:10px; margin-top: 10px;&quot;&gt;
+          &lt;span style=&quot;width: 60px; font-size:11pt;&quot;&gt;Username:&lt;/span&gt;&lt;input id=&quot;sso_username&quot; size=&quot;12&quot; style=&quot;width: 180px&quot; value=&quot;&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div style=&quot;margin-left:10px&quot;&gt;
+          &lt;span style=&quot;width: 60px;  font-size:11pt;&quot;&gt;Password:&lt;/span&gt;&lt;input id=&quot;sso_password&quot; type=&quot;password&quot; size=&quot;12&quot; style=&quot;width: 180px&quot; value=&quot;&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div style=&quot;margin-left:45px&quot;&gt;
+          &lt;button id=&quot;sso_login&quot; style=&quot;margin-left:25px; width: 60px;&quot;&gt;OK&lt;/button&gt;
+          &lt;button id=&quot;sso_cancel&quot;  style=&quot;margin-left:25px; width: 60px;&quot;&gt;Cancel&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- Login dialog for testing authentication --&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;setting&quot;&gt;
+    &lt;label for=&quot;destination&quot;&gt;Destination&lt;/label&gt;
+    &lt;input id=&quot;destination&quot; value=&quot;/topic/destination&quot;&gt;
+    &lt;button id=&quot;subscribe&quot;&gt;Subscribe&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;setting&quot;&gt;
+    &lt;label for=&quot;message&quot;&gt;Message&lt;/label&gt;
+    &lt;input id=&quot;message&quot; value=&quot;Hello, message&quot;&gt;
+    &lt;button id=&quot;send&quot;&gt;Send&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;hr /&gt;
+
+    &lt;div class=&quot;section-heading&quot;&gt;Subscriptions&lt;/div&gt;
+    &lt;table id=&quot;subscriptions&quot;&gt;
+
+      &lt;tbody&gt;
+
+      &lt;/tbody&gt;
+
+    &lt;/table&gt;
+
+    &lt;hr /&gt;
+
+    &lt;div class=&quot;section-heading section-heading-left&quot;&gt;Log&lt;/div&gt;
+    &lt;div class=&quot;toggle&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; id=&quot;toggleJmsHeadersCb&quot; class=&quot;cb&quot;&gt;
+    &lt;label for=&quot;toggleJmsHeadersCb&quot;&gt;Show JMS headers&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div style=&quot;clear: both;&quot;&gt;&lt;/div&gt;
+
+    Messages received : &lt;span id=&quot;receivedMessageCount&quot;&gt;0&lt;/span&gt;
+    &lt;button id=&quot;clear&quot;&gt;Clear Log&lt;/button&gt;
+    &lt;div style=&quot;clear: both;&quot;&gt;&lt;/div&gt;
+
+    &lt;div id=&quot;console&quot;&gt;&lt;/div&gt;
+    &lt;div style=&quot;clear: both;&quot;&gt;&lt;/div&gt;
+
+    &lt;img id=&quot;logo&quot; src=&quot;resources/images/nav-logo-kaazing.png&quot; /&gt;
+
+  &lt;/body&gt;
+  &lt;/html&gt;
+  </pre>
+
+  <p><strong>Note:</strong> This walkthrough uses the out of the box JavaScript JMS demo as an example web app, but when you create your own JavaScript JMS app, you can create it in your favorite IDE and then copy it to this <strong>www</strong> directory. You must name the HTML file for your app <strong>index.html</strong> and you must ensure that links in <strong>index.html</strong> point to the JavaScript WebSocket library (by default, <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/javascript</span>) and the JavaScript JMS library (by default, <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/javascript/jms</span>), for example:</p>
+  <pre class="brush: xml; toolbar: false;">
+  &lt;script src=&quot;WebSocket.js&quot; type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;JmsClient.js&quot; type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;&lt;/script&gt;
+  </pre>
     </li>
-<li><p>Double-click <strong>AndroidManifest.xml</strong> in the Eclipse project explorer to view the XML contents (in Windows you might have to also click the <strong>AndroidManifest.xml</strong> tab to view the XML contents).</p>
-        <figure style="margin-left:0px;">
-            <img src="../images/android-manifest.png">
-        <figcaption><strong>Figure: AndroidManifest.xml file's XML Contents</strong></figcaption>
-        </figure><br>
-    <p>You are now going to paste XML into the file to add permissions and support device orientation changes. </p>
-    <p><strong>Note:</strong> You are adding a list of permissions to your application. You should remove permissions you are not using before submitting your application to Google Play.</p>
+    <li>Save <strong>index.html</strong>.</li>
+    <li>In Terminal, navigate to the folder for your new app (<code>cd myAndroidApp</code>).</li>
+    <li>To specify the target platform as Android, enter the following command: <code>cordova platform add android</code>. Note: To see a list of the current platforms available, enter: <code>cordova platforms ls</code>.</li>
+    <li><p>To build the project, enter the following command: <code>cordova build android</code>. The build process might take some time. When it is finsihed, Cordova generates the platform-specific project within the project's <strong>platforms</strong> subdirectory that you can open with Android Studio (for example, <strong>myAndroidApp/platforms/android</strong>).</p>
+    <p>On Mac or Linux, if you receive the error <code>Error: Android SDK not found</code> then open your <strong>.bash_profile</strong> file and enter the following (replace <em>JohnSmith</em> with your user name):</p>
+
+    <p><code>export ANDROID_HOME=/Users/<em>JohnSmith</em>/Library/Android/sdk<br>export PATH=$ANDROID_HOME/platform-tools:$PATH<br>export PATH=$ANDROID_HOME/tools:$PATH<br></code></p>
+
+    <p>For more info, <a href="https://cordova.apache.org/docs/en/dev/guide/platforms/android/">https://cordova.apache.org/docs/en/dev/guide/platforms/android/</a>.</p>
     </li>
-<li><p>Paste the following highlighted contents of <strong>AndroidManifest.xml</strong> into your <strong>AndroidManifest.xml</strong>:</p>
-<pre class="brush: xml; toolbar: false; highlight:[7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,36];">
-&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    package=&quot;com.example.jmsdemo&quot;
-    android:versionCode=&quot;1&quot;
-    android:versionName=&quot;1.0&quot; &gt;
+  </ol>
 
-    &lt;uses-sdk
-        android:minSdkVersion=&quot;8&quot;
-        android:targetSdkVersion=&quot;15&quot; /&gt;
-    &lt;supports-screens
-    android:largeScreens=&quot;true&quot;
-    android:normalScreens=&quot;true&quot;
-    android:smallScreens=&quot;true&quot;
-    android:resizeable=&quot;true&quot;
-    android:anyDensity=&quot;true&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.VIBRATE&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.ACCESS_LOCATION_EXTRA_COMMANDS&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.RECEIVE_SMS&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.RECORD_AUDIO&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.MODIFY_AUDIO_SETTINGS&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.READ_CONTACTS&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.WRITE_CONTACTS&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.GET_ACCOUNTS&quot; /&gt;
-    &lt;uses-permission android:name=&quot;android.permission.BROADCAST_STICKY&quot; /&gt;
-    &lt;application
-        android:icon=&quot;@drawable/ic_launcher&quot;
-        android:label=&quot;@string/app_name&quot;
-        android:theme=&quot;@style/AppTheme&quot; &gt;
-        &lt;activity
-            android:name=&quot;.JMSdemoActivity&quot;
-            android:configChanges=&quot;orientation|keyboardHidden|keyboard|screenSize|locale&quot;
-            android:label=&quot;@string/title_activity_jmsdemo&quot; &gt;
-            &lt;intent-filter&gt;
-                &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
-                &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
-            &lt;/intent-filter&gt;
-        &lt;/activity&gt;
-    &lt;/application&gt;
 
-&lt;/manifest&gt;</pre>
-
-<p><span class="note"><b>Note:</b> This manifest uses our example name <span class="code_inline">jmsdemo</span>. You will want to change the instances of <span class="code_inline">jmsdemo</span> to your project name when you create your own projects.</span></p>
-
-<p>Permissions are set with <span class="code_inline">&lt;uses-permission /&gt;</span> tags, and orientation is set inside the <span class="code_inline">&lt;activity&gt;</span> tag.</p>
-</li>
-<li>Save your project.</li>
-</ol>
-
-<p><strong>Note:</strong> This walkthrough uses the out of the box JavaScript JMS demo as an example web app, but when you create your own JavaScript JMS app, you can create it in your favorite IDE and then copy it to this <strong>www</strong> directory. You must name the HTML file for your app <strong>index.html</strong> and you must ensure that links in <strong>index.html</strong> point to the JavaScript WebSocket (by default, <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/javascript</span>) and JMS library (by default, <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/javascript/jms</span>) files and Cordova library are updated to reflect the new location:</p>
-<pre class="brush: xml; toolbar: false;">
-&lt;script src=&quot;cordova-2.0.0.js&quot; type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;WebSocket.js&quot; type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;JmsClient.js&quot; type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;&lt;/script&gt;
-</pre>
-
-<h2><a name="Apache"></a>Configure and Run the Gateway and Apache ActiveMQ</h2>
-<p>Now that you've set up the project for your Android app, you can start Apache ActiveMQ and the Gateway. The following steps start the Apache ActiveMQ service that is included with the Gateway, configure the Gateway to work with the hybrid Android app, and then run the Gateway.</p>
-<ol>
-<li>Start Apache ActiveMQ. For steps on starting Apache ActiveMQ, see the setup information for Apache ActiveMQ.</li>
-<li>Open the <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span> file in a text editor. You need to modify this file to use the Android Emulator loopback IP address (10.0.2.2) and you need to change the cross site constraint to allow any origin in order to run the app locally. 10.0.2.2 is the special alias to your host loopback interface (127.0.0.1 on your development machine). For more information about Android Emulator networking, see <a href="http://developer.android.com/tools/devices/emulator.html#emulatornetworking">Emulator Networking</a>.</li>
-<li><p>Modify the jms service to use the Android loopback IP address and the cross site constraint to allow any origin:</p>
-<pre class="brush: xml; toolbar: false;highlight:[2,18,19,20,32];">
-&lt;service&gt;
-    &lt;accept&gt;ws://10.0.2.2:${gateway.extras.port}/jms&lt;/accept&gt;
+  <h2><a name="Apache"></a>Configure and Run the Gateway and Apache ActiveMQ</h2>
+  <p>Now that you've set up the project for your Android app, you can start Apache ActiveMQ and the Gateway. The following steps start the Apache ActiveMQ service that is included with the Gateway, configure the Gateway to work with the hybrid Android app, and then run the Gateway.</p>
+  <ol>
+  <li>Start Apache ActiveMQ. For steps on starting Apache ActiveMQ, see the setup information for Apache ActiveMQ. Typically, open a Terminal in <code><em>ACTIVEMQ_HOME</em>/bin</code> and enter: <code>./activemq start</code>.</li>
+  <li>Open the <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span> file in a text editor. You need to modify this file to use the Android Emulator loopback IP address (10.0.2.2) and you need to change the cross site constraint to allow any origin in order to run the app locally. 10.0.2.2 is the special alias to your host loopback interface (127.0.0.1 on your development machine). For more information about Android Emulator networking, see <a href="http://developer.android.com/tools/devices/emulator.html#emulatornetworking">Emulator Networking</a> from Android.</li>
+  <li><p>Modify the <code>jms</code> service to use the Android loopback IP address and the cross site constraint to allow any origin:</p>
+  <pre class="auto-links: false; brush: xml; toolbar: false;highlight:[4,16,17,18,23];">
+  &lt;service&gt;
+    &lt;name&gt;JMS Service&lt;/name&gt;
+    &lt;description&gt;JMS Service&lt;/description&gt;
+    &lt;accept&gt;ws://10.0.2.2:8888/jms&lt;/accept&gt;
 
     &lt;type&gt;jms&lt;/type&gt;
 
@@ -338,74 +937,55 @@ public class JMSdemoActivity extends DroidGap {
       &lt;connection.factory.name&gt;ConnectionFactory&lt;/connection.factory.name&gt;
       &lt;context.lookup.topic.format&gt;dynamicTopics/%s&lt;/context.lookup.topic.format&gt;
       &lt;context.lookup.queue.format&gt;dynamicQueues/%s&lt;/context.lookup.queue.format&gt;
-      &lt;env.java.naming.factory.initial&gt;
-        org.apache.activemq.jndi.ActiveMQInitialContextFactory
-      &lt;/env.java.naming.factory.initial&gt;
-      &lt;env.java.naming.provider.url&gt;
-        tcp://localhost:61613
-      &lt;/env.java.naming.provider.url&gt;
+      &lt;env.java.naming.factory.initial&gt;org.apache.activemq.jndi.ActiveMQInitialContextFactory&lt;/env.java.naming.factory.initial&gt;
+      &lt;env.java.naming.provider.url&gt;tcp://localhost:61616&lt;/env.java.naming.provider.url&gt;
     &lt;/properties&gt;
 
-    &lt;accept-options&gt;
-        &lt;ws.bind&gt;build-macmini3.kaazing.test:${gateway.extras.port}&lt;/ws.bind&gt;
-    &lt;/accept-options&gt;
+      &lt;accept-options&gt;
+        &lt;ws.bind&gt;localhost:8888&lt;/ws.bind&gt;
+      &lt;/accept-options&gt;
 
     &lt;realm-name&gt;demo&lt;/realm-name&gt;
 
-    &lt;!--
-    &lt;authorization-constraint&gt;
-      &lt;require-role&gt;AUTHORIZED&lt;/require-role&gt;
-    &lt;/authorization-constraint&gt;
-    --&gt;
-
     &lt;cross-site-constraint&gt;
-      &lt;!--allow-origin&gt;http://build-macmini3.kaazing.test:${gateway.extras.port}&lt;/allow-origin--&gt;
       &lt;allow-origin&gt;*&lt;/allow-origin&gt;
     &lt;/cross-site-constraint&gt;
-&lt;/service&gt;
-</pre>
+  &lt;/service&gt;
+  </pre>
+      </li>
+  <li>Save the <span class="code_inline">gateway-config.xml</span> file.</li>
+  <li><p>Invoke the <span class="code_inline">gateway.start</span> command by navigating to the <span class="code_inline"><em>GATEWAY_HOME</em>/bin</span> directory where you installed the Gateway and then enter the following to run the <span class="code_inline">gateway.start</span> script:</p>
+      <p><span class="code_inline">./gateway.start</span> (Mac and Linux)</p>
+      <p><span class="code_inline">gateway.start.bat</span> (Windows)</p>
+      <p>The output from the command will display that the Gateway is listening on:</p>
+      <p><span class="code_inline">ws://10.0.2.2:8888/jms @ localhost:8888</span></p></li>
+  </ol>
+
+  <h2><a name="Build"></a>Test the Hybrid Android App</h2>
+  <p>The following steps use the Android Emulator to test the hybrid Android app that you created.</p>
+  <span class="note"><b>Notes:</b>
+   <ul class="arrow-2">
+     <li>Both the Gateway and Apache ActiveMQ must be running before testing the hybrid Android app.</li>
+     <li><strong>When testing on Android devices:</strong> In order to connect the hybrid Android app on the Android device to the Gateway and Apache ActiveMQ, the Android device must be able to resolve the host name of computer running the Gateway on the network. This is the host name that you will use in the <strong>Location</strong> field of the hybrid Android app. For example, <span class="code_inline">ws://host_name:8001/jms</span>. You can also configure the Android device to use the IP Address of the computer running the Gateway (for example, <span class="code_inline">ws://192.168.4.86:8001/jms</span>). Using the IP Address is often the easiest method during testing.</li>
+   </ul>
+  </span>
+
+  <ol>
+    <li>In Terminal, ensure that you are in the root of the project directory (for example, <strong>myAndroidApp</strong>), and enter the following to see a list of all available Simulator targets: <code>cordova run android --list</code>. For this walkthrough, we will use <strong>Nexus_5_API_22_x86</strong>.</li>
+    <li>To run the app in the Android Simulator, enter the following: <code>cordova run android --target="Nexus_5_API_22_x86"</code>. The Android Simulator opens and displays the hybrid Android app. It might take several minutes for the Android Simulator to launch and display the app. The app icon might appear on the Android Simulator screen for a while before displaying the GUI of the app. You might need to relaunch the app within the Android Simulator.</li>
+    <li><p>In the hybrid app in the Android Simulator, click in the <strong>Location</strong> field, and enter the <code>jms</code> service URI <code>ws://10.0.2.2:8888/jms</code>, and click <strong>Connect</strong>.</p>
+      <p>The <strong>Log messages</strong> field reports a successful connection. If the app does not connect, ensure that you have the Gateway and Apache ActiveMQ running.</p></li>
+    <li>Play with hybrid app to see the full functionality.</li>
+    <li>
+    <p>For information on testing your hybrid Android app on an Android device, see <a href="http://developer.android.com/tools/device.html#setting-up">Setting up a Device for Development</a> and <a href="http://developer.android.com/tools/extras/oem-usb.html">OEM USB Drivers</a> in the Android developer documentation (<a href="http://developer.android.com/">http://developer.android.com</a>).</p>
     </li>
-<li>Save the <span class="code_inline">gateway-config.xml</span> file.</li>
-<li><p>Invoke the <span class="code_inline">gateway.start</span> command by navigating to the <span class="code_inline"><em>GATEWAY_HOME</em>/bin</span> directory where you installed the Gateway and then enter the following to run the <span class="code_inline">gateway.start</span> script:</p>
-    <p><span class="code_inline">./gateway.start</span> (Mac and Linux)</p>
-    <p><span class="code_inline">gateway.start.bat</span> (Windows)</p>
-    <p>The output from the command will display that the Gateway is listening on:</p>
-    <p><span class="code_inline">ws://10.0.2.2:8001/jms @ localhost:8001</span></p></li>
-</ol>
+  </ol>
 
-<h2><a name="Build"></a>Build and Test the Hybrid Android App</h2>
-<p>The following steps build the hybrid Android app that you created in Eclipse.</p>
-<span class="note"><b>Notes:</b>
- <ul class="arrow-2">
-   <li>Both the Gateway and Apache ActiveMQ must be running before testing the hybrid Android app.</li>
-   <li>In order to connect the hybrid Android app on the Android device to the Gateway and Apache ActiveMQ, the Android device must be able to resolve the host name of computer running the Gateway on the network. This is the host name that you will use in the Location field of the hybrid Android app. For example, <span class="code_inline">ws://host_name:8001/jms</span>. You can also configure the Gateway to use the IP Address of the computer running the Gateway (for example, <span class="code_inline">ws://192.168.4.86:8001/jms</span>). Using the IP Address is often the easiest method during testing.</li>
- </ul>
-</span>
+  <h2><a name="summary"></a>Summary</h2>
+  <p>In this walkthrough, you learned how to turn one of the out of the box Kaazing WebSocket Gateway JavaScript JMS demos into a hybrid Android app. To learn how to build your own Kaazing WebSocket Gateway JMS apps, refer to the <a href="../index.html">documentation</a>.</p>
 
-<ol>
-<li><p>In Eclipse, right-click the project, select <strong>Run As</strong>, and then click <strong>Android Application</strong>.</p>
-    <p>The Android emulator launches.</p></li>
-<li><p>Unlock Android.</p>
-    <p>The hybrid Android app is displayed.</p></li>
-<li><p>Click in the <strong>Location</strong> field, and enter the jms service URI (<span class="code_inline">ws://10.0.2.2:8001/jms</span>), and click <strong>Connect</strong>.</p>
-    <p>The <strong>Log messages</strong> field reports a successful connection.</p>
-        <figure>
-        <img src="../images/android-connected.png">
-        <figcaption><strong>Figure: Hybrid Android app Connecting To Apache ActiveMQ via the Gateway</strong></figcaption>
-        </figure>
-</li>
-<li>To test the hybrid Android app on an Android device, ensure USB debugging is enabled on your Android device (<strong>Settings</strong> > <strong>Applications</strong> > <strong>Development</strong>), and plug the device into your system.</li>
-<li><p>In Eclipse, right-click the project, select <strong>Run As</strong>, and then click <strong>Android Application</strong>.</p>
-<p>The hybrid Android app will deploy to your Android device.</p>
-<p>For more information on testing your hybrid Android app on an Android device, see <a href="http://developer.android.com/tools/device.html#setting-up">Setting up a Device for Development</a> and <a href="http://developer.android.com/tools/extras/oem-usb.html">OEM USB Drivers</a> in the Android developer documentation (<a href="http://developer.android.com/">http://developer.android.com</a>).</p>
-</li>
-</ol>
-
-<h2><a name="summary"></a>Summary</h2>
-<p>In this walkthrough, you learned how to turn one of the out of the box Kaazing Gateway JavaScript JMS demos into a hybrid Android app. To learn how to build your own Kaazing Gateway JMS apps, refer to the <a href="../../../index.html">documentation</a>.</p>
-
-<h2>Notes</h2>
-<p>Clients built using Kaazing Gateway 3.x libraries will work against Kaazing Gateway 4.x. If you wish to upgrade your 3.x client to the 4.x libraries, please note that the 3.x clients used a single JMS library and 4.x clients include and use separate WebSocket and JMS libraries. Update your client library file and code references to include both the WebSocket and JMS libraries, as described in the 4.x documentation. For more migration information, see <a href="p_dev_js_client.html#migrate">Migrate JavaScript Applications to Kaazing Gateway 4.x.</a></p>
+  <h2>Notes</h2>
+  <p>Clients built using Kaazing WebSocket Gateway 3.x libraries will work against Kaazing WebSocket Gateway 4.x. If you wish to upgrade your 3.x client to the 4.x libraries, please note that the 3.x clients used a single JMS library and 4.x clients include and use separate WebSocket and JMS libraries. Update your client library file and code references to include both the WebSocket and JMS libraries, as described in the 4.x documentation. For more migration information, see <a href="p_dev_js_client.html#migrate">Migrate JavaScript Applications to Kaazing WebSocket Gateway 4.x.</a></p>
 
 
                   </section>
