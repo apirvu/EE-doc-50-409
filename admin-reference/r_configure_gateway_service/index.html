@@ -1043,6 +1043,7 @@ http://websocket.org
 
 <pre class="auto-links: false; brush: xml; toolbar: false;">
 &lt;service&gt;
+  &lt;name&gt;JMS Common&lt;/name&gt; &lt;!-- the name of the service --&gt;
   &lt;accept&gt;pipe://jms-common&lt;/accept&gt; &lt;!-- matches the pipe URI in the connect elements of the jms.proxy services --&gt;
   &lt;accept&gt;ws://example.com:8001/jms&lt;/accept&gt; &lt;!-- normal, non-tiered connections will connect here --&gt;
   
@@ -1050,7 +1051,7 @@ http://websocket.org
   
   &lt;properties&gt;
     &lt;connection.factory.name&gt;ConnectionFactory&lt;/connection.factory.name&gt;
-    &lt;context.lookup.topic.formatdynamicTopics/%s&lt;/context.lookup.topic.format&gt;
+    &lt;context.lookup.topic.formatdynamic&gt;Topics/%s&lt;/context.lookup.topic.format&gt;
     &lt;context.lookup.queue.format&gt;dynamicQueues/%s&lt;/context.lookup.queue.format&gt;
   
     &lt;env.java.naming.factory.initial&gt;
