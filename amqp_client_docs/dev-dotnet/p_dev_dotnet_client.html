@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/doc.css">
 
-  
+
 
 
 <!-- +++++++++++++++Syntax Highlighter Calls++++++++++++++++ -->
@@ -87,14 +87,14 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Use the Kaazing Gateway .NET and Silverlight AMQP Client Library</h1>
-<p>In this procedure, you will learn how to use the signed Kaazing Gateway .NET and Silverlight AMQP Client Library and the supported APIs. The steps in this procedure show you how to set up your development environment and add perform the following coding steps:</p>
+<h1>Use the Kaazing Gateway .NET AMQP Client Library</h1>
+<p>In this procedure, you will learn how to use the signed Kaazing Gateway .NET AMQP Client Library and the supported APIs. The steps in this procedure show you how to set up your development environment and add perform the following coding steps:</p>
 
 <ol>
-        <li><a href="#setup_silverlight_dev_env">Set up your .NET and Silverlight development environments</a></li>
+        <li><a href="#setup_silverlight_dev_env">Set up your .NET development environments</a></li>
         <li><a href="#config_gateway">Configure Kaazing Gateway to connect to an AMQP broker</a></li>
         <li><a href="#setup_server">Setting up an AMQP broker</a></li>
-        <li><a href="#using_lib">Review the common .NET and Silverlight AMQP programming steps</a></li>
+        <li><a href="#using_lib">Review the common .NET AMQP programming steps</a></li>
   <li><a href="#create_object">Create the AmqpClient object</a></li>
   <li><a href="#connect_broker">Connect to an AMQP broker</a></li>
   <li><a href="#create_channels">Create channels</a></li>
@@ -106,69 +106,66 @@
   <li><a href="#using_transactions">Use transactions</a></li>
   <li><a href="#control_flow">Control message flow</a></li>
   <li><a href="#exception_handling">Handle exceptions</a></li>
-  <li><a href="#add_tag">Add the Silverlight object tag</a></li>
 </ol>
 
 
 <h2><a name="_"></a>Before You Begin</h2>
-<p>This procedure is part of <a href="o_dev_dotnet.html">Checklist: How to Build Microsoft .NET and Silverlight Clients Using Kaazing Gateway</a>:</p>
+<p>This procedure is part of <a href="o_dev_dotnet.html">Checklist: How to Build Microsoft .NET Clients Using Kaazing Gateway</a>:</p>
 <!-- If the steps are optional, use an unordered list -->
 <p>
         <ol>
         <li><a href="o_dev_dotnet.html#keglibs">Overview of the Kaazing Gateway AMQP Client Libraries</a></li>
-        <li><strong>Use the Kaazing Gateway .NET and Silverlight AMQP Client Library</strong></li>
-        <li><a href="p_dev_dotnet_secure.html">Secure Your .NET and Silverlight AMQP Client</a></li>
+        <li><strong>Use the Kaazing Gateway .NET AMQP Client Library</strong></li>
+        <li><a href="p_dev_dotnet_secure.html">Secure Your .NET AMQP Client</a></li>
         </ol>
 </p>
 
 <p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../../release-notes.html">Release Notes</a>.</span></p>
 
-<h2>To Use the Kaazing Gateway .NET and Silverlight AMQP Client Library</h2>
+<h2>To Use the Kaazing Gateway .NET AMQP Client Library</h2>
 <p>
 <ol>
-        <li><a name="setup_silverlight_dev_env" id="setup_silverlight_dev_env"></a><p>Setting up your .NET and Silverlight development environment.</p>
-                
-    <p>To develop applications for Silverlight or the .NET Framework, you must install the a .NET Integrated Development Environment (IDE) such as Visual Studio or the free Visual Studio Express.</p>
+        <li><a name="setup_silverlight_dev_env" id="setup_silverlight_dev_env"></a><p>Setting up your .NET development environment.</p>
 
-    <p><span class="note"><strong>Note</strong>: You can develop Silverlight and .NET Framework applications in any of the .NET programming languages. Microsoft Visual C# is used in this how-to.</span></p>
+    <p>To develop applications for the .NET Framework, you must install the a .NET Integrated Development Environment (IDE) such as Visual Studio or the free Visual Studio Express.</p>
+
+    <p><span class="note"><strong>Note</strong>: You can develop .NET Framework applications in any of the .NET programming languages. Microsoft Visual C# is used in this how-to.</span></p>
 
                 <ol type="a">
                         <li><p><a name="setup_dotnet" id="setup_dotnet"></a>Set up your .NET Framework environment.</p>
-                        
+
                                 <p>In addition to the Visual Studio IDE, .NET Framework application development also requires:</p>
-                        
+
                                         <ul class="arrow-2">
                                                 <li>A .NET Integrated Development Environment (IDE), such as Visual Studio or the free Visual Web Developer  Express</li>
                                                 <li> Microsoft .NET Framework 4 with Microsoft .NET Framework 4 Patch KB2468871 (download the patch from <a href="http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=3556">http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=3556</a>). This is required for building or running .NET clients using the Kaazing Gateway .NET Client Library.</li>
                                         </ul>
 
-                                <p>To use the Kaazing Gateway AMQP client libraries for .NET and Silverlight, you must add a reference to the libraries located in the <span class="code_inline">.DLL</span> files <span class="code_inline">Kaazing.AMQP.dll</span> and <span class="code_inline">Kaazing.Gateway.dll</span> to your .NET application. This file is in the directory <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/dotnet/Release</span>. Additional <span class="code_inline">.DLL</span>s may be required to program with other protocols.</p>
+                                <p>To use the Kaazing Gateway AMQP client libraries for .NET, you must add a reference to the libraries located in the <span class="code_inline">.DLL</span> files <span class="code_inline">Kaazing.AMQP.dll</span> and <span class="code_inline">Kaazing.Gateway.dll</span> to your .NET application. This file is in the directory <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/dotnet/Release</span>. Additional <span class="code_inline">.DLL</span>s may be required to program with other protocols.</p>
 
-                                <p>Applications based on the .NET Framework can use standard .NET Forms Controls or Windows Presentation Foundation (WPF). Note that there are slight differences in APIs for Controls, Threading and Dispatching behavior. The examples below illustrate event dispatching for WPF applications. WPF Applications, like Silverlight applications, consist of Extensible Application Markup Language (XAML) files and their corresponding code-behind classes <span class="code_inline">.XAML.CS</span> (in C#).</p>
+                                <p>Applications based on the .NET Framework can use standard .NET Forms Controls or Windows Presentation Foundation (WPF). Note that there are slight differences in APIs for Controls, Threading and Dispatching behavior. The examples below illustrate event dispatching for WPF applications. WPF Applications consist of Extensible Application Markup Language (XAML) files and their corresponding code-behind classes <span class="code_inline">.XAML.CS</span> (in C#).</p>
 
                                 <p>.NET Framework applications are typically deployed as an executable <span class="code_inline">.EXE</span> file. This executable references client library <span class="code_inline">.DLL</span> files that can be deployed in the same directory alongside the executable, or registered through an installation process.</p>
                         </li>
 
-                        <li><p><a name="setup_silverlight" id="setup_silverlight"></a>Set up your Silverlight environment.</p>
+                        <li><p><a name="setup_silverlight" id="setup_silverlight"></a>Set up your development environment.</p>
 
-                        <p>In addition to the Visual Studio IDE, Silverlight application development also requires:</p>
+                        <p>In addition to the Visual Studio IDE, application development also requires:</p>
 
                         <p>
                                 <ul class="arrow-2">
                                         <li>A .NET Integrated Development Environment (IDE), such as Visual Studio  or the free Visual Web Developer Express</li>
-                                        <li>Microsoft Silverlight 4 SDK</li>
-                                        <li>The Silverlight 4 browser plugin</li>
                                 </ul>
                         </p>
 
-                        <p>To use the Kaazing Gateway AMQP client libraries for .NET and Silverlight, you must add a reference to the  libraries located in the <span class="code_inline">.DLL</span> files <span class="code_inline">Kaazing.AMQP.dll</span> and <span class="code_inline">Kaazing.Gateway.dll</span> to your Silverlight project. This file is in the directory <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/dotnet/Release</span>.</p>
-                        
-                        <p><span class="note"><strong>Note</strong>: You can develop Silverlight 4 applications in any of the .NET programming languages. Microsoft Visual C# is used  in this how-to.</span></p>
-                        
+                        <p>To use the Kaazing Gateway AMQP client libraries for .NET, you must add a reference to the  libraries located in the <span class="code_inline">.DLL</span> files <span class="code_inline">Kaazing.AMQP.dll</span> and <span class="code_inline">Kaazing.Gateway.dll</span> to your project. This file is in the directory <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/dotnet/Release</span>.</p>
+
+                        <p><span class="note"><strong>Note</strong>: You can develop .NET applications in any of the .NET programming languages. Microsoft Visual C# is used  in this how-to.</span></p>
+
                         <p>Silverlight applications primarily consist of Extensible Application Markup Language (XAML) files and their corresponding code-behind classes <span class="code_inline">.XAML.CS</span> (in C#). The <span class="code_inline">.XAML</span> files typically contain the User Interface (UI) elements and the <span class="code_inline">.XAML.CS</span> files contain the page's code-behind classes.</p>
-                        
+
                         <p>A typical Silverlight application is deployed as a compressed <span class="code_inline">.XAP</span> file. Adding the reference to the Silverlight client library <span class="code_inline">.DLL</span> file in your Silverlight application   packages the <span class="code_inline">.DLL</span> file in your finished application. To deploy your Silverlight application <span class="code_inline">.XAP</span> file, you can host it on Kaazing Gateway. For example, you can place it in the web directory: <span class="code_inline"><em>GATEWAY_HOME</em>/web/base</span>.</p>
-                        
+
                         </li>
                 </ol>
         </li>
@@ -294,7 +291,7 @@ consumeChannel = client.OpenChannel();</pre>
 publishChannel.OpenEvent += new AmqpEventHandler(PublishOpenHandler);
 publishChannel.CloseEvent += new AmqpEventHandler(PublishCloseChannelHandler);
 publishChannel.DeclareExchangeEvent += new AmqpEventHandler(DeclareExchangeHandler);
-          
+
 consumeChannel.OpenEvent += new AmqpEventHandler(ConsumeOpenHandler);
 consumeChannel.CloseEvent += new AmqpEventHandler(ConsumeCloseChannelHandler);
 consumeChannel.ConsumeEvent += new AmqpEventHandler(ConsumeHandler);
@@ -372,7 +369,7 @@ private void DeclareExchange()
                 <li><strong>Content Header</strong>&mdash;A set of  properties that describes the message</li>
                 <li><strong>Content Body</strong>&mdash;A blob of binary data</li>
         </ol>
-        
+
         <p>Additionally, messages can be marked <em>mandatory</em> to send a notification to the publisher in case a message cannot be delivered to a queue. You can also mark a message <em>immediate</em> so that it is returned to the sender if the message cannot be routed to a queue consumer immediately. The following example shows how the content body of a message is added to a buffer (AMQP uses a binary message format) and published to an exchange using the publish channel:</p>
 
 <pre class="brush: js;">
@@ -416,7 +413,7 @@ consumeChannel.DeclareQueue(queueName, false, false, false, false, false, null)
 
 <p>
         <span class="note"><strong>Note</strong>: In this example, the arguments <span class="code_inline">noLocal</span>, <span class="code_inline">noAck</span>, <span class="code_inline">noWait</span>, and <span class="code_inline">exclusive</span> represent boolean values.</span>
-</p>      
+</p>
 
 <p>After the <span class="code_inline">ConsumeBasic()</span> method is successful, a <span class="code_inline">ConsumeEvent</span> event is raised, which calls the previously registered event handler <span class="code_inline">ConsumeHandler</span>. The AMQP broker can then start delivering messages to the client and these messages raise the <span class="code_inline">MessageEvent</span> event, which calls the previously registered event handler <span class="code_inline">MessageHandler</span>. The following example shows how the <span class="code_inline">MessageHandler</span> function retrieves information from the <span class="code_inline">AmqpEventArgs</span> object.</p>
 
@@ -439,7 +436,7 @@ private void MessageHandler(object sender, AmqpEventArgs e)
   }));
 }
 </pre>
-        
+
 <p>Here you can see how the properties are retrieved using the AmqpProperties method. A method from the same AmqpProperties class used to encode the properties of the published message.</p>
 
 <h5><a name="Message_Acknowledgement"></a>Message Acknowledgement</h5>
@@ -477,7 +474,7 @@ txnPublishChannel.SelectTransactionEvent += SelectOkTxHandler;</pre>
 <p>You can use flow control in AMQP to temporarily&mdash;or permanently&mdash;halt the flow of messages on a channel from a queue to a consumer. If you turn the message flow off, no messages are sent to the consumer. The following example shows how you can turn the flow of messages on a channel off and back on:</p>
 
 <pre class="brush: js; toolbar: false;">
-consumeChannel.FlowChannel(false); 
+consumeChannel.FlowChannel(false);
 consumeChannel.FlowChannel(true);</pre>
 
 <p>After the flow on a channel is halted or resumed successfully, a <span class="code_inline">FlowEvent</span> event is raised, which calls the previously registered event handler <span class="code_inline">FlowHandler</span>.</p></li>
@@ -504,12 +501,12 @@ private void PublishCloseChannelHandler(object sender, AmqpEventArgs args e)
 <pre class="brush: xml; toolbar: false;">
 &lt;object data=&quot;data:application/x-silverlight,&quot;
         type=&quot;application/x-silverlight-2&quot;
-        width=&quot;100%&quot; height=&quot;100%&quot; 
+        width=&quot;100%&quot; height=&quot;100%&quot;
         id=&quot;MyApplicationId&quot;&gt;
 
         &lt;param name=&quot;source&quot; value=&quot;MySilverlightApplication.xap&quot;/&gt;
         &lt;param name=&quot;EnableHtmlAccess&quot; value=&quot;true&quot;/&gt;
-    
+
         &lt;!--
         Optional parameters
         --&gt;

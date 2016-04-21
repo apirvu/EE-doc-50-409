@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/doc.css">
 
-  
+
 
 
 <!-- +++++++++++++++Syntax Highlighter Calls++++++++++++++++ -->
@@ -283,7 +283,7 @@
 
 <h3 id="error-using-the-gateway-to-proxy-from-back-end-server-over-tcp-to-client-over-websocket">Error Using the Gateway to Proxy from Back-End Server over TCP to Client over WebSocket</h3>
 
-<p><strong>Cause:</strong> When the Gateway is configured as a proxy receiving binary data over TCP from a back-end server and sends that data over WebSocket to Flash. .NET, or Silverlight client applications, the client applications must use a ByteSocket client library to send and receive binary data. In this scenario, using a WebSocket client library on the client application will fail. Note: the WebSocket class in Kaazing Gateway JavaScript, Java, Objective-C, and Android clients supports binary.</p>
+<p><strong>Cause:</strong> When the Gateway is configured as a proxy receiving binary data over TCP from a back-end server and sends that data over WebSocket to Flash. .NET client applications, the client applications must use a ByteSocket client library to send and receive binary data. In this scenario, using a WebSocket client library on the client application will fail. Note: the WebSocket class in Kaazing Gateway JavaScript, Java, Objective-C, and Android clients supports binary.</p>
 
 <p><strong>Solution:</strong> Include a ByteBuffer class (included with all of the APIs) that provides an automatically expanding byte buffer for ByteSocket.</p>
 

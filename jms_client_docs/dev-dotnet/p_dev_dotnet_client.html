@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/doc.css">
 
-  
+
 
 
 <!-- +++++++++++++++Syntax Highlighter Calls++++++++++++++++ -->
@@ -88,32 +88,32 @@
 
 <div class="container page-content text-left">
 <h1>Use the Kaazing Gateway JMS Client Libraries for .NET and Silverlight</h1>
-<p>In this procedure, you will learn how to use the signed Kaazing Gateway JMS client libraries for .NET and Silverlight and the supported methods.</p>
+<p>In this procedure, you will learn how to use the signed Kaazing Gateway JMS client libraries for .NET and the supported methods.</p>
 
 
 <p><span class="note"><strong>Note</strong>: For this how-to, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61616. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
 
 
 <h2>Before You Begin</h2>
-<p>This procedure is part of <a href="o_dev_dotnet.html">Checklist: How to Build Microsoft .NET and Silverlight JMS Clients Using Kaazing Gateway</a>, that includes the following steps:</p>
+<p>This procedure is part of <a href="o_dev_dotnet.html">Checklist: How to Build Microsoft .NET JMS Clients Using Kaazing Gateway</a>, that includes the following steps:</p>
 <p>
     <ol>
-    <li><strong>Use the Kaazing Gateway JMS Client Libraries for .NET and Silverlight</strong></li>
-    <li><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET and Silverlight Client</a></li>
-    <li><a href="p_clientlogging_dotnet.html">Display Logs for .NET and Silverlight JMS Clients</a></li>
-    <li><a href="p_dev_dotnet_tshoot.html">Troubleshoot Your Microsoft .NET and Silverlight JMS Clients</a></li>
+    <li><strong>Use the Kaazing Gateway JMS Client Libraries for .NET</strong></li>
+    <li><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET Client</a></li>
+    <li><a href="p_clientlogging_dotnet.html">Display Logs for .NET JMS Clients</a></li>
+    <li><a href="p_dev_dotnet_tshoot.html">Troubleshoot Your Microsoft .NET JMS Clients</a></li>
     </ol>
 </p>
 
 <p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../../release-notes.html">Release Notes</a>.</span></p>
 
-<h2>To Use the JMS Client Libraries for .NET and Silverlight</h2>
+<h2>To Use the JMS Client Libraries for .NET</h2>
 <p>
 <ol>
 <li><p>Set up your development environment.</p>
-      <p>To develop applications for Silverlight or the .NET Framework, you must install the a .NET Integrated Development Environment (IDE) such as Visual Studio or the free Visual Studio Express.
+      <p>To develop applications for the .NET Framework, you must install the a .NET Integrated Development Environment (IDE) such as Visual Studio or the free Visual Studio Express.
     </p>
-    <p><span class="note"><strong>Note</strong>: You can develop .NET and Silverlight Framework applications in any of the .NET programming languages. Microsoft Visual C# is used in this how-to.</span></p>
+    <p><span class="note"><strong>Note</strong>: You can develop .NET Framework applications in any of the .NET programming languages. Microsoft Visual C# is used in this how-to.</span></p>
 </li>
 <li><p><a name="setup_dotnet" id="setup_dotnet"></a>Set up your .NET Framework environment.</p>
     <p>In addition to the Visual Studio IDE, .NET Framework application development also requires:</p>
@@ -121,21 +121,19 @@
     <li>A .NET Integrated Development Environment (IDE), such as Visual Studio or the free Visual Web Developer  Express</li>
     <li> Microsoft .NET Framework 4 with Microsoft .NET Framework 4 Patch KB2468871 (download the patch from <a href="http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=3556">http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=3556</a>). This is required for building or running .NET clients using the Kaazing Gateway .NET Client Library.</li>
     </ul>
-    <p>To use the Kaazing Gateway JMS client libraries for .NET and Silverlight, you must add a reference to the signed libraries located in the <span class="code_inline">.DLL</span> files <strong>Kaazing.Gateway.dll</strong> and <strong>Kaazing.JMS.dll</strong> to your .NET application. These files are in the directory <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/dotnet/Release</span>. Additional <span class="code_inline">.DLL</span>s may be required to program with other protocols.</p>
-    <p>Applications based on the .NET Framework can use standard .NET Forms Controls or Windows Presentation Foundation (WPF). Note that there are slight differences in APIs for Controls, Threading and Dispatching behavior. The examples below illustrate event dispatching for WPF applications. WPF Applications, like Silverlight applications, consist of Extensible Application Markup Language (XAML) files and their corresponding code-behind classes <span class="code_inline">.XAML.CS</span> (in C#).</p>
+    <p>To use the Kaazing Gateway JMS client libraries for .NET, you must add a reference to the signed libraries located in the <span class="code_inline">.DLL</span> files <strong>Kaazing.Gateway.dll</strong> and <strong>Kaazing.JMS.dll</strong> to your .NET application. These files are in the directory <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/dotnet/Release</span>. Additional <span class="code_inline">.DLL</span>s may be required to program with other protocols.</p>
+    <p>Applications based on the .NET Framework can use standard .NET Forms Controls or Windows Presentation Foundation (WPF). Note that there are slight differences in APIs for Controls, Threading and Dispatching behavior. The examples below illustrate event dispatching for WPF applications. WPF Applications consist of Extensible Application Markup Language (XAML) files and their corresponding code-behind classes <span class="code_inline">.XAML.CS</span> (in C#).</p>
     <p>.NET Framework applications are typically deployed as an executable <span class="code_inline">.EXE</span> file. This executable references client library <span class="code_inline">.DLL</span> files that can be deployed in the same directory alongside the executable, or registered through an installation process.</p>
 </li>
-<li><p><a name="setup_silverlight" id="setup_silverlight"></a>Set up your Silverlight environment.</p>
-    <p>In addition to the Visual Studio IDE, Silverlight application development also requires:</p>
+<li><p><a name="setup_silverlight" id="setup_silverlight"></a>Set up your development environment.</p>
+    <p>In addition to the Visual Studio IDE, application development also requires:</p>
     <p>
         <ul class="arrow-2">
         <li>A .NET Integrated Development Environment (IDE), such as Visual Studio  or the free Visual Web Developer  Express</li>
-        <li>Microsoft Silverlight 4 SDK</li>
-        <li>The Silverlight 4 browser plugin</li>
         </ul>
     </p>
-    <p>To use the Kaazing Gateway JMS client libraries for .NET and Silverlight, you must add a reference to the signed libraries located in the <span class="code_inline">.DLL</span> files <strong>Kaazing.Gateway.dll</strong> and <strong>Kaazing.JMS.dll</strong> to your Silverlight project. These files are in the directory <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/dotnet/Release</span>.</p>
-    <p><span class="note"><strong>Note</strong>: You can develop Silverlight 4 applications in any of the .NET programming languages. Microsoft Visual C# is used  in this how-to.</span></p>
+    <p>To use the Kaazing Gateway JMS client libraries for .NET, you must add a reference to the signed libraries located in the <span class="code_inline">.DLL</span> files <strong>Kaazing.Gateway.dll</strong> and <strong>Kaazing.JMS.dll</strong> to your project. These files are in the directory <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/dotnet/Release</span>.</p>
+    <p><span class="note"><strong>Note</strong>: You can develop .NET applications in any of the .NET programming languages. Microsoft Visual C# is used  in this how-to.</span></p>
     <p>Silverlight applications primarily consist of Extensible Application Markup Language (XAML) files and their corresponding code-behind classes <span class="code_inline">.XAML.CS</span> (in C#). The <span class="code_inline">.XAML</span> files typically contain the User Interface (UI) elements and the <span class="code_inline">.XAML.CS</span> files contain the page's code-behind classes.</p>
     <p>A typical Silverlight application is deployed as a compressed <span class="code_inline">.XAP</span> file. Adding the reference to the Silverlight client library <span class="code_inline">.DLL</span> file in your Silverlight application   packages the <span class="code_inline">.DLL</span> file in your finished application. To deploy your Silverlight application <span class="code_inline">.XAP</span> file, you can host it on Kaazing Gateway. For example, you can place it in the web directory: <span class="code_inline"><em>GATEWAY_HOME</em>/web/base</span>.</p></li>
 
@@ -248,9 +246,9 @@ if (useClientID)
     CLIENT_ID = &quot;client1&quot;;
 }
 
-StompConnectionFactory connectionFactory = 
+StompConnectionFactory connectionFactory =
     new StompConnectionFactory(new Uri(GetStompProviderURL()));
-IConnection connection =     
+IConnection connection =
     useClientID ? connectionFactory.CreateConnection(null, null, CLIENT_ID) :
         connectionFactory.CreateConnection(null, null);
 ISession session = connection.CreateSession(false, SessionConstants.CLIENT_ACKNOWLEDGE);
@@ -260,7 +258,7 @@ connection.Start();
 String TOPIC_NAME = &quot;/topic/topic_offlineDeliveryTest&quot; + KZSystem.CurrentTimeMillis();
 const String MESSAGE_SELECTOR1 = &quot;prop=&#x27;val1&#x27;&quot;;
 ITopic topic = session.CreateTopic(TOPIC_NAME);
-ITopicSubscriber consumer = 
+ITopicSubscriber consumer =
     session.CreateDurableSubscriber(topic, DURABLE_NAME, MESSAGE_SELECTOR1, false);
 
 IConnection sendConnection = connectionFactory.CreateConnection(null, null);
@@ -268,7 +266,7 @@ ISession sendSession = sendConnection.CreateSession(false, SessionConstants.AUTO
 IMessageProducer producer = sendSession.CreateProducer(topic);
 
 /// Sleep at the point to ensure the SUBSCRIBE went through for the createDurableSubscriber call
-/// Otherwise, if the send message goes through before SUBSCRIBE, the message is not received. 
+/// Otherwise, if the send message goes through before SUBSCRIBE, the message is not received.
 Thread.Sleep(2000);
 
 /// Send one matching and one mismatching message to the subscription message selector
@@ -295,8 +293,8 @@ connection.Close();</pre>
 <ul class="arrow-2">
   <li>The Microsoft .NET 4.0 Framework has a maximum connection limit of two per domain, similar to the browser limitation. For any Microsoft .NET application that uses more than one WebSocket connection at a time, you must either ensure that any WebSocket connection is closed by using <code>WebSocket.Close()</code> before opening another WebSocket connection, or increase the connection limit on the application by updating the <code>maxconnection</code> attribute in the <code>app.config</code> file. For more information, see <strong>(KG-1851) Two Connection Limit in Kaazing Gateway JMS Clients for Microsoft .NET</strong> in <a href="release-notes.html">Release Notes</a>.</li>
     <li>Clients built using Kaazing Gateway 3.x libraries will work against Kaazing Gateway 4.x. If you wish to upgrade your 3.x client to the 4.x libraries, please note that the 3.x clients used a single Stomp JMS library and 4.x clients include and use separate WebSocket and Stomp JMS libraries. Update your client library file and code references to include both the WebSocket and Stomp JMS libraries, as described in the 4.x documentation.</li>
-    <li>For more information on the Kaazing Gateway JMS client libraries for .NET and Silverlight, see <a href="../../../about/kaazing-jms-api">Kaazing Gateway JMS Client Libraries: Supported APIs</a> and the .NET and Silverlight Client API (<a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS.htm">Kaazing.JMS</a>, <a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS_Stomp.htm">Kaazing.JMS.Stomp</a>, and <a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS_Util.htm">Kaazing.JMS.Util</a>) documentation.</li> 
-    <li><span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span> objects are destroyed when the client loses its connection to the Gateway, or when the JMS-compliant message broker loses its connection to the Gateway. To address this, monitor the client's exception listener to handle recovery for your application. Once the connection is re-established, recreate <span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span>. <span class="code_inline">ConnectionDroppedException</span> and <span class="code_inline">ConnectionInterruptedException</span> are delivered to the connection's exception listener via <span class="code_inline">onException</span>, indicating that messages in flight might be lost, depending on message delivery options. <span class="code_inline">ConnectionRestoredException</span> is delivered to indicate that the connection through to the JMS-compliant message broker has been re-established. <span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span> should be recreated at that time to resume operations.</li> 
+    <li>For more information on the Kaazing Gateway JMS client libraries for .NET and Silverlight, see <a href="../../../about/kaazing-jms-api">Kaazing Gateway JMS Client Libraries: Supported APIs</a> and the .NET and Silverlight Client API (<a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS.htm">Kaazing.JMS</a>, <a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS_Stomp.htm">Kaazing.JMS.Stomp</a>, and <a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS_Util.htm">Kaazing.JMS.Util</a>) documentation.</li>
+    <li><span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span> objects are destroyed when the client loses its connection to the Gateway, or when the JMS-compliant message broker loses its connection to the Gateway. To address this, monitor the client's exception listener to handle recovery for your application. Once the connection is re-established, recreate <span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span>. <span class="code_inline">ConnectionDroppedException</span> and <span class="code_inline">ConnectionInterruptedException</span> are delivered to the connection's exception listener via <span class="code_inline">onException</span>, indicating that messages in flight might be lost, depending on message delivery options. <span class="code_inline">ConnectionRestoredException</span> is delivered to indicate that the connection through to the JMS-compliant message broker has been re-established. <span class="code_inline">TemporaryTopic</span> and <span class="code_inline">TemporaryQueue</span> should be recreated at that time to resume operations.</li>
    <li>You can verify that Kaazing Gateway has signed the relevant .NET DLL by selecting the DLL in the File Browser, then right-clicking and opening the <strong>Properties</strong> dialog. On the Digital Signatures tab, you can view the Name of Signer value and a timestamp of when the DLL was signed. The email address is "Not available." For more information, see <a href="http://msdn.microsoft.com/en-us/library/aa382384%28VS.85%29.aspx"> an example C program</a> that shows how to use the Microsoft mechanism to verify a signature (a DLL is one example of a Portable Executable, or PE, file). You can also learn more about <a href="http://support.microsoft.com/kb/2389418">preventing DLL pre-loading attacks</a>.</li>
 </ul>
                   </section>

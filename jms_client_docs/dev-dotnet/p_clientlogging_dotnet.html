@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/doc.css">
 
-  
+
 
 
 <!-- +++++++++++++++Syntax Highlighter Calls++++++++++++++++ -->
@@ -87,25 +87,25 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Display Logs for .NET and Silverlight JMS Clients</h1>
-<p>In this procedure, you will learn how to gather data on Kaazing Gateway .NET and Silverlight JMS clients.</p>
+<h1>Display Logs for .NET JMS Clients</h1>
+<p>In this procedure, you will learn how to gather data on Kaazing Gateway .NET JMS clients.</p>
 
 <h2>Before You Begin</h2>
-<p>This procedure is part of <a href="o_dev_dotnet.html">Checklist: How to Build Microsoft .NET and Silverlight JMS Clients Using Kaazing Gateway</a>, that includes the following steps:</p>
+<p>This procedure is part of <a href="o_dev_dotnet.html">Checklist: How to Build Microsoft .NET JMS Clients Using Kaazing Gateway</a>, that includes the following steps:</p>
 <p>
     <ol>
-    <li><a href="p_dev_dotnet_client.html">Use the Kaazing Gateway JMS Client Libraries for .NET and Silverlight</a></li>
-    <li><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET and Silverlight Client</a></li>
-    <li><strong>Display Logs for .NET and Silverlight JMS Clients</strong></li>
-    <li><a href="p_dev_dotnet_tshoot.html">Troubleshoot Your Microsoft .NET and Silverlight JMS Clients</a></li>
+    <li><a href="p_dev_dotnet_client.html">Use the Kaazing Gateway JMS Client Libraries for .NET</a></li>
+    <li><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET Client</a></li>
+    <li><strong>Display Logs for .NET JMS Clients</strong></li>
+    <li><a href="p_dev_dotnet_tshoot.html">Troubleshoot Your Microsoft .NET JMS Clients</a></li>
     </ol>
 </p>
 
 <p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../../release-notes.html">Release Notes</a>.</span></p>
 
-<h2>To Display Logs for .NET and Silverlight JMS Clients</h2>
+<h2>To Display Logs for .NET JMS Clients</h2>
 <ol>
-    <li>Build your Kaazing Gateway .NET or Silverlight client, as described in <a href="p_dev_dotnet_client.html">Use the Kaazing Gateway JMS Client Libraries for .NET and Silverlight</a>.</li>
+    <li>Build your Kaazing Gateway .NET client, as described in <a href="p_dev_dotnet_client.html">Use the Kaazing Gateway JMS Client Libraries for .NET</a>.</li>
     <li>To produce WebSocket-level debug output, add the Debug version of the client libraries (<strong>Kaazing.Gateway.dll</strong> and <strong>Kaazing.JMS.dll</strong>), located in <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/dotnet/Debug</span>.</li>
     <li>You can obtain additional debugging information by using a <span class="code_inline">Logger.LoggerCallback</span> statement and send the output to a log, as described in the following example:
 <pre class="brush: vb; toolbar: false;">
@@ -123,7 +123,7 @@ private void HandleLog(String message)
 <p class="code">set Tracer._DEBUG = true;</p>
 
 <h2>See Also</h2>
-<p>For more information about the Kaazing Gateway JMS client libraries for .NET and Silverlight, see <a href="../../../about/kaazing-jms-api">Kaazing Gateway JMS Client Libraries: Supported APIs</a>. </p>
+<p>For more information about the Kaazing Gateway JMS client libraries for .NET, see <a href="../../../about/kaazing-jms-api">Kaazing Gateway JMS Client Libraries: Supported APIs</a>. </p>
 
                   </section>
                 </article>

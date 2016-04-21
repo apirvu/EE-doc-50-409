@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/doc.css">
 
-  
+
 
 
 <!-- +++++++++++++++Syntax Highlighter Calls++++++++++++++++ -->
@@ -88,19 +88,19 @@
 
 <div class="container page-content text-left">
 <h1>Interact with Kaazing Gateway Using the ByteSocket API</h1>
-          <p>This procedure describes how you can use the ByteSocket API—provided by the Kaazing Silverlight client library—from a Silverlight application. You use the ByteSocket API in the same way you use the WebSocket API, but ByteSocket allows you to establish a bi-directional socket connection that you can use to send and receive <em>binary</em> data. This section only highlights where the use of WebSocket and ByteSocket differ.</p>
+          <p>This procedure describes how you can use the ByteSocket API—provided by the Kaazing .NET client library. You use the ByteSocket API in the same way you use the WebSocket API, but ByteSocket allows you to establish a bi-directional socket connection that you can use to send and receive <em>binary</em> data. This section only highlights where the use of WebSocket and ByteSocket differ.</p>
 
 <h2>Before You Begin</h2>
-<p>This procedure is part of <a href="o_dev_dotnet.html" title="Kaazing | Documentation">Checklist: Build Microsoft .NET and Silverlight Clients Using Kaazing Gateway</a>:</p>
+<p>This procedure is part of <a href="o_dev_dotnet.html" title="Kaazing | Documentation">Checklist: Build Microsoft .NET Clients Using Kaazing Gateway</a>:</p>
 <ol>
     <li><a href="p_dev_dotnet_setup.html">Set Up Your Development Environment</a></li>
     <li><a href="p_dev_dotnet_websocket.html">Interact with Kaazing Gateway Using the WebSocket API</a></li>
     <li><a href="p_dev_dotnet_eventsource.html">Interact with Kaazing Gateway Using the EventSource API</a></li>
     <li><b>Interact with Kaazing Gateway Using the ByteSocket API</b></li>
     <li><a href="p_dev_dotnet_automatic.html">Configure Automatic Connection</a></li>
-    <li><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET and Silverlight Client</a></li>
-    <li><a href="p_clientlogging_dotnet.html">Display Logs for .NET and Silverlight Clients</a></li>
-       <li><a href="p_dev_dotnet_tshoot.html">Troubleshoot Your Microsoft .NET and Silverlight Clients</a></li>
+    <li><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET Client</a></li>
+    <li><a href="p_clientlogging_dotnet.html">Display Logs for .NET Clients</a></li>
+       <li><a href="p_dev_dotnet_tshoot.html">Troubleshoot Your Microsoft .NET Clients</a></li>
 </ol>
 
 <p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../release-notes.html">Release Notes</a>.</span></p>
@@ -109,7 +109,7 @@
           <ol>
             <li>Create a new <span class="uri">ByteSocket</span> object, as shown in the following example.
               <p> <span class="uri">ByteSocket mySocket = new ByteSocket();</span> </p>
-               <p><span class="note"><b>Note:</b> The .NET and Silverlight client libraries are signed.</span></p>
+               <p><span class="note"><b>Note:</b> The .NET client libraries are signed.</span></p>
             </li>
             <li>The event listeners for the <span class="uri">ByteSocket</span> object must handle binary data as opposed to text data. For example, add a listener that handles a <span class="uri">ByteBuffer</span> object, as shown in line 4 in the following example.
               </p>
@@ -127,7 +127,7 @@ ByteMessageEventArgs e) =&gt;
       });
   });
                 </pre>
-              <p><span class="note"><strong>Note</strong>: The Kaazing client libraries fire events on multiple threads for better performance. Therefore, events are delivered on a thread other than the UI thread.  This requires you to explicitly transfer execution to the UI thread when updating the UI from dispatched events.  This technique varies slightly between Silverlight and .NET Framework applications.</span></p>
+              <p><span class="note"><strong>Note</strong>: The Kaazing client libraries fire events on multiple threads for better performance. Therefore, events are delivered on a thread other than the UI thread.  This requires you to explicitly transfer execution to the UI thread when updating the UI from dispatched events. </span></p>
             </li>
             <li>When you send messages, you send binary data using a <span class="uri">ByteBuffer</span> object, as shown in the following example. Since you are sending binary data, create a <span class="uri">ByteBuffer</span> object in which you store the bytes that you want to send.
               </p>
@@ -148,7 +148,7 @@ mySocket.Send(SendBuffer);</pre>
 <p><a href="p_dev_dotnet_automatic.html">Configure Automatic Connection</a></p>
 
 <h2>See Also</h2>
-<p><a href="../apidoc/client/dotnet/gateway/html/N_Kaazing_HTML5.htm">.NET and Silverlight Client API</a></p>
+<p><a href="../apidoc/client/dotnet/gateway/html/N_Kaazing_HTML5.htm">.NET Client API</a></p>
 
                   </section>
                 </article>
@@ -205,4 +205,3 @@ mySocket.Send(SendBuffer);</pre>
 
 </body>
 </html>
-

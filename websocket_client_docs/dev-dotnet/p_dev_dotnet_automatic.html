@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/doc.css">
 
-  
+
 
 
 <!-- +++++++++++++++Syntax Highlighter Calls++++++++++++++++ -->
@@ -88,19 +88,19 @@
 
 <div class="container page-content text-left">
 <h1>Configure Automatic Connection</h1>
-<p>In this procedure, you will learn how to configure your Microsoft .NET and Silverlight clients to connect at startup automatically.</p>
+<p>In this procedure, you will learn how to configure your Microsoft .NET clients to connect at startup automatically.</p>
 
 <h2>Before You Begin</h2>
-<p>This procedure is part of <a href="o_dev_dotnet.html" title="Kaazing | Documentation">Checklist: Build Microsoft .NET and Silverlight Clients Using Kaazing Gateway</a>:</p>
+<p>This procedure is part of <a href="o_dev_dotnet.html" title="Kaazing | Documentation">Checklist: Build Microsoft .NET Clients Using Kaazing Gateway</a>:</p>
 <ol>
     <li><a href="p_dev_dotnet_setup.html">Set Up Your Development Environment</a></li>
     <li><a href="p_dev_dotnet_websocket.html">Interact with Kaazing Gateway Using the WebSocket API</a></li>
     <li><a href="p_dev_dotnet_eventsource.html">Interact with Kaazing Gateway Using the EventSource API</a></li>
     <li><a href="p_dev_dotnet_bytesocket.html">Interact with Kaazing Gateway Using the ByteSocket API</a></li>
     <li><b>Configure Automatic Connection</b></li>
-    <li><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET and Silverlight Client</a></li>
-    <li><a href="p_clientlogging_dotnet.html">Display Logs for .NET and Silverlight Clients</a></li>
-    <li><a href="p_dev_dotnet_tshoot.html">Troubleshoot Your Microsoft .NET and Silverlight Clients</a></li>
+    <li><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET Client</a></li>
+    <li><a href="p_clientlogging_dotnet.html">Display Logs for .NET Clients</a></li>
+    <li><a href="p_dev_dotnet_tshoot.html">Troubleshoot Your Microsoft .NET Clients</a></li>
 </ol>
 
 <p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../release-notes.html">Release Notes</a>.</span></p>
@@ -135,7 +135,7 @@
           <p>This basic layout contains a text field and <strong>Send</strong> and <strong>Disconnect</strong> buttons.</p>
     <figure>
         <img src="../images/xaml.png" width="303" height="96" alt="ZAML screen shot">
-    <figcaption><strong>Figure: An example of a text field with Send and Disconnect buttons</strong></figcaption>    
+    <figcaption><strong>Figure: An example of a text field with Send and Disconnect buttons</strong></figcaption>
     </figure>
 
           <p>Your page code may look like this:</p>
@@ -151,16 +151,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-  
+
 using Kaazing.HTML5;
-  
+
 namespace Test1
 {
   public partial class MainPage : UserControl
   {
     #region Private Fields
     private WebSocket _socket;
-    #endregion Private Fields 
+    #endregion Private Fields
 
     #region Ctor
     public MainPage()
@@ -174,7 +174,7 @@ namespace Test1
     _socket.MessageEvent += new MessageEventHandler(OnSocketMessage);
     _socket.CloseEvent += new CloseEventHandler(OnSocketClose);
     string location = @&quot;ws://localhost:8001/echo&quot;;
-    _socket.Connect(location); 
+    _socket.Connect(location);
     }
 
     #endregion Ctor
@@ -266,16 +266,16 @@ private void UserControlLoaded(object sender, RoutedEventArgs e) {
           </ol>
           <p>Now, the code will instantiate the client socket object and connect automatically at the correct moment in the startup process.</p>
 <h3><a name="devserver"></a>Running from a Local Development Server</h3>
-<p>By default, Visual Studio runs a Silverlight XAML from the file system, which doesn't currently work with a local Gateway install. You must run it from Visual Studio's <span class="uri">localhost</span>. Visual Studio includes a development server that you can run from: <span class="uri">http://localhost:54265/</span> (or an arbitrary port chosen by Visual Studio). Entering this URL into the address bar of a supported browser after you have pressed the start button in the IDE will make this example work as you would expect. You can also specify that the .Web project is your start up project. If you do that, the XAML will automatically start via the server instead of from <span class="uri">file://</span>.</p>
+<p>By default, Visual Studio runs a XAML file from the file system, which doesn't currently work with a local Gateway install. You must run it from Visual Studio's <span class="uri">localhost</span>. Visual Studio includes a development server that you can run from: <span class="uri">http://localhost:54265/</span> (or an arbitrary port chosen by Visual Studio). Entering this URL into the address bar of a supported browser after you have pressed the start button in the IDE will make this example work as you would expect. You can also specify that the .Web project is your start up project. If you do that, the XAML will automatically start via the server instead of from <span class="uri">file://</span>.</p>
 <p>In this example, you would right-click on the <span class="uri">Test1.Web</span> project in the Solution Explorer window and select Set as Start-up Project, which enables you to debug the project normally.
  If you don't set the project as start-up and enter the URI manually, you must attach the debugger to a running browser to debug the project.</p>
 
 
 <h2>Next Step</h2>
-<p><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET and Silverlight Client</a></p>
+<p><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET Client</a></p>
 
 <h2>See Also</h2>
-<p><a href="../apidoc/client/dotnet/gateway/html/N_Kaazing_HTML5.htm">.NET and Silverlight Client API</a></p>
+<p><a href="../apidoc/client/dotnet/gateway/html/N_Kaazing_HTML5.htm">.NET Client API</a></p>
 
                   </section>
                 </article>

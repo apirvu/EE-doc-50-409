@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/doc.css">
 
-  
+
 
 
 <!-- +++++++++++++++Syntax Highlighter Calls++++++++++++++++ -->
@@ -87,22 +87,22 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Troubleshoot Your Microsoft .NET and Silverlight JMS Clients</h1>
-<p>This procedure provides troubleshooting information for the most common issues that occur when using Kaazing Gateway Microsoft .NET and Silverlight clients.</p>
+<h1>Troubleshoot Your Microsoft .NET JMS Clients</h1>
+<p>This procedure provides troubleshooting information for the most common issues that occur when using Kaazing Gateway Microsoft .NET clients.</p>
 
 <h2>Before You Begin</h2>
-<p>This procedure is part of <a href="o_dev_dotnet.html">Checklist: How to Build Microsoft .NET and Silverlight JMS Clients Using Kaazing Gateway</a>, that includes the following steps:</p>
+<p>This procedure is part of <a href="o_dev_dotnet.html">Checklist: How to Build Microsoft .NET JMS Clients Using Kaazing Gateway</a>, that includes the following steps:</p>
 <p>
     <ol>
-    <li><a href="p_dev_dotnet_client.html">Use the Kaazing Gateway JMS Client Libraries for .NET and Silverlight</a></li>
-    <li><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET and Silverlight Client</a></li>
-    <li><a href="p_clientlogging_dotnet.html">Display Logs for .NET and Silverlight JMS Clients</a></li>
-    <li><strong>Troubleshoot Your Microsoft .NET and Silverlight JMS Clients</strong></li>
+    <li><a href="p_dev_dotnet_client.html">Use the Kaazing Gateway JMS Client Libraries for .NET</a></li>
+    <li><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET Client</a></li>
+    <li><a href="p_clientlogging_dotnet.html">Display Logs for .NET JMS Clients</a></li>
+    <li><strong>Troubleshoot Your Microsoft .NET JMS Clients</strong></li>
     </ol>
-</p>  
+</p>
 
-<h2>To Troubleshoot Your Microsoft .NET and Silverlight JMS Clients</h2>
-<p>The following are some things that can go wrong when using the .NET and Silverlight clients:</p>
+<h2>To Troubleshoot Your Microsoft .NET JMS Clients</h2>
+<p>The following are some things that can go wrong when using the .NET clients:</p>
 <ul class="arrow-2">
   <li><a href="#debugerror">Debug Log Produces an Error</a></li>
   <li><a href="#delay">Delay to Initial Connection Request from the .NET Client</a></li>
@@ -114,18 +114,18 @@
 <p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../../release-notes.html">Release Notes</a>.</span></p>
 
 <h3><a name="debugerror"></a>Debug Log Produces an Error</h3>
-<p>When debugging a Silverlight application from Visual Studio, the debug log gives you a disconnecting message or an error.</p>
+<p>When debugging an application from Visual Studio, the debug log gives you a disconnecting message or an error.</p>
 <p><strong>Cause</strong></p>
-<p>This message usually means that you are trying to debug a Silverlight application from Visual Studio and using the incorrect cross-site-constraint to connect to Kaazing Gateway services.</p>
+<p>This message usually means that you are trying to debug an application from Visual Studio and using the incorrect cross-site-constraint to connect to Kaazing Gateway services.</p>
 <p><strong>Action</strong></p>
-<p>A cross-site-constraint of * is required to connect to Kaazing Gateway services when debugging Silverlight applications from Visual Studio using a <span class="uri">file:// </span>based URL.</p>
+<p>A cross-site-constraint of * is required to connect to Kaazing Gateway services when debugging applications from Visual Studio using a <span class="uri">file:// </span>based URL.</p>
 <p><h3><a name="delay"></a>Delay to Initial Connection Request from the  .NET Client</h3></p>
-<p>The initial WebSocket connection from the  .NET client built using Kaazing Gateway client libraries for .NET and Silverlight is delayed by several seconds.</p>
+<p>The initial WebSocket connection from the .NET client built using Kaazing Gateway client library for .NET delayed by several seconds.</p>
 <p><strong>Cause</strong></p>
 <p>The delay may be caused by automatic proxy detection in Windows.</p>
 <p><strong>Action</strong></p>
 <p>To address this, if using Internet Explorer, choose <strong>Options &gt; Connections tab &gt; LAN Settings</strong>. Clear the Automatically Detect Settings checkbox and, if necessary, specify the proxy settings. In .NET applications, you can bypass the proxy settings by including the line <span class="uri">System.Net.WebRequest.DefaultWebProxy = null;</span> <em>before</em> the client initiates the WebSocket connection. If your application requires a proxy, change the null value in this line to the default proxy or follow <a href="http://msdn.microsoft.com/en-us/library/dkwyc043.aspx">these instructions</a>.</p>
-<p>To get more troubleshooting information for your .NET and Silverlight clients, see <a href="../dev-dotnet/p_clientlogging_dotnet.html">Display Logs for .NET and Silverlight Clients</a>.</p>
+<p>To get more troubleshooting information for your .NET clients, see <a href="../dev-dotnet/p_clientlogging_dotnet.html">Display Logs for .NET Clients</a>.</p>
 
 <h3><a name="connection_limit"></a>.NET client has reached connection limit</h3>
 <p>The .NET client has reached a maximum connection limit per domain of two connections.</p>
@@ -139,11 +139,11 @@
     <p><strong>Action:</strong> If you are using a JMS provider other than Apache ActiveMQ or TIBCO Enterprise Message Service (TIBCO EMS), you must ensure your client applications acknowledge each message received from a queue or durable subscriber. </p>
 
 <h3><a name="xamarin_intelatom"></a>Error when deploying a .NET Android client from Xamarin on a virtual device running Intel Atom CPU/ABI and Android API Level 19</h3>
-<p><strong>Cause:</strong> Deploying a .NET or Silverlight JMS client to Android from Xamarin on a virtual device created with Intel Atom CPU/ABI and Android API Level 19 may cause connection errors. See a similar issue <a href="https://stackoverflow.com/questions/22672355/application-fails-to-deploy-to-android-intel-emulator-on-api-19-platform-4-4-2">Application fails to deploy to Android Intel emulator on API 19 (Platform 4.4.2)</a> on Stack Overflow.</p>
+<p><strong>Cause:</strong> Deploying a .NET JMS client to Android from Xamarin on a virtual device created with Intel Atom CPU/ABI and Android API Level 19 may cause connection errors. See a similar issue <a href="https://stackoverflow.com/questions/22672355/application-fails-to-deploy-to-android-intel-emulator-on-api-19-platform-4-4-2">Application fails to deploy to Android Intel emulator on API 19 (Platform 4.4.2)</a> on Stack Overflow.</p>
 <p><strong>Solution:</strong> For more stable performance, use a virtual device created with the ARM CPU/ABI instead of the Intel Atom CPU/ABI.
-    
+
 <h2>Next Step</h2>
-<p>You have completed the Microsoft .NET and Silverlight client procedures. For more information on client API development, see the <a href="../apidoc/client/dotnet/gateway/html/N_Kaazing_HTML5.htm">.NET and Silverlight Client API</a>.</p>
+<p>You have completed the Microsoft .NET client procedures. For more information on client API development, see the <a href="../apidoc/client/dotnet/gateway/html/N_Kaazing_HTML5.htm">.NET Client API</a>.</p>
 
 
 
