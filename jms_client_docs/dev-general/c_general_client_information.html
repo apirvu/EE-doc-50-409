@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/doc.css">
 
-  
+
 
 
 <!-- +++++++++++++++Syntax Highlighter Calls++++++++++++++++ -->
@@ -182,12 +182,12 @@ w.onopen = function() {
 <p><span class="note"><b>Note:</b> Developers migrating applications to the latest version of the Gateway will need to update any code that uses readyState values to use the latest values.</span></p>
 
 <h2><a name="Best"></a>Best Practices</h2>
-<p>Kaazing Gateway client libraries dispatch messages on the message-dispatch thread to the client application. The application receives messages on the message-dispatch thread via an event-listener method or a callback function. Message receiving and message sending should be performed on separate threads. Do not try to send a message or perform other long-running operations in the message-dispatch thread. If a message needs to be sent in response to a received message, then the message should be sent on a separate thread. On single-threaded client platforms such as Javascript and Flash, the message delivery can be scheduled for a later time using the <code>setTimeout()</code> function.</p>
+<p>Kaazing Gateway client libraries dispatch messages on the message-dispatch thread to the client application. The application receives messages on the message-dispatch thread via an event-listener method or a callback function. Message receiving and message sending should be performed on separate threads. Do not try to send a message or perform other long-running operations in the message-dispatch thread. If a message needs to be sent in response to a received message, then the message should be sent on a separate thread. On single-threaded client platforms such as Javascript, the message delivery can be scheduled for a later time using the <code>setTimeout()</code> function.</p>
 
 <h2>See Also</h2>
 <p>Kaazing Gateway <a href="../../../index.html#api_topics">Client API documentation</a>.</p>
                                   <!-- CONTENT GOES HERE -->
-        
+
                        </section>
                      </article>
 
@@ -302,7 +302,7 @@ San Jose, CA 95002, USA</p>
 
 		</div></div></div><!-- end row -->
 
-			
+
 
 			<div class="row">
 
@@ -310,29 +310,29 @@ San Jose, CA 95002, USA</p>
 
 					<div class="bottom fixclear">
 
-					
 
-					<ul class="social-icons colored fixclear"><li class="title">connect &gt;</li><li class="social-twitter"><a href="http://twitter.com/kaazing" target="_blank">Twitter</a></li><li class="social-facebook"><a href="http://www.facebook.com/pages/Kaazing/143247694282" target="_blank">Facebook</a></li><li class="social-youtube"><a href="http://www.youtube.com/user/KaazingTV" target="_blank">Youtube</a></li></ul>					
 
-											
+					<ul class="social-icons colored fixclear"><li class="title">connect &gt;</li><li class="social-twitter"><a href="http://twitter.com/kaazing" target="_blank">Twitter</a></li><li class="social-facebook"><a href="http://www.facebook.com/pages/Kaazing/143247694282" target="_blank">Facebook</a></li><li class="social-youtube"><a href="http://www.youtube.com/user/KaazingTV" target="_blank">Youtube</a></li></ul>
+
+
 
 						<div class="copyright">
 
-							
 
-							
+
+
 
 							<a href="http://www-stage.kaazing.com/"><img src="http://developer.kaazing.com/wordpress/wp-content/uploads/2013/06/Kaazing-footer_logo.png" alt="" /></a><p><div style="padding:10px 0;float:left; ">Copyright &copy; 2007-2015 Kaazing Corporation</div>
 
-<div style="float:left;"><ul class="foot-menu"><li><a href="http://www.kaazing.com/legal/privacy/">Privacy Policy</a></li><li><a href="http://www.kaazing.com/legal/license/">Legal Information</a></li></ul></div></p>							
+<div style="float:left;"><ul class="foot-menu"><li><a href="http://www.kaazing.com/legal/privacy/">Privacy Policy</a></li><li><a href="http://www.kaazing.com/legal/license/">Legal Information</a></li></ul></div></p>
 
-							
+
 
 						</div><!-- end copyright -->
 
-							
 
-											
+
+
 
 
 
@@ -342,7 +342,7 @@ San Jose, CA 95002, USA</p>
 
 			</div><!-- end row -->
 
-			
+
 
 		</div>
 
@@ -350,9 +350,9 @@ San Jose, CA 95002, USA</p>
 
 </div><!-- end page_wrapper -->
 
-	
 
-    <a href="#" id="totop">TOP</a> 
+
+    <a href="#" id="totop">TOP</a>
 
 
 <script type='text/javascript' src='http://developer.kaazing.com/wordpress/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js'></script>
@@ -374,7 +374,7 @@ var zn_do_login = {"ajaxurl":"http:\/\/developer.kaazing.com\/wordpress\/wp-admi
 /* ]]> */
 </script>
 <script type='text/javascript' src='http://developer.kaazing.com/wordpress/wp-content/themes/kallyas/js/znscript.js'></script>
-<script type="text/javascript">	
+<script type="text/javascript">
 								var parallax = new Parallax({
 									container: '#slideshow',
 									layers: [
@@ -386,10 +386,10 @@ var zn_do_login = {"ajaxurl":"http:\/\/developer.kaazing.com\/wordpress\/wp-admi
 									]
 								});
 
-							
-						(function($){ 
+
+						(function($){
 							$(window).load(function(){
-								var doc = $(document), 
+								var doc = $(document),
 									win = $(window), chaser, forch,
 									forchBottom, visible;
 								function shown() { visible = true; }
@@ -397,7 +397,7 @@ var zn_do_login = {"ajaxurl":"http:\/\/developer.kaazing.com\/wordpress\/wp-admi
 								chaser = $('#main_menu ul.sf-menu').clone().hide()
 									.appendTo(document.body)
 									.wrap("<div class='chaser'><div class='container'><div class='row'><div class='span12'></div></div></div></div>");
-								if ( $('#content').length > 0 ) {	
+								if ( $('#content').length > 0 ) {
 									forch = $('#content').first();
 									forchBottom = forch.offset().top + 2;
 									hidden();
@@ -417,18 +417,18 @@ var zn_do_login = {"ajaxurl":"http:\/\/developer.kaazing.com\/wordpress\/wp-admi
 								$('.chaser ul.sf-menu').supersubs({ minWidth: 12, maxWidth: 27, extraWidth: 1}).superfish({delay:250, dropShadows:false, autoArrows:true, speed:300});
 							});
 						})(jQuery);
-						
-						(function($){ 
+
+						(function($){
 							$(document).ready(function(){
 								/* Activate Superfish Menu */
 								var sfDelay = 600;
 								if($('html').hasClass('isie'))
 									sfDelay = 300;
 								$('#main_menu > ul')
-								.supersubs({ 
-									minWidth:    12,   // minimum width of sub-menus in em units 
-									maxWidth:    27,   // maximum width of sub-menus in em units 
-									extraWidth:  1     // extra width can ensure lines don't sometimes turn over 
+								.supersubs({
+									minWidth:    12,   // minimum width of sub-menus in em units
+									maxWidth:    27,   // maximum width of sub-menus in em units
+									extraWidth:  1     // extra width can ensure lines don't sometimes turn over
 								}).superfish({
 									delay:sfDelay,
 									dropShadows:false,
@@ -436,10 +436,10 @@ var zn_do_login = {"ajaxurl":"http:\/\/developer.kaazing.com\/wordpress\/wp-admi
 									speed:300
 								});
 								$('#top_menu > ul')
-								.supersubs({ 
-									minWidth:    12,   // minimum width of sub-menus in em units 
-									maxWidth:    27,   // maximum width of sub-menus in em units 
-									extraWidth:  1     // extra width can ensure lines don't sometimes turn over 
+								.supersubs({
+									minWidth:    12,   // minimum width of sub-menus in em units
+									maxWidth:    27,   // maximum width of sub-menus in em units
+									extraWidth:  1     // extra width can ensure lines don't sometimes turn over
 								}).superfish({
 									delay:sfDelay,
 									dropShadows:false,
@@ -447,23 +447,23 @@ var zn_do_login = {"ajaxurl":"http:\/\/developer.kaazing.com\/wordpress\/wp-admi
 									speed:300
 								});
 							});
-							
-							
+
+
 							$(window).resize(function() {
 								$('#main_menu > ul')
-								.supersubs({ 
-									minWidth:    12,   // minimum width of sub-menus in em units 
-									maxWidth:    27,   // maximum width of sub-menus in em units 
-									extraWidth:  1     // extra width can ensure lines don't sometimes turn over 
+								.supersubs({
+									minWidth:    12,   // minimum width of sub-menus in em units
+									maxWidth:    27,   // maximum width of sub-menus in em units
+									extraWidth:  1     // extra width can ensure lines don't sometimes turn over
 								});
 								$('#top_menu > ul')
-								.supersubs({ 
-									minWidth:    12,   // minimum width of sub-menus in em units 
-									maxWidth:    27,   // maximum width of sub-menus in em units 
-									extraWidth:  1     // extra width can ensure lines don't sometimes turn over 
+								.supersubs({
+									minWidth:    12,   // minimum width of sub-menus in em units
+									maxWidth:    27,   // maximum width of sub-menus in em units
+									extraWidth:  1     // extra width can ensure lines don't sometimes turn over
 								});
 							});
-							
+
 						})(jQuery);
 						</script>
 
@@ -473,7 +473,7 @@ var zn_do_login = {"ajaxurl":"http:\/\/developer.kaazing.com\/wordpress\/wp-admi
 			$(function() {
 				// Enable jquery.details
 				//
-				
+
 				// Add conditional classname based on support
 				$('html').addClass($.fn.details.support ? 'details' : 'no-details');
 
@@ -494,7 +494,7 @@ var zn_do_login = {"ajaxurl":"http:\/\/developer.kaazing.com\/wordpress\/wp-admi
 		    pageTracker._trackPageview();
 		    } catch(err) {}
 		</script>
-                        
+
                         </body>
 
        </html>
