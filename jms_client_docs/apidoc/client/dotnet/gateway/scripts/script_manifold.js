@@ -22,11 +22,11 @@ function HideSelect()
 	var spanEles = document.getElementsByTagName("span");
 	var i = 10;
 	var m;
-	
+
 	if (selectTags.length != null || selectTags.length >0)
 	{
 		for (n=0; n<selectTags.length; n++)
-		{			
+		{
 			var lan = selectTags(n).getAttribute("id").substr("10");
 			//hide the first select that is on
 			switch (lan.toLowerCase())
@@ -34,14 +34,14 @@ function HideSelect()
 				case "visualbasic":
 					//alert(lan);
 					for (m=0; m<spanEles.length; m++)
-					{					
+					{
 						if (spanEles[m].getAttribute("codeLanguage") == "VisualBasic" && spanEles[m].style.display != "none" && n <i)
-							i = n;				
+							i = n;
 					}
 					break;
 				case "visualbasicdeclaration":
 					for (m=0; m<spanEles.length; m++)
-					{					
+					{
 						if (spanEles[m].getAttribute("codeLanguage") == "VisualBasicDeclaration" && spanEles[m].style.display != "none" && n < i)
 							i = n;
 					}
@@ -49,81 +49,81 @@ function HideSelect()
 				case "visualbasicusage":
 					//alert(lan);
 					for (m=0; m<spanEles.length; m++)
-					{					
+					{
 						if (spanEles[m].getAttribute("codeLanguage") == "VisualBasicUsage" && spanEles[m].style.display != "none" && n <i)
-							i = n;				
+							i = n;
 					}
 					break;
 				case "csharp":
 					for (m=0; m<spanEles.length; m++)
-					{					
+					{
 						if (spanEles[m].getAttribute("codeLanguage") == "CSharp" && spanEles[m].style.display != "none" && n < i)
 							i = n;
 					}
 					break;
 				case "managedcplusplus":
 					for (m=0; m<spanEles.length; m++)
-					{					
+					{
 						if (spanEles[m].getAttribute("codeLanguage") == "ManagedCPlusPlus" && spanEles[m].style.display != "none" && n < i)
 							i = n;
 					}
 					break;
 				case "jsharp":
 					for (m=0; m<spanEles.length; m++)
-					{					
+					{
 						if (spanEles[m].getAttribute("codeLanguage") == "JSharp" && spanEles[m].style.display != "none" && n < i)
 							i = n;
 					}
 					break;
 				case "jscript":
 					for (m=0; m<spanEles.length; m++)
-					{					
+					{
 						if (spanEles[m].getAttribute("codeLanguage") == "JScript" && spanEles[m].style.display != "none" && n < i)
 							i = n;
 					}
-					break;				
+					break;
 				case "xaml":
 					//alert(lan);
 					for (m=0; m<spanEles.length; m++)
-					{					
+					{
 						if (spanEles[m].getAttribute("codeLanguage") == "XAML" && spanEles[m].style.display != "none" && n <i)
-							i = n;				
+							i = n;
 					}
 					break;
 				case "javascript":
 					//alert(lan);
 					for (m=0; m<spanEles.length; m++)
-					{					
+					{
 						if (spanEles[m].getAttribute("codeLanguage") == "JavaScript" && spanEles[m].style.display != "none" && n <i)
-							i = n;				
+							i = n;
 					}
 					break;
 				case "fsharp":
 					for (m=0; m<spanEles.length; m++)
-					{					
+					{
 						if (spanEles[m].getAttribute("codeLanguage") == "FSharp" && spanEles[m].style.display != "none" && n < i)
 							i = n;
 					}
 					break;
-			}							
+			}
 		}
-		if (i != 10)		
+		if (i != 10)
 			selectTags(i).style.visibility = "hidden";
 	}
-	else{ alert("Not found!");}	
+	else{ alert("Not found!");}
 }
 
 function UnHideSelect()
-{		
+{
 	var selectTags = document.getElementsByTagName("SELECT");
 	var n;
-	
+
 	//un-hide all the select sections
 	if (selectTags.length != null || selectTags.length >0)
 	{
 		for (n=0; n<selectTags.length; n++)
 			selectTags(n).style.visibility = "visible";
-	}	
+	}
 }
 
 function InitSectionStates()
@@ -135,7 +135,7 @@ function InitSectionStates()
     //     firstSectionId:state;secondSectionId:state;thirdSectionId:state; ... ;lastSectionId:state
     //
     // where state is either "e" (expanded) or "c" (collapsed)
-    
+
     // get the SectionStates from the previous topics
     var states = Load("SectionStates");
 
@@ -151,9 +151,9 @@ function InitSectionStates()
         while (start < states.length)
         {
             end = states.indexOf(":", start);
-            
+
             section = states.substring(start, end);
-            
+
             start = end + 1;
             end = states.indexOf(";", start);
             if (end == -1) end = states.length;
@@ -163,7 +163,7 @@ function InitSectionStates()
     	    start = end + 1;
         }
 	}
-    
+
     // now set the state for any section ids in the current document that weren't in previous
 	var imgElements = document.getElementsByName("toggleSwitch");
 	var i;
@@ -175,15 +175,15 @@ function GetInitialSectionState(itemId, allCollapsed)
 {
     // if the global state is "allCollapsed", set all section states to collapsed
     if (allCollapsed) return "c";
-    
+
     // generic <section> node ids begin with "sectionToggle", so the same id can refer to different sections in different topics
-    // we don't want to persist their state; set it to expanded 
+    // we don't want to persist their state; set it to expanded
     if (itemId.indexOf("sectionToggle", 0) == 0) return "e";
-    
-    // the default state for new section ids is expanded 
+
+    // the default state for new section ids is expanded
     if (sectionStates[itemId] == null) return "e";
-    
-    // otherwise, persist the passed in state 
+
+    // otherwise, persist the passed in state
     return sectionStates[itemId];
 }
 
@@ -192,21 +192,21 @@ var noReentry = false;
 function OnLoadImage(eventObj)
 {
     if (noReentry) return;
-    
-    if (!sectionStatesInitialized) 
-	    InitSectionStates(); 
-   
+
+    if (!sectionStatesInitialized)
+	    InitSectionStates();
+
     var elem;
     if(document.all) elem = eventObj.srcElement;
     else elem = eventObj.target;
-        
+
     if ((sectionStates[elem.id] == "e"))
 		ExpandSection(elem);
 	else
 		CollapseSection(elem);
 }
 
-/*	
+/*
 **********
 **********   Begin
 **********
@@ -218,23 +218,23 @@ var mainSection;
 function LoadPage()
 {
 	// If not initialized, grab the DTE.Globals object
-    if (globals == null) 
+    if (globals == null)
         globals = GetGlobals();
 
-	// docSettings has settings for the current document, 
+	// docSettings has settings for the current document,
 	//     which include persistent and non-persistent keys for checkbox filters and expand/collapse section states
 	// persistKeys is an array of the checkbox ids to persist
-	if (docSettings == null) 
+	if (docSettings == null)
 	{
         docSettings = new Array();
         persistKeys = new Array();
 	}
-	
-    if (!sectionStatesInitialized) 
-	    InitSectionStates(); 
+
+    if (!sectionStatesInitialized)
+	    InitSectionStates();
 
 	var imgElements = document.getElementsByName("toggleSwitch");
-	
+
 	for (i = 0; i < imgElements.length; i++)
 	{
 		if ((sectionStates[imgElements[i].id] == "e"))
@@ -242,23 +242,23 @@ function LoadPage()
 		else
 			CollapseSection(imgElements[i]);
 	}
-	
+
 	SetCollapseAll();
 
 	// split screen
 	mainSection = document.getElementById("mainSection");
 	if (!mainSection)
 	    mainSection = document.getElementById("mainSectionMHS");
-	    
+
 	var screen = new SplitScreen('header', mainSection.id);
 
 	// init devlang filter checkboxes
 	SetupDevlangsFilter();
-	
+
 	// init memberlist filter checkboxes for protected, inherited, etc
 	SetupMemberOptionsFilter();
-	
-	// init memberlist platforms filter checkboxes, e.g. .Net Framework, CompactFramework, XNA, Silverlight, etc.
+
+	// init memberlist platforms filter checkboxes, e.g. .Net Framework, CompactFramework, XNA, etc.
 	SetupMemberFrameworksFilter();
 
 	// removes blank target from in the self links for Microsoft Help System
@@ -266,7 +266,7 @@ function LoadPage()
 
     // set gardien image to the bottom of header or Microsoft Help System
 	SetBackground('headerBottom');
-	
+
 	// vs70.js did this to allow up/down arrow scrolling, I think
 	try { mainSection.setActive(); } catch(e) { }
 
@@ -280,7 +280,7 @@ function Window_Unload()
     // for each key in persistArray, write the key/value pair to globals
     for (var i = 0; i < persistKeys.length; i++)
         Save(persistKeys[i],docSettings[persistKeys[i]]);
-    
+
     // save the expand/collapse section states
     SaveSections();
 }
@@ -301,7 +301,7 @@ function set_to_print()
 	var i;
 
 	if (window.text)document.all.text.style.height = "auto";
-			
+
 	for (i=0; i < document.all.length; i++)
 	{
 		if (document.all[i].tagName == "body")
@@ -329,14 +329,14 @@ function reset_form()
 	 document.location.reload();
 }
 
-/*	
+/*
 **********
 **********   End
 **********
 */
 
 
-/*	
+/*
 **********
 **********   Begin Language Filtering
 **********
@@ -358,7 +358,7 @@ function SetupDevlangsFilter()
 	    return;
 
 	var checkboxNodes = divNode.getElementsByTagName("input");
-	
+
 	if (checkboxNodes.length == 1)
 	{
 	    // only one checkbox, so we don't need a menu
@@ -380,7 +380,7 @@ function SetupDevlangsFilter()
 
         // update the label of the dropdown menu
         SetDropdownMenuLabel(devlangsMenu, devlangsDropdown);
-        
+
         // toggle the document's display docSettings
 	    codeBlockHandler();
 	    styleSheetHandler("");
@@ -394,28 +394,28 @@ function SetupDevlangsFilter()
 //   update the user's devlang preference, based on devlang checkbox states
 //   update stylesheet based on user's devlang preference
 //   show/hide snippets/syntax based on user's devlang preference
-//   
+//
 function SetLanguage(checkbox)
 {
     // toggle the check state of the checkbox that was clicked
     devlangsMenu.ToggleCheckState(checkbox.id);
-    
+
     // update the label of the dropdown menu
     SetDropdownMenuLabel(devlangsMenu, devlangsDropdown);
-	
+
     // update the display of the document's items that are dependent on the devlang setting
 	codeBlockHandler();
 	styleSheetHandler("");
-	
+
 }
-/*	
+/*
 **********
 **********   End Language Filtering
 **********
 */
 
 
-/*	
+/*
 **********
 **********   Begin Members Options Filtering
 **********
@@ -431,7 +431,7 @@ function SetupMemberOptionsFilter()
 
         // update the label of the dropdown menu
         SetDropdownMenuLabel(memberOptionsMenu, memberOptionsDropdown);
-        
+
         // show/hide memberlist rows based on the current docSettings
 	    memberlistHandler();
 	}
@@ -450,7 +450,7 @@ function SetBackground(id) {
 
 function SetupMemberFrameworksFilter()
 {
-	if (document.getElementById('memberFrameworksMenu') != null) 
+	if (document.getElementById('memberFrameworksMenu') != null)
 	{
         memberFrameworksMenu = new CheckboxMenu("memberFrameworksMenu", docSettings, persistKeys, globals);
 		memberFrameworksDropdown = new Dropdown('memberFrameworksDropdown', 'memberFrameworksMenu', 'header');
@@ -458,7 +458,7 @@ function SetupMemberFrameworksFilter()
 
         // update the label of the dropdown menu
         SetDropdownMenuLabel(memberFrameworksMenu, memberFrameworksDropdown);
-        
+
         // show/hide memberlist rows based on the current docSettings
 	    memberlistHandler();
 	}
@@ -481,13 +481,13 @@ function SetMemberOptions(checkbox, groupName)
         if (document.getElementById('InheritedCheckbox') != null)
             checkboxGroup.push('InheritedCheckbox');
     }
-    
+
     // toggle the check state of the checkbox that was clicked
     memberOptionsMenu.ToggleGroupCheckState(checkbox.id, checkboxGroup);
-    
+
     // update the label of the dropdown menu
     SetDropdownMenuLabel(memberOptionsMenu, memberOptionsDropdown);
-	
+
     // update the display of the document's items that are dependent on the member options settings
     memberlistHandler();
 }
@@ -496,10 +496,10 @@ function SetMemberFrameworks(checkbox)
 {
     // toggle the check state of the checkbox that was clicked
     memberFrameworksMenu.ToggleCheckState(checkbox.id);
-    
+
     // update the label of the dropdown menu
     SetDropdownMenuLabel(memberFrameworksMenu, memberFrameworksDropdown);
-	
+
     // update the display of the document's items that are dependent on the member platforms settings
     memberlistHandler();
 }
@@ -508,7 +508,7 @@ function DisplayFilteredMembers()
 {
 	var iAllMembers = document.getElementsByTagName("tr");
 	var i;
-	
+
 	for(i = 0; i < iAllMembers.length; ++i)
 	{
 		if (((iAllMembers[i].notSupportedOnXna == "true") && (netXnaMembersOnly == "on")) ||
@@ -518,7 +518,7 @@ function DisplayFilteredMembers()
 		else
 			iAllMembers[i].style.display = "";
 	}
-	
+
 	// protected members are in separate collapseable sections in vs2005, so expand or collapse the sections
 	ExpandCollapseProtectedMemberSections();
 }
@@ -532,7 +532,7 @@ function ExpandCollapseProtectedMemberSections()
 	{
 		if(imgElements[i].id.indexOf("protected", 0) == 0)
 		{
-	        if ((sectionStates[imgElements[i].id] == "e" && protectedMembers == "off") || 
+	        if ((sectionStates[imgElements[i].id] == "e" && protectedMembers == "off") ||
 	            (sectionStates[imgElements[i].id] == "c" && protectedMembers == "on"))
 			{
 				ExpandCollapse(imgElements[i]);
@@ -541,14 +541,14 @@ function ExpandCollapseProtectedMemberSections()
 	}
 }
 
-/*	
+/*
 **********
 **********   End Members Options Filtering
 **********
 */
 
 
-/*	
+/*
 **********
 **********   Begin Expand/Collapse
 **********
@@ -561,7 +561,7 @@ function ExpandCollapse(imageItem)
 		CollapseSection(imageItem);
 	else
 		ExpandSection(imageItem);
-	
+
 	SetCollapseAll();
 }
 
@@ -572,7 +572,7 @@ function ExpandCollapseAll(imageItem)
     var expandAllImage = document.getElementById("expandAllImage");
     if (imageItem == null || collapseAllImage == null || expandAllImage == null) return;
     noReentry = true; // Prevent entry to OnLoadImage
-    
+
 	var imgElements = document.getElementsByName("toggleSwitch");
 	var i;
 	var collapseAll = (imageItem.src == collapseAllImage.src);
@@ -598,7 +598,7 @@ function ExpandCollapseAll(imageItem)
 	}
 	SetAllSectionStates(collapseAll);
 	SetToggleAllLabel(collapseAll);
-	
+
 	noReentry = false;
 }
 
@@ -616,7 +616,7 @@ function ExpandCollapseAll_CheckKey(imageItem, eventObj)
 
 function SetAllSectionStates(collapsed)
 {
-    for (var sectionId in sectionStates) 
+    for (var sectionId in sectionStates)
         sectionStates[sectionId] = (collapsed) ? "c" : "e";
 }
 
@@ -628,7 +628,7 @@ function ExpandSection(imageItem)
         var collapseImage = document.getElementById("collapseImage");
 		imageItem.src = collapseImage.src;
 		imageItem.alt = collapseImage.alt;
-		
+
 	    imageItem.parentNode.parentNode.nextSibling.style.display = "";
 	    sectionStates[imageItem.id] = "e";
     }
@@ -654,9 +654,9 @@ function AllCollapsed()
 	var imgElements = document.getElementsByName("toggleSwitch");
 	var allCollapsed = true;
 	var i;
-		
+
 	for (i = 0; i < imgElements.length; i++) allCollapsed = allCollapsed && (sectionStates[imgElements[i].id] == "c");
-	
+
 	return allCollapsed;
 }
 
@@ -664,7 +664,7 @@ function SetCollapseAll()
 {
 	var imageElement = document.getElementById("toggleAllImage");
 	if (imageElement == null) return;
-	
+
 	var allCollapsed = AllCollapsed();
 	if (allCollapsed)
 	{
@@ -680,7 +680,7 @@ function SetCollapseAll()
 		imageElement.src = collapseAllImage.src;
 		imageElement.alt = collapseAllImage.alt;
 	}
-	
+
 	SetToggleAllLabel(allCollapsed);
 }
 
@@ -688,9 +688,9 @@ function SetToggleAllLabel(allCollapsed)
 {
 	var collapseLabelElement = document.getElementById("collapseAllLabel");
 	var expandLabelElement = document.getElementById("expandAllLabel");
-	
+
 	if (collapseLabelElement == null || expandLabelElement == null) return;
-		
+
 	if (allCollapsed)
 	{
 		collapseLabelElement.style.display = "none";
@@ -708,7 +708,7 @@ function SaveSections()
     try
     {
         var states = "";
-    
+
         for (var sectionId in sectionStates) states += sectionId + ":" + sectionStates[sectionId] + ";";
 
         Save("SectionStates", states.substring(0, states.length - 1));
@@ -716,7 +716,7 @@ function SaveSections()
     catch (e)
     {
     }
-    
+
 }
 
 function OpenSection(imageItem)
@@ -724,7 +724,7 @@ function OpenSection(imageItem)
 	if (sectionStates[imageItem.id] == "c") ExpandCollapse(imageItem);
 }
 
-/*	
+/*
 **********
 **********   End Expand/Collapse
 **********
@@ -732,7 +732,7 @@ function OpenSection(imageItem)
 
 
 
-/*	
+/*
 **********
 **********   Begin Copy Code
 **********
@@ -746,13 +746,13 @@ function CopyCode(key)
 	{
 		if(key.parentNode.parentNode.parentNode == trElements[i].parentNode)
 		{
-		    if (window.clipboardData) 
+		    if (window.clipboardData)
             {
                 // the IE-manner
                 window.clipboardData.setData("Text", trElements[i].innerText);
             }
-            else if (window.netscape) 
-            { 
+            else if (window.netscape)
+            {
                 // Gives unrestricted access to browser APIs using XPConnect
 		try
 		{
@@ -766,33 +766,33 @@ function CopyCode(key)
 				"enable clipboard support.");
 			return;
 		}
-                
+
                 // Creates an instance of nsIClipboard
                 var clip = Components.classes['@mozilla.org/widget/clipboard;1'].createInstance(Components.interfaces.nsIClipboard);
                 if (!clip) return;
-   
+
                 // Creates an instance of nsITransferable
                 var trans = Components.classes['@mozilla.org/widget/transferable;1'].createInstance(Components.interfaces.nsITransferable);
                 if (!trans) return;
-   
+
                 // register the data flavor
                 trans.addDataFlavor('text/unicode');
-   
+
                 // Create object to hold the data
                 var str = new Object();
-                                
+
                 // Creates an instance of nsISupportsString
                 var str = Components.classes["@mozilla.org/supports-string;1"].createInstance(Components.interfaces.nsISupportsString);
-                
+
                 //Assigns the data to be copied
                 var copytext = trElements[i].textContent;
                 str.data = copytext;
-                
+
                 // Add data objects to transferable
                 trans.setTransferData("text/unicode",str,copytext.length*2);
                 var clipid = Components.interfaces.nsIClipboard;
                 if (!clip) return false;
-        
+
                 // Transfer the data to clipboard
                 clip.setData(trans,null,clipid.kGlobalClipboard);
             }
@@ -830,21 +830,21 @@ function CopyCode_CheckKey(key, eventObj)
 		CopyCode(key);
 }
 
-/*	
+/*
 **********
 **********   End Copy Code
 **********
 */
 
 
-/*	
+/*
 **********
 **********   Begin Maintain Scroll Position
 **********
 */
 
 function loadAll(){
-	try 
+	try
 	{
 		scrollPos = allHistory.getAttribute("Scroll");
 	}
@@ -859,14 +859,14 @@ function saveAll(){
 	catch(e){}
 }
 
-/*	
+/*
 **********
 **********   End Maintain Scroll Position
 **********
 */
 
 
-/*	
+/*
 **********
 **********   Begin Send Mail
 **********
@@ -880,20 +880,20 @@ function formatMailToLink(anchor)
 	var url = "URL: " + document.URL;
 	var browser = "Browser: " + window.navigator.userAgent;
 
-	var crlf = "%0d%0a"; 
+	var crlf = "%0d%0a";
 	var body = release + crlf + topicId + crlf + topicTitle + crlf + url + crlf + browser + crlf + crlf + "Comments:" + crlf + crlf;
-	
+
 	anchor.href = anchor.href + "&body=" + body;
 }
 
-/*	
+/*
 **********
 **********   End Send Mail
 **********
 */
 
 
-/*	
+/*
 **********
 **********   Begin Persistence
 **********
@@ -901,25 +901,25 @@ function formatMailToLink(anchor)
 
 var globals;
 
-// get global vars from persistent store			
+// get global vars from persistent store
 function GetGlobals()
 {
 	var tmp;
-	
+
 	// Try to get VS implementation
 	try { tmp = window.external.Globals; }
 	catch (e) { tmp = null; }
-	
+
 	// Try to get DExplore implementation
 	try { if (tmp == null) tmp = window.external.GetObject("DTE", "").Globals; }
 	catch (e) { tmp = null; }
-	
+
 	return tmp;
 }
 
 function Load(key)
 {
-	try 
+	try
 	{
 		return globals.VariableExists(key) ? globals.VariableValue(key) : null;
 	}
@@ -941,7 +941,7 @@ function Save(key, value)
 	}
 }
 
-/*	
+/*
 **********
 **********   End Persistence
 **********
@@ -949,7 +949,7 @@ function Save(key, value)
 
 /* This is the part for Glossary popups */
 // The method is called when the user positions the mouse cursor over a glossary term in a document.
-// Current implementation assumes the existence of an associative array (g_glossary). 
+// Current implementation assumes the existence of an associative array (g_glossary).
 // The keys of the array correspond to the argument passed to this function.
 
 var bGlossary=true;
@@ -983,7 +983,7 @@ function hideDef(eventObj){
 	window.clearTimeout(oTimeout);
 	oTimeout="";
 	oDialog.style.display="none";
-	oDialog.dlg_status=false;	
+	oDialog.dlg_status=false;
 }
 function showDef(oSource){
 	if(bInit==false){
@@ -1001,16 +1001,16 @@ function showDef(oSource){
 		var bStatus=oDialog.dlg_status; // BUGBUG: oDialog is null.
 		if((oLastNode!=oNode)||(bStatus==false)){
 			if((typeof(oTimein)=="number")&& eventObj){
-			    
+
 			    var elem;
 			    if(document.all) elem = eventObj.fromElement;
 			    else elem = eventObj.relatedTarget;
-			    
+
 			    if( elem != null || elem != "undefined")
 				    window.clearTimeout(oTimein);
 			}
 			oTimein=window.setTimeout("openDialog(oNode)",iTimein*1000);
-		}	
+		}
 	}
 }
 
@@ -1024,7 +1024,7 @@ function navigateTerm(eventObj){
     var oNode;
     if(document.all) oNode = eventObj.srcElement;
     else oNode = eventObj.target;
-	
+
 	var iTermID=oNode.termID;
 	if(oNode!=aTerms[iTermID]){
 		var iAbsTop=getAbsoluteTop(aTerms[iTermID]);
@@ -1039,7 +1039,7 @@ function disableGlossary(eventObj){
 	    if(document.all) eventObj.srcElement.innerText="Enable Automatic Glossary";
 		else eventObj.target.innerText="Enable Automatic Glossary";
 		bGlossary=false;
-		hideDef();		
+		hideDef();
 	}
 	else{
 	    if(document.all) eventObj.srcElement.innerText="Disable Automatic Glossary";
@@ -1054,11 +1054,11 @@ function fnSetMenus(eventObj){
     var oNode;
     if(document.all) oNode = eventObj.srcElement;
     else oNode = eventObj.target;
-	
+
 	var oMenu=oNode.createMenu("SPAN","G_RID");
 	var oSubItem1=oNode.createMenuItem("Glossary",fnStub,oMenu,true);
 	document.body.createMenuItem("Open External Glossary",openGlossary,oSubItem1.subMenu);
-	document.body.createMenuItem("Disable Automatic Glossary",disableGlossary,oSubItem1.subMenu);	
+	document.body.createMenuItem("Disable Automatic Glossary",disableGlossary,oSubItem1.subMenu);
 	for(var i=0;i<aTerms.length;i++){
 		var oItem=document.body.createMenuItem(aTerms[i].innerText,navigateTerm,oMenu);
 		oItem.termID=i;
@@ -1100,16 +1100,16 @@ function openDialog(oNode,x,y){
 			window.clearTimeout(oTimeout);
 		}
 	}
-	
-	var sTerm=oNode.getAttribute("G_RID");	
+
+	var sTerm=oNode.getAttribute("G_RID");
 	var oDef=oNode.children(0);
 	var sDef=oDef.text;
 	sDef=sDef.substr(4,sDef.length-7);	//Strips the html comment markers from the definition.
 	oDialog.innerHTML=sDef
-	
-	
+
+
 	//oDialog.innerHTML=g_glossary[sTerm];
-		
+
 	var iScrollLeft=document.body.scrollLeft;
 	var iScrollTop=document.body.scrollTop;
 	var iOffsetLeft=getAbsoluteLeft(oNode)// - iScrollLeft;
@@ -1118,8 +1118,8 @@ function openDialog(oNode,x,y){
 	var iOffsetParentLeft=getAbsoluteLeft(oParent);
 	var iOffsetTop=getAbsoluteTop(oNode); //- iScrollTop;
 	var iOffsetDialogWidth=oDialog.offsetWidth;
-	
-	
+
+
 	if((iOffsetLeft + iOffsetWidth) > (iOffsetParentLeft + oParent.offsetWidth)){
 		iOffsetLeft=iOffsetParentLeft;
 		if(iOffsetLeft - iOffsetDialogWidth>0){
@@ -1147,7 +1147,7 @@ function openDialog(oNode,x,y){
 	}
 	oDialog.style.top=iTop;
 	oDialog.style.left=iLeft;
-	oTimeout=window.setTimeout("hideDef()",iTimeout*1000);	
+	oTimeout=window.setTimeout("hideDef()",iTimeout*1000);
 }
 function getAbsoluteTop(oNode){
 	var oCurrentNode=oNode;

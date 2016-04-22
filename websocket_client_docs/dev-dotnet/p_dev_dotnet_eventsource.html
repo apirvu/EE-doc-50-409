@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/doc.css">
 
-  
+
 
 
 <!-- +++++++++++++++Syntax Highlighter Calls++++++++++++++++ -->
@@ -88,22 +88,22 @@
 
 <div class="container page-content text-left">
 <h1>Interact with Kaazing Gateway Using the EventSource API</h1>
-<p>This procedure describes how you can use the EventSource API&mdash;provided by the Kaazing Silverlight or .NET client library&mdash;from your application. This API allows you to take advantage of the server-sent events standard as described in the <a href="http://www.w3.org/html/wg/html5/#server-sent-events">HTML5 specification</a>. For example, you can create an application that uses the Kaazing Silverlight client library to receive streaming data from a news feed or streaming financial data. The support for server-sent events is provided by the EventSource class and its supporting classes.</p>
-    
-    <p>The following steps allow you to use the EventSource API in a Silverlight or .NET Framework application. This example highlights some of the most commonly used EventSource methods and is not meant to be an end-to-end tutorial.</p>
+<p>This procedure describes how you can use the EventSource API&mdash;provided by the Kaazing .NET client library. This API allows you to take advantage of the server-sent events standard as described in the <a href="http://www.w3.org/html/wg/html5/#server-sent-events">HTML5 specification</a>. For example, you can create an application that uses the Kaazing .NET client library to receive streaming data from a news feed or streaming financial data. The support for server-sent events is provided by the EventSource class and its supporting classes.</p>
+
+    <p>The following steps allow you to use the EventSource API in a .NET Framework application. This example highlights some of the most commonly used EventSource methods and is not meant to be an end-to-end tutorial.</p>
 
 
 <h2>Before You Begin</h2>
-<p>This procedure is part of <a href="o_dev_dotnet.html" title="Kaazing | Documentation">Checklist: Build Microsoft .NET and Silverlight Clients Using Kaazing Gateway</a>:</p>
+<p>This procedure is part of <a href="o_dev_dotnet.html" title="Kaazing | Documentation">Checklist: Build Microsoft .NET Clients Using Kaazing Gateway</a>:</p>
 <ol>
     <li><a href="p_dev_dotnet_setup.html">Set Up Your Development Environment</a></li>
     <li><a href="p_dev_dotnet_websocket.html">Interact with Kaazing Gateway Using the WebSocket API</a></li>
     <li><b>Interact with Kaazing Gateway Using the EventSource API</b></li>
     <li><a href="p_dev_dotnet_bytesocket.html">Interact with Kaazing Gateway Using the ByteSocket API</a></li>
     <li><a href="p_dev_dotnet_automatic.html">Configure Automatic Connection</a></li>
-    <li><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET and Silverlight Client</a></li>
-    <li><a href="p_clientlogging_dotnet.html">Display Logs for .NET and Silverlight Clients</a></li>
-    <li><a href="p_dev_dotnet_tshoot.html">Troubleshoot Your Microsoft .NET and Silverlight Clients</a></li>
+    <li><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET Client</a></li>
+    <li><a href="p_clientlogging_dotnet.html">Display Logs for .NET Clients</a></li>
+    <li><a href="p_dev_dotnet_tshoot.html">Troubleshoot Your Microsoft .NET Clients</a></li>
 </ol>
 
 <p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../release-notes.html">Release Notes</a>.</span></p>
@@ -112,7 +112,7 @@
           <ol>
             <li>Add the required import statement:
               <p> <span class="uri">using Kaazing.HTML5;</span> </p>
-              <p><span class="note"><b>Note:</b> The .NET and Silverlight client libraries are signed.</span></p>
+              <p><span class="note"><b>Note:</b> The .NET client libraries are signed.</span></p>
             </li>
             <li>Create a new <span class="uri">EventSource</span> object, as shown in the following example.
               <p> <span class="uri">EventSource mySource = new EventSource();</span> </p>
@@ -122,8 +122,8 @@
 mySource.OpenEvent += new OpenEventHandler((object sender,
   OpenEventArgs e) =&gt;
   {
-    // Update the UI to show that the Silverlight application
-    //            is now receiving events.
+    // Update the UI to show that the application
+    // is now receiving events.
   });
 
 mySource.MessageEvent += new MessageEventHandler((object sender,
@@ -148,7 +148,7 @@ mySource.ErrorEvent += new ErrorEventHandler((object sender,
       //            or attempting to reconnect.
     });</pre>
               <br>
-              <p><span class="note"><strong>Note</strong>: The Kaazing client libraries fire events on multiple threads for better performance. Therefore, events are delivered on a thread other than the UI thread.  This requires you to explicitly transfer execution to the UI thread when updating the UI from dispatched events.  This technique varies slightly between Silverlight and .NET Framework applications.</span></p>
+              <p><span class="note"><strong>Note</strong>: The Kaazing client libraries fire events on multiple threads for better performance. Therefore, events are delivered on a thread other than the UI thread.  This requires you to explicitly transfer execution to the UI thread when updating the UI from dispatched events. </span></p>
             </li>
             <li>Connect to an event source as shown in the following example. Once this method is called, the <span class="uri">EventSource</span> is activated and message can flow through at any time.
               <p> <span class="uri"> mySource.Connect(&quot;http://localhost:8000/sse&quot;);</span> </p>
@@ -162,7 +162,7 @@ mySource.ErrorEvent += new ErrorEventHandler((object sender,
 <p><a href="p_dev_dotnet_bytesocket.html">Interact with Kaazing Gateway Using the ByteSocket API</a></p>
 
 <h2>See Also</h2>
-<p><a href="../apidoc/client/dotnet/gateway/html/N_Kaazing_HTML5.htm">.NET and Silverlight Client API</a></p>
+<p><a href="../apidoc/client/dotnet/gateway/html/N_Kaazing_HTML5.htm">.NET Client API</a></p>
 
                   </section>
                 </article>

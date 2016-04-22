@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/doc.css">
 
-  
+
 
 
 <!-- +++++++++++++++Syntax Highlighter Calls++++++++++++++++ -->
@@ -87,8 +87,8 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Checklist: How to Build Microsoft .NET and Silverlight JMS Clients Using Kaazing Gateway <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h1>
-<p>This checklist provides the steps necessary to use the signed Kaazing Gateway JMS client libraries for Microsoft .NET and Silverlight to enable your .NET Framework or Silverlight application to communicate with any JMS-compliant message broker, such as Apache ActiveMQ.</p>
+<h1>Checklist: How to Build Microsoft .NET JMS Clients Using Kaazing Gateway <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h1>
+<p>This checklist provides the steps necessary to use the signed Kaazing Gateway JMS client libraries for Microsoft .NET to enable your .NET Framework application to communicate with any JMS-compliant message broker, such as Apache ActiveMQ.</p>
 
 <table class="checklist">
   <tr>
@@ -103,48 +103,44 @@
   </tr>
   <tr>
     <td>2</td>
-    <td>Learn how to use the Kaazing Gateway JMS client libraries for .NET and Silverlight and the supported methods.</td>
-    <td><a href="p_dev_dotnet_client.html">Use the Kaazing Gateway JMS Client Libraries for .NET and Silverlight</a></td>
+    <td>Learn how to use the Kaazing Gateway JMS client libraries for .NET and the supported methods.</td>
+    <td><a href="p_dev_dotnet_client.html">Use the Kaazing Gateway JMS Client Libraries for .NET</a></td>
   </tr>
   <tr>
     <td>3</td>
     <td>Learn how to program your client to respond to authentication challenges from the Gateway.</td>
-    <td><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET and Silverlight Client</a></td>
+    <td><a href="p_dev_dotnet_secure.html">Secure Your Microsoft .NET Client</a></td>
   </tr>
   <tr>
   <td>4</td>
-    <td>Learn how to gather data on Kaazing Gateway .NET and Silverlight JMS clients.</td>
-    <td><a href="p_clientlogging_dotnet.html">Display Logs for .NET and Silverlight JMS Clients</a></td>
+    <td>Learn how to gather data on Kaazing Gateway .NET JMS clients.</td>
+    <td><a href="p_clientlogging_dotnet.html">Display Logs for .NET JMS Clients</a></td>
   </tr>
   <tr>
   <td>5</td>
-    <td>Troubleshoot the most common issues that occur when using Microsoft .NET and Silverlight JMS clients with the Gateway.</td>
-    <td><a href="p_dev_dotnet_tshoot.html">Troubleshoot Your Microsoft .NET and Silverlight JMS Clients</a></td>
+    <td>Troubleshoot the most common issues that occur when using Microsoft .NET JMS clients with the Gateway.</td>
+    <td><a href="p_dev_dotnet_tshoot.html">Troubleshoot Your Microsoft .NET JMS Clients</a></td>
   </tr>
-</table>     
+</table>
 
 <h2><a name="intro" id="intro"></a>Introduction</h2>
-<p>This checklist contains information for a .NET or Silverlight developer who wants to build a .NET or Silverlight client and enable communication with a JMS-compliant message broker through the Gateway.</p>
+<p>This checklist contains information for a .NET developer who wants to build a .NET client and enable communication with a JMS-compliant message broker through the Gateway.</p>
 
 <h2><a name="keglibs"></a>Overview of the Kaazing Gateway Client Libraries</h2>
 <p>Kaazing Gateway includes JMS client libraries, which allow clients to subscribe from and publish messages to a JMS-compliant message broker, such as Apache ActiveMQ. With the Kaazing Gateway JMS client libraries, you can leverage WebSocket in your application by building a client. This WebSocket client then enables communication between your application and the JMS-compliant message broker, as shown in the following figure:</p>
         <figure>
-            <p><img src="../images/f-stomp-jms-.net-client2-web.jpg" width="755" height="207" alt=".NET and Silverlight Client"></p>
+            <p><img src="../images/f-stomp-jms-net-client2.jpg" alt=".NET Client"></p>
             <figcaption><strong>Figure: Enable communication between your application and the JMS-compliant message broker</strong></figcaption>
         </figure>
-        
+
 <p>Refer to <a href="../../../about/kaazing-websocket-jms">About Kaazing Gateway</a> for more information about  Kaazing Gateway.</p>
 
-<h2><a name="aboutjmsapi"></a>About the Kaazing Gateway JMS client libraries for Microsoft .NET and Silverlight</h2>
-<p>Kaazing Gateway includes JMS client libraries that enable you to create JMS-based clients specifically for your .NET and Silverlight applications. As a .NET or Silverlight  developer, you can use these APIs to publish and subscribe to JMS-based messages between your application and your message broker.</p>
+<h2><a name="aboutjmsapi"></a>About the Kaazing Gateway JMS client libraries for Microsoft .NET</h2>
+<p>Kaazing Gateway includes JMS client libraries that enable you to create JMS-based clients specifically for your .NET applications. As a .NET developer, you can use these APIs to publish and subscribe to JMS-based messages between your application and your message broker.</p>
 
-<p>The Kaazing Gateway JMS client libraries for .NET and Silverlight expose capabilities similar to the Java Message Service (JMS) API, including the JMS concepts of connection, session, destination, message consumer, and message producer. Refer to the JMS API documentation, located at <span class="code_inline"><a href="http://www.oracle.com/technetwork/java/docs-136352.html">http://www.oracle.com/technetwork/java/docs-136352.html</a></span>, for specific information about how to use each of the interfaces.</p>
+<p>The Kaazing Gateway JMS client libraries for .NET expose capabilities similar to the Java Message Service (JMS) API, including the JMS concepts of connection, session, destination, message consumer, and message producer. Refer to the JMS API documentation, located at <span class="code_inline"><a href="http://www.oracle.com/technetwork/java/docs-136352.html">http://www.oracle.com/technetwork/java/docs-136352.html</a></span>, for specific information about how to use each of the interfaces.</p>
 
-<p>For a description of the methods currently supported by the Kaazing Gateway JMS client libraries for .NET and Silverlight, see <a href="../../../about/kaazing-jms-api">Kaazing Gateway JMS Client Libraries: Supported APIs</a> and the .NET and Silverlight Client API (<a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS.htm">Kaazing.JMS</a>, <a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS_Stomp.htm">Kaazing.JMS.Stomp</a>, and <a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS_Util.htm">Kaazing.JMS.Util</a>) documentation.</p>
-
-<h2><a name="overview_sl" id="overview_sl"></a>Overview of Microsoft Silverlight</h2>
-<p>Microsoft Silverlight (Silverlight) is a browser plugin that enables rich Internet applications. It runs in browsers on the Microsoft Windows and Mac  operating systems. Silverlight version 4.x provides support for .NET languages and development tools.</p>
-<p>For more information about Silverlight, visit <span class="code_inline"><a href="http://www.microsoft.com/silverlight/">http://www.microsoft.com/silverlight/</a></span>.</p>
+<p>For a description of the methods currently supported by the Kaazing Gateway JMS client libraries for .NET, see <a href="../../../about/kaazing-jms-api">Kaazing Gateway JMS Client Libraries: Supported APIs</a> and the .NET Client API (<a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS.htm">Kaazing.JMS</a>, <a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS_Stomp.htm">Kaazing.JMS.Stomp</a>, and <a href="../apidoc/client/dotnet/jms/html/N_Kaazing_JMS_Util.htm">Kaazing.JMS.Util</a>) documentation.</p>
 
 <h2><a name="overview_dotnet" id="overview_dotnet"></a>Overview of Microsoft .NET Framework</h2>
 <p>Microsoft .NET Framework (.NET) provides a common language runtime, base libraries, and development technologies to build applications for Microsoft Windows desktop, mobile and server platforms.</p>
