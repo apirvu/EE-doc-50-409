@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/doc.css">
 
-  
+
 
 
 <!-- +++++++++++++++Syntax Highlighter Calls++++++++++++++++ -->
@@ -196,7 +196,7 @@ w.onopen = function() {
 
 <h2 id="best-practices">Best Practices</h2>
 
-<p>Kaazing Gateway client libraries dispatch messages on the message-dispatch thread to the client application. The application receives messages on the message-dispatch thread via an event-listener method or a callback function. Message receiving and message sending should be performed on separate threads. Do not try to send a message or perform other long-running operations in the message-dispatch thread. If a message needs to be sent in response to a received message, then the message should be sent on a separate thread. On single-threaded client platforms such as Javascript and Flash, the message delivery can be scheduled for a later time using the <code>setTimeout()</code> function.</p>
+<p>Kaazing Gateway client libraries dispatch messages on the message-dispatch thread to the client application. The application receives messages on the message-dispatch thread via an event-listener method or a callback function. Message receiving and message sending should be performed on separate threads. Do not try to send a message or perform other long-running operations in the message-dispatch thread. If a message needs to be sent in response to a received message, then the message should be sent on a separate thread. On single-threaded client platforms such as Javascript, the message delivery can be scheduled for a later time using the <code>setTimeout()</code> function.</p>
 
 <h2 id="see-also">See Also</h2>
 
