@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Kaazing.org - Kaazing.org Docs</title>
+  <title>Kaazing.com - Kaazing WebSocket Gateway 5 Docs</title>
     <link rel="icon" href="/img/favicon.ico">
 
   <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/doc.css">
 
-  
+
 
 
 <!-- +++++++++++++++Syntax Highlighter Calls++++++++++++++++ -->
@@ -155,6 +155,11 @@
 </code></pre>
   </li>
 </ol>
+
+<span class="note"><b>Note:</b> For TCP and UDP URLs in <code>accept</code>, <code>tcp.bind</code>, <code>udp.bind</code>, and <code>protocol.transport</code> elements, you can use the name of a network interface in place of a hostname or IP address. For example, <code>&lt;accept&gt;tcp://@eth0:8123&lt;/accept&gt;</code> (Linux/Mac) and <code>&lt;tcp.bind&gt;[@Local Area Connection]:8123&lt;/tcp.bind&gt;</code> (Windows). Use square brackets around a subinterface name or when the name contains spaces (<code>&lt;tcp.bind&gt;[@eth0:1]:8123&lt;/tcp.bind&gt;</code>). Binding to an interface binds to all IP addresses defined on that interface (IPv4, IPv6).
+
+<p>By using interface names instead of IP address, the Gateway configuration file, gateway-config.xml, can be copied between Gateway cluster members without the need to update each cluster member’s configuration with its IP address.</p>
+</span>
 
 <h2 id="next-step">Next Step</h2>
 

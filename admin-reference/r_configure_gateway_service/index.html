@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Kaazing.org - Kaazing.org Docs</title>
+  <title>Kaazing.com - Kaazing WebSocket Gateway 5 Docs</title>
     <link rel="icon" href="/img/favicon.ico">
 
   <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/doc.css">
 
-  
+
 
 
 <!-- +++++++++++++++Syntax Highlighter Calls++++++++++++++++ -->
@@ -285,6 +285,11 @@
   <li>udp</li>
 </ul>
 
+<span class="note"><b>Note:</b> For TCP and UDP URLs in <code>accept</code>, <code>tcp.bind</code>, <code>udp.bind</code>, and <code>protocol.transport</code> elements, you can use the name of a network interface in place of a hostname or IP address. For example, <code>&lt;accept&gt;tcp://@eth0:8123&lt;/accept&gt;</code> (Linux/Mac) and <code>&lt;tcp.bind&gt;[@Local Area Connection]:8123&lt;/tcp.bind&gt;</code> (Windows). Use square brackets around a subinterface name or when the name contains spaces (<code>&lt;tcp.bind&gt;[@eth0:1]:8123&lt;/tcp.bind&gt;</code>). Binding to an interface binds to all IP addresses defined on that interface (IPv4, IPv6).
+
+<p>By using interface names instead of IP address, the Gateway configuration file, gateway-config.xml, can be copied between Gateway cluster members without the need to update each cluster member’s configuration with its IP address.</p>
+</span>
+
 <h3 id="accept">accept</h3>
 
 <p><strong>Required?</strong> Yes; <strong>Occurs:</strong> At least once.</p>
@@ -307,7 +312,7 @@
   <li>There is no default value for the accept element. You must configure it and specify the URI on which the service accepts connections.</li>
   <li>The Gateway is configured by default to provide services only to users on the same machine (<code>localhost</code>) as that on which it is running. To customize the Gateway for your environment, choose the appropriate type of service (for example, <code>balancer</code>, <code>broadcast</code>, <code>directory</code>, and so on) to signal the Gateway to accept incoming connections from clients using any supported URL scheme.</li>
   <li>
-    <p>Supported URL Schemes:&lt;/b&gt; When specifying URLs for the <code>accept</code> or <code>connect</code> elements, you can use <code>tcp://{hostname}:{port}</code> to make a basic TCP connection, or specify any of the supported protocol schemes:</p>
+    <p><a href="#supported-url-schemes">Supported URL schemes</a>:&lt;/b&gt; When specifying URLs for the <code>accept</code> or <code>connect</code> elements, you can use <code>tcp://{hostname}:{port}</code> to make a basic TCP connection, or specify any of the supported protocol schemes:</p>
 
     <ul>
       <li>ws</li>
@@ -338,7 +343,7 @@
   <li>There is no default value for the <code>connect</code> element. You must configure it and specify the URI on which the service makes a connection to the back-end service or message broker.</li>
   <li>The Gateway is configured by default to provide services only to users on the same machine (<code>localhost</code>) as that on which it is running. To customize the Gateway for your environment, choose the appropriate type of service (for example, <code>balancer</code>, <code>broadcast</code>, <code>echo</code>, and so on) to signal the Gateway to accept incoming connections from clients using any supported URL scheme.</li>
   <li>
-    <p>Supported URL Schemes:&lt;/b&gt; When specifying URLs for the <code>accept</code> or <code>connect</code> elements, you can use <code>tcp://{hostname}:{port}</code> to make a basic TCP connection, or specify any of the supported protocol schemes:</p>
+    <p><a href="#supported-url-schemes">Supported URL schemes</a>:&lt;/b&gt; When specifying URLs for the <code>accept</code> or <code>connect</code> elements, you can use <code>tcp://{hostname}:{port}</code> to make a basic TCP connection, or specify any of the supported protocol schemes:</p>
 
     <ul>
       <li>ws</li>
@@ -886,7 +891,7 @@
 </ul>
 
 <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;!-- This service connects only to the AMQP virtual host vhost1. --&gt;
-&lt;service&gt;  
+&lt;service&gt;
   &lt;accept&gt;ws://${gateway.hostname}:${gateway.port}/app1&lt;/accept&gt;
   &lt;connect&gt;pipe://vhost1&lt;/connect&gt;
 
@@ -964,7 +969,7 @@
 
 <p>The following example configures the accept URI with a public HTTP server address and configures the connect URI as a private server IP address. The example configuration specifies two accept URIs:</p>
 
-<pre><code>http://www.websocket.org 
+<pre><code>http://www.websocket.org
 http://websocket.org
 </code></pre>
 
@@ -973,19 +978,19 @@ http://websocket.org
 <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;name&gt;http-proxy&lt;/name&gt;
   &lt;description&gt;Http Proxy to websocket.org&lt;/description&gt;
-  
+
   &lt;accept&gt;http://www.websocket.org/&lt;/accept&gt;
   &lt;accept&gt;http://websocket.org/&lt;/accept&gt;
   &lt;connect&gt;http://174.129.224.73/&lt;/connect&gt;
-  
-  &lt;type&gt;http.proxy&lt;/type&gt; 
+
+  &lt;type&gt;http.proxy&lt;/type&gt;
 
   &lt;connect-options&gt;
     &lt;http.keepalive.connections&gt;1&lt;/http.keepalive.connections&gt;
-  &lt;/connect-options&gt;  
-  
+  &lt;/connect-options&gt;
+
   …
-  
+
 &lt;/service&gt;
 </code></pre>
 
@@ -1006,9 +1011,9 @@ http://websocket.org
   &lt;name&gt;JMS Minimum Level&lt;/name&gt; &lt;!-- the name of the service --&gt;
   &lt;accept&gt;ws://example.com:8001/jms-slow&lt;/accept&gt; &lt;!-- clients in the bottom tier connect using this URI --&gt;
   &lt;connect&gt;pipe://jms-common&lt;/connect&gt; &lt;!-- connections are piped to the JMS service with the accept pipe://jms-common --&gt;
-           
+
   &lt;type&gt;jms.proxy&lt;/type&gt; &lt;!-- this jms.proxy service is used for the bottom tier only --&gt;
-       
+
   &lt;accept-options&gt;
     &lt;tcp.maximum.outbound.rate&gt;1kB/s&lt;/tcp.maximum.outbound.rate&gt; &lt;!-- this element sets the outbound speed for the bottom tier --&gt;
   &lt;/accept-options&gt;
@@ -1026,9 +1031,9 @@ http://websocket.org
   &lt;name&gt;JMS Medium Level&lt;/name&gt; &lt;!-- the name of the service --&gt;
   &lt;accept&gt;ws://example.com:8001/jms-medium&lt;/accept&gt; &lt;!-- clients in the middle tier connect using this URI --&gt;
   &lt;connect&gt;pipe://jms-common&lt;/connect&gt; &lt;!-- connections are piped to the JMS service with the accept pipe://jms-common --&gt;
-           
+
   &lt;type&gt;jms.proxy&lt;/type&gt; &lt;!-- this jms.proxy service is used for the middle tier only --&gt;
-       
+
   &lt;accept-options&gt;
     &lt;tcp.maximum.outbound.rate&gt;20MB/s&lt;/tcp.maximum.outbound.rate&gt; &lt;!-- this element sets the outbound speed for the middle tier --&gt;
   &lt;/accept-options&gt;
@@ -1046,14 +1051,14 @@ http://websocket.org
   &lt;name&gt;JMS Common&lt;/name&gt; &lt;!-- the name of the service --&gt;
   &lt;accept&gt;pipe://jms-common&lt;/accept&gt; &lt;!-- matches the pipe URI in the connect elements of the jms.proxy services --&gt;
   &lt;accept&gt;ws://example.com:8001/jms&lt;/accept&gt; &lt;!-- normal, non-tiered connections will connect here --&gt;
-  
+
   &lt;type&gt;jms&lt;/type&gt;
-  
+
   &lt;properties&gt;
     &lt;connection.factory.name&gt;ConnectionFactory&lt;/connection.factory.name&gt;
     &lt;context.lookup.topic.formatdynamic&gt;Topics/%s&lt;/context.lookup.topic.format&gt;
     &lt;context.lookup.queue.format&gt;dynamicQueues/%s&lt;/context.lookup.queue.format&gt;
-  
+
     &lt;env.java.naming.factory.initial&gt;
       org.apache.activemq.jndi.ActiveMQInitialContextFactory
     &lt;/env.java.naming.factory.initial&gt;
@@ -1061,7 +1066,7 @@ http://websocket.org
       tcp://localhost:61616
     &lt;/env.java.naming.provider.url&gt;
   &lt;/properties&gt;
-  
+
   &lt;cross-site-constraint&gt;
     &lt;allow-origin&gt;*&lt;/allow-origin&gt;
   &lt;/cross-site-constraint&gt;
@@ -1269,6 +1274,11 @@ http://websocket.org
   <li><code>udp</code>: Specifies the User Datagram Protocol (UDP).</li>
 </ul>
 
+<span class="note"><b>Note:</b> For TCP and UDP URLs in <code>accept</code>, <code>tcp.bind</code>, <code>udp.bind</code>, and <code>protocol.transport</code> elements, you can use the name of a network interface in place of a hostname or IP address. For example, <code>&lt;accept&gt;tcp://@eth0:8123&lt;/accept&gt;</code> (Linux/Mac) and <code>&lt;tcp.bind&gt;[@Local Area Connection]:8123&lt;/tcp.bind&gt;</code> (Windows). Use square brackets around a subinterface name or when the name contains spaces (<code>&lt;tcp.bind&gt;[@eth0:1]:8123&lt;/tcp.bind&gt;</code>). Binding to an interface binds to all IP addresses defined on that interface (IPv4, IPv6).
+
+<p>By using interface names instead of IP address, the Gateway configuration file, gateway-config.xml, can be copied between Gateway cluster members without the need to update each cluster member’s configuration with its IP address.</p>
+</span>
+
 <p>See the <a href="../../internal-network/p_protocol_binding">Configure the Gateway on an Internal Network</a> document for more information about configuring the <code>protocol.bind</code> element.</p>
 
 <h5 id="example-binding-to-specific-ports">Example: Binding to Specific Ports</h5>
@@ -1359,6 +1369,11 @@ http://websocket.org
 &lt;/service&gt;
 </code></pre>
 
+<span class="note"><b>Note:</b> For TCP and UDP URLs in <code>accept</code>, <code>tcp.bind</code>, <code>udp.bind</code>, and <code>protocol.transport</code> elements, you can use the name of a network interface in place of a hostname or IP address. For example, <code>&lt;accept&gt;tcp://@eth0:8123&lt;/accept&gt;</code> (Linux/Mac) and <code>&lt;tcp.bind&gt;[@Local Area Connection]:8123&lt;/tcp.bind&gt;</code> (Windows). Use square brackets around a subinterface name or when the name contains spaces (<code>&lt;tcp.bind&gt;[@eth0:1]:8123&lt;/tcp.bind&gt;</code>). Binding to an interface binds to all IP addresses defined on that interface (IPv4, IPv6).
+
+<p>By using interface names instead of IP address, the Gateway configuration file, gateway-config.xml, can be copied between Gateway cluster members without the need to update each cluster member’s configuration with its IP address.</p>
+</span>
+
 <p>For more examples, see <a href="../../enterprise-shield/o_enterprise_shield_checklist">Configure Enterprise Shield™ with the Gateway</a>.</p>
 
 <h4 id="wsmaximummessagesize">ws.maximum.message.size</h4>
@@ -1411,9 +1426,9 @@ http://websocket.org
    . . .
   &lt;accept&gt;http://example.com:8000/&lt;/accept&gt;
   &lt;connect&gt;http://internal.example.com:7233/&lt;/connect&gt;
-  
+
   &lt;type&gt;http.proxy&lt;/type&gt;
-  
+
   &lt;connect-options&gt;
     &lt;http.keepalive&gt;disabled&lt;/http.keepalive&gt;
   &lt;/connect-options&gt;
@@ -1435,9 +1450,9 @@ http://websocket.org
    . . .
   &lt;accept&gt;http://example.com:8000/&lt;/accept&gt;
   &lt;connect&gt;http://internal.example.com:7233/&lt;/connect&gt;
-  
+
   &lt;type&gt;http.proxy&lt;/type&gt;
-	
+
   &lt;connect-options&gt;
     &lt;http.keepalive.connections&gt;1&lt;/http.keepalive.connections&gt;
   &lt;/connect-options&gt;
@@ -1460,7 +1475,7 @@ http://websocket.org
 <pre class="auto-links: false; brush: xml; toolbar: false;">&lt;service&gt;
   &lt;accept&gt;ws://localhost:8000/echo&lt;/accept&gt;
   &lt;accept&gt;wss://localhost:9000/echo&lt;/accept&gt;
-  . . . 
+  . . .
   &lt;accept-options&gt;
     &lt;http.keepalive.timeout&gt;120 seconds&lt;/http.keepalive.timeout&gt;
   &lt;/accept-options&gt;
