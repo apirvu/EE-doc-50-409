@@ -85,7 +85,7 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Secure Your Java and Android Clients</h1>
+<h1>Secure Your Java and Android Clients <a href="http://kaazing.com/doc/kaazing-glossary.html#enterprise-edition"><img src="../../images/enterprise-feature.png" title="This feature is available in Kaazing WebSocket Gateway - Enterprise Edition."></a></h1>
     <p>This topic provides information on how to add user authentication functionality to Java and Android clients. The Java and Android Client APIs use the same authentication classes and methods.</p>
     
                 <p>A challenge handler is a constructor used in an application to respond to authentication challenges from the Gateway when the application attempts to access a protected resource. Each of the resources protected by the Gateway is configured with a different authentication scheme (for example, Basic, Application Basic, Application Negotiate, or Application Token), and your application requires a challenge handler for each of the schemes that it will encounter or a single challenge handler that will respond to all challenges. Also, you can add a dispatch challenge handler to route challenges to specific challenge handlers according to the URI of the requested resource.</p>
@@ -205,7 +205,7 @@ wsFactory.setDefaultChallengeHandler(
         BasicChallengeHandler.create().setLoginHandler(loginHandler);
 </pre>
 
-<p><span class="note"><b>Note:</b> This example is taken from the out of the box Java Demo at <span class="uri">http://localhost:8001/demo/</span> and uses an extension of JDialog (javax.swing.JDialog). The source code for the out of the box demo is available in your installation of the Gateway: <span class="uri"><em>GATEWAY_HOME</em>/demo/java/.</span></span></p>
+<p><span class="note"><b>Note:</b> This example is taken from the out of the box Kaazing Android WebSocket Demo download (see <a href="../../about/setup-guide">Setting Up the Gateway and Clients</a>) and uses an extension of JDialog (javax.swing.JDialog). The source code for the out of the box demo is available in your download of the Kaazing Android WebSocket Client SDK</p>
         
 <h2><a name="create_challenge"></a>Creating a Custom Challenge Handler</h2>
 <p>There are two methods used in ChallengeHandler:</p>

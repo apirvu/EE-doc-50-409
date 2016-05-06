@@ -85,8 +85,8 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Secure Your Java and Android Clients</h1>
-    <p>This topic provides information on how to add user authentication functionality to Java and Android clients. The Java and Android Client APIs use the same authentication classes and methods.</p>
+<h1>Secure Your Java and Android Clients <a href="http://kaazing.com/doc/kaazing-glossary.html#enterprise-edition"><img src="../../images/enterprise-feature.png" title="This feature is available in Kaazing WebSocket Gateway - Enterprise Edition."></a></h1>
+    <p>This topic provides information on how to add user authentication functionality to Kaazing Java JMS and Android JMS clients. The Kaazing Java JMS and Android JMS Client APIs use the same authentication classes and methods.</p>
     
                 <p>A challenge handler is a constructor used in an application to respond to authentication challenges from the Gateway when the application attempts to access a protected resource. Each of the resources protected by the Gateway is configured with a different authentication scheme (for example, Basic, Application Basic, Application Negotiate, or Application Token), and your application requires a challenge handler for each of the schemes that it will encounter or a single challenge handler that will respond to all challenges. Also, you can add a dispatch challenge handler to route challenges to specific challenge handlers according to the URI of the requested resource.</p>
 
@@ -94,9 +94,7 @@
                 
                 <p>Before you add security to your clients, follow the steps in <a href="../../security/o_tls">Checklist: Secure Network Traffic with the Gateway</a> and <a href="../../../security/o_aaa_config_authentication">Checklist: Configure Authentication and Authorization</a> to set up security on Kaazing Gateway for your client. The authentication and authorization methods configured on the Gateway influence your client security implementation. In this procedure, we provide an example of the most common implementation.</p>
 
-<h2>Before You Begin</h2><p>This procedure is part of <a href="o_dev_java.html">Checklist: How to Build Java JMS Clients Using Kaazing Gateway</a>, that includes the following steps:</p><ol><li><a href="p_dev_java_client.html">Use the Kaazing Gateway Java JMS Client Library</a></li><li><strong>Secure Your Java and Android Clients</strong></li><li><a href="p_dev_java_tshoot.html">Troubleshoot Java JMS Clients</a></li><li><a href="p_dev_java_logging.html">Display Logs for the Java JMS Client</a></li></ol>
-
-<!-- <p><span class="note"><b>Note:</b> This procedure is also part of <a href="../dev-android/o_dev_android.html">Checklist: Build Android Clients Using Kaazing Gateway</a>.</span></p> -->
+<h2>Before You Begin</h2><p>This procedure is part of <a href="o_dev_java.html">Checklist: Build Java JMS Clients</a> and <a href="../dev-android/o_dev_android.html">Checklist: Build Android JMS Clients</a>.</p>
 
 <h2>To Secure Your Java and Android Clients</h2>
                 <p>This section includes the following topics:</p>

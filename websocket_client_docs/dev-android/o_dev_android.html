@@ -85,8 +85,8 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Checklist: Build Android Clients Using Kaazing Gateway</h1>
-<p>The following checklist provides the steps necessary to build clients to communicate with Kaazing Gateway:</p>
+<h1>Checklist: Build Android WebSocket Clients <a href="http://kaazing.com/doc/kaazing-glossary.html#enterprise-edition"><img src="../../images/enterprise-feature.png" title="This feature is available in Kaazing WebSocket Gateway - Enterprise Edition."></a></h1>
+<p>The following checklist provides the steps necessary to build Kaazing Android WebSocket clients to communicate with Kaazing Gateway:</p>
 
 <table class="checklist">
   <tr>
@@ -126,9 +126,7 @@
 <h2>WebSocket and Android</h2>
 <p>Android is an operating system used by touchscreen smart phones and tablets. Android clients are developed in the Java programming language using the Android software development kit (SDK). The SDK includes development tools, software libraries, and an Android device emulator.</p>
 
-<p>The officially supported integrated development environment (IDE) for Android development by Google is Eclipse using the Android Development Tools (ADT) plugin. To develop Android clients, download the <a href="http://developer.android.com/sdk/index.html">ADT Bundle</a> that includes both Eclipse and the ADT plugin.</p>
-
-<p>Kaazing Gateway provides an Android Client API to enable HTML5 WebSocket protocol communication in new or existing Android applications. For example, you can create an Android client to get streaming financial data from a back-end server using WebSocket. The following figure shows a high-level overview of the architecture:</p>
+<p>Kaazing WebSocket Gateway provides an Android WebSocket Client SDK to enable HTML5 WebSocket protocol communication in new or existing Android applications. For example, you can create an Android client to get streaming financial data from a back-end server using WebSocket. The following figure shows a high-level overview of the architecture:</p>
 
     <figure>
         <img src="../images/f-html5-android-client-web.png">
@@ -136,12 +134,13 @@
     </figure>
 
 <h2>Android and Server-Sent Events (SSE)</h2>
-<p>Kaazing Gateway Android Client API also provides support for Server-Sent Events (SSE). For information, see the <a href="../apidoc/client/android/gateway/com/kaazing/net/sse/package-summary.html">Android SSE API</a> and Java Client API topic <a href="../dev-java/p_dev_java_eventsource.html">Interact with Kaazing Gateway Using the EventSource API</a>.</p>
+<p>Kaazing WebSocket Gateway Android WebSocket Client SDK also provides support for Server-Sent Events (SSE). For information, see the <a href="../apidoc/client/android/gateway/com/kaazing/net/sse/package-summary.html">Android SSE API</a> and Java Client API topic <a href="../dev-java/p_dev_java_eventsource.html">Interact with Kaazing Gateway Using the EventSource API</a>.</p>
 
-<h2>Take a Look at the Android Client Demo</h2>
-<p>Before you start, take a look at an out of the box demo built using the Android Client API. The Android demo is part of the Kaazing Gateway bundle (<span class="uri"><em>GATEWAY_HOME</em>/demo/android/kaazing-android-demo</span>). To see this Android demo in action, perform the following steps:</p>
+<h2>Take a Look at the Android WebSocket Client Demo</h2>
+<p>Before you start, take a look at an out of the box demo built using the Android WebSocket Client API. The Android demo is part of the Kaazing Enterprise Android Client SDK download (<span class="uri">demos/ws</span>). To see this Android demo in action, perform the following steps:</p>
 
 <ol>
+    <li>Download the Kaazing Enterprise Android Client SDK as described in <a href="../../about/setup-guide">Setting Up the Gateway and Clients</a>.</li>
     <li>Download the Android ADT Bundle from <a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a>. The Android ADT Bundle includes the Eclipse IDE. To use the Android SDK with an existing Eclipse IDE, see <a href="http://developer.android.com/sdk/installing/index.html">http://developer.android.com/sdk/installing/index.html</a></li>
     <li>To set up the ADT Bundle, see <a href="http://developer.android.com/sdk/installing/bundle.html">http://developer.android.com/sdk/installing/bundle.html</a>.</li>
     <li>Launch Eclipse from the installed ADT Bundle.</li>
@@ -154,7 +153,7 @@
     <li>Expand the <strong>Android</strong> folder and click <strong>Existing Android Code Into Workspace</strong>, and then click <strong>Next</strong>.</li>
     <li>In <strong>Import Projects</strong>, for <strong>Root Directory</strong>, click <strong>Browse</strong>.</li>
     <li>Navigate to the Android Demo project files:
-        <span class="uri"><em>GATEWAY_HOME</em>/demo/android/echo-demo</span>
+        <span class="uri"><span class="uri">demos/ws</span></span>
     </li>
     <li>Click <strong>Open</strong>.</li>
     <li>In <strong>Import Projects</strong>, click <strong>Select All</strong> (to select the <strong>EchoActivity</strong> project), select <strong>Copy projects into workspace</strong>, and then click <strong>Finish</strong>.

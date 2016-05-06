@@ -85,19 +85,19 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Use the Kaazing Gateway Objective-C JMS Client API</h1>
-<p>In this procedure, you will learn how to create an iOS JMS client using the Kaazing Gateway Objective-C JMS client library. You will learn how to create an Xcode project and add the necessary frameworks in order to use the Objective-C JMS client library. You will learn how to implement the Objective-C JMS client library methods to enable your client to send and receive messages to your Apache ActiveMQ through the Gateway.</p>
+<h1>Use the Kaazing Objective-C JMS Client API <a href="http://kaazing.com/doc/kaazing-glossary.html#enterprise-edition"><img src="../../images/enterprise-feature.png" title="This feature is available in Kaazing WebSocket Gateway - Enterprise Edition."></a></h1>
+<p>In this procedure, you will learn how to create an iOS JMS client using the Kaazing Enterprise Objective-C Client SDK. You will learn how to create an Xcode project and add the necessary frameworks in order to use the Objective-C JMS client API. You will learn how to implement the Objective-C JMS client API methods to enable your client to send and receive messages to a JMS-compliant message broker over WebSocket through a local or publicly available Gateway.</p>
 
 <p>For information about deploying your Objective-C (iOS) client on devices with the arm64 architecture, see <a href="#arm64">Convert Your Objective-C (iOS) Client to a 64-Bit Runtime Environment</a>.</p>
 
 
-<p><span class="note"><strong>Note</strong>: For this how-to, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on tcp://localhost:61613. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
+<p><span class="note"><strong>Note</strong>: For this how-to, we describe how to use both a local and a publicly available Gateway and JMS broker. The public address is <code>wss://sandbox.kaazing.net/jms</code>. Locally, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the broker on <code>tcp://localhost:61613</code>. You can configure the <code>connect</code> URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
 
 
 <p>In this procedure you will do the following:</p>
 <ol>
-<li>Set up your development environment using the Gateway and Xcode 4.4 or later.</li>
-<li>Review the components that will be used to create the Objective-C client.</li>
+<li>Set up your development environment using the Gateway (optional) and Xcode 4.4 or later.</li>
+<li>Review the components that will be used to create the Objective-C JMS client.</li>
 <li>Create a new Xcode project.</li>
 <li>Add the <strong>Kaazing Gateway Objective-C framework</strong>.</li>
 <li>Add <strong>CFNetwork.framework</strong> to the project.</li>
@@ -108,7 +108,6 @@
 <li>Add the <strong>MessageListener</strong> to the <strong>JMSViewController.m</strong> implementation file.</li>
 <li>Add the <strong>ExceptionListener</strong> to the <strong>JMSViewController.m</strong> implementation file.</li>
 <li>Update the <strong>JMSViewController</strong> class in <strong>JMSViewController.m</strong> to use the <strong>StompConnectionListener</strong>, <strong>MessageListener</strong>, and <strong>ExceptionListener</strong> code.</li>
-<li>Start Apache ActiveMQ and Kaazing Gateway.</li>
 <li>Build and run the client in the iPhone Simulator.</li>
 </ol>
 
@@ -124,15 +123,7 @@
 </span>
 
 <h2>Before You Begin</h2>
-<p>This procedure is part of <a href="o_dev_objc.html">Checklist: Build Objective-C (iOS) JMS Clients Using Kaazing Gateway</a>, that includes the following steps:</p>
-
-<ol>
-<li><strong>Use the Objective-C JMS Client API</strong></li>
-<li><a href="p_dev_objc_secure.html">Secure Your Objective-C Client</a></li>
-<li><a href="p_dev_objc_tshoot.html">Troubleshoot Your Objective-C JMS Client</a></li>
-<!-- <li><a href="p_dev_objc_apns.html">Add APNs Support to Your Objective-C JMS Client</a></li> -->
-<li><a href="p_dev_objc_log.html">Display Logs for the Objective-C JMS Client</a></li>
-</ol>
+<p>This procedure is part of <a href="o_dev_objc.html">Checklist: Build Objective-C (iOS) JMS Clients</a>.</p>
 
 <p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../../release-notes.html">Release Notes</a>.</span></p>
 
@@ -141,7 +132,8 @@
 <ol>
     <li>Set up your development environment using the following:
         <ul class="arrow-2">
-            <li>Download and install Kaazing Gateway, as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
+            <li>Download the Kaazing Enterprise Objective-C Client SDK, as described in <a href="../../about/setup-guide">Setting Up the Gateway and Clients</a>.</li>
+            <li>If you are going to test your Android JMS client against a local Gateway and JMS broker, install the Gateway as described in <a href="../../about/setup-guide">Setting Up the Gateway and Clients</a>. </li>
             <li>Download and install Apple <a href="https://developer.apple.com/xcode/">Xcode 4.4</a> or later (requires Mac OS X 10.7.4 or later). The Xcode bundle includes the iOS SDK.</li>
         </ul>
     </li>
@@ -190,9 +182,9 @@ In this file, user interface objects and outlet connections (connections between
 
     <li><p>Next, add the Kaazing Gateway Objective-C framework to the project.</p>
         <ol type="a">
-            <li><p>Navigate to the location of the Kaazing Gateway Objective-C frameworks:</p>
-            <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/ios/</span></li>
-            <li>Double-click the <strong>KMStompJMS.dmg</strong> and <strong>KGWebSocket.dmg</strong> images to mount them.</li>
+            <li><p>Navigate to the location of your downloaded Kaazing Enterprise Objective-C Client SDK.</p>
+            </li>
+            <li>In the <code>lib</code> folder, double-click the <strong>KMStompJMS.dmg</strong> and <strong>KGWebSocket.dmg</strong> images to mount them.</li>
             <li>Drag the <strong>KGWebSocket.framework</strong> folder from the mounted volume into the <strong>Frameworks</strong> folder in the Xcode project navigator.</li>
             <li><p>In the <strong>Choose options for adding these files</strong> dialog that appears, enable the <strong>Copy items into destination group’s folder</strong> checkbox, select your project in <strong>Add to targets</strong>, and click <strong>Finish</strong>.</p>
             <li>Repeat steps c and d for the <strong>KMStompJMS.framework</strong>.</li>
@@ -235,7 +227,7 @@ In this file, user interface objects and outlet connections (connections between
                 <table class="reference">
                     <tr><th width="100px">Control</th><th width="350px">Purpose</th><th>Value</th></tr>
                     <tr><td>Label</td><td>URI text label</td><td><span class="code_inline">URI:</span></td></tr>
-                    <tr><td>Text Field</td><td>Field where users enter a WebSocket address</td><td><span class="code_inline">ws://localhost:8001/jms</span></td></tr>
+                    <tr><td>Text Field</td><td>Field where users enter a WebSocket address</td><td><span class="code_inline">wss://sandbox.kaazing.net/jms</span></td></tr>
                     <tr><td>Label</td><td>Destination label</td><td><span class="code_inline">Destination:</span></td></tr>
                     <tr><td>Button</td><td>Connect button</td><td><span class="code_inline">Connect</span></td></tr>
                     <tr><td>Button</td><td>Subscribe button</td><td><span class="code_inline">Subscribe</span></td></tr>
@@ -248,7 +240,7 @@ In this file, user interface objects and outlet connections (connections between
                 </table>
                 <p>When you are finished, the scene should look like the following:</p>
                     <figure>
-                        <img src="../../images/dev-ios-client-view.jpg">
+                        <img src="../images/dev-ios-client-view.jpg">
                     <figcaption><strong>Figure: Completed View Controller Scene</strong></figcaption>
                     </figure>
             </li>
@@ -296,7 +288,7 @@ automatically */
         <p>When you Control-drag the UI controls in the <span class="code_inline">JMSViewController</span>, the popover control appears:</p>
 
           <figure>
-            <img src="../../images/dev-ios-popover-control.png">
+            <img src="../images/dev-ios-popover-control.png">
           <figcaption><strong>Figure: The Xcode popover control</strong></figcaption>
           </figure>
 
@@ -315,9 +307,9 @@ automatically */
         </ol>
     </li>
     <li><p>Add the <!-- APNs --> files <strong>JMSAppDelegate.h</strong> and <strong>JMSAppDelegate.m</strong> to the project. <!-- The APNs functionality is discussed in another topic, <a href="p_dev_objc_apns.html" title="Kaazing Developer Network">Add APNs Support to Your Objective-C JMS Client</a>, but the code you will add in the following steps includes some APNs functionality and without <strong>JMSAppDelegate.h</strong> and <strong>JMSAppDelegate.m</strong> Xcode will throw errors during building. --></p>
-    <p>To add these files, drag them from <span class="uri"><em>GATEWAY_HOME</em>/demo/ios/src/jms/JMSDemo</span> to the <strong>JMSDemo</strong> project folder in Xcode.</p>
+    <p>To add these files, drag them from the Kaazing Enterprise Objective-C Client SDK location <span class="uri">demos/jms/src/JMSDemo</span> to the <strong>JMSDemo</strong> project folder in Xcode.</p>
   </li>
-    <li><p>In Xcode, click <strong>JMSViewController.m</strong>. You are going to modify this file to manage JMS communication to the Apache ActiveMQ via the Gateway.</p></li>
+    <li><p>In Xcode, click <strong>JMSViewController.m</strong>. You are going to modify this file to manage JMS communication to the JMS broker via the Gateway.</p></li>
 
   <li><p>Replace the code in <strong>JMSViewController.m</strong> with the following code sample. The new code includes the following changes:</p>
     <ol type="a">
@@ -943,37 +935,6 @@ KMMessageConsumer        *consumer = nil;
 
 @end
 </pre>
-    <li>Start Apache ActiveMQ. For steps on starting Apache ActiveMQ, see the setup information for Apache ActiveMQ.</li>
-    <li><p>Confirm that the Kaazing Gateway has the default <span class="code_inline">jms</span> service in <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>, and then start the Gateway.</p>
-<pre class="brush: xml; toolbar: false;">
-&lt;service&gt;
-    &lt;accept&gt;ws://build-macmini3.kaazing.test:${gateway.extras.port}/jms&lt;/accept&gt;
-    &lt;type&gt;jms&lt;/type&gt;
-    &lt;properties&gt;
-        &lt;connection.factory.name&gt;ConnectionFactory&lt;/connection.factory.name&gt;
-        &lt;context.lookup.topic.format&gt;dynamicTopics/%s&lt;/context.lookup.topic.format&gt;
-        &lt;context.lookup.queue.format&gt;dynamicQueues/%s&lt;/context.lookup.queue.format&gt;
-        &lt;env.java.naming.factory.initial&gt;
-        org.apache.activemq.jndi.ActiveMQInitialContextFactory
-        &lt;/env.java.naming.factory.initial&gt;
-        &lt;env.java.naming.provider.url&gt;
-        tcp://localhost:61616
-        &lt;/env.java.naming.provider.url&gt;
-    &lt;/properties&gt;
-
-    &lt;realm-name&gt;demo&lt;/realm-name&gt;
-    &lt;!--
-    &lt;authorization-constraint&gt;
-     &lt;require-role&gt;AUTHORIZED&lt;/require-role&gt;
-    &lt;/authorization-constraint&gt;
-    --&gt;
-    &lt;cross-site-constraint&gt;
-         &lt;allow-origin&gt;http://build-macmini3.kaazing.test:${gateway.extras.port}&lt;/allow-origin&gt;
-    &lt;/cross-site-constraint&gt;
-&lt;/service&gt;
-</pre>
-
-    </li>
     <li><p>Build and run the client in the iPhone Simulator.</p>
         <ol type="a">
             <li>In the <strong>Scheme</strong> menu, select <strong>iPhone 5.1 Simulator</strong> (you might have a more recent version such as iPhone 6.1).

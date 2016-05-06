@@ -85,13 +85,13 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Display Logs for the Objective-C Client</h1>
-<p>In this procedure, you will learn how to gather data on your Kaazing Gateway Objective-C client.</p>
+<h1>Display Logs for the Objective-C WebSocket Client</h1>
+<p>In this procedure, you will learn how to gather data on your Kaazing Objective-C WebSocket client.</p>
 
 <h2>Before You Begin</h2>
 <p>This procedure is part of Checklist: <a href="o_dev_objc.html">Build Objective-C (iOS) Clients Using Kaazing Gateway</a>:</p>
 <ol>
-<li><a href="p_dev_objc_client.html">Use the Kaazing Gateway Objective-C Client API</a></li>
+<li><a href="p_dev_objc_client.html">Use the Kaazing Gateway Objective-C WebSocket Client API</a></li>
 <li><a href="p_dev_objc_secure.html">Secure Your Objective-C Client</a></li>
 <li><strong>Display Logs for the Objective-C Client</strong></li>
 <li><a href="p_dev_objc_tshoot.html">Troubleshoot Your Objective-C Client</a></li>
@@ -102,8 +102,7 @@
 <h2>To Display Logs for the Objective-C Client</h2>
 <p>
 <ol>
-<li>Build your Objective-C client, as described in <a href="o_dev_objc.html">Checklist: Build Objective-C (iOS) Clients Using Kaazing Gateway</a>.</li>
-<li><p>Add the following line into one of the existing functions, such as <code>viewDidLoad()</code>:</p>
+<li><p>In your Objective-C cleint, add the following line into one of the existing functions, such as <code>viewDidLoad()</code>:</p>
 <p><span class="uri">KGTracerDebug = YES;</span></p>
 <p>For example:</p>
 <pre class="auto-links: false; brush: java; toolbar: false; highlight:[12];">

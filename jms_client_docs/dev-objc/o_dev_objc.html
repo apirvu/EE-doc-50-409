@@ -85,7 +85,7 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Checklist: Build Objective-C (iOS) JMS Clients Using Kaazing Gateway <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h1>
+<h1>Checklist: Build Objective-C (iOS) JMS Clients <a href="http://kaazing.com/doc/kaazing-glossary.html#enterprise-edition"><img src="../../images/enterprise-feature.png" title="This feature is available in Kaazing WebSocket Gateway - Enterprise Edition."></a></h1>
 <p>This checklist provides the steps necessary to create an iOS JMS client using the Kaazing Gateway Objective-C JMS client library:</p>
 
 <table class="checklist">
@@ -101,7 +101,7 @@
   </tr>
   <tr>
     <td>2</td>
-    <td>Learn how to use the Objective-C JMS Client API and the supported APIs.</td>
+    <td>Learn how to use the Kaazing Objective-C JMS Client API.</td>
     <td><a href="p_dev_objc_client.html">Use the Kaazing Gateway Objective-C JMS Client API</a></td>
   </tr>
   <tr>
@@ -111,7 +111,7 @@
   </tr>
   <tr>
     <td>4</td>
-    <td>Troubleshoot the most common issues that occur when using Objective-C clients.</td>
+    <td>Troubleshoot the most common issues that occur when using Kaazing Objective-C clients.</td>
     <td><a href="p_dev_objc_tshoot.html">Troubleshoot Your Objective-C JMS Client</a></td>
   </tr>
   <!-- <tr>
@@ -121,32 +121,31 @@
   </tr> -->
   <tr>
     <td>5</td>
-    <td>Learn how to gather data on Kaazing Gateway <br>Objective-C client.</td>
+    <td>Learn how to gather data on Kaazing Objective-C clients.</td>
     <td><a href="p_dev_objc_log.html">Display Logs for the Objective-C JMS Client</a></td>
   </tr>
 </table>     
 
 <h2>Introduction</h2>
-<p>In this how-to, you will learn how to use the Kaazing Gateway Objective-C client libraries available in Kaazing Gateway to enable your iOS client to communicate with Apache ActiveMQ  (or any JMS-compliant message broker) using Objective-C.</p>
-
-<p>This document contains information for an Objective-C developer who wants to add Objective-C to an iOS client to enable communication with Apache ActiveMQ (or any JMS-compliant message broker) through the Gateway.</p>
+<p>In this how-to, you will learn how to use the Kaazing Objective-C client libraries available in the Kaazing Enterprise Objective-C Client SDK to enable your iOS client to communicate with any JMS-compliant message broker over WebSocket and JMS.</p>
 
 <p>For more information, see <a href="../apidoc/client/ios/jms/KMStompJMS/index.html">Objective-C JMS Client API</a>.</p>
 
-<h2>Overview of the Kaazing Gateway JMS Client Libraries</h2>
-<p>Kaazing Gateway includes JMS client libraries, which allow clients to subscribe from and publish messages to Apache ActiveMQ (or any JMS-compliant message broker). With the Kaazing Gateway JMS client libraries, you can leverage WebSocket in your client by building a client. This WebSocket client then enables communication between your client and the Apache ActiveMQ, as shown in the following figure:</p>
+<h2>Overview of the Kaazing Objective-C JMS Client API</h2>
+
+<p>The Kaazing Enterprise Objective-C Client SDK includes JMS client libraries, which allow clients to subscribe and publish messages to any JMS-compliant message broker. With the Kaazing Objective-C JMS client libraries, you can leverage WebSocket and JMS in your client. The Kaazing WebSocket Gateway then enables communication between your client and a JMS-compliant message broker, as shown in the following figure:</p>
 
     <figure>
         <img src="../images/f-stomp-jms-objC-client.png">
-    <figcaption><strong>Figure: Enable Communication Between Your Client and Apache ActiveMQ</strong></figcaption>    
+    <figcaption><strong>Figure: Enable Communication Between Your Client and Message Broker</strong></figcaption>    
     </figure>
 
-<h2>About the Kaazing Gateway Objective-C JMS Client API</h2>
-<p>Kaazing Gateway includes an Objective-C JMS Client API that enables you to use Objective-C to create JMS-based clients specifically for your iOS clients. As an Objective-C developer, you can use this API to publish and subscribe to JMS-based messages between your client and Apache ActiveMQ.</p>
+<h2>About the Kaazing Objective-C JMS Client API</h2>
+<p>The Kaazing Enterprise Objective-C Client SDK includes an Objective-C JMS Client API that enables you to use Objective-C to create JMS-based clients specifically for your iOS devices. As an Objective-C developer, you can use this API to publish and subscribe to JMS-based messages between your client and a JMS-compliant message broker.</p>
 
 <p>The Objective-C JMS Client API exposes capabilities similar to the Java Message Service (JMS) API in Java, including the JMS concepts of connection, session, destination, message consumer, and message producer. Refer to the JMS API documentation, located at <a href="http://www.oracle.com/technetwork/java/docs-136352.html">http://www.oracle.com/technetwork/java/docs-136352.html</a>, for specific information about how to use each of the interfaces.</p>
 
-<h3><a name="messagebroker" id="messagebroker"></a>Overview of Apache ActiveMQ</h3><p>Apache ActiveMQ is an open source message broker and JMS provider developed, distributed, and licensed by the Apache Foundation. Apache ActiveMQ provides a publish-subscribe model based on the Java Message Service (JMS) specification. It is  a  highly viable, light-weight solution  for both queue-based peer-to-peer messaging and topic-based  publish-subscribe communication. Refer to <a href="http://activemq.apache.org/" class="uri">http://activemq.apache.org/</a> for more information about Apache ActiveMQ.</p><p><span class="note"><strong>Note</strong>: For this how-to, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on port 61616. You can configure the connect URL in the file <span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
+<!-- <h3><a name="messagebroker" id="messagebroker"></a>Overview of Apache ActiveMQ</h3><p>Apache ActiveMQ is an open source message broker and JMS provider developed, distributed, and licensed by the Apache Foundation. Apache ActiveMQ provides a publish-subscribe model based on the Java Message Service (JMS) specification. It is  a  highly viable, light-weight solution  for both queue-based peer-to-peer messaging and topic-based  publish-subscribe communication. Refer to <a href="http://activemq.apache.org/" class="uri">http://activemq.apache.org/</a> for more information about Apache ActiveMQ.</p><p><span class="note"><strong>Note</strong>: For this how-to, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the server on port 61616. You can configure the connect URL in the file <span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p> -->
 
 
                   </section>

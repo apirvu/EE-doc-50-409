@@ -85,24 +85,323 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Use the Kaazing Gateway Android Client API</h1>
+<h1>Use the Kaazing Android WebSocket Client API <a href="http://kaazing.com/doc/kaazing-glossary.html#enterprise-edition"><img src="../../images/enterprise-feature.png" title="This feature is available in Kaazing WebSocket Gateway - Enterprise Edition."></a></h1>
 
-<p>This procedure describes how you can use the Android Client API to create an Android client that connects to and sends and receives message from the Echo service running on the Kaazing Gateway. This API allows you to take advantage of the WebSocket standard as described in the <a href="http://www.w3.org/TR/websockets/">HTML5 specification</a>.</p>
+<p>This procedure describes how you can use the Android Client API to create an Android client that connects to and sends and receives message from the Echo service running on the public Kaazing WebSocket Gateway at <code>ws://echo.websocket.org</code>. This API allows you to take advantage of the WebSocket standard as described in the <a href="http://www.w3.org/TR/websockets/">HTML5 specification</a>.</p>
 
-<p>The Android Client API is nearly identical to the Java API and you can review the Java API information in <a href="../dev-java/p_dev_java_websocket.html">Interact with Kaazing Gateway Using the WebSocket API</a> to understand the general functionality of both APIs:</p>
-<ul>
-    <li><a href="../dev-java/p_dev_java_websocket.html#useAPI">To Use the WebSocket API in Java</a></li>
-    <li><a href="../dev-java/p_dev_java_websocket.html#websocket">WebSocket and WsURLConnection</a></li>
-    <li><a href="../dev-java/p_dev_java_websocket.html#URLFactory">URLFactory</a></li>
-    <li><a href="../dev-java/p_dev_java_websocket.html#WebSocketFactory">Setting and Overriding Defaults on the WebSocketFactory</a></li>
-    <li><a href="../dev-java/p_dev_java_websocket.html#Binary">Methods for Text and Binary Messages</a></li>
+<p>To jump right to the procedure, see <a href="#build-android-demo">Build the Android Client API WebSocket Demo</a></p>
+
+<p>The primary functionality of the Android WebSocket Client API is described here:</p>
+<ul class="arrow-2">
+<li><a href="#useAPI">To Use the WebSocket API in Android or Java</a></li>
+<li><a href="#websocket">WebSocket and WsURLConnection</a></li>
+<li><a href="#URLFactory">URLFactory</a></li>
+<li><a href="#WebSocketFactory">Setting and Overriding Defaults on the WebSocketFactory</a></li>
+<li><a href="#Binary">Methods for Text and Binary Messages</a></li>
 </ul>
+
 
 <p>Refer to the <a href="../apidoc/client/android/gateway/index.html">Android Client API</a> documentation for a complete description of all of the available methods.</p>
 
-<p>In this procedure you will do the following:</p>
+<h2>Before You Begin</h2>
+<p>This procedure is part of <a href="o_dev_android.html">Checklist: Build Android Clients Using Kaazing Gateway</a>:</p>
 <ol>
-    <li><a href="#Install">Install the Android Client API.</a></li>
+    <li><strong>Use the Kaazing Gateway Android Client API</strong></li>
+    <li><a href="../dev-java/p_dev_java_secure.html">Secure Your Java and Android Clients</a></li>
+    <li><a href="p_dev_android_log.html">Display Logs for the Android Client</a></li>
+</ol>
+
+<p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../release-notes.html">Release Notes</a>.</span></p>
+
+
+<h2><a name="useAPI"></a>To Use the WebSocket API in Android or Java</h2>
+<ol>
+    <li>Add the necessary import statements:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+import com.kaazing.net.ws.WebSocket;
+import com.kaazing.net.ws.WebSocketFactory;
+import com.kaazing.net.ws.WebSocketMessageReader;
+import com.kaazing.net.ws.WebSocketMessageType;
+import com.kaazing.net.ws.WebSocketMessageWriter;
+</pre>
+    </li>
+    
+    <li>Create a WebSocket object and connect to a server:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+wsFactory = WebSocketFactory.createWebSocketFactory();
+ws = wsFactory.createWebSocket(URI.create("ws://example.com:8001/path"));
+ws.connect(); // This will block or throw an exception if failed.
+</pre>
+    </li>
+    
+    <li>To send messages, add a <span class="uri">WebSocketMessageWriter</span> object:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+WebSocketMessageWriter writer = ws.getMessageWriter();
+String text = "Hello WebSocket!";
+writer.writeText(text);   // Send text message
+</pre>
+    </li>
+    
+    <li>To receive or consume messages, add <span class="uri">WebSocket</span> and <span class="uri">WebSocketMessageReader</span> objects:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+wsFactory = WebSocketFactory.createWebSocketFactory();
+ws = wsFactory.createWebSocket(URI.create("ws://example.com:8001/path"));
+ws.connect(); // This will block or throw an exception if failed.
+
+WebSocketMessageReader reader = ws.getMessageReader();
+WebSocketMessageType type = null; // Block till a message arrives
+  // Loop till the connection goes away
+  while ((type =  reader.next()) != WebSocketMessageType.EOS) {
+    switch (type) { // Handle both text and binary messages
+      case TEXT:
+        CharSequence text = reader.getText();
+        log("RECEIVED TEXT MESSAGE: " + text.toString());
+        break;
+      case BINARY:
+        ByteBuffer buffer = reader.getBinary();
+        log("RECEIVED BINARY MESSAGE: " + getHexDump(buffer));
+        break;
+    }
+}
+</pre>
+<p><span class="note"><b>Note:</b> The WebSocket connection is created for both the send and receive functions (<span class="uri">ws.connect()</span>). These examples are used because most clients will either send <em>or</em> receive messages. If your client both sends <em>and</em> receives messages, you would only need to create a single WebSocket connection.</span></p>
+
+<p>Here is an example using a for loop to alternate between text and binary messages, and the code is placed within try catch blocks:</p>
+
+<pre class="auto-links: false; brush: java; toolbar: false;">
+try {
+    // Create a new WebSocket object
+    wsFactory = WebSocketFactory.createWebSocketFactory();
+    ws = wsFactory.createWebSocket(URI.create("ws://example.com:8001/path"));
+    ws.connect(); // This will block or throw an exception if failed.
+  
+     /* Use the WebSocketMessageWriter class method getMessageWriter() 
+     to send text and binary messages */ 
+     WebSocketMessageWriter writer = ws.getMessageWriter();
+
+     // Send messages using a for loop to alternate between text and binary messages
+     for (int i = 0; i &lt; 100; i++) {
+         String text = "Hello WebSocket - " + i;
+         // For even numbered loops, send text
+         if (( i %2) == 0) {
+             writer.writeText(text);   // Send text message
+         }
+         else {
+             // For odd numbered loops, send binary
+             ByteBuffer buffer = ByteBuffer.wrap(text.getBytes());
+             writer.writeBinary(buffer);   // Send binary message
+         }
+     }    
+     ws.close();
+ }
+catch (Exception ex) {
+    ex.printStackTrace();
+}
+</pre>
+
+<p>Here is how to receive messages on the consumer side using a while loop and switch statement:</p>
+
+<pre class="auto-links: false; brush: java; toolbar: false;">
+try {
+    // Create a new WebSocket object
+    wsFactory = WebSocketFactory.createWebSocketFactory();
+    ws = wsFactory.createWebSocket(URI.create("ws://example.com:8001/path"));
+    ws.connect(); // This will block or throw an exception if failed.
+
+     // Use the getMessageReader() method    
+     WebSocketMessageReader reader = ws.getMessageReader();
+
+     WebSocketMessageType type = null; // Block until a message arrives
+     while ((type =  reader.next()) != WebSocketMessageType.EOS) { // Loop until the connection is closed
+         switch (type) {
+             // Run if type is TEXT
+             case TEXT:
+                 CharSequence text = reader.getText();
+                  log("RECEIVED TEXT MESSAGE: " + text.toString());
+                  break;
+
+             // Run if type is BINARY
+             case BINARY:
+                 ByteBuffer buffer = reader.getBinary();
+                  log("RECEIVED BINARY MESSAGE: " + getHexDump(data)); // see getHexDump() below
+                  break;
+         }
+     }
+     ws.close();
+ }
+catch (Exception ex){
+   ex.printStackTrace();
+}
+
+private String getHexDump(ByteBuffer buf) {
+    if (buf.position() == buf.limit()) {
+        return "empty";
+    }
+
+    StringBuilder hexDump = new StringBuilder();
+    for (int i = buf.position(); i &lt; buf.limit(); i++) {
+        hexDump.append(Integer.toHexString(buf.get(i)&amp;0xFF)).append(&#x27; &#x27;);
+    }
+    return hexDump.toString();
+}
+
+</pre>
+    </li>
+</ol>
+
+<h2><a name="websocket"></a>WebSocket and WsURLConnection</h2>
+<p>The Kaazing Gateway Android WebSocket API offers two options for creating and using WebSocket connections to enable developers to leverage their java.net Socket or URL experience:</p>
+
+<ul class="arrow-2">
+<li><strong>WebSocket</strong> - this class and its methods are provided for developers familiar with the <a href="http://docs.oracle.com/javase/7/docs/api/java/net/Socket.html">Socket</a> class in the java.net package. It implements a socket for stream-based interprocess communication over the Web.</li>
+<li><strong>WsURLConnection</strong> - this class is an extension of the <a href="http://docs.oracle.com/javase/7/docs/api/java/net/URLConnection.html">URLConnection</a> class in the java.net package. It defines a network connection to an object specified by a URL. WsURLConnection adds WebSocket support to URLConnection, allowing you to create, connect and use WebSocket connections in addition to the default URLConnection subclasses HttpURLConnection and JarURLConnection. You can use all of the methods in URLConnection and the additional methods included in the WsURLConnection extension.</li>
+</ul>
+
+<h3>WebSocket Class</h3>
+<p>The WebSocket class is demonstrated in the <a href="#build-android-demo">Build the Android Client API WebSocket Demo</a> example, but there are some additional elements to be aware of such as methods for text and/or binary WebSocket messages. These methods are described in <a href="#Binary">Methods for Text and Binary Messages</a>.</p>
+
+<h3>WsURLConnection</h3>
+<p>The WsURLConnection class is provided for developers accustomed to creating an URLConnection object and then using <a href="http://docs.oracle.com/javase/7/docs/api/java/io/InputStream.html">java.io.InputStream</a> and <a href="http://docs.oracle.com/javase/7/docs/api/java/io/OutputStream.html">java.io.OutputStream</a> classes from java.io to receive and send data. The WsURLConnection extends URLConnection to enable you to use WebSocket-specific features and provide bidirectional communication.</p>
+
+<p>The following example demonstrates how WsURLConnection enables you to create a URLConnection object for a WebSocket URL:</p>
+
+<pre class="auto-links: false; brush: java; toolbar: false;">
+URL location = URLFactory.createURL("ws://localhost:8000/echo");
+URLConnection urlConn = location.openConnection();
+InputStream inStream = urlConn.getInputStream();
+</pre>
+
+<p>There are two important things to note in this example:</p>
+
+<ul class="arrow-2">
+    <li>This example uses the URLFactory class which enables you to instantiate URL objects that support custom protocols and schemes, such as the WebSocket protocol’s ws:// and wss://. <a href="http://docs.oracle.com/javase/7/docs/api/java/net/URL.html">java.net.URL</a> has native support for http, https, ftp, file, and jar protocols only.</li> 
+    <li>The URLConnection object created in the example is an instance of the WsURLConnection class. Since <span class="uri">getInputStream()</span> and <span class="uri">getOutputStream()</span> methods are available on URLConnection, there was no need to downcast URLConnection to WsURLConnection. However, if you need to access methods that are not available on URLConnection, but are only available on WsURLConnection, you can <a href="http://en.wikipedia.org/wiki/Downcasting">downcast</a> the <span class="uri">urlConn</span> object in the example and then invoke <span class="uri">getMessageReader()</span>:
+<pre class="auto-links: false; brush: java; toolbar: false;">
+URL location = URLFactory.createURL("ws://localhost:8000/echo");
+URLConnection urlConn = location.openConnection();
+WsURLConnection  wsConn = (WsURLConnection) urlConn;   // Downcasting to WsURLConnection
+WebSocketMessageReader msgReader = wsConn.geMessageReader();
+</pre>
+    </li> 
+</ul>
+
+<p>With WsURLConnection and URLFactory, you can continue to create URLConnection objects as you have previously and simply use WebSocket to take advantage of additional methods provided by WsURLConnection.</p>
+
+<h2><a name="URLFactory"></a>URLFactory</h2>
+<p>The URLFactory class is included to support custom protocols and schemes not supported by java.net.URL. Namely, the WebSocket protocol’s ws:// and wss:// schemes. java.net.URL supports http, https, ftp, file, and jar protocols only and the java.net.URLStreamHandlerFactory class registration is not extensible. After importing the URLFactory class, one of the <span class="uri">createURL()</span> methods is used to create a WebSocket URL object from either:<br> 
+    <ul class="arrow-2">
+    <li>The String representation, by parsing the given specification within a specified context.</li>
+    <li>A specified protocol name, host name, and file name.</li>
+    <li>A specified protocol name, host name, port number, and file name.</li>
+    </ul>
+</p>
+
+<p>For more information about the URLFactory class, see the Kaazing Gateway <a href="../apidoc/client/java/gateway/index.html">Java WebSocket API</a>.</p>
+
+<h2><a name="WebSocketFactory"></a>Setting and Overriding Defaults on the WebSocketFactory</h2>
+
+<p>You can set a default redirect-policy on the WebSocketFactory. All the WebSockets created using that factory automatically inherit the default. You can then override the defaults on an individual WebSocket, if desired. Unlike the HttpURLConnection in the Java SDK that uses the boolean InstanceFollowRedirects method to specify whether the WebSocket follows redirects automatically, the Kaazing Android WebSocket Client API also provides the following options:</p>
+
+<table class="reference">
+  <tr>
+    <th scope="col">Option</th>
+    <th scope="col">Description</th>
+  </tr>
+  <tr>
+    <td>NEVER</td>
+    <td>Do not follow HTTP redirects.</td>
+  </tr>
+  <tr>
+    <td>ALWAYS</td>
+    <td>Follow the HTTP redirect requests always, regardless of the origin, domain, etc.</td>
+  </tr>
+  <tr>
+    <td>SAME_ORIGIN</td>
+    <td>Follow the HTTP redirect only if the origin of the redirect request matches. This implies that both the scheme/protocol and the authority between the current and the redirect URIs should match. The port number should also be the same between the two URIs.</td>
+  </tr>
+  <tr>
+    <td>SAME_DOMAIN</td>
+    <td>Follow HTTP redirect only if the domain of the redirect request matches the domain of the current request. For example, URIs with identical domains would be <span class="uri">ws://production.example.com:8001</span> and <span class="uri">ws://production.example.com:8002</span>.</td>
+  </tr>
+  <tr>
+    <td>PEER_DOMAIN</td>
+    <td>Follow the HTTP redirect only if the redirected request is for a peer-domain. For example, the domain in the URI ws://sales.example.com:8001 is a peer of the domain in the URI ws://marketing.example.com:8002.</td>
+  </tr>
+  <tr>
+    <td>SUB_DOMAIN</td>
+    <td>Follow the HTTP redirect only if the request is for sub-domain. For example, the domain in the URI ws://benefits.hr.example.com:8002 is a sub-domain of the domain in the URI ws://hr.example.com:8001.</td>
+  </tr>
+</table>
+
+<p>You can set the default redirect option on the WebSocket Factory using the <span class="uri">setDefaultRedirectPolicy()</span> method and then override it on a WebSocket connection using the <span class="uri">setRedirectPolicy()</span> method.</p>
+
+<pre class="auto-links: false; brush: java; toolbar: false; highlight: 6;">
+import com.kaazing.net.http.HttpRedirectPolicy;
+.
+.
+.
+WebSocket wsFactory = WebSocketFactory.createWebSocketFactory();
+wsFactory.setDefaultRedirectPolicy(HttpRedirectPolicy.SUB_DOMAIN);
+wsFactory.createWebSocket(location);
+</pre>
+
+<p>Here is an example of the SUB_DOMAIN option overridden on a WebSocket connection:</p>
+<pre class="auto-links: false; brush: java; toolbar: false; highlight: 3;">
+WebSocket ws;
+ws = wsFactory.createWebSocket(location);
+ws.setRedirectPolicy(HttpRedirectPolicy.ALWAYS);
+ws.connect();
+</pre>
+
+<h2><a name="Binary"></a>Methods for Text and Binary Messages</h2>
+<p>Both the WebSocket and WsURLConnection classes offer methods to suit the data types your client will handle.</p>
+
+<h3>Text and Binary Clients</h3>
+<p>Clients using both text and binary messages can use the <span class="uri">getMessageReader()</span> and <span class="uri">getMessageWriter()</span> methods, available in both the WebSocket and WsURLConnection classes. These methods receive binary and text messages based on the WebSocketMessageType class. The WebSocketMessageType class represents the types of messages that are received by <code>WebSocketMessageReader</code>. There are three types: TEXT, BINARY, and EOS for end&ndash;of&ndash;stream. For receiving messages,  you can use a switch block for the different message types:</p>
+
+<pre class="auto-links: false; brush: java; toolbar: false;">
+Thread messageReceivingThread = new Thread() {
+    public void run() {
+      WebSocketMessageType type = null;
+      try {
+          WebSocketMessageReader reader = webSocket.getMessageReader();
+          while ((type = reader.next()) != WebSocketMessageType.EOS) {
+              switch (type) {
+                  case BINARY:
+                      ByteBuffer data = reader.getBinary();
+                      log("RESPONSE:" + getHexDump(data));
+                      break;
+                  case TEXT:
+                      CharSequence text = reader.getText();
+                      log("RESPONSE:" + text.toString());
+                      break;
+              }                                        
+          }                                    
+      webSocket.close()
+        }
+      catch (Exception ex) {
+          log("Exception: " + ex.getMessage());
+      }
+    }
+};
+</pre>
+
+<span class="note"><b>Note:</b> In UI-based Java clients, receiving messages should be done on a separate thread to avoid blocking the java.awt <a href="http://docs.oracle.com/javase/tutorial/uiswing/concurrency/dispatch.html">EventDispatchThread</a>.</span>
+
+<h3>Text-only Clients</h3>
+<p>Text-only clients can use the <span class="uri">getReader()</span> and <span class="uri">getWriter()</span> methods, available in both the WebSocket and WsURLConnection classes. If either method is used to receive binary messages, or the methods are invoked before a connection is made, then an IOException is thrown.</p>
+
+<h3>Binary-only Clients and I/O Streams</h3>
+<p>Both WebSocket and WsURLConnection classes support APIs that enable use the use of byte-based data streams as they define <span class="uri">getInputStream()</span> and <span class="uri">getOutputStream()</span> methods. <span class="uri">getInputStream()</span> is used for receiving binary streams and <span class="uri">getOutputStream()</span> is used to send binary streams. If either method is used to receive text messages, or the methods are invoked before a connection is made, then an IOException is thrown. Once the connection is closed, a new InputStream or OutputStream must be obtained using the <span class="uri">getInputStream()</span> and <span class="uri">OutputStream()</span> methods after the connection has been established. Using the old InputStream or OutputStream will result in IOException.</p>
+
+
+<h2><a name="build-android-demo"></a>Build the Android Client API WebSocket Demo</h2>
+
+<p>The following procedure walks through the steps of creating the out of the box Android WebSocket demo that can be downloaded by following the steps in <a href="../../about/setup-guide">Setting Up the Gateway and Clients</a>. The demo code displays how to use the Android Client API to create a client that creates a WebSocket connection with the Gateway and sends and receives text and binary messages.</p>
+
+<p>In this procedure you will build an Android WebSocket Client by doing the following:</p>
+<ol>
+    <li><a href="#Install">Install the Kaazing Enterprise Android Client SDK.</a></li>
     <li><a href="#Set">Set up an Android project in Eclipse.</a></li>
     <li><a href="#Import">Import the Kaazing Gateway Android libraries.</a></li>
     <li><a href="#TUI">Create the Android client Touch User Interface (TUI).</a></li>
@@ -121,24 +420,11 @@
     <li><a href="#Test">Test the Android client in the Android Emulator.</a></li>
 </ol>
 
-<h2>Before You Begin</h2>
-<p>This procedure is part of <a href="o_dev_android.html">Checklist: Build Android Clients Using Kaazing Gateway</a>:</p>
-<ol>
-    <li><strong>Use the Kaazing Gateway Android Client API</strong></li>
-    <li><a href="../dev-java/p_dev_java_secure.html">Secure Your Java and Android Clients</a></li>
-    <li><a href="p_dev_android_log.html">Display Logs for the Android Client</a></li>
-</ol>
-
-<p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../release-notes.html">Release Notes</a>.</span></p>
-
-<h2>Build the Android Client API WebSocket Demo</h2>
-
-<p>The following procedure walks through the steps of creating the out of the box Android WebSocket demo that is included with the Kaazing Gateway bundle. The demo code displays how to use the Android Client API to create a client that creates a WebSocket connection with the Gateway and sends and receives text and binary messages.</p>
 
 <span class="note"><b>Note:</b> The following procedure uses the Android ADT Bundle (which includes the Eclipse IDE). You can download the Android ADT Bundle from <a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a>.</span>
 
 <ol>
-    <li>Install the full version of the Gateway (<strong>Gateway + Documentation + Demos</strong>) as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>. You need the Gateway installed to access the Android demo files, but you do not need to start the Gateway to test the demo.</li>
+    <li>Download the Kaazing Enterprise Android Client SDK as described in <a href="../../about/setup-guide">Setting Up the Gateway and Clients</a>.</li>
     <li>Download the Android ADT Bundle from <a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a>. For steps on installing the Android SDK with an existing Eclipse IDE, see <a href="http://developer.android.com/sdk/installing/index.html">http://developer.android.com/sdk/installing/index.html</a>.</li>
     <li>To set up the ADT Bundle, see <a href="http://developer.android.com/sdk/installing/bundle.html">http://developer.android.com/sdk/installing/bundle.html</a>.</li>
     <li>Launch Eclipse from the installed ADT Bundle.</li>
@@ -156,8 +442,8 @@
             <li><p>In <strong>Minimum Required SDK</strong>, choose <strong>API 10: Android 2.3.3 (Gingerbread)</strong> and click <strong>Next</strong>. </p>
                 <p><span class="note"><b>Note:</b> To confirm or modify the SDK requirement on a project, right-click the project, and click <strong>Properties</strong>. Click <strong>Android</strong>, and then look at the <strong>Project Build Target</strong> settings. </span></p></li>
             <li>On the <strong>New Android Application</strong> page, click <strong>Next</strong>.</li>
-            <li><p>On the <strong>Configure Launcher Icon</strong> page, in <strong>Image File</strong>, click <strong>Browse</strong>, navigate to the following location in the Gateway bundle and select the <strong>icon.png</strong> file:</p>
-            <p><span class="uri"><em>GATEWAY_HOME</em>/demo/android/echo-demo/res/drawable-hdpi/icon.png</span></p></li>
+            <li><p>On the <strong>Configure Launcher Icon</strong> page, in <strong>Image File</strong>, click <strong>Browse</strong>, navigate to the following location in the Kaazing Android WebSocket SDK demo and select the <strong>icon.png</strong> file:</p>
+            <p><code>demos/ws/res/drawable-hdpi/icon.png</code></p></li>
             <li>Click <strong>Next</strong>.</li>
             <li>In <strong>Create Activity</strong>, select <strong>Blank Activity</strong> and click <strong>Next</strong>.</li>
             <li>In <strong>New Blank Activity</strong>, in <strong>Activity Name</strong>, enter <strong>EchoActivity</strong>. </li>
@@ -165,11 +451,11 @@
             <li>The new project is generated.</li>
         </ol>
     </li>
-    <li><a name="Import"></a>Import the Kaazing Gateway Android libraries.
+    <li><a name="Import"></a>Import the Kaazing Android WebSocket SDK libraries.
         <ol type="a">
             <li>Right-click the new project and click <strong>Properties</strong>.</li>
             <li>In the <strong>Properties</strong> dialog, click <strong>Java Build Path</strong>, click the <strong>Libraries</strong> tab, and click <strong>Add External JARs</strong>.</li>
-            <li>Locate and select the Kaazing Gateway Android library. The library is located in <span class="uri"><em>GATEWAY_HOME</em>/lib/client/android</span>. The library you need is <strong>com.kaazing.gateway.client.android.jar</strong>.</li>
+            <li>Locate and select the Kaazing Android WebSocket library. The library is located in <span class="uri">lib/com.kaazing.gateway.client.android-4.2.4.jar</span>. The library you need is <strong>com.kaazing.gateway.client.android.jar</strong>.</li>
             <li>In the <strong>Properties</strong> dialog, click <strong>OK</strong>. You can see the imported library and its classes in your project under <strong>Reference Libraries</strong>.</li>
         </ol>
     </li>
@@ -767,47 +1053,6 @@ private void logMessage(final String logMessage) {
 
     </li>
 
-    <li><a name="Echo"></a>Update the Echo service on the Gateway configuration file to accept on your local IP address.
-        <ol type="a">
-            <li>Open the Gateway configuration file located at <span class="uri"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>.</li>
-            
-            <li>Modify the Echo service to accept on your local IP address (in the following example, the IP address 192.168.0.103 is used).
-
-<pre class="auto-links: false; brush: xml; toolbar: false; highlight:[5, 24];">
-&lt;service&gt;
-    &lt;name&gt;echo&lt;/name&gt;
-    &lt;description&gt;Simple echo service&lt;/description&gt;
-    &lt;accept&gt;ws://${gateway.hostname}:${gateway.extras.port}/echo&lt;/accept&gt;
-    &lt;accept&gt;ws://192.168.0.103:${gateway.extras.port}/echo&lt;/accept&gt;
-
-    &lt;type&gt;echo&lt;/type&gt;
-
-    &lt;realm-name&gt;demo&lt;/realm-name&gt;
-
-    &lt;!--
-    &lt;authorization-constraint&gt;
-        &lt;require-role&gt;AUTHORIZED&lt;/require-role&gt;
-    &lt;/authorization-constraint&gt;
-    --&gt;
-
-    &lt;cross-site-constraint&gt;
-        &lt;allow-origin&gt;
-            http://${gateway.hostname}:${gateway.extras.port}
-        &lt;/allow-origin&gt;
-    &lt;/cross-site-constraint&gt;
-    &lt;cross-site-constraint&gt;
-        &lt;allow-origin&gt;
-            http://192.168.0.103:${gateway.extras.port}
-        &lt;/allow-origin&gt;
-    &lt;/cross-site-constraint&gt;
-&lt;/service&gt;
-</pre>
-
-            </li>
-            <li>Save the Gateway configuration file and restart the Gateway as described in <strong>How do I start and stop the Gateway?</strong> in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
-        </ol>
-    </li>
-    
     <li><a name="Run"></a>Run the Android client in the Android Emulator. You will need to create an Android Virtual Device (AVD) first. For information on creating an AVD, see <a href="http://developer.android.com/tools/devices/managing-avds.html">Managing AVDs with AVD Manager</a>.
         <ol type="a">
             <li>Right-click the <strong>EchoActivity</strong> project, click <strong>Run As</strong>, and then click <strong>Android Application</strong>. The Android Emulator will launch with a locked display screen. Unlock the display screen to display the Android client.
@@ -821,7 +1066,7 @@ private void logMessage(final String logMessage) {
     
     <li><a name="Test"></a>Test the Android client in the Android Emulator.
         <ol type="a">
-            <li>In the Android client running in the Android Emulator, in <strong>Location</strong>, enter <span class="uri">ws://&lt;Your local IP address&gt;:8001/echo</span>, replacing <span class="uri">&lt;Your local IP address&gt;</span> with your local IP address.</li>
+            <li>In the Android client running in the Android Emulator, in <strong>Location</strong>, enter <span class="uri">ws://echo.websocket.org</span>.</li>
             <li>Click <strong>Connect</strong>. The messages <span class="uri">CONNECTING</span> and then <span class="uri">CONNECTED</span> appear. The WebSocket connection was successful.</li>
             <li>Click <strong>Send</strong>. The message <span class="uri">Hello World!</span> is sent to the Echo service over WebSocket and the message is echoed back as <span class="uri">Hello World!</span>.</li>
             <li>Click the <strong>Send Binary</strong> checkbox and click <strong>Send</strong> again. The message <span class="uri">Hello World!</span> is sent to the Echo service over WebSocket as binary and is echoed back as:<br>

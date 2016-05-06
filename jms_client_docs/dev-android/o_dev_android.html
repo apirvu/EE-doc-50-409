@@ -101,8 +101,8 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Checklist: Build Android JMS Clients Using Kaazing Gateway <img src="../../images/enterprise-feature.png" alt="This feature is available in Kaazing Gateway - Enterprise Edition" /></h1>
-<p>This checklist provides the steps necessary to enable your Android client to communicate with your JMS-compliant message broker using the <a href="../apidoc/client/android/jms/index.html">Android JMS Client API</a> available in Kaazing Gateway:</p>
+<h1>Checklist: Build Android JMS Clients <a href="http://kaazing.com/doc/kaazing-glossary.html#enterprise-edition"><img src="../../images/enterprise-feature.png" title="This feature is available in Kaazing WebSocket Gateway - Enterprise Edition."></a></h1>
+<p>This checklist provides the steps necessary to enable your Android client to communicate with your JMS-compliant message broker using the <a href="../apidoc/client/android/jms/index.html">Android JMS Client API</a>, available in the Kaazing Enterprise Android Client SDK. To download the SDK, see <a href="../../about/setup-guide">Setting Up the Gateway and Clients</a>.</p>
 
 <table class="checklist">
   <tr>
@@ -117,8 +117,8 @@
   </tr>
   <tr>
     <td>2</td>
-    <td>Learn to use the Kaazing Gateway Android JMS Client API and the supported methods. This topic also includes a walkthrough to show you how to build a simple Android JMS client.</td>
-    <td><a href="p_dev_android_client.html">Use the Kaazing Gateway Android JMS Client API</a></td>
+    <td>Learn to use the Kaazing Android JMS Client API and the supported methods. This topic also includes a walkthrough to show you how to build a simple Android JMS client.</td>
+    <td><a href="p_dev_android_client.html">Use the Kaazing Android JMS Client API</a></td>
   </tr>
   <tr>
     <td>3</td>
@@ -127,7 +127,7 @@
   </tr>
   <tr>
     <td>4</td>
-    <td>Learn how to gather data on your Kaazing Gateway Android JMS client.</td>
+    <td>Learn how to gather data on your Android JMS client.</td>
     <td><a href="p_dev_android_log.html">Display Logs for the Android JMS Client</a></td>
   </tr>
 </table>     
@@ -142,32 +142,30 @@
 <p>This document contains the following sections:</p>
 <ul class="arrow-2">
   <li><a href="#Introduction">Introduction</a></li>
-  <li><a href="#Overview">Overview of the Kaazing Gateway Android JMS Client API</a></li>
-  <li><a href="#About">About the Kaazing Gateway Android JMS Client API</a></li>
+  <li><a href="#Overview">Overview of the Kaazing Android JMS Client API</a></li>
+  <li><a href="#About">About the Kaazing Android JMS Client API</a></li>
   <li><a href="#Android">About Android</a></li>
   <li><a href="#Demo">Take a Look at the Kaazing Gateway Android Client Demo</a></li>
 </ul>
 
 <h2><a name="Introduction"></a>Introduction</h2>
-<p>In this how-to, you will learn how to use the Kaazing Gateway Android JMS Client API available in Kaazing Gateway to enable your web application to communicate with your JMS-compliant message broker, such as TIBCO Enterprise Message Service (EMS), Informatica UM, Apache ActiveMQ, and JBoss, using Android.</p>
+<p>In this how-to, you will learn how to use the Kaazing Android JMS Client API available in the Kaazing Enterprise Android Client SDK to enable your Android application to communicate with your JMS-compliant message broker, such as TIBCO Enterprise Message Service (EMS), Informatica UM, Apache ActiveMQ, and JBoss, using WebSocket and JMS.</p>
 
-<p>This document contains information for an Android developer who wants to enable communication with their JMS-compliant message broker through the Gateway.</p>
-
-<h2><a name="Overview"></a>Overview of the Kaazing Gateway Android JMS Client API</h2>
-<p>Kaazing Gateway includes an Android JMS Client API that allows Android clients to subscribe from and publish messages to their JMS-compliant message broker. With the Android JMS Client API and the Gateway, you can leverage WebSocket in your Android client. Communication between your Android client and the JMS-compliant message broker is performed over WebSocket, as shown in the following figure:</p>
+<h2><a name="Overview"></a>Overview of the Kaazing Android JMS Client API</h2>
+<p>The Kaazing Enterprise Android Client SDK includes an Android JMS Client API that allows Android clients to subscribe and publish messages to their JMS-compliant message broker. With the Android JMS Client API and the Gateway, you can leverage WebSocket in your Android client. Communication between your Android client and the JMS-compliant message broker is performed over WebSocket, as shown in the following figure:</p>
 
   <figure>
     <img src="../images/f-stomp-jms-android-client.png">
   <figcaption><strong>Figure: Enable Communication Between Your Client and the JMS-compliant message broker</strong></figcaption>  
   </figure>
 
-<h2><a name="About"></a>About the Kaazing Gateway Android JMS Client API</h2>
-<p>Kaazing Gateway includes an Android JMS Client API to enable you to create JMS-based clients specifically for your Android devices. As an Android developer, you can use this API to publish and subscribe to JMS-based messages between your client and your JMS-compliant message broker.</p>
+<h2><a name="About"></a>About the Kaazing Android JMS Client API</h2>
+<p>The Kaazing Enterprise Android Client SDK includes an Android JMS Client API to enable you to create JMS-based clients specifically for your Android devices. As an Android developer, you can use this API to publish and subscribe to JMS-based messages between your client and your JMS-compliant message broker.</p>
 
 <p>The Android JMS Client API exposes capabilities similar to the Java Message Service (JMS) API in Java, including the JMS concepts of connection, session, destination, message consumer, and message producer. Refer to the JMS API documentation, located at <a href="http://www.oracle.com/technetwork/java/docs-136352.html">http://www.oracle.com/technetwork/java/docs-136352.html</a>, for specific information about how to use each of the interfaces.</p>
-<p>For a description of the methods currently supported by the Kaazing Gateway JMS Client APIs, see <a href="../../../about/kaazing-jms-api">Kaazing Gateway JMS Client API: Supported APIs</a>.</p>
+<p>For a description of the methods currently supported by the Kaazing Enterprise Android Client SDK, see <a href="../../about/kaazing-jms-api">Kaazing Gateway JMS Client API: Supported APIs</a>.</p>
 
-<span class="note"><b>Note:</b> Java Naming and Directory Interface (JNDI) is a Java API for a directory service. The Kaazing Gateway Android JMS Client API does not support JNDI. JNDI is supported in the Java JMS Client API. For more information, see <a href="../dev-java/o_dev_java.html">Checklist: How to Build Java Clients Using Kaazing Gateway</a>.</span>
+<span class="note"><b>Note:</b> Java Naming and Directory Interface (JNDI) is a Java API for a directory service. The Kaazing Enterprise Android Client SDK does not support JNDI. JNDI is supported in the Java JMS Client API. For more information, see <a href="../dev-java/o_dev_java.html">Build Java JMS Clients</a>.</span>
 
 <h2><a name="Android"></a>About Android</h2>
 <p>Android is an operating system used by touchscreen smart phones and tablets. Android clients are developed in the Java programming language using the Android software development kit (SDK). The SDK includes development tools, software libraries, and an Android device emulator.</p>
@@ -238,7 +236,7 @@
       </li>
     </ol>
   </li>
-  <li>Save the file, then restart the Gateway by following the steps in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
+  <li>Save the file, then restart the Gateway by following the steps in <a href="../../about/setup-guide">Setting Up the Gateway and Clients</a>.</li>
   <li>In Eclipse, right-click the <strong>JMSDemoActivity</strong> project in <strong>Package Explorer</strong>, select <strong>Run As</strong>, and then click <strong>Android Application</strong>. The Android emulator launches.
     <figure>
       <img src="../images/android-TUI.png">

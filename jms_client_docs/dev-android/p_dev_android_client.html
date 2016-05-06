@@ -87,12 +87,12 @@
 <div class="container page-content text-left">
 <h1>Use the Kaazing Gateway Android JMS Client API</h1>
 
-<p>In this procedure, you will learn how to create an Android JMS client using the Kaazing Gateway <a href="../apidoc/client/android/jms/index.html">Android JMS Client API</a>. You will learn how to create an Eclipse project and add the necessary Java classes in order to use the Android JMS Client API. You will learn how to implement the Android JMS Client API methods to enable your client to send and receive messages to Apache ActiveMQ through the Gateway.</p>
+<p>In this procedure, you will learn how to create an Android JMS Client using the Kaazing Enterprise <a href="../apidoc/client/android/jms/index.html">Android JMS Client API</a>. You will learn how to create an Eclipse project and add the necessary Java classes in order to use the Android JMS Client API. You will learn how to implement the Android JMS Client API methods to enable your Android client to send and receive messages to a JMS broker via a local or publicly avaliable Gateway.</p>
 
-<p>The <a href="../apidoc/client/java/jms/index.html">Android JMS Client API</a> is nearly identical to the Java JMS Client API.  You can review an overview of the Java JMS Client API connection, session, message producer, and message consumer code in <a href="../dev-java/p_dev_java_client.html">Use the Kaazing Gateway Java JMS Client Library</a>. For information about using durable subscribers, see <a href="../dev-java/p_dev_java_client.html#durables">Durable Subscribers</a>.</p>
+<p>The <a href="../apidoc/client/java/jms/index.html">Android JMS Client API</a> is nearly identical to the Java JMS Client API. You can review an overview of the Java JMS Client API connection, session, message producer, and message consumer code in <a href="../dev-java/p_dev_java_client.html">Use the Kaazing Gateway Java JMS Client Library</a>. For information about using durable subscribers, see <a href="../dev-java/p_dev_java_client.html#durables">Durable Subscribers</a>.</p>
 
 
-<p><span class="note"><b>Note:</b> For this procedure, you can use any JMS-compliant message broker. By default, the Gateway is configured to <span class="code_inline">connect</span> to the server on <span class="code_inline">tcp://localhost:61616</span>. You can configure the connect URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
+<p><span class="note"><strong>Note</strong>: For this how-to, we describe how to use both a local and a publicly available Gateway and JMS broker. The public address is <code>wss://sandbox.kaazing.net/jms</code>. Locally, you can use any JMS-compliant message broker. By default, the Gateway is configured to connect to the broker on <code>tcp://localhost:61613</code>. You can configure the <code>connect</code> URL in the file <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>. See <a href="../../../integration-jms/o_jms_integrate">About Integrating Kaazing Gateway and JMS-Compliant Message Brokers</a> for more information.</span></p>
 
 
 <p>In this procedure you will do the following <strong>major</strong> steps (these step numbers do not correspond to the procedure step numbers directly):</p>
@@ -118,12 +118,7 @@
 </ol>
 
 <h2>Before You Begin</h2>
-<p>This procedure is part of <a href="o_dev_android.html">Checklist: How to Build Android JMS Clients Using Kaazing Gateway</a>:</p>
-<ol>
-  <li><strong>Use the Kaazing Gateway Android JMS Client API</strong></li>
-  <li><a href="../dev-java/p_dev_java_secure.html">Secure Your Java and Android JMS Clients</a></li>
-  <li><a href="p_dev_android_log.html">Display Logs for the Android JMS Client</a></li>
-</ol>
+<p>This procedure is part of <a href="o_dev_android.html">Checklist: Build Android JMS Clients</a>.</p>
 
 <p><span class="note"><b>Note:</b> Learn about supported browsers, operating systems, and platform versions in the <a href="../../release-notes.html">Release Notes</a>.</span></p>
 
@@ -132,7 +127,8 @@
 <p><span class="note"><b>Note:</b> The following procedure uses the Android ADT Bundle (which includes the Eclipse IDE). You can download the Android ADT Bundle from <a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a>.</span></p>
 
 <ol>
-  <li>Install the Gateway as described in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>. You need the Gateway installed to access the out of the box Android demo files.</li>
+  <li>Download the Kaazing Enterprise Android Client SDK as described in <a href="../../about/setup-guide">Setting Up the Gateway and Clients</a>.</li>
+  <li>You will need a local copy of the Gateway to obtain the JMS API library file for the JMS specification, <strong>geronimo-jms_1.1_spec-1.1.1.jar</strong>. To download and install the Gateway, see <a href="../../about/setup-guide">Setting Up the Gateway and Clients</a>. </li>
   
   <li><a name="Download"></a>Download the Android ADT Bundle from <a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a>. For information on using the Android SDK with an existing Eclipse IDE, see <a href="http://developer.android.com/sdk/installing/index.html">http://developer.android.com/sdk/installing/index.html</a>.</li>
   
@@ -156,7 +152,7 @@
         <p><span class="note"><b>Note:</b> To confirm or modify the SDK requirement on a project, right-click the project and click <strong>Properties</strong>. Click <strong>Android</strong>, and then look at the <strong>Project Build Target</strong> settings.</span></p>
       </li>
       <li>On <strong>New Android Application</strong> page, click <strong>Next</strong>.</li>
-      <li>On the <strong>Configure Launcher Icon</strong> page, in <strong>Image File</strong>, click <strong>Browse</strong>, navigate to the following location in the Gateway bundle and select the <strong>icon.png</strong> file:<br><span class="code_inline"><em>GATEWAY_HOME</em>/demo/android/src/jms/res/drawable-hdpi/icon.png</span></li>
+      <li>On the <strong>Configure Launcher Icon</strong> page, in <strong>Image File</strong>, click <strong>Browse</strong>, navigate to the following location in the downloaded Kaazing Enterprise Android SDK and select the <strong>icon.png</strong> file:<br><code>demos/jms/res/drawable-hdpi/icon.pn</code></li>
       <li>Click <strong>Next</strong>. </li>
       <li>In <strong>Create Activity</strong>, select <strong>Blank Activity</strong> and click <strong>Next</strong>.</li>
       <li>In <strong>New Blank Activity</strong>, in <strong>Activity Name</strong>, enter <span class="code_inline">JMSDemoActivity</span>. </li>
@@ -168,7 +164,7 @@
     <ol type="a">
       <li>Right-click the new project and click <strong>Properties</strong>.</li>
       <li>In the <strong>Properties</strong> dialog, click <strong>Java Build Path</strong>, click the <strong>Libraries</strong> tab, and click <strong>Add External JARs</strong>.</li>
-      <li>Locate and select the Kaazing Gateway Android libraries. The libraries are located in <span class="code_inline"><em>GATEWAY_HOME</em>/lib/client/android</span>. The libraries you need are <strong>com.kaazing.gateway.client.android.jar</strong> and <strong>com.kaazing.gateway.jms.client.android.jar</strong>.</li>
+      <li>Locate and select the Kaazing Android libraries. The libraries are located in the downloaded Kaazing Enterprise Android Client SDK in <code>lib</code>. The libraries you need are <strong>com.kaazing.gateway.client.android-4.2.4</strong> and <strong>com.kaazing.gateway.jms.client.android-4.2.3</strong>.</li>
       <li>Click <strong>Add External JARs</strong> again.</li>
       <li>Locate and select the JMS API library. The JMS API library is located in <span class="code_inline"><em>GATEWAY_HOME</em>/lib</span>. The library is named <strong>geronimo-jms_1.1_spec-1.1.1.jar</strong>.</li>
       <li>In the <strong>Properties</strong> dialog, click <strong>OK</strong>. You can see the imported library and its classes in your project under <strong>Reference Libraries</strong>.</li>
@@ -1046,7 +1042,7 @@ private void logMessage(final String message) {
 </pre>
   </li>
   
-  <li>Update the <span class="code_inline">jms</span> service on the Gateway configuration file to accept on your local IP address.
+  <li>If you are using a local Gateway to test your Android JMS client, update the <span class="code_inline">jms</span> service on the Gateway configuration file to accept on your local IP address.
     <ol type="a">
       <li>Open the Gateway configuration file located at <span class="code_inline"><em>GATEWAY_HOME</em>/conf/gateway-config.xml</span>.</li>
       <li>Modify the <span class="code_inline">jms</span> service to accept connections containing your local IP address (replace <span class="code_inline">local-ip-address</span> with your IP address):
@@ -1079,7 +1075,8 @@ private void logMessage(final String message) {
 &lt;/service&gt;
 </pre>
       </li>
-      <li>Save the file, then restart the Gateway by following the steps in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
+      <li>Save the file, then restart the Gateway by following the steps in <a href="../../about/setup-guide">Setting Up the Gateway and Clients</a> (go to <code><em>GATEWAY_HOME</em>/bin</code>, and then run one of the following: for Linux/Mac: <code>./gateway.start</code>; for Windows: <code>gateway.start.bat</code>).</li>
+      <li>If you are using a local Gateway, then start the Apache ActiveMQ broker provided by Kaazing. For steps on downloading and running the broker, see <a href="../../about/setup-guide">Setting Up the Gateway and Clients</a>.</li>
     </ol>
   </li>
   
@@ -1092,8 +1089,8 @@ private void logMessage(final String message) {
   
   <li><a name="Test"></a>Test the Android client in the Android Emulator.
     <ol type="a">
-      <li>In the <strong>Location</strong> field, enter <span class="code_inline">ws://<em>local-ip-address</em>:8001/jms</span> using your local IP address. For example, <span class="code_inline">ws://192.168.0.103:8001/jms</span>.</li>
-      <li>Click <strong>Connect</strong>. The messages <span class="code_inline">CONNECTING</span> and then <span class="code_inline">CONNECTED</span> appear. The WebSocket connection to the Gateway and Apache ActiveMQ was successful.</li>
+      <li>In the <strong>Location</strong> field, enter either the URI used by the publicly available Gateway and JMS broker provided by Kaazing, <code>wss://sandbox.kaazing.net/jms</code>, or enter the local address <span class="code_inline">ws://<em>local-ip-address</em>:8001/jms</span> using your local IP address. For example, <span class="code_inline">ws://192.168.0.103:8001/jms</span>.</li>
+      <li>Click <strong>Connect</strong>. The messages <span class="code_inline">CONNECTING</span> and then <span class="code_inline">CONNECTED</span> appear. The WebSocket connection to the Gateway and JMS broker was successful.</li>
       <li>Click <strong>Subscribe</strong>. The message <span class="code_inline">SUBSCRIBE - /topic/destination</span> appears. You have subscribed to the destination.</li>
       <li>Click <strong>Send</strong>. The following messages appear:<br>
         <span class="code_inline">RECEIVED TextMessage: Hello, message<br>

@@ -85,8 +85,11 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Interact with Kaazing Gateway Using the WebSocket API</h1>
-        <p>This procedure describes how you can use the WebSocket API provided by the Kaazing Java client library in Java. This API allows you to take advantage of the WebSocket standard as described in the <a href="http://dev.w3.org/html5/spec/Overview.html#network">HTML5 specification</a>. For example, you can create a stand-alone Java application that uses the Java HTML5 Communications client library to interact directly with a back-end server. The support for WebSocket is provided by the WebSocket class and its supporting classes.        </p>
+<h1>Interact with Kaazing Gateway Using the WebSocket API <a href="http://kaazing.com/doc/kaazing-glossary.html#enterprise-edition"><img src="../../images/enterprise-feature.png" title="This feature is available in Kaazing WebSocket Gateway - Enterprise Edition."></a></h1>
+
+<p>If you are looking for Android development information, see the Kaazing Android SDK topics in the <a href="../../index.html">table of contents</a>.</p>
+
+        <p>This procedure describes how you can use the WebSocket API provided by the Kaazing Java WebSocket client library in Java. This API allows you to take advantage of the WebSocket standard as described in the <a href="http://dev.w3.org/html5/spec/Overview.html#network">HTML5 specification</a>. For example, you can create a stand-alone Java application that uses the Java HTML5 Communications client library to interact directly with a back-end server. The support for WebSocket is provided by the WebSocket class and its supporting classes.        </p>
 <p>This topic covers the following information:</p>
 <ul class="arrow-2">
 <li><a href="#useAPI">To Use the WebSocket API in Java</a></li>
@@ -186,7 +189,7 @@ try {
      WebSocketMessageWriter writer = ws.getMessageWriter();
 
      // Send messages using a for loop to alternate between text and binary messages
-     for (int i = 0; i < 100; i++) {
+     for (int i = 0; i &lt; 100; i++) {
          String text = "Hello WebSocket - " + i;
          // For even numbered loops, send text
          if (( i %2) == 0) {
@@ -245,8 +248,8 @@ private String getHexDump(ByteBuffer buf) {
     }
 
     StringBuilder hexDump = new StringBuilder();
-    for (int i = buf.position(); i < buf.limit(); i++) {
-        hexDump.append(Integer.toHexString(buf.get(i)&0xFF)).append(' ');
+    for (int i = buf.position(); i &lt; buf.limit(); i++) {
+        hexDump.append(Integer.toHexString(buf.get(i)&amp;0xFF)).append(&#x27; &#x27;);
     }
     return hexDump.toString();
 }
@@ -400,7 +403,7 @@ Thread messageReceivingThread = new Thread() {
 <h3>Binary-only Clients and I/O Streams</h3>
 <p>Both WebSocket and WsURLConnection classes support APIs that enable use the use of byte-based data streams as they define <span class="uri">getInputStream()</span> and <span class="uri">getOutputStream()</span> methods. <span class="uri">getInputStream()</span> is used for receiving binary streams and <span class="uri">getOutputStream()</span> is used to send binary streams. If either method is used to receive text messages, or the methods are invoked before a connection is made, then an IOException is thrown. Once the connection is closed, a new InputStream or OutputStream must be obtained using the <span class="uri">getInputStream()</span> and <span class="uri">OutputStream()</span> methods after the connection has been established. Using the old InputStream or OutputStream will result in IOException.</p>
 
-<h2><a name="Walkthrough"></a>Build the Java API Client Demo</h2>
+<h2><a name="Walkthrough"></a>Build a Java WebSocket API Client Demo</h2>
 <p>The following procedure walks through the steps of creating the out of the box Java WebSocket demo that is included with the Kaazing Gateway bundle. The demo code displays how to use the Java WebSocket API to create a client that creates a WebSocket connection with the Gateway, sends and receives text and binary messages, and includes a UI.</p>
 
 <p>In this procedure you will do the following:</p>
@@ -419,7 +422,7 @@ Thread messageReceivingThread = new Thread() {
 
 <p>For information about the Kaazing Gateway Java WebSocket API, see <a href="http://localhost:8001/documentation/javadoc/html5/index.html">Java WebSocket API</a>.</p>
 
-<p>With the Gateway running, the out of the box Java demo can be viewed at <span class="uri">http://localhost:8001/demo/</span>. The files for the demo are located in the following location in the bundle: <span class="uri"><em>GATEWAY_HOME</em>/demo/java/src/gateway</span>. </p>
+<!-- <p>With the Gateway running, the out of the box Java demo can be viewed at <span class="uri">http://localhost:8001/demo/</span>. The files for the demo are located in the following location in the bundle: <span class="uri"><em>GATEWAY_HOME</em>/demo/java/src/gateway</span>. </p> -->
 
 <p>The following procedure uses the Eclipse IDE. You can download Eclipse from <a href="http://www.eclipse.org">www.eclipse.org</a>. Java Developer Kit (JDK) or Java Runtime Environment (JRE) Java 7 or higher from <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Oracle</a> is required also.</p>
 
@@ -431,10 +434,10 @@ Thread messageReceivingThread = new Thread() {
         </ol>
     </li>
     
-    <li><p>Import the Kaazing Gateway Java libraries.</p>
+    <li><p>Import the Kaazing Gateway Java WebSocket libraries.</p>
         <ol type="a">
             <li>In the <strong>Properties</strong> dialog, click <strong>Java Build Path</strong>, click the <strong>Libraries</strong> tab, and click <strong>Add External JARs</strong>.</li>
-            <li>Locate and select the Kaazing Gateway Java library. The libraries are located in <span class="uri"><em>GATEWAY_HOME</em>/lib/client/java</span>. The library you need is <span class="uri">com.kaazing.gateway.client.jar</span>. The folder also contains a library for clients using Kerberos V5 Network Authentication with the Gateway, <span class="uri">com.kaazing.gateway.client.security.kerberos.jar</span>. This library is not needed for clients that do not use Kerberos V5 Network Authentication.</li>
+            <li>Locate and select the Kaazing Java WebSocket library. The libraries are located in the <strong>lib</strong> folder of the Kaazing Java JMS Client SDK download. To download the SDK, see <a href="../../about/setup-guide">Setting Up the Gateway and Clients</a>. The Kaazing Java WebSocket library file is <span class="uri">com.kaazing.gateway.client.java-4.2.3.jar</span>. The <strong>lib</strong> folder also contains a library for clients using Kerberos V5 Network Authentication with the Gateway, <span class="uri">com.kaazing.gateway.client.security.kerberos.jar</span>. This library is not needed for clients that do not use Kerberos V5 Network Authentication.</li>
             <li>In the <strong>Properties</strong> dialog, click <strong>OK</strong>. You can see the imported library and its classes in your project under <span class="uri">com/kaazing/gateway/client</span>.</li>
         </ol>
     </li>
@@ -933,9 +936,9 @@ public class WebSocketPanel extends javax.swing.JPanel {
     
     <li>Save the client in Eclipse.</li>
     
-    <li>Start the Gateway as described in <strong>How do I start and stop the Gateway?</strong> in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
+    <li>If you are using a local Kaazing WebSocket Gateway to test the client, start the Gateway as described in <a href="../../about/setup-guide">Setting Up the Gateway and Clients</a>.</li>
     
-    <li>Test your new client. In Eclipse, in the <strong>Run</strong> menu, click <strong>Run</strong>. The Java client launches. The <strong>Location</strong> field contains a URI for the Echo service running on the Gateway using the WebSocket scheme, ws://: <span class="uri">ws://localhost:8001/echo</span>.</li>
+    <li>Test your new client. In Eclipse, in the <strong>Run</strong> menu, click <strong>Run</strong>. The Java client launches. In the <strong>Location</strong> field, enter a URI for the Echo service running on the local Gateway, <span class="uri">ws://localhost:8001/echo</span> or use the public Gateway address, <code>ws://echo.websocket.org</code>.</li>
     
     <li>Click <strong>Connect</strong>. The Log displays:<br>
     <span class="uri">

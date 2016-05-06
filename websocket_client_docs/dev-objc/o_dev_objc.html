@@ -85,8 +85,8 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Checklist: Build Objective-C (iOS) Clients Using Kaazing Gateway</h1>
-<p>This checklist provides the steps necessary to create an Objective-C client using the Kaazing Gateway <a href="../apidoc/client/ios/gateway/index.html">Objective-C Client API</a>:</p>
+<h1>Checklist: Build Objective-C (iOS) WebSocket Clients</h1>
+<p>This checklist provides the steps necessary to create an Objective-C WebSocket client using the Kaazing <a href="../apidoc/client/ios/gateway/index.html">Objective-C WebSocket Client API</a>:</p>
 
 <table class="checklist">
   <tr>
@@ -101,8 +101,8 @@
   </tr>
   <tr>
     <td>2</td>
-    <td>Learn how to use the Objective-C Client API.</td>
-    <td><a href="p_dev_objc_client.html">Use the Kaazing Gateway Objective-C Client API</a></td>
+    <td>Learn how to use the Objective-C WebSocket Client API.</td>
+    <td><a href="p_dev_objc_client.html">Use the Kaazing Objective-C WebSocket Client API</a></td>
   </tr>
   <tr>
     <td>3</td>
@@ -111,7 +111,7 @@
   </tr>
   <tr>
     <td>4</td>
-      <td>Learn how to gather data on Kaazing Gateway <br>Objective-C client.</td>
+      <td>Learn how to gather data on the Kaazing Objective-C client.</td>
       <td><a href="p_dev_objc_log.html">Display Logs for the Objective-C Client</a></td>
   </tr>
   <tr>
@@ -122,14 +122,12 @@
 </table>     
 
 <h2>Introduction</h2>
-<p>In this how-to, you will learn how to use the Kaazing Gateway Objective-C client libraries available in Kaazing Gateway to enable your iOS client to communicate with any back-end service using Objective-C.</p>
+<p>In this how-to, you will learn how to use the Kaazing Enterprise Objective-C Client SDK to enable your iOS client to communicate with any back-end service using WebSocket.</p>
 
-<p>This document contains information for an Objective-C developer who wants to add Objective-C to an iOS client to enable communication with a back-end server through the Gateway.</p>
-
-<p>For more information, see <a href="../apidoc/client/ios/gateway/index.html">Objective-C Client API</a>.</p>
+<p>For more information, see <a href="../apidoc/client/ios/gateway/index.html">Objective-C WebSocket Client API</a>.</p>
 
 <h2>WebSocket and Objective-C</h2>
-<p>Kaazing Gateway provides support for its HTML5 Communication protocol libraries in Objective-C. Using the Objective-C Client API, you can enable the HTML5 WebSocket protocols in new or existing Objective-C applications. For example, you can create an Objective-C client to get streaming financial or news data from a back-end server using WebSocket. The following figure shows a high-level overview of the architecture:</p>
+<p>Kaazing provides support for WebSocket in Objective-C. Using the Kaazing Enterprise Objective-C Client SDK, you can enable the HTML5 WebSocket protocols in new or existing Objective-C applications. For example, you can create an Objective-C client to get streaming financial or news data from a back-end server using WebSocket. The following figure shows a high-level overview of the architecture:</p>
 
     <figure>
         <img src="../images/f-html5-objc-client-web.png">
@@ -137,11 +135,11 @@
     </figure>
 
 <h2>Taking a Look at the Objective-C Client Demo</h2>
-<p>Before you start, take a look at an  out of the box demo built using the Objective-C Client API:</p>
+<p>Before you start, take a look at an out of the box demo built using the Objective-C WebSocket Client API:</p>
 <ol>
-    <li>Start the Gateway as described in <strong>How do I start and stop the Gateway?</strong> in <a href="../../about/setup-guide">Setting Up Kaazing Gateway</a>.</li>
-    <li>In a browser, navigate to the out of the box demos at <span class="uri">http://localhost:8001/demo/core/ios/</span>.</li>
-    <li>You can build and run the out of the box iOS demo application by building the demo project using Xcode. Expand the file located at <span class="uri"><em>GATEWAY_HOME</em>/demo/ios/kaazing-ios-demo.zip</span>, open the project file <strong>html5.client.ios.demo.xcodeproj</strong> in Xcode, and then run the application in the iPhone simulator. The demo application shows how use the Objective-C API to communicate with the Echo service running on the Gateway.</li>
+    <li>Download the Objective-C (iOS) Clients SDK as described in <a href="../../about/setup-guide">Setting Up the Gateway and Clients</a>.</li>
+    <li>Navigate to the out of the box demo in the download at <code>demos/ws/src/html5.client.ios.demo.xcodeproj</code>.</li>
+    <li>You can build and run the out of the box iOS demo application by building the demo project using Xcode. Open the project file <strong>html5.client.ios.demo.xcodeproj</strong> in Xcode, and then run the application in the iPhone simulator. The demo application shows how use the Objective-C API to communicate with the Echo service running on a local or publically available Gateway.</li>
 </ol>
 
     

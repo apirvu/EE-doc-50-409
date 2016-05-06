@@ -85,19 +85,19 @@
   <link rel="stylesheet" href="/css/doc.css">
 
 <div class="container page-content text-left">
-<h1>Secure Your Objective-C Client</h1>
-<p>In this procedure, you will learn how to program your Objective-C client built using the Kaazing Gateway Objective-C libraries to authenticate with the Kaazing Gateway. Authenticating your client involves implementing a challenge handler to respond to authentication challenges from the Gateway. If your challenge handler is responsible for obtaining user credentials, then you will also need to implement a login handler.</p>
+<h1>Secure Your Objective-C WebSocket Client</h1>
+<p>In this procedure, you will learn how to program your Objective-C client built using the Kaazing Enterprise Objective-C Client SDK to authenticate with the Gateway (to use the open source Gateway, see <a href="../../about/setup-guide">Setting Up the Gateway and Clients</a>). Authenticating your client involves implementing a challenge handler to respond to authentication challenges from the Gateway. If your challenge handler is responsible for obtaining user credentials, then you will also need to implement a login handler.</p>
 
-<p>For information about the Kaazing Gateway Objective-C Client API, see <a href="../apidoc/client/ios/gateway/index.html">Objective-C Client API</a>.</p>
+<p>For information about the Kaazing Objective-C WebSocket Client API, see <a href="../apidoc/client/ios/gateway/index.html">Objective-C WebSocket Client API</a>.</p>
 
 <span class="note"><b>Notes:</b><br>
  <ul>
-         <li>Before you add security to your clients, follow the steps in <a href="../../../security/o_aaa_config_authentication">Checklist: Configure Authentication and Authorization</a> to set up security on Kaazing Gateway for your client. The authentication and authorization methods configured on the Gateway influence your client security implementation. The examples is this topic provide the most common client implementations.</li>
+         <li>Before you add security to your clients, follow the steps in <a href="../../../security/o_aaa_config_authentication">Checklist: Configure Authentication and Authorization</a> to set up security on the Gateway for your client. The authentication and authorization methods configured on the Gateway influence your client security implementation. The examples is this topic provide the most common client implementations.</li>
          <li>For information on secure network connections between clients and the Gateway, see <a href="../../security/o_tls">Checklist: Secure Network Traffic with the Gateway</a>.</li> 
  </ul>
 </span>
 
-<h2>Before You Begin</h2><p>This procedure is part of Checklist: <a href="o_dev_objc.html">Build Objective-C (iOS) Clients Using Kaazing Gateway</a>:</p><ol><li><a href="p_dev_objc_client.html">Use the Kaazing Gateway Objective-C Client API</a></li><li><strong>Secure Your Objective-C Client</strong></li><li><a href="p_dev_objc_log.html">Display Logs for the Objective-C Client</a></li><li><a href="p_dev_objc_tshoot.html">Troubleshoot Your Objective-C Client</a></li></ol>
+<h2>Before You Begin</h2><p>This procedure is part of Checklist: <a href="o_dev_objc.html">Build Objective-C (iOS) Clients Using Kaazing Gateway</a>:</p><ol><li><a href="p_dev_objc_client.html">Use the Kaazing Gateway Objective-C WebSocket Client API</a></li><li><strong>Secure Your Objective-C Client</strong></li><li><a href="p_dev_objc_log.html">Display Logs for the Objective-C Client</a></li><li><a href="p_dev_objc_tshoot.html">Troubleshoot Your Objective-C Client</a></li></ol>
 
 <h2>Creating a Basic Challenge Handler</h2>
 <p>A challenge handler is a constructor used in a client to respond to authentication challenges from the Gateway when the client attempts to access a protected resource. Each of the resources protected by the Gateway can be configured with a different authentication scheme (for example, Basic, Application Basic, Negotiate, Application Negotiate, or Application Token), and your client requires a challenge handler for each of the schemes that it will encounter or a single challenge handler that will respond to all challenges.</p>
@@ -390,7 +390,7 @@ _websocket.didClose = ^(KGWebSocket* websocket, NSInteger code, NSString* reason
 @end
 </pre>
 
-<p><span class="note"><b>Note:</b> This example is taken from the out of the box Objective-C demo that is included in the bundle with the Gateway. The demo is located in <span class="uri"><em>GATEWAY_HOME</em>/demo/ios</span>.</span></p>
+<p><span class="note"><b>Note:</b> This example is taken from the out of the box Objective-C WebSocket demo that is included in the Kaazing Enterprise Objective-C Client SDK (for download information, see <a href="../../about/setup-guide">Setting Up the Gateway and Clients</a>). The demo is located in <span class="uri">demos/ws.</span></p>
 
 
 <h2>Next Step</h2>
